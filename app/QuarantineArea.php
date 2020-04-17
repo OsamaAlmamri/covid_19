@@ -1,0 +1,23 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class QuarantineArea extends Model
+{
+    //
+    use SoftDeletes;
+
+    protected $fillable = [
+        'name', 'quarantine_area_type_id', 'manager_id',
+        'zone_id', 'longitude', 'latitude', 'map_address',
+        'status','maxCapacity', 'deleted_by', 'created_by',
+    ];
+    public function zone()
+    {
+        return $this->belongsTo('App\Zone', 'zone_id', 'id');
+        // return $this->belongsTo('App\UserAddress');     # Should work but not working
+    }
+}
