@@ -27,13 +27,13 @@ class UsersRequest extends FormRequest
     public function rules()
     {
 //        return dd($this->route()->user);
-////        truck_image, ssn_image,truck_number,company_id,governorate_id,zone_id,avatar,phone
+////          'email', 'password', 'username', 'avatar', 'work_team_id', 'status', 'deleted_by', 'created_by',
         return [
-            'username' => [
-                'required', 'string', $this->method() == 'PUT' ? Rule::unique('users', 'username')->ignore($this->route()->user->id) : Rule::unique('users', 'username')],
-            'name' => 'required|string',
-            'email' => [ 'string', 'email', $this->method() == 'PUT' ? Rule::unique('users', 'email')->ignore($this->route()->user->id) : Rule::unique('users', 'email')],
-            'phone' => ['required', 'string', $this->method() == 'PUT' ? Rule::unique('users', 'phone')->ignore($this->route()->user->id) : Rule::unique('users', 'phone')],
+            'username' => [ 'required', 'string', $this->method() == 'PUT' ? Rule::unique('users', 'username')->ignore($this->route()->user->id) : Rule::unique('users', 'username')],
+
+            'work_team_id' => [
+                'required', 'string', $this->method() == 'PUT' ? Rule::unique('users', 'work_team_id')->ignore($this->route()->user->id) : Rule::unique('users', 'work_team_id')],
+            'email' => ['required', 'string', 'email', $this->method() == 'PUT' ? Rule::unique('users', 'email')->ignore($this->route()->user->id) : Rule::unique('users', 'email')],
             'password' => $this->method() == 'PUT' ? 'confirmed' : 'required|confirmed',
 //            'phone_number' => $this->method() == 'PUT' ? 'string' : 'required|string',
             'avatar' => 'image|max:5242880',
@@ -45,7 +45,8 @@ class UsersRequest extends FormRequest
         return [
             'username.required' => 'إسم المستخدم مطلوب',
             'username.unique' => 'إسم المستخدم هذا مستخدم من قبل',
-            'name.required' => 'الإسم مطلوب',
+            'work_team_id.required' => 'صاحب الحساب مطلوب ',
+            'work_team_id.unique' => 'يوجد لدى هذا الشخص حساب من قبل',
             'email.required' => 'الإيميل مطلوب',
             'email.email' => 'صيغة الإيميل غير صالحة',
             'email.unique' => 'هذا الإيميل مستخدم بالفعل',

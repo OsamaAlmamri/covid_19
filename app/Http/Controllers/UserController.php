@@ -49,7 +49,6 @@ class UserController extends Controller
         $request['password'] = Hash::make($request->password);
         $avatar = saveImage('images/Users/' . $request['username'], $request->file('avatar'));
         $request['birthDate'] = setEntryDateAttribute($request['birthDate']);
-        $request['join_date'] = setEntryDateAttribute($request['join_date']);
         $user = User::create(array_merge($request->all(),
             [
                 'status' => 1,
@@ -66,9 +65,6 @@ class UserController extends Controller
     {
 //        return dd($request);
         $avatar = updateImage('images/Users/' . $request['username'], $request->file('avatar'), $user->avatar);
-        $request['birthDate'] = setEntryDateAttribute($request['birthDate']);
-        $request['join_date'] = setEntryDateAttribute($request['join_date']);
-
         if ($request->password == '') {
             $user->update(array_merge($request->except('password'), ['avatar' => $avatar]));
         } else {

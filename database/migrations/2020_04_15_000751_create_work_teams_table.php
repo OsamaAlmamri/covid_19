@@ -23,7 +23,7 @@ class CreateWorkTeamsTable extends Migration
             $table->date('join_date')->nullable();
             $table->string('country')->default('yemen');
             $table->string('ssn')->nullable();
-            $table->string('workType');
+            $table->enum('workType', ['point', 'health'])->default('health');
             $table->unsignedBigInteger('zone_id');
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('created_by')->nullable()->default(null);

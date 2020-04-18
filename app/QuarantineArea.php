@@ -20,4 +20,9 @@ class QuarantineArea extends Model
         return $this->belongsTo('App\Zone', 'zone_id', 'id');
         // return $this->belongsTo('App\UserAddress');     # Should work but not working
     }
+
+    public function workTeams()
+    {
+        return $this->belongsToMany('App\WorkTeam', 'health_teams', 'quarantine_area_id', 'work_team_id')->orderByDesc('id');
+    }
 }

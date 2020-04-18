@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 
 
 use App\Attendence;
+use App\BlockedPerson;
 use App\DaysQr;
 use App\Project;
 use App\Task;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Validator;
 
-class ProjectsController extends BaseAPIController
+class ProjectApiController extends BaseAPIController
 {
     public function getInfo(Request $request)
     {
@@ -58,13 +59,14 @@ class ProjectsController extends BaseAPIController
     }
 
 
-    public function getAllUserTasks(Request $request)
+    public function getAllBlockPersonsPerZone(Request $request)
     {
         try {
-            if ($request->project_id == null or $request->project_id == 'all') {
-                $data = Task::where('user_id', '=', $request->user_id)->get();
-                $messsage = 'بيانات جميع المهام لجميع المشاريع ';
+            if ($request->zone_id == null or $request->zone_id == 'all') {
+                $data = BlockedPerson::where('quarantine_area_id', '>', 0)->get();
+                $messsage = 'بيانات جميع المحجورين  بالمراكز في الــيمن ';
             } else {
+                $zone=
                 $data = Task::where('user_id', '=', $request->user_id)
                     ->whereIn('phase_id', getProjectServeceIds($request->project_id))->get();
                 $messsage = 'بيانات جميع المهام  للمشروع رقم  ' . $request->project_id;

@@ -40,7 +40,7 @@ return array(
     'App\\HealthTeam' => $baseDir . '/app/HealthTeam.php',
     'App\\Http\\Controllers\\API\\AuthController' => $baseDir . '/app/Http/Controllers/API/AuthController.php',
     'App\\Http\\Controllers\\API\\BaseAPIController' => $baseDir . '/app/Http/Controllers/API/BaseAPIController.php',
-    'App\\Http\\Controllers\\API\\ProjectsController' => $baseDir . '/app/Http/Controllers/API/ProjectsController.php',
+    'App\\Http\\Controllers\\API\\ProjectApiController' => $baseDir . '/app/Http/Controllers/API/ProjectsController.php',
     'App\\Http\\Controllers\\Admin\\AdminAuth' => $baseDir . '/app/Http/Controllers/AdminAuth.php',
     'App\\Http\\Controllers\\AttendencesController' => $baseDir . '/app/Http/Controllers/AttendencesController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class HealthTeam extends Model
 {
     //
-    use SoftDeletes;
 
+    protected $fillable = [
+        'work_team_id', 'quarantine_area_id'
+    ];
 }

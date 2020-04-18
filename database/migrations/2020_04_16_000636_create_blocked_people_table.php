@@ -15,7 +15,7 @@ class CreateBlockedPeopleTable extends Migration
     {
         Schema::create('blocked_people', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('bp_name');
             $table->enum('gender', ['male', 'female'])->default('male');
             $table->date('birth_date')->nullable();
             $table->string('country')->default('yemen');
@@ -29,8 +29,8 @@ class CreateBlockedPeopleTable extends Migration
             $table->string('relative_phone')->nullable();
             $table->unsignedBigInteger('check_point_id');
             $table->foreign('check_point_id')->references('id')->on('check_points')->onDelete('cascade')->onUpdate('cascade');
-           $table->enum('type', ['track_owner', 'people'])->default('people');
-            $table->enum('from', ['yemeni', 'arabic', 'align'])->default('yemeni');
+           $table->enum('bp_type', ['track_owner', 'people'])->default('people');
+            $table->enum('bp_from', ['yemeni', 'arabic', 'align'])->default('yemeni');
             $table->enum('typeStatus', ['checkAndTruckInPort', 'checkedAndCrossedFromPort', 'JustChecked', 'examinedAndQuarantined', 'noActionTaken'])->default('noActionTaken');
             $table->string('truck_number')->nullable();
             $table->date('check_date')->nullable();
@@ -81,7 +81,7 @@ class CreateBlockedPeopleTable extends Migration
             $table->date('sample_sent_date')->nullable();
 
             $table->enum('result_of_examining', ['indicates', 'passive', 'hangs', 'indecisive', 'none'])->default('none');
-            $table->enum('situation_result', ['cured', 'dead', 'reffered', 'none'])->default('none');
+            $table->enum('situation_result', ['cured', 'dead', 'referred', 'none'])->default('none');
             $table->boolean('if_dead_date')->default(false);
             $table->unsignedBigInteger('quarantine_area_id')->nullable()->default(null);
             $table->foreign('quarantine_area_id')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpdate('cascade');

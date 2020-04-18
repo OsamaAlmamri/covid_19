@@ -134,111 +134,27 @@
                                 </div>
                             </div>
 
-                            <!-- start name -->
                             <div class="j-row">
-                                <div class="span6 unit">
-                                    <div class="input">
-                                        {!! Form::text('name',(isset($user))?$user->name: null  , [ 'id' => 'name'  ,'placeholder'=>trans("form.full_name")]) !!}
-                                        @error('name') <span
-                                            class="btn-block badge badge-danger">{{ $message }}</span> @enderror
 
-                                    </div>
-                                </div>
-                                <div class="span6 unit">
-                                    <div class="input">
-                                        <label class="icon-right" for="phone">
-                                            <i class="fa fa-phone"></i>
-                                        </label>
-                                        {!! Form::text('phone',(isset($user))?$user->phone: null  , [ 'id' => 'phone'  ,'placeholder'=>trans("form.phone")]) !!}
-
-                                        @error('phone') <span
-                                            class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-
-                                <div class="span6 unit">
-                                    {{--                                    @if(isset($user))--}}
-                                    <div class="input">
-                                        <label class="icon-right" for="employee_number">
-                                            <i class="fa fa-id-card"></i>
-                                        </label>
-                                        {!! Form::text('employee_number',(isset($user))?$user->employee_number: null  , [ 'id' => 'phone'  ,'placeholder'=>trans("form.employee_number")]) !!}
-
-                                        @error('employee_number') <span
-                                            class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-
+                                {{--                                                                    @if(isset($user))--}}
                                 <div class="span6 unit">
                                     <label class="j-label">  {{trans('form.role')}}</label>
                                     <div class="j-input">
-
                                         {!!Form ::select('role', getAllRole(),isset($user)?getFirstRole($user->id):5,['class' => 'select2 form-control', 'id' => 'role'])!!}
                                     </div>
                                     @error('role') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-
-
                                 </div>
-
                                 <div class="span6 unit">
-                                    <label class="j-label"> {{trans('form.gender')}} </label>
+                                    <label class="j-label">  {{trans('form.worker')}}</label>
                                     <div class="j-input">
-
-                                        {!!Form ::select('gender', ['male'=>trans('form.male'),'female'=>trans('form.female')],isset($user)?getFirstRole($user->id):null,['class' => 'select2 form-control', 'id' => 'role'])!!}
+                                        {!!Form ::select('work_team_id', getAllManagers(),isset($quarantine)?$quarantine->work_team_id:null,['class' => 'select2 form-control', 'id' => 'work_team_id'])!!}
                                     </div>
-                                    @error('role') <span
+                                    @error('work_team_id') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-
-
                                 </div>
 
                             </div>
-                            <!-- end name -->
-                            <!-- start name -->
-                            <div class="j-row">
-                                <div class="span6 unit">
-
-                                    @error('role') <span
-                                        class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-
-                                </div>
-
-                            </div>
-                            <!-- end name -->
-
-
-                            <div class="row">
-                                <div class="col-sm-12 col-xl-6 m-b-30">
-                                    <h4 class="sub-title">{{trans('form.join_date')}} </h4>
-                                    {!! Form::text('join_date',  isset($user)?dateFormat($user->join_date):null, [ 'id' => '' ,'class'=>'dropper-border form-control','placeholder'=>trans('form.join_date')]) !!}
-                                    @error('join_date') <span
-                                        class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-
-                                </div>
-                                <div class="col-sm-12 col-xl-6 m-b-30">
-                                    <h4 class="sub-title"> {{trans('form.birthDate')}}</h4>
-
-                                    {!! Form::text('birthDate',  isset($user)?dateFormat($user->birthDate):null, [ 'id' => '' ,'class'=>'dropper-border form-control','placeholder'=>trans('form.birthDate')]) !!}
-                                    @error('birthDate') <span
-                                        class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-
-                                </div>
-
-                            </div>
-
-{{--                            <div class="j-row">--}}
-{{--                                <div class="col-sm-12 col-xl-8">--}}
-{{--                                    <h4 class="sub-title">Date Time Picker</h4>--}}
-{{--                                    <p>Add type<code>&lt;input type="datetime-local"&gt;</code></p>--}}
-{{--                                    <div class="input-daterange input-group" id="datepicker">--}}
-{{--                                        <input type="text" class="input-sm form-control" name="start">--}}
-{{--                                        <span class="input-group-addon">to</span>--}}
-{{--                                        <input type="text" class="input-sm form-control" name="end">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            --}}
                             <div class="j-row">
                                 <label class="j-label"> {{trans("form.PersonalImage")}}</label>
                                 <div class="form-group col-xs-12 mb-2">

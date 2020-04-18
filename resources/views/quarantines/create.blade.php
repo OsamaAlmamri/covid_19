@@ -85,7 +85,7 @@
                                 <div class="span6 unit">
                                     <label class="j-label"> {{trans('form.Governorate')}} </label>
                                     <div class="j-input">
-                                        {!!Form ::select('governorate_id', getGovernorates(),$quarantine->zone->zone->id,['class' => 'select2 form-control', 'id' => 'governorate_id'])!!}
+                                        {!!Form ::select('governorate_id', getGovernorates(),(isset($quarantine)) ?$quarantine->zone->zone->id:null,['class' => 'select2 form-control', 'id' => 'governorate_id'])!!}
                                     </div>
                                     @error('governorate_id') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
@@ -96,7 +96,7 @@
                                     <label class="j-label">{{trans('form.zone')}} </label>
                                     <div class="j-input">
 
-                                        {!!Form ::select('zone_id',getZones($quarantine->zone->zone->id),$quarantine->zone->id,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+                                        {!!Form ::select('zone_id',(isset($quarantine))?getZones($quarantine->zone->zone->id):getZones(),(isset($quarantine))?$quarantine->zone->id:null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
                                     </div>
                                     @error('zone_id') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror

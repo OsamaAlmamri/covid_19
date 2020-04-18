@@ -24,13 +24,9 @@ class AuthController extends BaseAPIController
     public function login(Request $request)
     {
         try {
-            $credential_phone = ['phone' => $request->username, 'password' => $request->password];
-            $request->phone = trim($request->username, '+967');
             $credential_email = ['email' => $request->username, 'password' => $request->password];
             $credential_username = ['username' => $request->username, 'password' => $request->password];
-            if (
-                Auth::attempt($credential_phone)
-                or Auth::attempt($credential_email)
+            if (Auth::attempt($credential_email)
                 or Auth::attempt($credential_username)
             ) {
                 $user = Auth::user();
@@ -66,44 +62,45 @@ class AuthController extends BaseAPIController
      *
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
-    {
 
-        try {
-            $validator = Validator::make($request->all(), [
-//            'username' => ['required', 'string', Rule::unique('users', 'username')],
-                'name' => 'required|string',
-                'email' => ['string', 'email', Rule::unique('users', 'email')],
-                'phone' => ['required', 'string', Rule::unique('users', 'phone')],
-                'password' => 'required|confirmed',
-            ],
-                [
-                    'username.required' => 'إسم المستخدم مطلوب',
-                    'username.unique' => 'إسم المستخدم هذا مستخدم من قبل',
-                    'name.required' => 'الإسم مطلوب',
-                    'email.required' => 'الإيميل مطلوب',
-                    'email.email' => 'صيغة الإيميل غير صالحة',
-                    'email.unique' => 'هذا الإيميل مستخدم بالفعل',
-                    'phone.unique' => 'رقم الهاتف مستخدم من قبل',
-                    'phone_number.required' => 'رقم الهاتف مطلوب',
-                    'password.required' => 'كلمة المرور مطلوبة',
-                    'password.confirmed' => 'كلمة المرور غير متطابقة',
-                ]);
-            if ($validator->fails()) {
-                return $this->sendError('error validation', $validator->errors(), 422);
-            }
-            $input = $request->all();
-            $input['password'] = bcrypt($input['password']);
-            $input['username'] = ($input['phone']);
-            $user = User::create($input);
-            $success['name'] = $user->name;
-            return $this->sendResponse($success, 'User  created succesfully');
-        } catch (Exception $ex) {
-            return $ex->getMessage();
-
-        }
-
-    }
+//    public function register(Request $request)
+//    {
+//
+//        try {
+//            $validator = Validator::make($request->all(), [
+////            'username' => ['required', 'string', Rule::unique('users', 'username')],
+//                'name' => 'required|string',
+//                'email' => ['string', 'email', Rule::unique('users', 'email')],
+//                'phone' => ['required', 'string', Rule::unique('users', 'phone')],
+//                'password' => 'required|confirmed',
+//            ],
+//                [
+//                    'username.required' => 'إسم المستخدم مطلوب',
+//                    'username.unique' => 'إسم المستخدم هذا مستخدم من قبل',
+//                    'name.required' => 'الإسم مطلوب',
+//                    'email.required' => 'الإيميل مطلوب',
+//                    'email.email' => 'صيغة الإيميل غير صالحة',
+//                    'email.unique' => 'هذا الإيميل مستخدم بالفعل',
+//                    'phone.unique' => 'رقم الهاتف مستخدم من قبل',
+//                    'phone_number.required' => 'رقم الهاتف مطلوب',
+//                    'password.required' => 'كلمة المرور مطلوبة',
+//                    'password.confirmed' => 'كلمة المرور غير متطابقة',
+//                ]);
+//            if ($validator->fails()) {
+//                return $this->sendError('error validation', $validator->errors(), 422);
+//            }
+//            $input = $request->all();
+//            $input['password'] = bcrypt($input['password']);
+//            $input['username'] = ($input['phone']);
+//            $user = User::create($input);
+//            $success['name'] = $user->name;
+//            return $this->sendResponse($success, 'User  created succesfully');
+//        } catch (Exception $ex) {
+//            return $ex->getMessage();
+//
+//        }
+//
+//    }
 
     /**
      * details api

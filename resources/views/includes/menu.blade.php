@@ -24,12 +24,12 @@
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="{{route('quarantines.create')}}">
                             <span class="pcoded-mtext ">  {{trans('menu.addQuarantine')}}</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="">
+                        <a href="{{route('quarantineTypes.index')}}">
                             <span class="pcoded-mtext ">  {{trans('menu.quarantineTypes')}}</span>
                         </a>
                     </li>
@@ -45,13 +45,13 @@
                 <ul class="pcoded-submenu">
 
                     <li class="">
-                        <a href="#">
+                        <a href="{{route('check_points.index')}}">
                             <span class="pcoded-mtext ">  {{trans('menu.checkPoints')}}</span>
                         </a>
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="{{route('check_points.create')}}">
                             <span class="pcoded-mtext ">  {{trans('menu.addCheckPoint')}}</span>
                         </a>
                     </li>
@@ -67,13 +67,19 @@
                 <ul class="pcoded-submenu">
 
                     <li class="">
-                        <a href="#">
+                        <a href="{{route('workTeams.showAll')}}">
+                            <span class="pcoded-mtext ">  {{trans('menu.workTeams')}}</span>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="{{route('workTeams.team.show','point')}}">
                             <span class="pcoded-mtext ">  {{trans('menu.pointTeams')}}</span>
                         </a>
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="{{route('workTeams.team.show','health')}}">
                             <span class="pcoded-mtext ">  {{trans('menu.healthTeams')}}</span>
                         </a>
                     </li>

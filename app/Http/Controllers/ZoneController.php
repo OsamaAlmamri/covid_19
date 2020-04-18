@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ZonesDataTable;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\zonesRequest;
 use App\Price;
-use App\User;
 use App\Zone;
 use Illuminate\Http\Request;
 
@@ -48,8 +46,15 @@ class ZoneController extends Controller
     {
 //       return $request['id'];
 
+        if($request['id']!='all')
         $allZones = Zone::all()->where('parent', $request['id']);
+        else
+            $allZones = Zone::all()->where('parent','>', 0);
+
         $zones = '';
+        if (isset($request['type']) and  $request['type']=='all')
+            $zones .= '<option value="all">all</option>';
+
         if ($allZones != null)
             foreach ($allZones as $zone) {
                 $zones .= '<option value="' . $zone->id . '"> ' . $zone->name_ar . '</option>';

@@ -11,7 +11,7 @@ class BlockedPerson extends Model
 
     //
     protected $fillable = [
-        'name',
+        'bp_name',
         'gender',
         'birth_date',
         'zone_id',//if is county is yemen
@@ -26,8 +26,8 @@ class BlockedPerson extends Model
         'check_date',
         'check_point_id',
         'quarantine_area_id',
-        'type',//track owner or people
-        'from',//yemeni,arabic,//align
+        'bp_type',//track owner or people
+        'bp_from',//yemeni,arabic,//align
         'truck_number',//رقم القاطرة اذا كان صاحب قاطرة
 
         'last_zone_visit_id',//

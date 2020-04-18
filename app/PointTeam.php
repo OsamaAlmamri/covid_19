@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PointTeam extends Model
 {
     //
-    use SoftDeletes;
+//$table->unsignedBigInteger('work_team_id');
+//$table->unsignedBigInteger('check_point_id');
 
+    protected $fillable = [
+        'work_team_id', 'check_point_id'
+    ];
 }

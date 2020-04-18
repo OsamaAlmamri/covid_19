@@ -16,10 +16,10 @@ class CreateCheckPointsTable extends Migration
         Schema::create('check_points', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('longitude');
-            $table->string('latitude');
-            $table->string('map_address');
-            $table->integer('status');
+            $table->string('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('map_address')->nullable();
+            $table->integer('status')->default(1);
             $table->unsignedBigInteger('zone_id');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('manager_id')->nullable()->default(null);

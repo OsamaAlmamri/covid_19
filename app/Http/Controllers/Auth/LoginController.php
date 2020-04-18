@@ -60,6 +60,7 @@ class LoginController extends Controller
     public function postlogin(Request $request)
     {
 
+//        return dd('eeeeeeeeeeeeee');
         $credential_email = ['email' => $request->email, 'password' => $request->password, 'status' => 1];
         $credential_username = ['username' => $request->email, 'password' => $request->password, 'status' => 1];
 

@@ -36,6 +36,13 @@ return [
     'quarantine_area_type' => 'type',
     'manager_phone' => 'manager phone',
     'manager_name' => 'manager name',
+    'birth_date' => ' birth date',
+    'assign' => ' assign',
+    'addTotTeam' => '  add  ',
+    'country' => '  country  ',
+    'job' => '  job  ',
+    'gender' => '  gender  ',
+
 
 
     'username' => 'User Name',

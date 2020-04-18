@@ -160,7 +160,7 @@
       Show context menu for image on right-click
 
       There is a div containing the navigation that spans the entire image and lives above of it. If
-      you right-click, you are right clicking this div and not the image. This prevents users from
+      you right-click, you are right clicking this div and not the image. This prevents customers from
       saving the image or using other context menu actions with the image.
 
       To fix this, when we detect the right mouse button is pressed down, but not yet clicked, we

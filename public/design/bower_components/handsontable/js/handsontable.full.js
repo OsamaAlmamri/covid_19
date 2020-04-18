@@ -1977,7 +1977,7 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
         while(index--)$instance[ADDER](index, index);
         return !$instance.has(-0);
       });
-    if(!ACCEPT_ITERABLES){ 
+    if(!ACCEPT_ITERABLES){
       C = wrapper(function(target, iterable){
         anInstance(target, C, NAME);
         var that = inheritIfRequired(new Base, target, C);
@@ -41650,7 +41650,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * Refactored implementation of LinkedList (part of javascript-algorithms project) by Github users:
+ * Refactored implementation of LinkedList (part of javascript-algorithms project) by Github customers:
  * mgechev, AndriiHeonia, Microfed and Jakeh (part of javascript-algorithms project - all project contributors
  * at repository website)
  *
@@ -42114,7 +42114,7 @@ var _linkedList2 = _interopRequireDefault(_linkedList);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Refactored implementation of mergeSort (part of javascript-algorithms project) by Github users:
+ * Refactored implementation of mergeSort (part of javascript-algorithms project) by Github customers:
  * mgechev, AndriiHeonia and lekkas (part of javascript-algorithms project - all project contributors
  * at repository website)
  *
@@ -44163,7 +44163,7 @@ webpackContext.id = 418;
             if (typeof this._o.onDraw === 'function') {
                 this._o.onDraw(this);
             }
-            
+
             if (opts.bound) {
                 // let the screen reader user know to use arrow keys
                 opts.field.setAttribute('aria-label', 'Use the arrow keys to pick a date');

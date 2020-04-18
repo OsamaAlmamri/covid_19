@@ -2,13 +2,13 @@
 <script>
     $(document).ready(function () {
         // load_data(1, 5);
-        var firstTime = 1;
+        var firstTime = 0;
 
         // ChangeInput();
-        function load_data(type, from_zone, to_zone, from_date, to_date, status, disputeBy, disputer) {
+        function load_data(government, zone, from_date, to_date, gender, workTeamType) {
             $('#orderdata').DataTable({
                     processing: true,
-                    // serverSide: true,
+                    serverSide: true,
                     paging: true,
                     scrollX: true,
                     // responsive: true,
@@ -64,20 +64,19 @@
                         ],
                     ajax:
                         {
-                            url: '{{ route("admin.orders.filterDispute") }}',
+                            url: '/check_points/filterTeam',
+                            method: 'post',
+                            dataType: 'json',// data type that i want to return
                             data:
                                 {
                                     _token: "{{csrf_token()}}",
-                                    from_zone: from_zone,
-                                    to_zone: to_zone,
+                                    government: government,
+                                    zone: zone,
                                     from_date: from_date,
                                     to_date: to_date,
-                                    status: status,
-                                    type: type,
-                                    disputer: disputer,
-                                    disputeBy: disputeBy,
-                                }
-
+                                    gender: gender,
+                                    workTeamType: workTeamType,
+                                },
                         }
                     ,
 
@@ -90,85 +89,56 @@
                             searchable: false
 
                         },
-
                         {
-                            title: '{{trans('order.orderN')}}',
-                            data: 'id',
-                            name: 'id'
+                            'name': 'name',
+                            'data': 'name',
+                            'title': '{{trans('dataTable.name')}}',
                         },
                         {
-                            title: '{{trans('order.dispute_by')}}',
-                            data: 'dispute_by',
-                            name: 'dispute_by'
-                        }, {
-                            title: '{{trans('order.adminDispute')}}',
-                            data: 'adminDispute',
-                            name: 'adminDispute'
-                        }, {
-                            title: '{{trans('order.disputes_date')}}',
-                            data: 'disputes_date',
-                            name: 'disputes_date'
-                        }, {
-                            title: '{{trans('order.disputes_description')}}',
-                            data: 'disputes_description',
-                            name: 'disputes_description'
-                        }, {
-                            title: '{{trans('order.user')}}',
-                            data: 'user_name',
-                            name: 'user_name'
-                        },
-                            @if($type!='post')
-                        {
-                            title: '{{trans('order.customer')}}',
-                            data: 'customer_name',
-                            name: 'customer_name',
-                        },
-                            @endif
-                        {
-                            title: '{{trans('order.from')}}',
-                            data: 'from_zone',
-                            name: 'from_zone'
-                        },
-                        {
-                            title: '{{trans('order.to')}}',
-                            data: 'to_zone',
-                            name: 'to_zone'
+                            'name': 'gender',
+                            'data': 'gender',
+                            'title': '{{trans('dataTable.gender')}}',
                         },
 
                         {
-                            title: '{{trans('order.orderStatus')}}',
-                            data: 'status',
-                            name: 'status',
-                        }, {
-                            title: '{{trans('order.ton')}}',
-                            data: 'ton',
-                            name: 'ton'
+                            'name': 'job',
+                            'data': 'job',
+                            'title': "{{trans('dataTable.job')}}",
                         },
                         {
-                            title: '{{trans('order.goods_type')}}',
-                            data: 'goods_type',
-                            name: 'goods_type'
-                        },
-
-                        {
-                            title: '{{trans('order.created_at')}}',
-                            data: 'created_at',
-                            name: 'created_at'
+                            'name': 'country',
+                            'data': 'country',
+                            'title': "{{trans('dataTable.country')}}",
                         },
                         {
-                            title: '{{trans('order.delivery_date')}}',
-                            data: 'delivery_date',
-                            name: 'delivery_date'
+                            'name': 'government_name',
+                            'data': 'government_name',
+                            'title': "{{trans('dataTable.government_name')}}",
                         },
                         {
-                            title: '{{trans('order.note')}}',
-                            data: 'note',
-                            name: 'note'
+                            'name': 'zone_name',
+                            'data': 'zone_name',
+                            'title': "{{trans('dataTable.zone_name')}}",
                         },
                         {
-                            title: '{{trans('order.show')}}',
-                            data: 'show',
-                            name: 'show'
+                            'name': 'join_date',
+                            'data': 'join_date',
+                            'title': "{{trans('dataTable.join_date')}}",
+                        },
+                        {
+                            'name': 'birth_date',
+                            'data': 'birth_date',
+                            'title': "{{trans('dataTable.birth_date')}}",
+                        },
+                        {
+                            'name': 'phone',
+                            'data': 'phone',
+                            'title': "{{trans('dataTable.phone')}}",
+                        },
+                        {
+                            'name': 'assign',
+                            'data': 'assign',
+                            'title': "{{trans('dataTable.assign')}}",
                         },
 
 
@@ -184,34 +154,29 @@
         });
 
         function ChangeInput() {
-            var from_zone = $('#from_zone').val();
-            var to_zone = $('#to_zone').val();
+            var government = $('#search_government_id').val();
+            var zone = $('#search_zone_id').val();
             var from_date = $('#from_date').val();
             var to_date = $('#to_date').val();
-            var status = $('#filter_status').val();
-            var disputeBy = $('#disputeBy').val();
-            var disputer = $('#howDispute').val();
-            var type = '{{$type}}';
-            // $('#from_zone_idInput').val(from);
-
-
-            if (from_zone != '' && to_zone != '') {
+            var gender = $('#gender').val();
+            var workTeamType = $('#workTeamType').val();
+            if (government != '' && zone != '') {
                 if (firstTime != 0)
                     $('#orderdata').DataTable().destroy();
                 firstTime = 1;
-                load_data(type, from_zone, to_zone, from_date, to_date, status, disputeBy, disputer);
+                load_data(government, zone, from_date, to_date, gender, workTeamType);
 
             } else {
                 alert('Both Input is required');
             }
         }
 
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-        today = yyyy + '-' + mm + '-' + dd;
-        load_data('all', 'all', today, today, 'all', 'all', 'all', 'all');
+        // var today = new Date();
+        // var dd = String(today.getDate()).padStart(2, '0');
+        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        // var yyyy = today.getFullYear();
+        // today = yyyy + '-' + mm + '-' + dd;
+        // load_data('all', 'all', today, today, 'male', 'point');
 
     })
     ;

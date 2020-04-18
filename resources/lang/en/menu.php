@@ -32,6 +32,33 @@ return [
     'usersManagement' => '  Users Management ',
 
 
+
+
+
+
+
+    'teamWorkers' =>' teamWorkers',
+    'workTeams' =>' works Teams',
+    'btn_filterCenter' =>'filter Center ',
+    'from_date' =>'from date ',
+    'to_date' =>' to date',
+    'workTeamType' =>' work Team Type',
+    'center' =>'center ',
+    'btn_filterTeam' =>' filter Team',
+    'government' =>' government ',
+    'zone' =>'  zone',
+    'gender' =>'gender ',
+    'male' =>' male',
+    'female' =>' female',
+    'filter'=>' filter',
+    'health'=>' health center',
+    'work_health'=>'  health  ',
+    'work_point'=>'secret',
+    'workType'=>'work Type',
+    'point'=>' check point',
+    'team'=>'  team',
+
+
     'daysQrs' => 'daysQrs  ',
     'attendences' => 'attendences  ',
     'periods' => 'periods  ',

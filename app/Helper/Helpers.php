@@ -329,12 +329,10 @@ if (!function_exists('lang')) {
         ];
     }
 
-    function orderDisputesByStatus()
+    function workTeamTypes()
     {
-        return ['all' => trans('order.dispute.all'),
-            'admin' => trans('order.dispute.admin'),
-            'user' => trans('order.dispute.user'),
-            'customer' => trans('order.dispute.customer'),
+        return ['point' => trans('menu.work_point'),
+            'health' => trans('menu.work_health'),
 
         ];
     }
@@ -503,6 +501,8 @@ if (!function_exists('lang')) {
 
     function getZones($governorate_id = 0)
     {
+
+
         if ($governorate_id == 0) {
             $governorate = \App\Zone::where('parent', '=', '0')->first();
             if ($governorate != null)
@@ -512,7 +512,10 @@ if (!function_exists('lang')) {
 
         }
 
+        if($governorate_id=='all')
+            $allZones = \App\Zone::all()->where('parent', '>', 0);
 
+        else
         $allZones = \App\Zone::all()->where('parent', '=', $governorate_id);
 
         $zones = [];

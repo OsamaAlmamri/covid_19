@@ -56,13 +56,11 @@ Route::post('settings', 'SettingController@settings_store')->name('settings.stor
 Route::post('setting/add', 'SettingController@AccountSettingStore')->name('accsetting.store');;
 
 
-
 Route::get('permissions/index/{section_id?}', 'PermissionsController@index')->name('permissions.index');
 Route::post('permissions/open', 'PermissionsController@open')->name('permissions.open');
 Route::post('permissions/updateMulti', 'PermissionsController@updateMulti')->name('permissions.updateMulti');
 Route::post('permissions/storeMulti', 'PermissionsController@storeMulti')->name('permissions.storeMulti');
 Route::resource('permissions', 'PermissionsController')->except('index');
-
 
 
 Route::get('users/index/{type?}', 'UserController@index')->name('users.index');
@@ -100,9 +98,6 @@ Route::post('zones/getZones', 'ZoneController@getZones')->name('zones.getZones '
 Route::resource('zones', 'ZoneController')->except('index', 'create');
 
 
-
-
-
 Route::get('quarantines/index/{type?}', 'QuarantinesController@index')->name('quarantines.index');
 Route::get('quarantines/{id}/forceDelete', 'QuarantinesController@forceDelete')->name('quarantines.forceDelete');
 Route::delete('quarantines/deleteMulti', 'QuarantinesController@deleteMulti');
@@ -113,6 +108,29 @@ Route::post('quarantines/team', 'QuarantinesController@team')->name('quarantines
 Route::get('quarantines/team/{id}/show', 'TeamsController@index')->name('quarantines.team.showTable');
 Route::get('quarantines/team/{id}/create', 'TeamsController@create')->name('quarantines.team.create');
 Route::resource('quarantines', 'QuarantinesController')->except('index');
+
+
+Route::get('check_points/index/{type?}', 'CheckPointController@index')->name('check_points.index');
+Route::get('check_points/{id}/forceDelete', 'CheckPointController@forceDelete')->name('check_points.forceDelete');
+Route::delete('check_points/deleteMulti', 'CheckPointController@deleteMulti');
+Route::get('check_points/{id}/delete', 'CheckPointController@delete')->name('check_points.delete');
+Route::get('check_points/{id}/restore', 'CheckPointController@restore')->name('check_points.restore');
+Route::post('check_points/active', 'CheckPointController@active')->name('check_points.active');
+Route::post('check_points/team', 'CheckPointController@team')->name('check_points.team');
+Route::get('check_points/show_teams', 'PointTeamController@index')->name('check_points.team.show');
+Route::get('workTeams/show_teams/{type?}', 'PointTeamController@index')->name('workTeams.team.show');
+Route::get('check_points/team/{id}/create', 'PointTeamController@create')->name('check_points.team.create');
+Route::resource('check_points', 'CheckPointController')->except('index');
+
+Route::post('check_points/filterPlace_type', 'PointTeamController@filterPlace_type')->name('check_points.filterPlace_type');
+Route::post('check_points/changePointOrCenter', 'PointTeamController@changePointOrCenter')->name('check_points.changePointOrCenter');
+Route::post('check_points/savePointTeamList', 'PointTeamController@savePointTeamList')->name('check_points.savePointTeamList');
+Route::get('check_points/showOrdersDisputes/{type?}', 'PointTeamController@showOrdersDisputes')->name('check_points.showOrdersDisputes');
+Route::post('check_points/filterTeam', 'PointTeamController@filterTeamWorker')->name('check_points.filterTeam');
+
+
+Route::get('quarantineTypes/{id}/delete', 'QuarntineTypesController@delete')->name('quarantineTypes.delete');
+Route::resource('quarantineTypes', 'QuarntineTypesController');
 
 
 Route::get('tasks/table/{user?}/{type?}', 'TasksController@index')->name('tasks.table');
@@ -127,6 +145,28 @@ Route::post('tasks/member', 'TasksController@member')->name('tasks.member');
 Route::post('tasks/changeStatus', 'TasksController@changeStatus')->name('tasks.changeStatus');
 Route::get('tasks/{project}/{user}/staff', 'TasksController@staffTasks')->name('tasks.staffTasks');
 Route::resource('tasks', 'TasksController')->except('index');
+
+Route::get('workTeams/{id}/forceDelete', 'WorkTeamsController@forceDelete')->name('workTeams.forceDelete');
+Route::get('workTeams/{id}/delete', 'WorkTeamsController@delete')->name('workTeams.delete');
+Route::get('workTeams/{id}/restore', 'WorkTeamsController@restore')->name('workTeams.restore');
+Route::post('workTeams/active', 'WorkTeamsController@active')->name('workTeams.active');
+Route::post('workTeams/remove', 'WorkTeamsController@remove')->name('workTeams.remove');
+Route::post('workTeams/changeStatus', 'WorkTeamsController@changeStatus')->name('workTeams.changeStatus');
+Route::get('workTeams/showAll/{type?}', 'WorkTeamsController@index')->name('workTeams.showAll');
+//Route::get('workTeams/showAll/{type?}',function (){
+//    return dd('d');
+//})->name('workTeams.showAll');
+
+Route::resource('workTeams', 'WorkTeamsController');
+
+Route::get('healthTeams/{id}/forceDelete', 'TasksController@forceDelete')->name('healthTeams.forceDelete');
+Route::get('healthTeams/{id}/delete', 'TasksController@delete')->name('healthTeams.delete');
+Route::get('healthTeams/{id}/restore', 'TasksController@restore')->name('healthTeams.restore');
+Route::post('healthTeams/active', 'TasksController@active')->name('healthTeams.active');
+Route::post('healthTeams/getTaskDeatial', 'TasksController@getTaskDeatial')->name('healthTeams.getTaskDeatial');
+Route::post('healthTeams/remove', 'TasksController@remove')->name('healthTeams.remove');
+Route::post('healthTeams/changeStatus', 'TasksController@changeStatus')->name('healthTeams.changeStatus');
+Route::resource('healthTeams', 'TasksController')->except('index');
 
 Route::get('phases/index/{type?}', 'PhasesController@index')->name('phases.index');
 Route::get('phases/{id}/forceDelete', 'PhasesController@forceDelete')->name('phases.forceDelete');

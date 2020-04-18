@@ -31,6 +31,31 @@ return [
     'usersManagement' => '  ادارة المستخدمين  ',
 
 
+
+
+    'teamWorkers' =>' الفرق العاملة',
+    'workTeams' =>' الفرق العاملة',
+
+    'btn_filterCenter' =>' فلترة المراكز ',
+    'from_date' =>'من تاريخ  ',
+    'to_date' =>' الى تاريخ ',
+    'workTeamType' =>' نوع فريق العمل  ',
+    'center' =>'المركز ',
+    'btn_filterTeam' =>'  فلترة الفريق',
+    'government' =>'المحافظة  ',
+    'zone' =>'  المديرية',
+    'gender' =>'الجنس ',
+    'male' =>' ذكر',
+    'female' =>' انثى',
+    'filter'=>' فرز',
+    'health'=>'  مركز صحي ',
+    'point'=>'  نقطة تفتيش',
+    'work_health'=>'  صحي  ',
+    'work_point'=>'امن',
+    'workType'=>'نوع العمل',
+    'team'=>'  الفريق',
+
+
     'info' => 'معلومات  ',
     'orders' => ' الطلبات',
     'projects' => 'المشاريع  ',

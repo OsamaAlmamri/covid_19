@@ -63,6 +63,12 @@ class PermissionsController extends Controller
         $permission = Permission::create(['name' => 'manage healthTeams']);//add ,update , delete
         $permission = Permission::create(['name' => 'manage deleted healthTeams']);//restore forceDelete
 
+        /********************* worksTeams  *********************/
+        $permission = Permission::create(['name' => 'show worksTeams']);
+        $permission = Permission::create(['name' => 'active worksTeams']);
+        $permission = Permission::create(['name' => 'manage worksTeams']);//add ,update , delete
+        $permission = Permission::create(['name' => 'manage deleted worksTeams']);//restore forceDelete
+
         /********************* Reports  *********************/
         $permission = Permission::create(['name' => 'show Reports']);
 
@@ -119,6 +125,7 @@ class PermissionsController extends Controller
 //$roles = $user->getRoleNames(); // Returns a collection
     public function index()
     {
+
 
 //        updateUserRole(auth()->user()->id, 'SuperAdmin');
         $roles = Role::all();
