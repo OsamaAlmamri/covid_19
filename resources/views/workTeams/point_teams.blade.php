@@ -231,13 +231,10 @@
     <script
         src="{{ HostUrl('design\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js')}}"></script>
 
-    <!-- sweet alert js -->
-    <!-- sweet alert modal.js intialize js -->
-    <!-- modalEffects js nifty modal window effects -->
 
     <script src="{{HostUrl('design\bower_components\select2\dist\js\select2.full.min.js')}}"></script>
 
-    @include('includes.dataTables.OrderDisputesDataTable')
+    @include('includes.dataTables.AssignTeamDataTable')
     @include('includes.changeZones') ;
 
 

@@ -3,22 +3,16 @@
 
 namespace App\Http\Controllers\API;
 
-
-use App\Attendence;
 use App\BlockedPerson;
 use App\CheckPoint;
-use App\DaysQr;
-use App\Project;
 use App\QuarantineArea;
 use App\QuarantineAreaType;
-use App\Task;
 use App\TempSave;
 use App\User;
 use App\Zone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use Validator;
 
 class ProjectApiController extends BaseAPIController
@@ -229,46 +223,6 @@ class ProjectApiController extends BaseAPIController
         }
     }
 
-
-    public
-    function register(Request $request)
-    {
-
-        try {
-            $validator = Validator::make($request->all(), [
-//            'username' => ['required', 'string', Rule::unique('users', 'username')],
-                'name' => 'required|string',
-                'email' => ['string', 'email', Rule::unique('users', 'email')],
-                'phone' => ['required', 'string', Rule::unique('users', 'phone')],
-                'password' => 'required|confirmed',
-            ],
-                [
-                    'username.required' => 'إسم المستخدم مطلوب',
-                    'username.unique' => 'إسم المستخدم هذا مستخدم من قبل',
-                    'name.required' => 'الإسم مطلوب',
-                    'email.required' => 'الإيميل مطلوب',
-                    'email.email' => 'صيغة الإيميل غير صالحة',
-                    'email.unique' => 'هذا الإيميل مستخدم بالفعل',
-                    'phone.unique' => 'رقم الهاتف مستخدم من قبل',
-                    'phone_number.required' => 'رقم الهاتف مطلوب',
-                    'password.required' => 'كلمة المرور مطلوبة',
-                    'password.confirmed' => 'كلمة المرور غير متطابقة',
-                ]);
-            if ($validator->fails()) {
-                return $this->sendError('error validation', $validator->errors(), 422);
-            }
-            $input = $request->all();
-            $input['password'] = bcrypt($input['password']);
-            $input['username'] = ($input['phone']);
-            $user = User::create($input);
-            $success['name'] = $user->name;
-            return $this->sendResponse($success, 'User  created succesfully');
-        } catch (Exception $ex) {
-            return $ex->getMessage();
-
-        }
-
-    }
 
     /**
      * details api

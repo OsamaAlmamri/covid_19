@@ -23,48 +23,31 @@
                     lengthMenu: [[10, 50, 100, -1], [10, 50, 100, 'all']],
                     buttons:
                         [
-                            {{--                                @if (Auth::user()->can('manage prices') == true)--}}
-                            {{--                            {--}}
-                            {{--                                className: 'btn btn-info ',--}}
-                            {{--                                text: '<i class="fa fa-plus" ></i> Update Prices',--}}
-                            {{--                                action: function () {--}}
-                            {{--                                    window.location.href = '/admin/prices/create/$this->account_id'--}}
-                            {{--                                },--}}
-                            {{--                            },--}}
-                            {{--                                @endif--}}
 
-                            {{--                            {--}}
-                            {{--                                extend: 'copyHtml5',--}}
-                            {{--                                text: '<i class="fa fa-copy" ></i> copy',--}}
-                            {{--                                className: 'btn btn-info '--}}
-                            {{--                            },--}}
-                            {{--                            {--}}
-                            {{--                                extend: 'excelHtml5',--}}
-                            {{--                                text: '<i class="fa fa-file-excel-o" ></i> Excel',--}}
-                            {{--                                className: 'btn btn-info '--}}
-                            {{--                            },--}}
-                            {{--                            {--}}
-                            {{--                                extend: 'pdfHtml5',--}}
-                            {{--                                text: '<i class="fa fa-file-pdf-o" ></i> PDF',--}}
-                            {{--                                className: 'btn btn-info '--}}
-                            {{--                            },--}}
-                            {{--                            {--}}
-                            {{--                                extend: 'print',--}}
-                            {{--                                text: '<i class="fa fa-print" ></i> Print',--}}
-                            {{--                                className: 'btn btn-info '--}}
-                            {{--                            }--}}
-                            {{--                            @if (Auth::user()->can('manage prices') == true)--}}
-                            {{--                            ,--}}
-                            // {
-                            //     // extend: '',
-                            //     text: '<i class="fa fa-save" ></i>',
-                            //     className: 'btn btn-info UpdateBtn'
-                            // },
-                            {{--                            @endif--}}
+                            {
+                                extend: 'copyHtml5',
+                                text: '<i class="fa fa-copy" ></i> copy',
+                                className: 'btn btn-info '
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: '<i class="fa fa-file-excel-o" ></i> Excel',
+                                className: 'btn btn-info '
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: '<i class="fa fa-file-pdf-o" ></i> PDF',
+                                className: 'btn btn-info '
+                            },
+                            {
+                                extend: 'print',
+                                text: '<i class="fa fa-print" ></i> Print',
+                                className: 'btn btn-info '
+                            }
                         ],
                     ajax:
                         {
-                            url: '/check_points/filterTeam',
+                            url: '{{route("check_points.filterTeam")}}',
                             method: 'post',
                             dataType: 'json',// data type that i want to return
                             data:

@@ -166,7 +166,7 @@
                         </div>
                         <!-- Main-body end -->
 
-                        {{--                        <div id="styleSelector">--}}
+                                                <div id="styleSelector">
 
                     </div>
 
