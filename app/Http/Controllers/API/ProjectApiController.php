@@ -6,11 +6,15 @@ namespace App\Http\Controllers\API;
 
 use App\Attendence;
 use App\BlockedPerson;
+use App\CheckPoint;
 use App\DaysQr;
 use App\Project;
+use App\QuarantineArea;
+use App\QuarantineAreaType;
 use App\Task;
+use App\TempSave;
 use App\User;
-use Carbon\Carbon;
+use App\Zone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,45 +23,6 @@ use Validator;
 
 class ProjectApiController extends BaseAPIController
 {
-    public function getInfo(Request $request)
-    {
-        try {
-            $project = Project::findOrFail($request->project_id);
-            if ($request->type == 'task')
-                $data = $project->phases;
-            else
-                $data = $project->users;
-            return $this->sendResponse($data, '');
-        } catch (Exception $ex) {
-            return $ex->getMessage();
-        }
-    }
-
-    public function getProjects(Request $request)
-    {
-        try {
-
-            $project = Project::where('id', '>', 0)->get();
-            return $this->sendResponse($project, '');
-        } catch (Exception $ex) {
-            return $ex->getMessage();
-        }
-    }
-
-
-    public function userTasks(Request $request)
-    {
-        try {
-            if ($request->status == null or $request->status == 'all') {
-                $data = Task::where('user_id', '=', auth()->user()->id)->get();
-            } else
-                $data = Task::where('user_id', '=', auth()->user()->id)->where('status', 'like', $request->status)->get();
-            return $this->sendResponse($data, '');
-        } catch (Exception $ex) {
-            return $ex->getMessage();
-        }
-    }
-
 
     public function getAllBlockPersonsPerZone(Request $request)
     {
@@ -66,10 +31,154 @@ class ProjectApiController extends BaseAPIController
                 $data = BlockedPerson::where('quarantine_area_id', '>', 0)->get();
                 $messsage = 'بيانات جميع المحجورين  بالمراكز في الــيمن ';
             } else {
-                $zone=
-                $data = Task::where('user_id', '=', $request->user_id)
-                    ->whereIn('phase_id', getProjectServeceIds($request->project_id))->get();
-                $messsage = 'بيانات جميع المهام  للمشروع رقم  ' . $request->project_id;
+                $ids = [];
+                $isGovernment = Zone::find($request->zone_id);// اذا اختار محافظة
+                if ($isGovernment->parent == 0) {
+                    $zones = Zone::all()->where('parent', '=', $isGovernment->id);
+                    foreach ($zones as $zone) {
+                        $ids[] = $zone->id;
+                        $messsage = 'بيانات جميع المحجورين  بالمراكز في محافظة  ' . $isGovernment->name_ar;
+
+                    }
+                } else {
+                    $ids[] = $isGovernment->id;//اذا اختار مديرية
+                    $messsage = 'بيانات جميع المحجورين  بالمراكز في مديرية   ' . $isGovernment->name_ar . '  محافظة ' . $isGovernment->zone->name_ar;
+
+                    $qrs = QuarantineArea::all()->whereIn('zone_id', $ids);
+                    $qr_id = [];
+                    foreach ($qrs as $qr) {
+                        $qr_id[] = $qr->id;
+                    }
+                    $data = BlockedPerson::whereIn('zone_id', $ids)->get();
+
+                }
+
+            }
+            return $this->sendResponse($data, $messsage);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function saveIncommingBlockPersion(Request $request)
+    {
+        try {
+            $project = TempSave::create([
+                'data' => $request->data,
+                'user_id' => auth()->user()->id,
+                'team_work_id' => auth()->user()->work_team->id,
+            ]);
+//
+            $array = json_decode(($request->data), true);
+            $c = 0;
+            foreach ($array as $temp) {
+                $c++;
+                BlockedPerson::create(array_merge($temp), ['created_by' => 1]);
+            }
+
+            return $this->sendResponse([], 'تم حفظ بيانات ' . $c . ' شخص  بنجاح  ');
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function getAllQuarantineTypes(Request $request)
+    {
+        try {
+            $data = QuarantineAreaType::where('id', '>', 0)->get();
+            $messsage = 'بيانات انواع مراكز الحجر ';
+
+            return $this->sendResponse($data, $messsage);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function getMyAddBlockPerson(Request $request)
+    {
+        try {
+            $user = auth()->user()->id;
+
+            $data = BlockedPerson::where('created_by', '=', $user)->get();
+            $messsage = 'بيانات المحجورين المضافين من هذا الحساب  ';
+
+            return $this->sendResponse($data, $messsage);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function getBlockPerson(Request $request)
+    {
+        try {
+            $data = BlockedPerson::find($request->id);
+            $messsage = 'بيانات المحجور    ' . $data->name;
+
+            return $this->sendResponse($data, $messsage);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+
+
+    }
+
+    public function getAllZones(Request $request)
+    {
+        try {
+            if ($request->id == 'all') {
+                $data = Zone::where('parent', '>', 0)->get();
+                $messsage = 'بيانات جميع مديريات  الــيمن ';
+            } else if ($request->id == 0) {
+                $data = Zone::all()->where('parent', '=', 0);
+                $messsage = 'بيانات جميع محافظات  الــيمن ';
+
+            } else {
+                $government = Zone::find($request->id);//
+                $messsage = 'بيانات جميع   مديريات محافظة  ' . $government->name_ar;
+                $data = Zone::all()->where('parent', '=', $request->id);
+            }
+
+            return $this->sendResponse($data, $messsage);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function getAllUsers(Request $request)
+    {
+        try {
+            $data = User::where('id', '>', 0)->get();
+            $messsage = 'بيانات جميع   المستخدمين  ';
+
+
+            return $this->sendResponse($data, $messsage);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public
+    function getAllQuarantines(Request $request)
+    {
+        try {
+            if ($request->zone_id == null or $request->zone_id == 'all') {
+                $data = QuarantineArea::where('id', '>', 0)->get();
+                $messsage = 'بيانات مراكز الحجر  في الــيمن ';
+            } else {
+                $ids = [];
+                $isGovernment = Zone::find($request->zone_id);// اذا اختار محافظة
+                if ($isGovernment->parent == 0) {
+                    $zones = Zone::all()->where('parent', '=', $isGovernment->id);
+                    foreach ($zones as $zone) {
+                        $ids[] = $zone->id;
+                        $messsage = 'بيانات مراكز الحجر  في محافظة  ' . $isGovernment->name_ar;
+                    }
+                } else {
+                    $ids[] = $isGovernment->id;//اذا اختار مديرية
+                    $messsage = 'بيانات جميع راكز الحجر  في  مديرية   ' .
+                        $isGovernment->name_ar . '  محافظة ' . $isGovernment->zone->name_ar;
+                    $data = QuarantineArea::whereIn('zone_id', $ids)->get();
+                }
             }
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
@@ -78,59 +187,51 @@ class ProjectApiController extends BaseAPIController
     }
 
 
-    public function changeTaskStatusByManager(Request $request)
+    public
+    function getAllCheckPoint(Request $request)
     {
         try {
-            $task = Task::find($request->task_id);
-//            return $this->sendResponse($task->phase->project->manager_id, '');
-
-            if (auth()->user()->id == $task->phase->project->manager_id) {
-                $task->update(['status' => $request->newStatus]);
-                $messsage = 'تم تغيير الحالة بنجاح ';
-                return $this->sendResponse(['status' => $request->newStatus], $messsage);
-
+            if ($request->zone_id == null or $request->zone_id == 'all') {
+                $data = CheckPoint::where('id', '>', 0)->get();
+                $messsage = 'بيانات مراكز الحجر  في الــيمن ';
             } else {
-                return $this->sendError([], "لست مخول لتغيير حالة المهمة ");
-
+                $ids = [];
+                $isGovernment = Zone::find($request->zone_id);// اذا اختار محافظة
+                if ($isGovernment->parent == 0) {
+                    $zones = Zone::all()->where('parent', '=', $isGovernment->id);
+                    foreach ($zones as $zone) {
+                        $ids[] = $zone->id;
+                        $messsage = 'بيانات مراكز التفتيش  في محافظة  ' . $isGovernment->name_ar;
+                    }
+                } else {
+                    $ids[] = $isGovernment->id;//اذا اختار مديرية
+                    $messsage = 'بيانات جميع راكز التفتيش  في  مديرية   ' .
+                        $isGovernment->name_ar . '  محافظة ' . $isGovernment->zone->name_ar;
+                    $data = CheckPoint::whereIn('zone_id', $ids)->get();
+                }
             }
+            return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
             return $ex->getMessage();
         }
     }
 
-
-    public function changeTaskStatusByStaff(Request $request)
+    public
+    function getAllBlockPersonsPerCenter(Request $request)
     {
         try {
-            $task = Task::find($request->task_id);
-//            return $this->sendResponse($task->phase->project->manager_id, '');
+            $data = BlockedPerson::where('quarantine_area_id', '=', $request->id)->get();
+            $messsage = 'بيانات جميع المحجورين  للمركز  رقم  ' . $request->id;
 
-            if (auth()->user()->id == $task->user_id) {
-                $task->update(['status' => $request->newStatus]);
-                $messsage = 'تم تغيير الحالة بنجاح ';
-                return $this->sendResponse(['status' => $request->newStatus], $messsage);
-
-            } else {
-                return $this->sendError([], "لست مخول لتغيير حالة المهمة ");
-
-            }
+            return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
             return $ex->getMessage();
         }
     }
 
 
-    public function userProjects(Request $request)
-    {
-        try {
-            $data = auth()->user()->projects;
-            return $this->sendResponse($data, '');
-        } catch (Exception $ex) {
-            return $ex->getMessage();
-        }
-    }
-
-    public function register(Request $request)
+    public
+    function register(Request $request)
     {
 
         try {
@@ -174,37 +275,12 @@ class ProjectApiController extends BaseAPIController
      *
      * @return \Illuminate\Http\Response
      */
-    public function userInfo()
+    public
+    function userInfo()
     {
         try {
             $user = Auth::user();
             return $this->sendResponse($user, 'success');
-        } catch (Exception $ex) {
-            return $ex->getMessage();
-
-        }
-    }
-
-    public function attendences(Request $request)
-    {
-        try {
-            $qr = DaysQr::all()->last();
-            if ($qr->name == $request->qr) {
-                $user_qr = Attendence::all()->where('user_id', '=', auth()->user()->id)->last();
-                if (($user_qr == null) or Carbon::today()->day != $user_qr->created_at->day) {
-                    Attendence::create([
-                        'user_id' => auth()->user()->id,
-                        'period_id' => 1,
-                        'day_id' => $qr->id,
-                    ]);
-                    return $this->sendResponse(['success' => true], 'تم التحضير بنجاح');
-                } else {
-                    return $this->sendResponse(['success' => false], ' لقد تم التحضير مسبقا ');
-                }
-            } else
-                return $this->sendError(['success' => false], 'الكود خطاء');
-
-
         } catch (Exception $ex) {
             return $ex->getMessage();
 

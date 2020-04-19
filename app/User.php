@@ -45,20 +45,11 @@ class User extends Authenticatable
     ];
 
 
-    public function manages()
-    {
-        return $this->hasMany('App\Project', 'manager_id', 'id');
-    }
+    protected $with = ['work_team'];
 
-    public function tasks()
+    public function work_team()
     {
-        return $this->hasMany('App\Task', 'user_id', 'id');
-    }
-
-
-    public function projects()
-    {
-        return $this->belongsToMany('App\Project', 'project_users', 'user_id', 'project_id')->orderByDesc('id');
+        return $this->belongsTo('App\WorkTeam', 'work_team_id', 'id');
     }
 
 

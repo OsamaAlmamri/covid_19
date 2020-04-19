@@ -4,11 +4,9 @@
 namespace App\Http\Controllers\API;
 
 
-use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use Validator;
 
 class AuthController extends BaseAPIController

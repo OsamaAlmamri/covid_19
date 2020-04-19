@@ -23,12 +23,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
 Route::middleware('auth:api')->group(function () {
-    Route::post('getAllBlockPersons', 'API\ProjectApiController@getAllBlockPersons');//
-    Route::post('myProjects', 'API\ProjectApiController@userProjects');//
-    Route::post('attendence', 'API\ProjectApiController@attendences');//
-    Route::post('getAllUserTasks', 'API\ProjectApiController@getAllUserTasks');//
-    Route::post('changeTaskStatusByManager', 'API\ProjectApiController@changeTaskStatusByManager');//
-    Route::post('changeTaskStatusByStaff', 'API\ProjectApiController@changeTaskStatusByStaff');//
+    //getAllBlockPersonsPerZone,
+    //saveIncommingBlockPersion,
+    //getAllQuarantineTypes,
+    //getMyAddBlockPerson,
+    //getBlockPerson,
+    //getAllZones,
+    //getAllQuarantines,
+    //getAllCheckPoint,
+    //getAllBlockPersonsPerCenter,
+    //userInfo,//
+
+
+    Route::post('getAllBlockPersonsPerZone', 'API\ProjectApiController@getAllBlockPersonsPerZone');//
+    Route::post('saveIncommingBlockPersion', 'API\ProjectApiController@saveIncommingBlockPersion');//
+    Route::post('getAllUsers', 'API\ProjectApiController@getAllUsers');//
+    Route::post('getAllQuarantineTypes', 'API\ProjectApiController@getAllQuarantineTypes');//
+    Route::post('getMyAddBlockPerson', 'API\ProjectApiController@getMyAddBlockPerson');//
+    Route::post('getBlockPerson', 'API\ProjectApiController@getBlockPerson');//
+    Route::post('getAllZones', 'API\ProjectApiController@getAllZones');//
+    Route::post('getAllQuarantines', 'API\ProjectApiController@getAllQuarantines');//
+    Route::post('getAllCheckPoint', 'API\ProjectApiController@getAllCheckPoint');//
+    Route::post('getAllBlockPersonsPerCenter', 'API\ProjectApiController@getAllBlockPersonsPerCenter');//
+
 
 
     Route::post('userInfo', 'API\AuthController@userInfo');//
