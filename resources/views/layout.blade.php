@@ -16,8 +16,8 @@
     <!-- Favicon icon -->
     <meta name="google-site-verification" content="M9gUKXm-MlzvyxHTkSxKjI6MkTZsqW-8gd7Tkq3B_po"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{--    <link rel="icon" href="{{HostUrl('images\s_logo.png')}}" type="image/x-icon">--}}
-    <link rel="shortcut icon" href="{{ Setting::get('site_favicon', asset('favicon.ico')) }}">
+        <link rel="icon" href="{{HostUrl('images\logo.png')}}" type="image/x-icon">
+{{--    <link rel="shortcut icon" href="{{ Setting::get('site_favicon', asset('favicon.ico')) }}">--}}
 
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css"
@@ -166,7 +166,7 @@
                         </div>
                         <!-- Main-body end -->
 
-                                                <div id="styleSelector">
+{{--                                                <div id="styleSelector">--}}
 
                     </div>
 
@@ -213,21 +213,14 @@
 
 
 <!-- Custom js -->
-@include('includes.notification_sound')
-@include('includes.pusher_init')
+{{--@include('includes.notification_sound')--}}
+{{--@include('includes.pusher_init')--}}
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 {{--<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>--}}
 @yield('js')
 
 
-<div id='loadingDiv'>
-    <img
-        src="{{HostUrl('/images/Spinner.svg')}}"
-        alt="loading ..."
-    />
-</div>
-@include('includes.spinnerScript')
 
 </body>
 

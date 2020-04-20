@@ -137,6 +137,14 @@
                 </ul>
             </li>
 
+            <li class="">
+                <a href="{{route('block_persons.index')}}">
+                    <span class="pcoded-micon"><i class="fa fa-bed"></i></span>
+                    <span class="pcoded-mtext">{{trans('menu.blockPersonsReports')}}</span>
+                </a>
+            </li>
+
+
         </ul>
 
 

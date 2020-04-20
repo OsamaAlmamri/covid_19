@@ -75,13 +75,17 @@
                         <span class="input-group-addon">{{trans('menu.center')}}</span>
                         {!!Form ::select('pointOrCenter_id', ['all'=>'all   '],'',['class' => 'select2 form-control', 'id' => 'pointOrCenter_id'])!!}
                     </div>
+
                     <div class="input-group col-md-3">
 
                         <button type="button" name="filter" id="filter"
-                                class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}} <i
-                                class="fa fa-filter"></i></button>
+                                class="btn btn-primary btn-ms waves-effect waves-light filterBtn">
+                            filter<i class="fa fa-filter"></i>
+                        </button>
 
                     </div>
+
+
                 </div>
 
             </div>
@@ -99,8 +103,8 @@
                 </ul>
             </div>
         </div>
-                <table id="orderdata" class="dataTable table table-striped table-hover table table-bordered">
-                </table>
+        <table id="orderdata" class="dataTable table table-striped table-hover table table-bordered">
+        </table>
 
     </div>
 
@@ -222,7 +226,14 @@
         });
 
 
+
+
+
+
+
     </script>
+
+
 
 @endsection
 

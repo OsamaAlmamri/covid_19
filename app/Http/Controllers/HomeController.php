@@ -3,8 +3,15 @@
 namespace App\Http\Controllers;
 
 
+use App\BlockedPerson;
+use App\CheckPoint;
+use App\HealthTeam;
+use App\PointTeam;
+use App\QuarantineArea;
 use App\Rules\MatchOldPassword;
 use App\User;
+use App\WorkTeam;
+use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Validator;
@@ -32,42 +39,55 @@ class HomeController extends Controller
     public function index()
     {
 
-//        $qr = DaysQr::all()->last()->name;
-//        return dd(   $qr->created_at);
-////        return dd(    Carbon::today()->day);
-//        return dd(    $qr->created_at->day);
-//        return dd(    Carbon::());
 
-//        return dd(auth()->user()->hasRole('SuperAdmin'));
 
-//        if (auth()->user()->hasRole('SuperAdmin') or auth()->user()->hasRole('Admin')) {
+
+
 
         $all = $users = User::all()->count();
-        $employee = 0;
-        $admins = 0;
-        $SuperAdmin = 0;
-//        $employee = $users = User::role('Employee')->count();
-//        $admins = $users = User::role('Admin')->count();
-//        $SuperAdmin = $users = User::role('SuperAdmin')->count();
-        $projects = 0;
-        $periods = 0;
-        $qrs = 0;
-        $tasks = 0;
+        $dataEntry = User::role('dataEntry')->count();
+        $admins = User::role('Admin')->count();
+        $SuperAdmin = User::role('SuperAdmin')->count();
 
-//        } else {
-////            $tasks = Task::all()->where('user_i')->count();
-//
-//        }
+        $zones = Zone::all()->where('parent', '>', 0)->count();
+        $governments = Zone::all()->where('parent', '=', 0)->count();
+        $quarantines = QuarantineArea::all()->count();
+        $checkPoints = CheckPoint::all()->count();
+
+        $workTeams = WorkTeam::all()->count();
+        $workTeams_male = WorkTeam::all()->where('parent', '=', 'male')->count();
+        $workTeams_female = WorkTeam::all()->where('gender', '=', 'female')->count();
+        $s_healthTeams = HealthTeam::all()->count();
+        $s_pointTeams = PointTeam::all()->count();
+        $s_block_persons = BlockedPerson::all()->count();
+        $block_persons_male = BlockedPerson::all()->where('parent', '=', 'male')->count();
+        $block_persons_female = BlockedPerson::all()->where('gender', '=', 'female')->count();
+
+
 
 
         return view('home')->with([
             'allUsers' => $all,
-            'employees' => $employee,
+            'dataEntry' => $dataEntry,
             'admins' => $admins + $SuperAdmin,
-            'projects' => $projects,
-            'periods' => $periods,
-            'qrs' => $qrs,
-            'tasks' => $tasks,
+
+            'zones' => $zones,
+//            'governments' => $governments,
+            'quarantines' => $quarantines,
+            'checkPoints' => $checkPoints,
+
+            'workTeams' => $workTeams,
+            'workTeams_male' => $workTeams_male,
+            'workTeams_female' => $workTeams_female,
+
+            's_healthTeams' => $s_healthTeams,
+            's_pointTeams' => $s_pointTeams,
+
+            's_block_persons' => $s_block_persons,
+            'block_persons_male' => $block_persons_male,
+            'block_persons_female' => $block_persons_female,
+
+
         ]);
 
 //        date_default_timezone_set("Asia/Aden");

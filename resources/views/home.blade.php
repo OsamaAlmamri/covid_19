@@ -35,6 +35,22 @@
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
+                                <p class="m-b-5">  {{trans('menu.allUsers')}} </p>
+                                <h4 class="m-b-0">{{$allUsers}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-users f-50 text-c-pink"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-c-blue text-white" style="background: #0a65c2">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
                                 <p class="m-b-5">  {{trans('menu.Admins')}} </p>
                                 <h4 class="m-b-0">{{$admins}}</h4>
                             </div>
@@ -46,14 +62,13 @@
                 </div>
             </div>
 
-
             <div class="col-xl-4 col-md-6">
                 <div class="card bg-c-blue text-white">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
-                                <p class="m-b-5">  {{trans('menu.staff')}} </p>
-                                <h4 class="m-b-0">{{$employees}}</h4>
+                                <p class="m-b-5">  {{trans('menu.dataEntry')}} </p>
+                                <h4 class="m-b-0">{{$dataEntry}}</h4>
                             </div>
                             <div class="col col-auto text-right">
                                 <i class=" fa fa-users f-50 text-c-pink"></i>
@@ -62,17 +77,18 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-green text-white" style="background: #255681;
-}">
+                <div class="card bg-simple-c-green text-white" style="background: #6376ff;">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
-                                <p class="m-b-5">  {{trans('menu.projects')}}</p>
-                                <h4 class="m-b-0">{{$projects}}</h4>
+                                <p class="m-b-5">  {{trans('menu.zones')}}</p>
+                                <h4 class="m-b-0">{{$zones}}</h4>
                             </div>
                             <div class="col col-auto text-right">
-                                <i class="fa fa-file-excel-o f-50 text-c-yellow"></i>
+                                <i class="fa fa-adn f-50 text-c-yellow"></i>
                             </div>
                         </div>
                     </div>
@@ -83,11 +99,26 @@
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
-                                <p class="m-b-5"> {{trans('menu.tasks')}}</p>
-                                <h4 class="m-b-0">{{$tasks}}</h4>
+                                <p class="m-b-5"> {{trans('menu.quarantines')}}</p>
+                                <h4 class="m-b-0">{{$quarantines}}</h4>
                             </div>
                             <div class="col col-auto text-right">
-                                <i class="fa fa-sticky-note-o f-50 text-c-green"></i>
+                                <i class="fa fa-object-group f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-c-pink text-white" style="background: #6772fd;">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.checkPoints')}}</p>
+                                <h4 class="m-b-0">{{$checkPoints}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-object-ungroup f-50 text-c-green"></i>
                             </div>
                         </div>
                     </div>
@@ -96,32 +127,128 @@
 
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-c-pink text-white" style="background: #8235f5;">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #256fad">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
-                                <p class="m-b-5"> {{trans('menu.periods')}}</p>
-                                <h4 class="m-b-0">{{$periods}}</h4>
+                                <p class="m-b-5"> {{trans('menu.workTeams')}}</p>
+                                <h4 class="m-b-0">{{$workTeams}}</h4>
                             </div>
                             <div class="col col-auto text-right">
-                                <i class="fa fa-clock-o f-50 text-c-green"></i>
+                                <i class="fa fa-users f-50 text-c-green"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #256fad">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.workTeams_male')}}</p>
+                                <h4 class="m-b-0">{{$workTeams_male}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-male f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #256fad">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.workTeams_female')}}</p>
+                                <h4 class="m-b-0">{{$workTeams_female}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-female f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="col-xl-4 col-md-6">
                 <div class="card bg-simple-c-lite-green text-white">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
-                                <p class="m-b-5"> {{trans('menu.qrs')}}</p>
-                                <h4 class="m-b-0">{{$qrs}}</h4>
+                                <p class="m-b-5"> {{trans('menu.s_block_persons')}}</p>
+                                <h4 class="m-b-0">{{$s_block_persons}}</h4>
                             </div>
                             <div class="col col-auto text-right">
-                                <i class="fa fa-barcode f-50 text-c-green"></i>
+                                <i class="fa fa-users f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.workTeams_male')}}</p>
+                                <h4 class="m-b-0">{{$block_persons_male}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-male f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.block_persons_female')}}</p>
+                                <h4 class="m-b-0">{{$block_persons_female}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-female f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-xl-6 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.s_healthTeams')}}</p>
+                                <h4 class="m-b-0">{{$s_healthTeams}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-users f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.s_pointTeams')}}</p>
+                                <h4 class="m-b-0">{{$s_pointTeams}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa  fa-user-secret f-50 text-c-green"></i>
                             </div>
                         </div>
                     </div>

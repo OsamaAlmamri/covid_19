@@ -7,6 +7,7 @@ return [
     | Shop Language Lines
     |--------------------------------------------------------------------------
     */
+
     'permissions' => ' الصلاحيات ',
     'dashboard' => 'لوحة التحكم',
     'home' => 'الرئيسية',
@@ -22,14 +23,13 @@ return [
     'checkPoints' => '   نقاط التفتيش',
     'addCheckPoint' => ' اضافة نقطة تفتيش',
     'teamManagement' => ' ادارة الفرق ',
-    'pointTeams' => '  فرق التفتيش',
-    'healthTeams' => '  فرق المرافق   ',
+    'pointTeams' => '  فريق التفتيش',
+    'healthTeams' => '  فريق المرافق   ',
     'Reports' => ' تقارير   ',
     'healthTeamReport' => ' تقارير فرق مراكز الحجر  ',
     'checkPointsTeamReport' => '  تقارير فرق نقاط التفتيش  ',
     'blockPersonsReports' => '  تقارير الاشخاص المحجورين ',
     'usersManagement' => '  ادارة المستخدمين  ',
-
 
 
 
@@ -62,32 +62,16 @@ return [
 
 
     'info' => 'معلومات  ',
-    'orders' => ' الطلبات',
-    'projects' => 'المشاريع  ',
-    'daysQrs' => 'الباركود اليومي  ',
-    'attendences' => 'التحضير  ',
-    'periods' => 'الفترات  ',
-    'projectsManagement' => 'ادارة المشاريع',
-    'tasksManagement' => 'ادارة المهام ',
+
     'teemsManagement' => 'ادارة الفرق',
-    'staff' => 'الموظفين',
-    'staffManagement' => 'ادارة الموظفين',
     'system' => 'النظام',
-    'tasks' => 'المهام',
     'teams' => 'الفرق',
-    'recruitment' => 'التوظيف ',
+
 
 
     'AccessGroup' => 'مجموعات الوصول',
     'AttributeAccessGroup' => 'خصائص مجموعات الوصول',
-    'audit' => 'المراجعة',
-    'hrProcess' => 'HR عمليات',
-    'HrSetting' => 'HR اعدادات',
-    'to_do' => 'TO-do',
-    'time_sheet' => 'سجل الدوام',
-    'top10Tasks' => 'اعلى عشر مهام',
-    'meeting' => 'الاجتماعات',
-    'contacts' => 'العناوين',
+
     'managers' => 'المدراء',
 
     'setting' => 'الاعدادات ',
@@ -101,5 +85,17 @@ return [
     'Admins' => 'مسؤولي النظام',
     'qrs' => 'الباركود',
 
+
+    'workTeams_male'=> ' فريق العمل الذكور',
+    'workTeams_female'=> ' فريق العمل الاناث',
+    'admins'=> ' مسسؤلي النظام',
+    'dataEntry'=> ' مدخلي البيانات',
+    's_healthTeams'=> ' فريق مراكز الحجر',
+    's_pointTeams'=> ' فريق نقاط التفتيش ',
+    's_block_persons'=> ' الاشخاص المحجورين',
+    'block_persons_male'=> ' المحجورين من الذكور ',
+    'block_persons_female'=> ' المحجورين من الاناث',
+    'governments'=> ' المحافظات',
+    'zones'=>'المديريات'
 
 ];
