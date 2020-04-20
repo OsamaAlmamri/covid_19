@@ -78,7 +78,7 @@
                                     <label class="icon-right" for="title">
                                         <i class="fa fa-tag"></i>
                                     </label>
-                                    {!! Form::text('name', null, [ 'id' => 'title'  ,'placeholder'=>trans("form.workTeam.name")]) !!}
+                                    {!! Form::text('name', null, [ 'id' => 'title'  ,'placeholder'=>trans("form.name")]) !!}
                                     @error('name') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
 
@@ -157,7 +157,7 @@
                             <div class="divider gap-bottom-25"></div>
                             <div class="j-row">
                                 <div class="span6 unit">
-                                    <label class="j-label"> {{trans('form.Governorate')}} </label>
+                                    <label class="j-label sub-title"> {{trans('form.government')}} </label>
                                     <div class="j-input">
                                         {!!Form ::select('governorate_id', getGovernorates(),(isset($workTeam)) ?$workTeam->zone->zone->id:null,['class' => 'select2 form-control', 'id' => 'governorate_id'])!!}
                                     </div>
@@ -167,7 +167,7 @@
 
                                 </div>
                                 <div class="span6 unit">
-                                    <label class="j-label">{{trans('form.zone')}} </label>
+                                    <label class="j-label sub-title">{{trans('form.zone')}} </label>
                                     <div class="j-input">
 
                                         {!!Form ::select('zone_id',(isset($workTeam))?getZones($workTeam->zone->zone->id):getZones(),(isset($workTeam))?$workTeam->zone->id:null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}

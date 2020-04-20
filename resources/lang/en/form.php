@@ -58,18 +58,21 @@ return [
     'add' => [
         'user' => 'Add New User',
         'quarantine' => 'Add New quarantine',
-        'phase' => 'Add New service',
-        'task' => 'Add New task',
+        'check_point' => 'Add New check point',
+        'workTeam' => 'Add New member   ',
         'member' => 'Add New member',
     ],
+
+
 
 
     'update' => [
 
         'user' => 'Update the User',
         'quarantine' => 'Update the quarantine',
-        'phase' => 'Update the  service',
-        'task' => 'Update the task',
+        'check_point' => 'Update the check point',
+        'workTeam' => 'Update the member   ',
+        'member' => 'Update the  member',
     ],
 
     'delete' => [
@@ -84,10 +87,32 @@ return [
     'info' => [
         'user' => ' User Info',
         'quarantine' => ' quarantine Info',
-        'phase' => ' service Info',
-        'task' => ' task Info',
+        'check_point' => '  check point info ',
+
+        'workTeam' => ' workTeam info  ',
+
         'profile' => ' Profile  Info',
     ],
+
+
+    'quarantines' => [
+        'quarantine_area_type' => ' type   ',
+        'maxCapacity' => 'maxCapacity ',
+        'name' => ' name ',
+        'manager' => ' manager ',
+    ],
+    'check_points' => [
+
+        'name' => '  name ',
+        'manager' => '  manager  ',
+    ],
+    'government' => 'government',
+    'country' => 'country',
+    'ssn' => 'ssn',
+    'zone' => 'zone',
+    'job' => 'job',
+    'workType' => ' workType',
+    'birth_date' => 'birth date  ',
 
     'not_found' => 'The requested resource was not found!',
     'whoops' => 'Whoops! Looks like something went wrong. Please try again later!',

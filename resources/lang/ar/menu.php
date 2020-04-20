@@ -13,11 +13,11 @@ return [
     'UsersMenu' => 'انواع المستخدمين',
     'Users' => ' المستخدمين',
     'users' => ' المستخدمين',
-    'quarantineManagement' => '  ادارة المرافق',
-    'quarantine' => ' المرافق',
-    'quarantines' => ' المرافق',
-    'addQuarantine' => '  اضافة مرفق جديد ',
-    'quarantineTypes' => '   اتواع المرافق',
+    'quarantineManagement' => '  ادارة مراكز الحجر',
+    'quarantine' => ' مراكز الحجر',
+    'quarantines' => ' مراكز الحجر',
+    'addQuarantine' => '  اضافة مركز حجر جديد ',
+    'quarantineTypes' => '   اتواع مركز الحجر',
     'checkPointsManagement' => ' ادارة نقاط التفتيش',
     'checkPoints' => '   نقاط التفتيش',
     'addCheckPoint' => ' اضافة نقطة تفتيش',
@@ -25,7 +25,7 @@ return [
     'pointTeams' => '  فرق التفتيش',
     'healthTeams' => '  فرق المرافق   ',
     'Reports' => ' تقارير   ',
-    'healthTeamReport' => ' تقارير فرق المرافق  ',
+    'healthTeamReport' => ' تقارير فرق مراكز الحجر  ',
     'checkPointsTeamReport' => '  تقارير فرق نقاط التفتيش  ',
     'blockPersonsReports' => '  تقارير الاشخاص المحجورين ',
     'usersManagement' => '  ادارة المستخدمين  ',
@@ -36,7 +36,7 @@ return [
     'teamWorkers' =>' الفرق العاملة',
     'workTeams' =>' الفرق العاملة',
 
-    'btn_filterCenter' =>' فلترة المراكز ',
+    'btn_filterCenter' =>' فلترة مراكز الحجر ',
     'from_date' =>'من تاريخ  ',
     'to_date' =>' الى تاريخ ',
     'workTeamType' =>' نوع فريق العمل  ',
@@ -48,12 +48,17 @@ return [
     'male' =>' ذكر',
     'female' =>' انثى',
     'filter'=>' فرز',
-    'health'=>'  مركز صحي ',
+    'health'=>'  مركز  حجر ',
     'point'=>'  نقطة تفتيش',
     'work_health'=>'  صحي  ',
     'work_point'=>'امن',
     'workType'=>'نوع العمل',
     'team'=>'  الفريق',
+
+
+    'block_persons' => '  الاشخاص المحجورين   ',
+    'check_points' => '    نقاط التفتيش  ',
+
 
 
     'info' => 'معلومات  ',

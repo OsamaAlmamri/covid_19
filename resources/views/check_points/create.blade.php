@@ -73,7 +73,7 @@
                                     <label class="icon-right" for="title">
                                         <i class="fa fa-tag"></i>
                                     </label>
-                                    {!! Form::text('name', null, [ 'id' => 'title'  ,'placeholder'=>trans("form.check_point.name")]) !!}
+                                    {!! Form::text('name', null, [ 'id' => 'title'  ,'placeholder'=>trans("form.check_points.name")]) !!}
                                     @error('name') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
 
@@ -83,7 +83,7 @@
                             <div class="divider gap-bottom-25"></div>
                             <div class="j-row">
                                 <div class="span6 unit">
-                                    <label class="j-label"> {{trans('form.Governorate')}} </label>
+                                    <label class="j-label"> {{trans('form.government')}} </label>
                                     <div class="j-input">
                                         {!!Form ::select('governorate_id', getGovernorates(),(isset($check_point)) ?$check_point->zone->zone->id:null,['class' => 'select2 form-control', 'id' => 'governorate_id'])!!}
                                     </div>

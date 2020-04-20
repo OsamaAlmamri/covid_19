@@ -94,7 +94,7 @@ class QuarantineTypeDataTable extends DataTable
             [
                 'name' => 'name',
                 'data' => 'name',
-                'title' => trans('dataTable.quarantineType'),
+                'title' => trans('dataTable.quarantine_type'),
             ],
             ['name' => 'manage',
                 'data' => 'manage',

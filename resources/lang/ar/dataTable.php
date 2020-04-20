@@ -147,50 +147,29 @@ return [
     'center_zone' => ' اسم المرفق الصح',
     'transfer_zone' => ' المركز الصحي الذي تم نقلة الية ',
     'note' => ' ملاحظة ',
+    'workType' => ' نوع العمل  ',
+    'quarantine_type' => ' نوع مركز الحجر  ',
 
 
-    'period' => ' الفترة ',
-    'qr_name' => ' كود التحضير ',
 
-    'projects' => [
-        'code' => 'الرمز ',
-        'title' => 'العنوان  ',
-        'manager_name' => 'اسم المدير   ',
-        'staff_name' => '  اسم الموظف ',
-        'manager_employee_number' => 'رقم الموظف',
-        'employee_number' => 'رقم المدير ',
-        'start_date' => 'تاريخ البدء ',
-        'end_date' => 'تاريخ الانتهاء ',
-        'created_at' => 'حذف بتاريخ',
-
-        'show' => ' عرض   ',
-        'phase_title' => 'عنوان الخدمة',
-        'status' => ' الحالة  ',
-        'priority' => ' الاولوية  '
-    ],
-
-    'company_name' => ' الشركة ',
-
-    'prices' => [
-        'price' => 'السعر ',
-        'note' => 'ملاحظة  ',
-        'from' => 'من محافظة  ',
-        'to_parent_zone' => 'الى محافظة    ',
-        'to' => 'المديرية  ',
-    ],
 
 
     'add' => [
-        'user' => 'اضافة عميل ',
-        'quarantine' => 'اضافة مرفق ',
+        'user' => 'اضافة مستخدم ',
+        'quarantine' => 'اضافة مركز حجر ',
+        'check_point' => 'اضافة نقطة تفتيش ',
+        'workTeams' => '    اضافة شخص لفريق العمل   ',
+        'quarantineType' => '    اضافة   نوع مركز حجر جديد   ',
+
 
 
     ],
     'update' => [
-        'user' => 'تعديل عميل ',
-        'project' => ' تعديل مشروع',
-        'task' => 'تعديل مهمة  ',
-        'phase' => 'تعديل خدمة ',
+        'user' => 'تعديل المستخدم ',
+        'quarantine' => 'تعديل المركز حجر ',
+        'check_point' => 'تعديل نقطة التفتيش ',
+        'workTeams' => '    تعديل  فريق العمل   ',
+        'quarantineType' => '    تعديل المركز حجر الصحي   ',
 
 
     ],

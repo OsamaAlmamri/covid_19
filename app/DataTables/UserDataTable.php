@@ -30,12 +30,10 @@ class UserDataTable extends DataTable
             ->addColumn('manageDeleted', 'users.btn.manageDeleted')
             ->addColumn('status', 'users.btn.status')
             ->addColumn('role', 'users.btn.role')
-            ->addColumn('task', 'users.btn.task')
             ->addColumn('permissions', 'users.btn.permissions')
             ->rawColumns([
                 'manage',
                 'role',
-                'task',
                 'manageDeleted',
                 'status',
                 'permissions',

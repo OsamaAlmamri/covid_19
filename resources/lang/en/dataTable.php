@@ -119,6 +119,8 @@ return [
     'mix_people_type' => ' mix people type',
     'transfer_zone' => 'transfer zone ',
     'note' => ' note',
+    'workType' => ' work Type   ',
+
 
 
 
@@ -146,36 +148,26 @@ return [
     'tasks' => ' tasks ',
     'team' => ' team ',
 
-    'period' => ' period ',
-    'qr_name' => ' qr ',
 
-    'projects' => [
-        'code' => 'code ',
-        'title' => 'title  ',
-        'manager_name' => 'manager name  ',
-        'staff_name' => 'staff name  ',
-        'manager_employee_number' => 'manager E.N ',
-        'employee_number' => 'manager E.N ',
-        'start_date' => 'start date  ',
-        'end_date' => 'end date  ',
-        'created_at' => 'created at  ',
-        'show' => ' show  ',
-        'phase_title' => ' service title  ',
-        'status' => ' status  ',
-        'priority' => ' priority  '
-    ],
+
 
     'add' => [
-        'User' => 'Add Staff',
+        'User' => 'Add User',
         'quarantine' => 'Add quarantine',
+        'check_point' => ' add   check point',
+        'workTeams' => ' add team worker  ',
 
     ],
     'update' => [
         'user' => 'Update User',
         'quarantine' => 'Update quarantine',
+        'check_point' => ' Update   check point',
+        'workTeams' => ' Update team worker  ',
 
 
     ],
+
+
     'btn' => [
         'pdf' => 'Pdf',
         'copy' => 'copy',

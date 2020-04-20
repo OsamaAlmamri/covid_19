@@ -31,6 +31,8 @@ return [
     'blockPersonsReports' => '  Block Persons Reports  ',
     'usersManagement' => '  Users Management ',
 
+    'block_persons' => '  blocked persons  ',
+    'check_points' => '   Check points  ',
 
 
 
