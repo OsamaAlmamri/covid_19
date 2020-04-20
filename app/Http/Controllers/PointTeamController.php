@@ -134,6 +134,9 @@ class PointTeamController extends Controller
 
 
         $select = ' ';
+        if(isset($request->all) and $request->all=='all')
+            $select .= '<option value="all">all</option>';
+
         foreach ($data as $info) {
             $select .= '<option value="' . $info->id . '"> ' . $info->name . '</option>';
         }

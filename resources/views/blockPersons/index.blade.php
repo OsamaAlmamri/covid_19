@@ -193,7 +193,11 @@
                 url: '{{route('check_points.filterPlace_type')}}',//   var url=$('#news').attr('action');
                 method: 'POST',
                 dataType: 'json',// data type that i want to return
-                data: '_token=' + encodeURIComponent("{{csrf_token()}}") + '&type=' + type + '&zone_id=' + zone + '&government_id=' + government_id,
+                data: '_token=' + encodeURIComponent("{{csrf_token()}}") +
+                    '&type=' + type +
+                    '&zone_id=' + zone +
+                    '&all=' + 'all' +
+                    '&government_id=' + government_id,
                 success: function (data) {
                     // console.log(data.firstData);
                     selectList.html(data.select);
