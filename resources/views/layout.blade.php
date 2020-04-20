@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>time sheet</title>
+    <title> وزارة الصحة والعامة والسكان </title>
     {{--    <title>{{ Setting::get('site_title') }}</title>--}}
 
 

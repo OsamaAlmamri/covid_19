@@ -106,7 +106,7 @@
                     </li>
 
                     <li class="">
-                        <a href="#">
+                        <a href="{{route('block_persons.index')}}">
                             <span class="pcoded-mtext ">  {{trans('menu.blockPersonsReports')}}</span>
                         </a>
                     </li>
@@ -128,44 +128,11 @@
                     </li>
                     <li class="">
                         <a href="{{route('permissions.index')}}">
-                            <span class="pcoded-mtext noActiveMenu">  {{trans('menu.AccessGroup')}}</span>
+                            <span class="pcoded-mtext ">  {{trans('menu.AccessGroup')}}</span>
                         </a>
 
                     </li>
-                    <li class="">
-                        <a href="#">
-                            <span class="pcoded-mtext noActiveMenu">  {{trans('menu.AttributeAccessGroup')}}</span>
-                        </a>
-                    </li>
 
-                </ul>
-            </li>
-
-
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="fa fa-windows"></i></span>
-                    <span class="pcoded-mtext noActiveMenu">{{trans('menu.system')}}</span>
-                </a>
-                <ul class="pcoded-submenu">
-                    <li class="">
-                        <a href="{{route('settings')}}">
-                            <span class="pcoded-micon"><i class="fa fa-cog"></i></span>
-                            <span class="pcoded-mtext noActiveMenu">{{trans('menu.setting')}}</span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a href="{{route('lang',getOtherLang())}}">
-                            @if(getOtherLang()=='ar')
-                                <img style="width: 20px;margin-bottom: 15px;"
-                                     src="{{ HostUrl('design\assets\icon\flag-icons\fonts\ye.svg')}}">
-                            @else
-                                <img style="width: 20px;margin-bottom: 15px;"
-                                     src="{{ HostUrl('design\assets\icon\flag-icons\fonts\us.svg')}}">
-                            @endif
-                        </a>
-                    </li>
 
                 </ul>
             </li>

@@ -18,7 +18,7 @@
                             </div>
                         @endif
                         <div class="text-center">
-                            <img src="{{ HostUrl('images\logo.png')}}" width="50px"  alt="logo.png">
+                            <img src="{{ HostUrl('images\logo2.png')}}" width="300px" alt="logo.png">
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
@@ -65,16 +65,10 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-10">
-                                        <p class="text-inverse text-left m-b-0">Thank you.</p>
-                                        <p class="text-inverse text-left"><a href="{{route('home')}}"><b
-                                                    class="f-w-600">Back
-                                                    to
-                                                    website</b></a></p>
-                                    </div>
+
                                     <div class="col-md-2">
                                         <img
-                                            src="{{ HostUrl('images\logo.png')}}" width="50px" alt="small-logo.png">
+                                            src="{{ HostUrl('images\logo.png')}}" width="400px" alt="small-logo.png">
                                     </div>
                                 </div>
                             </div>

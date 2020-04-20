@@ -23,7 +23,6 @@
                     lengthMenu: [[10, 50, 100, -1], [10, 50, 100, 'all']],
                     buttons:
                         [
-
                             {
                                 extend: 'copyHtml5',
                                 text: '<i class="fa fa-copy" ></i> copy',
@@ -60,9 +59,7 @@
                                     gender: gender,
                                     workTeamType: workTeamType,
                                 },
-                        }
-                    ,
-
+                        },
                     columns: [
                         {
                             title: '#',
@@ -70,7 +67,6 @@
                             name: 'DT_RowIndex',
                             orderable: false,
                             searchable: false
-
                         },
                         {
                             'name': 'name',
@@ -123,8 +119,6 @@
                             'data': 'assign',
                             'title': "{{trans('dataTable.assign')}}",
                         },
-
-
                     ]
                 }
             )

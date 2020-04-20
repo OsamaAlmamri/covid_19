@@ -47,7 +47,7 @@ class SettingController extends Controller
     public function editProfile(ProfileRequest $request)
     {
         $admin = auth()->user();
-        $avatar = updateImage('images/admins/' . $request['username'], $request->file('avatar2'), $admin->avatar);
+        $avatar = updateImage('images/users/' . $request['username'], $request->file('avatar2'), $admin->avatar);
 
 //        return dd($avatar);
         if ($request->password == '') {

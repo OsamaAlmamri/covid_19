@@ -15,8 +15,6 @@
 Route::get('login', "Auth\LoginController@login")->name('login');
 Route::post('postLogin', "Auth\LoginController@postlogin")->name('postLogin');
 
-Route::get('register', "Auth\LoginController@register");
-Route::post('register', "Auth\RegisterController@create");
 Route::get('users', 'UserController@index')->name('user');
 Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -25,15 +23,11 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/404', 'HomeController@erroe404')->name('404');
 //Route::get('/orders', 'HomeController@orders')->name('orders');
-Route::get('profile', 'HomeController@profile')->name('profile');
-Route::post('change_image', 'HomeController@change_image')->name('change_image');
-Route::post('changeProfile_info', 'HomeController@changeProfile_info')->name('changeProfile_info');
-Route::post('changePassword', 'HomeController@changePassword')->name('changePassword');
-Route::post('setting/changeSetting', 'SettingController@changeSetting')->name('changeSetting');
-Route::get('makeAllNotificationRead', function () {
-    auth()->guard(get_guard_name())->user()->unreadNotifications->markAsRead();
-    return back();
-})->name('makeAllNotificationRead');;
+
+
+Route::get('profile', 'SettingController@profile')->name('profile');;
+Route::post('editProfile', 'SettingController@editProfile')->name('editProfile');;
+
 
 Route::get('lang/{lang}', function () {
     $lang = request('lang');
@@ -42,19 +36,6 @@ Route::get('lang/{lang}', function () {
 
     return back();
 })->name('lang');
-
-
-Route::get('profile', 'SettingController@profile')->name('profile');;
-Route::post('editProfile', 'SettingController@editProfile')->name('editProfile');;
-Route::get('makeAllNotificationRead', function () {
-    auth()->user()->unreadNotifications->markAsRead();
-    return back();
-})->name('makeAllNotificationRead');;
-//Route::get('settings', 'SettingController@settings')->name('settings');;
-Route::get('settings', 'HomeController@index')->name('settings');;
-Route::post('settings', 'SettingController@settings_store')->name('settings.store');;
-Route::post('setting/add', 'SettingController@AccountSettingStore')->name('accsetting.store');;
-
 
 Route::get('permissions/index/{section_id?}', 'PermissionsController@index')->name('permissions.index');
 Route::post('permissions/open', 'PermissionsController@open')->name('permissions.open');
@@ -116,7 +97,7 @@ Route::delete('check_points/deleteMulti', 'CheckPointController@deleteMulti');
 Route::get('check_points/{id}/delete', 'CheckPointController@delete')->name('check_points.delete');
 Route::get('check_points/{id}/restore', 'CheckPointController@restore')->name('check_points.restore');
 Route::post('check_points/active', 'CheckPointController@active')->name('check_points.active');
-Route::post('check_points/team', 'CheckPointController@team')->name('check_points.team');
+Route::get('check_points/{id}/{type}/team', 'CheckPointController@team')->name('check_points.team');
 Route::get('check_points/show_teams', 'PointTeamController@index')->name('check_points.team.show');
 Route::get('workTeams/show_teams/{type?}', 'PointTeamController@index')->name('workTeams.team.show');
 Route::get('check_points/team/{id}/create', 'PointTeamController@create')->name('check_points.team.create');
@@ -128,23 +109,12 @@ Route::post('check_points/savePointTeamList', 'PointTeamController@savePointTeam
 Route::get('check_points/showOrdersDisputes/{type?}', 'PointTeamController@showOrdersDisputes')->name('check_points.showOrdersDisputes');
 Route::post('check_points/filterTeam', 'PointTeamController@filterTeamWorker')->name('check_points.filterTeam');
 
+Route::get('block_persons/index', 'BlockPersonsController@index')->name('block_persons.index');
+Route::post('block_persons/filterBlockPersons', 'BlockPersonsController@filterBlockPersons')->name('block_persons.filterBlockPersons');
+
 
 Route::get('quarantineTypes/{id}/delete', 'QuarntineTypesController@delete')->name('quarantineTypes.delete');
 Route::resource('quarantineTypes', 'QuarntineTypesController');
-
-
-Route::get('tasks/table/{user?}/{type?}', 'TasksController@index')->name('tasks.table');
-Route::get('tasks/{id}/forceDelete', 'TasksController@forceDelete')->name('tasks.forceDelete');
-Route::delete('tasks/deleteMulti', 'TasksController@deleteMulti');
-Route::get('tasks/{id}/delete', 'TasksController@delete')->name('tasks.delete');
-Route::get('tasks/{id}/restore', 'TasksController@restore')->name('tasks.restore');
-Route::post('tasks/active', 'TasksController@active')->name('tasks.active');
-Route::post('tasks/getTaskDeatial', 'TasksController@getTaskDeatial')->name('tasks.getTaskDeatial');
-Route::post('tasks/remove', 'TasksController@remove')->name('tasks.remove');
-Route::post('tasks/member', 'TasksController@member')->name('tasks.member');
-Route::post('tasks/changeStatus', 'TasksController@changeStatus')->name('tasks.changeStatus');
-Route::get('tasks/{project}/{user}/staff', 'TasksController@staffTasks')->name('tasks.staffTasks');
-Route::resource('tasks', 'TasksController')->except('index');
 
 Route::get('workTeams/{id}/forceDelete', 'WorkTeamsController@forceDelete')->name('workTeams.forceDelete');
 Route::get('workTeams/{id}/delete', 'WorkTeamsController@delete')->name('workTeams.delete');
@@ -168,33 +138,3 @@ Route::post('healthTeams/remove', 'TasksController@remove')->name('healthTeams.r
 Route::post('healthTeams/changeStatus', 'TasksController@changeStatus')->name('healthTeams.changeStatus');
 Route::resource('healthTeams', 'TasksController')->except('index');
 
-Route::get('phases/index/{type?}', 'PhasesController@index')->name('phases.index');
-Route::get('phases/{id}/forceDelete', 'PhasesController@forceDelete')->name('phases.forceDelete');
-Route::delete('phases/deleteMulti', 'PhasesController@deleteMulti');
-Route::get('phases/{id}/delete', 'PhasesController@delete')->name('phases.delete');
-Route::get('phases/{id}/restore', 'PhasesController@restore')->name('phases.restore');
-Route::post('phases/active', 'PhasesController@active')->name('phases.active');
-Route::post('phases/getPhaseDeatial', 'PhasesController@getPhaseDeatial')->name('phases.getPhaseDeatial');
-Route::post('phases/remove', 'PhasesController@remove')->name('phases.remove');
-Route::resource('phases', 'PhasesController')->except('index');
-
-Route::get('daysQrs/index/{type?}', 'UserController@index')->name('daysQrs.index');
-Route::get('daysQrs/{id}/forceDelete', 'UserController@forceDelete')->name('daysQrs.forceDelete');
-Route::get('daysQrs/{id}/permissions', 'UserController@permissions')->name('daysQrs.permissions');
-Route::delete('daysQrs/deleteMulti', 'UserController@deleteMulti');
-Route::get('daysQrs/{id}/delete', 'UserController@delete')->name('daysQrs.delete');
-Route::get('daysQrs/{id}/restore', 'UserController@restore')->name('daysQrs.restore');
-Route::post('daysQrs/active', 'UserController@active')->name('daysQrs.active');
-Route::resource('daysQrs', 'UserController')->except('index');
-
-Route::get('attendences/index/{type?}', 'AttendencesController@index')->name('attendences.index');
-Route::resource('attendences', 'UserController')->except('index');
-
-Route::get('periods/index/{type?}', 'UserController@index')->name('periods.index');
-Route::get('periods/{id}/forceDelete', 'UserController@forceDelete')->name('periods.forceDelete');
-Route::get('periods/{id}/permissions', 'UserController@permissions')->name('periods.permissions');
-Route::delete('periods/deleteMulti', 'UserController@deleteMulti');
-Route::get('periods/{id}/delete', 'UserController@delete')->name('periods.delete');
-Route::get('periods/{id}/restore', 'UserController@restore')->name('periods.restore');
-Route::post('periods/active', 'UserController@active')->name('periods.active');
-Route::resource('periods', 'UserController')->except('index');

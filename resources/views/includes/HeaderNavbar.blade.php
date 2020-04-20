@@ -7,12 +7,12 @@
 
             <a href="{{route('home')}}">
                 <img class="img-fluid"
-                     src="{{   HostUrl('images/logo2.png') }}"
+                     src="{{   HostUrl('images/logo.png') }}"
                      {{--                     src="{{ Setting::get('site_logo') ? Setting::get('site_logo') :  HostUrl('images/logo.png') }}"--}}
-                     style="width: 70px" alt="">
+                      alt="">
 
                 {{--                {{ Setting::get('site_title')}}--}}
-                GR
+
             </a>
             <a class="mobile-options">
                 <i class="feather icon-more-horizontal"></i>
@@ -37,52 +37,6 @@
                 </li>
             </ul>
             <ul class="nav-right" style="margin-left: 20%">
-                <li class="header-notification">
-                    <div class="dropdown-primary dropdown">
-                        <div class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="feather icon-bell"></i>
-                            <span class="badge bg-c-pink"
-                                  id="notification_count">{{ auth()->user()->unreadNotifications->count() }} </span>
-                        </div>
-
-                        <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn"
-                            data-dropdown-out="fadeOut">
-                            <h6 class="" style="    position: fixed; margin-right: 15px; margin-left: 15px"><a
-                                    href="{{route('makeAllNotificationRead')}}"> {{trans('menu.makeNotificationAsRead')}}</a>
-                            </h6>
-                            <div>
-                                <div id="admin_notification"
-                                     style="overflow: scroll; overflow-x: hidden; max-height: 350px; margin-top: 36px;">
-                                    @foreach(auth()->user()->unreadNotifications as $notification)
-                                        <li>
-                                            <div class="media">
-                                                <img class="d-flex align-self-center img-radius"
-                                                     src="{{ HostUrl($notification->data['sender_image'])}}"
-                                                     alt="">
-                                                <div class="media-body">
-                                                    <h5 class="notification-user"> {{ $notification->data['sender_name'] }}</h5>
-
-                                                    <p class="notification-msg">{{ $notification->data['message'] }}
-                                                    </p>
-                                                    <span
-                                                        class="notification-time">{{ $notification->data['date'] }}</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @endforeach
-
-
-                                </div>
-                            </div>
-
-                            <li>
-                                <h6 style="margin-bottom: -19px;text-align: center;"><a> {{trans('menu.viewAll')}}</a>
-                                </h6>
-
-                            </li>
-                        </ul>
-                    </div>
-                </li>
                 <li class="user-profile header-notification">
                     <a href="{{route('lang',getOtherLang())}}">
                         @if(getOtherLang()=='en')

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\CheckPoint;
 use App\DataTables\CheckPointsDataTable;
+use App\DataTables\PointTeamDataTable;
 use App\Http\Requests\CheckPointRequest;
-use App\Http\Requests\QuarantineRequest;
+use App\QuarantineArea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,17 @@ class CheckPointController extends Controller
         return $User->render('check_points.index', ['deleted' => ($type == '') ? false : true]);
     }
 
+    public function team($id, $type)
+    {
+        if ($type == 'point_teams')
+            $point = CheckPoint::find($id);
+        else
+            $point = QuarantineArea::find($id);
+        $User = new PointTeamDataTable($id, $type);
+        return $User->render('check_points.point_team', ['point' => $point, 'type' => $type]);
+         
+    }
+
 
     public function create()
     {
@@ -25,7 +37,7 @@ class CheckPointController extends Controller
 
     public function store(CheckPointRequest $request)
     {
-        $check_point = CheckPoint::create(array_merge($request->all(),['created_by'=>auth()->user()->id]));
+        $check_point = CheckPoint::create(array_merge($request->all(), ['created_by' => auth()->user()->id]));
         return redirect()->route('check_points.index')->with('success', 'check_point  add successfully');
 
     }

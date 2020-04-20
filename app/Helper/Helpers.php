@@ -301,11 +301,11 @@ function getAllQuarantineTyprs()
 }
 
 
-function getZones($governorate_id = 0)
+function getZones($governorate_id = 0, $withAll = 0)
 {
 
 
-    if ($governorate_id == 0) {
+    if ($governorate_id === 0) {
         $governorate = \App\Zone::where('parent', '=', '0')->first();
         if ($governorate != null)
             $governorate_id = $governorate->id;
@@ -321,6 +321,9 @@ function getZones($governorate_id = 0)
         $allZones = \App\Zone::all()->where('parent', '=', $governorate_id);
 
     $zones = [];
+    if ($withAll == 1)
+        $zones['all'] = 'all';
+
     foreach ($allZones as $zone) {
         $zones[($zone->id)] = $zone->name_ar;
     }

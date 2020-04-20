@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>HR </title>
+    <title> وزارة الصحة والعامة والسكان </title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -12,7 +12,7 @@
           content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
     <!-- Favicon icon -->
-    <link rel="icon" href="{{HostUrl('images\s_logo.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{HostUrl('images\logo.png')}}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{ HostUrl('design\bower_components\bootstrap\css\bootstrap.min.css')}}">

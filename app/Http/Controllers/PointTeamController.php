@@ -21,7 +21,7 @@ class PointTeamController extends Controller
 //        $this->middleware('permission:show admins', ['only' => ['index']]);
     }
 
-    public function index($type='point')
+    public function index($type = 'point')
     {
 //        return dd(             getZones_childs_ids('all'));
 //        return dd($this->getData(37, 5));
@@ -30,7 +30,7 @@ class PointTeamController extends Controller
 //        return $zone->render('admin.prices.index', ['title' => 'admins', 'deleted' => ($zoneType == '') ? false : true]);
 
 //        return dd($type);
-        return view('workTeams.point_teams')->with('workers_type',$type);
+        return view('workTeams.point_teams')->with('workers_type', $type);
 
 //                return dd($this->getTeamWorkerData('all','all','point','male'));
 //        return datatables()->of($this->getTeamWorkerData('all','all','point','male'))
@@ -51,10 +51,23 @@ class PointTeamController extends Controller
         $workTeamType = '%' . $workTeamType . '%';
         $gender = '%' . $gender . '%';
 
+
         $data = DB::table('work_teams')
             ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.id')
             ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
-            ->select('work_teams.*', 'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name')
+            ->leftJoin('point_teams', 'point_teams.work_team_id', '=', 'work_teams.id')
+            ->leftJoin('check_points', 'point_teams.check_point_id', '=', 'check_points.id')
+            ->leftJoin('health_teams', 'health_teams.work_team_id', '=', 'work_teams.id')
+            ->leftJoin('quarantine_areas', 'health_teams.quarantine_area_id', '=', 'quarantine_areas.id')
+            ->leftJoin('zones as pointZone', 'check_points.zone_id', '=', 'pointZone.id')
+            ->leftJoin('zones as pointParentZone', 'pointZone.parent', '=', 'pointParentZone.id')
+            ->leftJoin('zones as teamZone', 'work_teams.zone_id', '=', 'teamZone.id')
+            ->leftJoin('zones as teamParentZone', 'teamZone.parent', '=', 'teamParentZone.id')
+            ->select('work_teams.*',
+                'quarantine_areas.name as quarantine_area_name', 'check_points.name as check_point_name',
+                'teamZone.name_ar as team_zone_name', 'teamParentZone.name_ar as team_government_name',
+                'pointZone.name_ar as point_zone_name', 'pointParentZone.name_ar as point_government_name',
+                'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name')
 //            ->WhereNotNull('work_teams.deleted_at')
             ->whereIn('work_teams.zone_id', $filter_zones)
             ->whereBetween('work_teams.birth_date', [$from_date, $to_date])
@@ -94,7 +107,12 @@ class PointTeamController extends Controller
     public function filterPlace_type(Request $request)
     {
         $ids = [];
-        if ($request->zone_id == 'all') {
+        if ($request->zone_id == 'all' and $request->government_id == 'all') {
+            $zones = Zone::all()->where('parent', '>', 0);
+            foreach ($zones as $zone) {
+                $ids[] = $zone->id;
+            }
+        } elseif ($request->zone_id == 'all') {
             $zones = Zone::all()->where('parent', '=', $request->government_id);
             foreach ($zones as $zone) {
                 $ids[] = $zone->id;
@@ -124,7 +142,8 @@ class PointTeamController extends Controller
 
     }
 
-    public function changePointOrCenter(Request $request)
+    public
+    function changePointOrCenter(Request $request)
     {
         if ($request->type == 'point') {
             $data = CheckPoint::find($request->point);
@@ -137,7 +156,8 @@ class PointTeamController extends Controller
 
     }
 
-    private function getMembers($data)
+    private
+    function getMembers($data)
     {
         $firstData = '';
         foreach ($data->workTeams as $team) {
@@ -154,7 +174,8 @@ class PointTeamController extends Controller
         return $firstData;
     }
 
-    public function savePointTeamList(Request $request)
+    public
+    function savePointTeamList(Request $request)
     {
 //   + '&point=' + $("#pointOrCenter_id").val()
 //                    + '&type=' + $("#center_workTeamType").val()

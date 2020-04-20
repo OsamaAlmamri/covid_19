@@ -41,11 +41,8 @@
                         <li class="breadcrumb-item">
                             <a href="{{route('home')}}"> <i class="fa fa-home"></i> {{trans('menu.home')}} </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{route('admin.admins.index')}}"> {{trans('menu.Admins')}}
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#">
-                                @if(isset($admin))   {{trans('form.update.admin')}}  @else  {{trans('form.add.admin')}}  @endif
+
+                        <li class="breadcrumb-item"><a href="#">{{trans('menu.profile')}}
 
                             </a>
                         </li>
@@ -59,7 +56,7 @@
 @section('content')
 
     <div class="page-body">
-        {!! Form::model($admin, ['route' => ['admin.editProfile'], 'method' => 'post','class'=>'j-pro','id' => 'j-pro', 'files' => true]) !!}
+        {!! Form::model($admin, ['route' => ['editProfile'], 'method' => 'post','class'=>'j-pro','id' => 'j-pro', 'files' => true]) !!}
 
         <div class="card">
             <div class="card-header">
@@ -70,14 +67,14 @@
                     <div class="j-forms">
                         <div class="content">
                             <div class="divider-text gap-top-20 gap-bottom-45">
-                                <span>{{trans('form.info.profile')}}</span>
+                                <span>{{trans('form.info.user')}}</span>
                             </div>
                             <!-- start name email -->
                             <div class="j-row">
                                 <div class="span6 unit">
                                     <div class="input">
                                         <label class="icon-right" for="username">
-                                            <i class="fa fa-admin"></i>
+                                            <i class="fa fa-user"></i>
                                         </label>
                                         {!! Form::text('username', null, [ 'id' => 'username'  ,'placeholder'=>trans("form.username")]) !!}
                                         @error('username') <span
@@ -128,31 +125,9 @@
                                 </div>
                             </div>
 
-                            <!-- start name -->
                             <div class="j-row">
-                                <div class="span6 unit">
-                                    <div class="input">
-                                        {!! Form::text('name',(isset($admin))?$admin->name: null  , [ 'id' => 'name'  ,'placeholder'=>trans("form.full_name")]) !!}
-                                        @error('name') <span
-                                            class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-
-                                    </div>
-                                </div>
-                                <div class="span6 unit">
-                                    {{--                                    @if(isset($admin))--}}
-                                    <div class="input">
-                                        <label class="icon-right" for="phone">
-                                            <i class="fa fa-phone"></i>
-                                        </label>
-                                        {!! Form::text('phone',(isset($admin))?$admin->phone: null  , [ 'id' => 'phone'  ,'placeholder'=>trans("form.phone")]) !!}
-
-                                        @error('phone') <span
-                                            class="btn-block badge badge-danger">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
 
                             </div>
-
                             <div class="j-row">
                                 <label class="j-label"> {{trans("form.PersonalImage")}}</label>
                                 <div class="form-group col-xs-12 mb-2">
@@ -171,7 +146,7 @@
                             <div class="divider gap-bottom-25"></div>
                             <!-- end gender -->
                             <div class="col-xs-12 mb-2">
-                                <a href="{{ route('admin.admins.index') }}" class="btn btn-warning mr-1">
+                                <a href="{{ route('users.index') }}" class="btn btn-warning mr-1">
                                     <i class="ft-x"></i> {{trans("form.cancel")}}
                                 </a>
                                 <button type="button" onclick="return admincreate();" class="btn btn-primary">
@@ -182,6 +157,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         </form>

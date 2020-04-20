@@ -165,6 +165,11 @@ class CheckPointsDataTable extends DataTable
                 ], $btnManager, [
 
                 [
+                    'name' => 'team',
+                    'data' => 'team',
+                    'title' => trans('dataTable.team'),
+                ],
+                [
                     'name' => 'created_at',
                     'data' => 'created_at',
                     'title' => trans('dataTable.created_at'),

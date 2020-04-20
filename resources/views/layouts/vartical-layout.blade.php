@@ -12,10 +12,14 @@
             SubMenuTrigger: "click",
             activeMenuClass: "active",
             ThemeBackgroundPattern: "pattern4",
-            HeaderBackground: "{{setting('HeaderBackground')}}",
-            LHeaderBackground: "{{setting('LHeaderBackground')}}",
-            NavbarBackground: "{{setting('NavbarBackground')}}",
-            ActiveItemBackground: "{{setting('ActiveItemBackground')}}",
+            HeaderBackground: "theme2",
+            LHeaderBackground: "theme2",
+            NavbarBackground: "theme2",
+            ActiveItemBackground: "theme2",
+            {{--HeaderBackground: "{{setting('HeaderBackground')}}",--}}
+            {{--LHeaderBackground: "{{setting('LHeaderBackground')}}",--}}
+            {{--NavbarBackground: "{{setting('NavbarBackground')}}",--}}
+            {{--ActiveItemBackground: "{{setting('ActiveItemBackground')}}",--}}
             SubItemBackground: "theme2",
             ActiveItemStyle: "style0",
             ItemBorder: !0,

@@ -29,7 +29,6 @@ class BlockedPerson extends Model
         'bp_type',//track owner or people
         'bp_from',//yemeni,arabic,//align
         'truck_number',//رقم القاطرة اذا كان صاحب قاطرة
-
         'last_zone_visit_id',//
         'start_date_symptoms',//داية ظهور الاعراض
         'sleeping',
@@ -79,6 +78,7 @@ class BlockedPerson extends Model
         'situation_result',//1-Cured//2-Dead //3-Reffered
         'if_dead_date',
         'if_transfer_where',
+
         'response_team_interventions',//investigation,file_closed,case_was_lost,other
         'other_response_team_interventions',
         'note',

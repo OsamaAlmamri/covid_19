@@ -66,7 +66,7 @@ class QuarantineAreasDataTable extends DataTable
                 ->select('quarantine_areas.*',
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
-                    'quarantine_area_types.name as quarantine_area_type','users.name as deleted_by_name'
+                    'quarantine_area_types.name as quarantine_area_type', 'users.name as deleted_by_name'
                 )
                 ->WhereNotNull('quarantine_areas.deleted_at')
                 ->orderByDesc('id')->get();
@@ -184,18 +184,18 @@ class QuarantineAreasDataTable extends DataTable
                 ],
             ],
                 $btnActive,
-//                [
-////                    [
-////                        'name' => 'show',
-////                        'data' => 'show',
-////                        'title' => trans('dataTable.quarantines.show'),
-////                    ],
+                [
 //                    [
-//                        'name' => 'team',
-//                        'data' => 'team',
-//                        'title' => trans('dataTable.team'),
-//                    ]
-//                ],
+//                        'name' => 'show',
+//                        'data' => 'show',
+//                        'title' => trans('dataTable.quarantines.show'),
+//                    ],
+                    [
+                        'name' => 'team',
+                        'data' => 'team',
+                        'title' => trans('dataTable.team'),
+                    ]
+                ],
                 $this->additionalData()
             );
     }
