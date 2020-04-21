@@ -55,12 +55,12 @@ class HomeController extends Controller
         $checkPoints = CheckPoint::all()->count();
 
         $workTeams = WorkTeam::all()->count();
-        $workTeams_male = WorkTeam::all()->where('parent', '=', 'male')->count();
+        $workTeams_male = WorkTeam::all()->where('gender', '=', 'male')->count();
         $workTeams_female = WorkTeam::all()->where('gender', '=', 'female')->count();
         $s_healthTeams = HealthTeam::all()->count();
         $s_pointTeams = PointTeam::all()->count();
         $s_block_persons = BlockedPerson::all()->count();
-        $block_persons_male = BlockedPerson::all()->where('parent', '=', 'male')->count();
+        $block_persons_male = BlockedPerson::all()->where('gender', '=', 'male')->count();
         $block_persons_female = BlockedPerson::all()->where('gender', '=', 'female')->count();
 
 

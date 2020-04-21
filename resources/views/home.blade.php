@@ -31,7 +31,7 @@
 
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-c-blue text-white" style="background: #0a65c2">
+                <div class="card bg-c-blue text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-c-blue text-white" style="background: #0a65c2">
+                <div class="card bg-c-blue text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -63,7 +63,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-c-blue text-white">
+                <div class="card bg-c-blue text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -80,7 +80,7 @@
 
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-green text-white" style="background: #6376ff;">
+                <div class="card bg-simple-c-green text-white" style="background: #b0c4de;">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-c-orenge text-white" style="background: #3f51b5eb">
+                <div class="card bg-c-orenge text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -110,7 +110,7 @@
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-c-pink text-white" style="background: #6772fd;">
+                <div class="card bg-c-pink text-white" style="background: #b0c4de;">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -127,7 +127,7 @@
 
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white" style="background: #256fad">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -143,7 +143,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white" style="background: #256fad">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -159,7 +159,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white" style="background: #256fad">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -175,7 +175,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -191,7 +191,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -207,7 +207,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -224,7 +224,7 @@
 
 
             <div class="col-xl-6 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
@@ -240,7 +240,7 @@
             </div>
 
             <div class="col-xl-6 col-md-6">
-                <div class="card bg-simple-c-lite-green text-white">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">

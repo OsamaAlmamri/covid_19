@@ -19,3 +19,11 @@
 .form-control + .input-group-addon:not(:first-child) {
     border-right: 0
 }
+
+
+.job-right-header .checkbox-fade div {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 20px;
+    margin-right: 35px;
+}

@@ -129,11 +129,13 @@ class WorkTeamDataTable extends DataTable
                         'name' => 'gender',
                         'data' => 'gender',
                         'title' => trans('dataTable.gender'),
+
                     ],
                     [
                         'name' => 'workType',
                         'data' => 'workType',
                         'title' => trans('dataTable.workType'),
+
                     ],
 
                     //'name', 'zone_id', 'phone', 'ssn', 'workType', 'job', 'birth_date',
@@ -171,7 +173,7 @@ class WorkTeamDataTable extends DataTable
                     [
                         'name' => 'phone',
                         'data' => 'phone',
-                        'title' => trans('dataTable.phone'),
+                        'title' => trans('dataTable.w_phone'),
                     ],
                     [
                         'name' => 'ssn',
@@ -182,7 +184,7 @@ class WorkTeamDataTable extends DataTable
                     [
                         'name' => 'created_at',
                         'data' => 'created_at',
-                        'title' => trans('dataTable.workTeams.created_at'),
+                        'title' => trans('dataTable.created_at'),
                     ],
                 ],
                 $this->additionalData()

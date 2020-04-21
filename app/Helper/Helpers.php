@@ -202,6 +202,16 @@ function getAllManagers()
     return $allUsers;
 }
 
+function getAllWorker()
+{
+    $users = \App\WorkTeam::all();
+    $allUsers = [];
+    foreach ($users as $user) {
+        $allUsers[$user->id] = $user->name;
+    }
+    return $allUsers;
+}
+
 function getProjectTeams($project)
 {
     $users = $project->users;
@@ -322,7 +332,7 @@ function getZones($governorate_id = 0, $withAll = 0)
 
     $zones = [];
     if ($withAll == 1)
-        $zones['all'] = 'all';
+        $zones['all'] = trans('menu.all');
 
     foreach ($allZones as $zone) {
         $zones[($zone->id)] = $zone->name_ar;

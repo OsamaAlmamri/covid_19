@@ -43,7 +43,7 @@ return [
 
     'username' => ' اسم المستخدم',
     'email' => 'الايميل',
-    'phone' => 'رقم الهاتف',
+    'w_phone' => 'رقم الهاتف',
     'name' => 'الاسم',
     'role' => 'الدور',
     'permissions' => 'الصلاحيات',
@@ -80,14 +80,13 @@ return [
     'phone' => 'رقم تلفون المريض/الوافد  ',
     'relative_phone' => 'رقم تلفون احد اقارب المريض/الوافد  ',
     'typeStatus' => 'typeStatus ',//checkAndTruckInPort => ' ' ,checkedAndCrossedFromPort => ' ' ,JustChecked => ' ' ,examinedAndQuarantined => ' ' ,noActionTaken
-    'check_date' => ' check_date',
+    'check_date' => ' تاريخ الكشف',
     'truck_number' => 'رقم القاطرة ',//رقم القاطرة اذا كان صاحب قاطرة
     'start_date_symptoms' => ' بداية ظهور الاعراض',//
     'sleeping' => ' الرقود',
     'sleep_date' => ' تاريخ الرقود ',
     'insulation_date' => 'تاريخ العزل / الحجر ',
-    'status_at_reporting' => 'حالة المريض وقت الإبلاغ
-( مستقرة - حرجة -شفاء) ',//stable - critical - healing
+    'status_at_reporting' => 'حالة المريض وقت الإبلاغ ',//stable - critical - healing
 
     'fever_symptoms' => ' حمى',//حمى
     'sore_throat_symptoms' => ' 	ألم الحلق',         //	ألم الحلق
@@ -122,22 +121,24 @@ return [
     'is_visit_health_center' => ' هل زارالمريض مرفقاً صحياً خلال 14يوم قبل  بدء الاعراض؟',
     'health_center_name' => '	 اسم المرفق الصحي ',
     'is_mix_other_people' => ' هل خالط المريض حالة COVID-19 مؤكده؟',
-    'mix_people_type' => 'مخالطي المريض: (1)اسرة المريض  (2)العاملين الصحيين  (3)كلاهم  ',//family => ' ' ,healthWorker => ' ' ,both => ' ' ,none
+    'mix_people_type' => 'مخالطي المريض  ',//family => ' ' ,healthWorker => ' ' ,both => ' ' ,none
     'other_mix_people' => 'اخرين ',
     'is_patientIdentical_standard_definition' => '  هل المريض مطابق للتعريف الفياسي',
 
     'is_sample_collected' => '  هل تم جمع العينة',
-    'is_sample_sent' => ' تاريخ جمع العينة',
-    'sample_sent_date' => ' هل تم إرسال العينة',
-    'result_of_examining' => 'تاريخ ارسال العينة ',//indicates 2- passive 3- hangs 4- indecisive
+    'is_sample_sent' => ' هل تم إرسال العينة',
 
-    'situation_result' => 'نتيجه فحص العينة ',//1-Cured//2-Dead //3-Reffered
+
+    'sample_sent_date' => 'تاريخ ارسال العينة ',//indicates 2- passive 3- hangs 4- indecisive
+
+    'situation_result' => 'نتيجة الحالة',
+    'result_of_examining' => 'نتيجه فحص العينة ',//1-Cured//2-Dead //3-Reffered
 
 
     'if_dead_date' => ' في حالة الوفاة، حدد التاريخ	',
     'if_transfer_where' => '	في حالة التحويل حدد الي اين؟ ',
 
-    'response_team_interventions' => 'الحالة ',//investigation => ' ' ,file_closed => ' ' ,case_was_lost => ' ' ,other
+    'response_team_interventions' => 'تدخلات فرق الاستجابة  ',//
     'other_response_team_interventions' => ' ملاحظات و معلومات إضافية	',
 
     'age_year' => ' العمر بالسنين',
@@ -151,16 +152,12 @@ return [
     'quarantine_type' => ' نوع مركز الحجر  ',
 
 
-
-
-
     'add' => [
         'user' => 'اضافة مستخدم ',
         'quarantine' => 'اضافة مركز حجر ',
         'check_point' => 'اضافة نقطة تفتيش ',
         'workTeams' => '    اضافة شخص لفريق العمل   ',
         'quarantineType' => '    اضافة   نوع مركز حجر جديد   ',
-
 
 
     ],

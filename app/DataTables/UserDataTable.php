@@ -73,7 +73,7 @@ class UserDataTable extends DataTable
         $btnAdd = [];
         $route = route('users.create');
         if (Auth::user()->can('manage users') != false) {
-            $btnAdd = ['className' => 'btn btn-info ', 'text' => '<i class="fa fa-plus" ></i> ' . trans('dataTable.add.User'),
+            $btnAdd = ['className' => 'btn btn-info ', 'text' => '<i class="fa fa-plus" ></i> ' . trans('dataTable.add.user'),
                 'action' => " function(){
                               window.location.href='$route'
                               }"];
@@ -153,7 +153,7 @@ class UserDataTable extends DataTable
                     [
                         'name' => 'phone',
                         'data' => 'phone',
-                        'title' => trans('dataTable.phone'),
+                        'title' => trans('dataTable.w_phone'),
                     ],
                     [
                         'name' => 'created_at',

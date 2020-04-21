@@ -8,6 +8,9 @@ return [
     |--------------------------------------------------------------------------
     */
     'permissions' => 'Permissions',
+    'allUsers' => ' All Users  ',
+    'all' => ' All   ',
+
     'dashboard' => 'Dashboard',
     'home' => 'Home',
     'DeletedAdmins' => ' Deleted Admins ',
@@ -28,11 +31,16 @@ return [
     'Reports' => ' Reports   ',
     'healthTeamReport' => 'health TeamReport  ',
     'checkPointsTeamReport' => '  Check Points Team Report  ',
-    'blockPersonsReports' => '  Block Persons Reports  ',
+    'blockPersonsReports' => ' Cases Management  ',
     'usersManagement' => '  Users Management ',
+    'case_registration' => '  Case Registration  ',
+    'cases_management' => 'Show Cases Records  ',
 
-    'block_persons' => '  blocked persons  ',
-    'check_points' => '   Check points  ',
+    'pageName' => '   Page Name  ',
+    'pageOrientation' => '    Page Orientation  ',
+    'pageSize' => '   Page Size  ',
+    'centerTitleText' => '    Title In Center ',
+    'titleText' => '  Title In Left ',
 
     'workTeams_male' => 'work Teams male',
     'workTeams_female' => ' work Teams female',
@@ -110,6 +118,8 @@ return [
     'info' => 'Info  ',
     'logOut' => 'logOut  ',
     'qrs' => 'QRs  ',
+    'printSetting' => 'Print Setting '
+
 
 
 ];

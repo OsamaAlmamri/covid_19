@@ -6,7 +6,8 @@
 
         // ChangeInput();
         function load_data(government, zone, from_date, to_date, gender, workTeamType) {
-            $('#orderdata').DataTable({
+            $('#orderdata').DataTable(
+                {
                     processing: true,
                     serverSide: true,
                     paging: true,
@@ -77,6 +78,9 @@
                             'name': 'gender',
                             'data': 'gender',
                             'title': '{{trans('dataTable.gender')}}',
+                            'render': function (data, type, row) {
+                                return (data == 'male') ? 'ذكر ' : 'انثى';
+                            }
                         },
 
                         {

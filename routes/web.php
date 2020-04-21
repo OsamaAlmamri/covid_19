@@ -75,7 +75,7 @@ Route::delete('zones/deleteMulti', 'ZoneController@deleteMulti');
 Route::get('zones/{id}/delete', 'ZoneController@delete')->name('zones.delete');
 Route::get('zones/{id}/restore', 'ZoneController@restore')->name('zones.restore');
 Route::post('zones/active', 'ZoneController@active')->name('zones.active');
-Route::post('zones/getZones', 'ZoneController@getZones')->name('zones.getZones ');
+Route::post('zones/getZones', 'ZoneController@getZones')->name('zones.getZones');
 Route::resource('zones', 'ZoneController')->except('index', 'create');
 
 

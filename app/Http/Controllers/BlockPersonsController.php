@@ -36,9 +36,10 @@ class BlockPersonsController extends Controller
 //            ->rawColumns([
 //                'assign',
 //            ])->make(true);
+
     }
 
-    public function getBlockPersonsrData($government, $zone, $center)
+    public function getBlockPersonsrData($government, $zone, $center, $gender, $from_date, $to_date)
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
@@ -52,6 +53,18 @@ class BlockPersonsController extends Controller
             $op = '=';
             $val = $center;
         }
+        if ($gender == 'all') {
+            $gender_v = 0;
+            $gender_col = 'blocked_people.id';
+            $gender_op = '>';
+
+        } else {
+            $gender_v = '%' . $gender . '%';
+            $gender_col = 'blocked_people.gender';
+            $gender_op = 'like';
+
+        }
+
 
         //        zone_id,check_point_id,quarantine_area_id,last_zone_visit_id,if_transfer_where
 
@@ -93,6 +106,8 @@ class BlockPersonsController extends Controller
             )
 //            ->WhereNotNull('work_teams.deleted_at')
             ->whereIn('blocked_people.zone_id', $filter_zones)
+            ->whereBetween('blocked_people.created_at', [$from_date, $to_date])
+            ->where($gender_col, $gender_op, $gender_v)
             ->where('blocked_people.quarantine_area_id', $op, $val)
             ->orderByDesc('id')->get();
 
@@ -108,7 +123,10 @@ class BlockPersonsController extends Controller
         $center = $request->center;
         $government = $request->government;
         $zone = $request->zone;
-        $data = $this->getBlockPersonsrData($government, $zone, $center);
+        $gender = $request->gender;
+        $from = ($request->from_date == null) ? date('1974-01-01') : date($request->from_date);
+        $to = ($request->to_date == null) ? date('9999-01-01') : date($request->to_date);
+        $data = $this->getBlockPersonsrData($government, $zone, $center, $gender, $from, $to);
 
         return datatables()->of($data)
             ->addIndexColumn()

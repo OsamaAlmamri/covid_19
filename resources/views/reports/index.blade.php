@@ -58,59 +58,68 @@
             <div class="card-body">
                 <div class="sub-title"> {{trans('menu.btn_filterCenter')}}</div>
                 <div class="row">
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-3">
                         <span class="input-group-addon">{{trans('menu.government')}}</span>
-                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
+                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
                         {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
 
                     </div>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-3">
                         <span class="input-group-addon">{{trans('menu.zone')}}</span>
                         {!!Form ::select('zone_id',getZones('all',1),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
 
                     </div>
 
 
-                    <div class="input-group col-md-4" id="pointOrCenter_idDiv">
+                    <div class="input-group col-md-3" id="pointOrCenter_idDiv">
                         <span class="input-group-addon">{{trans('menu.center')}}</span>
                         {!!Form ::select('pointOrCenter_id', ['all'=>'all   '],'',['class' => 'select2 form-control', 'id' => 'pointOrCenter_id'])!!}
                     </div>
 
-
-                    <div class="input-group col-md-3">
-                        <span class="input-group-addon">{{trans('menu.from_date')}}</span>
-                        <input type="date" class="form-control" name="start" value="{{isset($start)?$start:''}}"
-                               id="from_date">
-                    </div>
-
-                    <div class="input-group col-md-3">
-                        <span class="input-group-addon">{{trans('menu.to_date')}}</span>
-                        <input type="date" class="form-control" name="end" value="{{isset($end)?$end:''}}" required
-                               id="to_date">
-                    </div>
-
-                    <div class="input-group col-md-3" id="pointOrCenter_idDiv">
-                        <span class="input-group-addon">{{trans('menu.gender')}}</span>
-                        {!!Form ::select('gender', ['all'=>trans('menu.all'),'male'=>trans('menu.male'),'female'=>trans('menu.female')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
-
-                    </div>
                     <div class="input-group col-md-3">
 
                         <button type="button" name="filter" id="filter"
-                                class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}} <i
-                                class="fa fa-filter"></i></button>
+                                class="btn btn-primary btn-ms waves-effect waves-light filterBtn">
+                            filter<i class="fa fa-filter"></i>
+                        </button>
+
 
                     </div>
+
+                    <div class="input-group col-md-12">
+                        <span class="input-group-addon">{{trans('menu.centerTitleText')}}</span>
+                        {!!Form ::text('centerTitleText','centerTitleText',['class' => 'form-control', 'id' => 'centerTitleText'])!!}
+                    </div>
+                    <div class="input-group col-md-12">
+                        <span class="input-group-addon">{{trans('menu.centerTitleText')}}</span>
+                        {!!Form ::text('titleText','titleText',['class' => 'form-control', 'id' => 'titleText'])!!}
+                    </div>
+
+
+                    <div class="input-group col-md-3">
+                        <span class="input-group-addon">{{trans('menu.pageSize')}}</span>
+                        {{--                        A3 , A5 , A6 , legal , letter--}}
+                        {!!Form ::select('pageSize', ['A3'=>'A3','A4'=>'A4','A5'=>'A5','A6'=>'A6','legal'=>'legal','letter'=>'letter'],'A4',['class' => 'select2 form-control', 'id' => 'pageSize'])!!}
+                    </div>
+
+
+                    <div class="input-group col-md-3">
+                        <span class="input-group-addon">{{trans('menu.pageOrientation')}}</span>
+                        {{--                        A3 , A5 , A6 , legal , letter--}}
+                        {!!Form ::select('pageOrientation', ['portrait'=>'portrait','landscape'=>'landscape'],'landscape',['class' => 'select2 form-control', 'id' => 'pageOrientation'])!!}
+                    </div>
+
+                    <div class="input-group col-md-3">
+                        <span class="input-group-addon">{{trans('menu.pageName')}}</span>
+                        {{--                        A3 , A5 , A6 , legal , letter--}}
+                        {!!Form ::text('pageName','المحجورين',['class' => 'form-control', 'id' => 'pageName'])!!}
+                    </div>
+
+
+
                 </div>
-
-
-                @include('reports.printSetting')
-
-
             </div>
-
         </div>
-    </div>
 
     </div>
 
@@ -160,29 +169,20 @@
 @section('dataTablesJs')
 
 
-    <script
-        src="{{ HostUrl('design\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js')}}"></script>
+    <script src="{{ HostUrl('design\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
+    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js')}}"></script>
     <script src="{{ HostUrl('design\assets\pages\data-table\js\jszip.min.js')}}"></script>
     <script src="{{ HostUrl('design\assets\pages\data-table\js\pdfmake.min.js')}}"></script>
     <script src="{{ HostUrl('design\assets\pages\data-table\js\vfs_fonts.js')}}"></script>
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\dataTables.buttons.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.flash.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\jszip.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\vfs_fonts.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.colVis.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.print.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.html5.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.flash.min.js')}}"></script>
+    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\jszip.min.js')}}"></script>
+    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\vfs_fonts.js')}}"></script>
+    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.colVis.min.js')}}"></script>
+    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.print.min.js')}}"></script>
+    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.html5.min.js')}}"></script>
+    <script src="{{ HostUrl('design\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js')}}"></script>
     <script
         src="{{ HostUrl('design\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js')}}"></script>
     <script

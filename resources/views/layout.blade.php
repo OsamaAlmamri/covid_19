@@ -206,10 +206,6 @@
 <script type="text/javascript" src="{{ HostUrl('design\assets\js\script.js')}}"></script>
 <script src="{{ HostUrl('design/toastr/toastr.min.js')}}"></script>
 
-<script src="https://js.pusher.com/5.1/pusher.min.js"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key={{Setting::get('GOOGLE_MAP_KEY3')}}&libraries=places&callback=initMap"
-    async defer></script>
 
 
 <!-- Custom js -->

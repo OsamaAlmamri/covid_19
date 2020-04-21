@@ -49,7 +49,17 @@ class PointTeamController extends Controller
         } else
             $filter_zones [] = $zone;
         $workTeamType = '%' . $workTeamType . '%';
-        $gender = '%' . $gender . '%';
+        if ($gender == 'all') {
+            $gender_v = 0;
+            $gender_col = 'work_teams.id';
+            $gender_op = '>';
+
+        } else {
+            $gender_v = '%' . $gender . '%';
+            $gender_col = 'work_teams.gender';
+            $gender_op = 'like';
+
+        }
 
 
         $data = DB::table('work_teams')
@@ -72,7 +82,7 @@ class PointTeamController extends Controller
             ->whereIn('work_teams.zone_id', $filter_zones)
             ->whereBetween('work_teams.birth_date', [$from_date, $to_date])
             ->where('work_teams.workType', 'like', $workTeamType)
-            ->where('work_teams.gender', 'like', $gender)
+            ->where($gender_col, $gender_op, $gender_v)
             ->orderByDesc('id')->get();
 
 
@@ -135,7 +145,7 @@ class PointTeamController extends Controller
 
         $select = ' ';
         if(isset($request->all) and $request->all=='all')
-            $select .= '<option value="all">all</option>';
+            $select .= '<option value="all">'.trans('menu.all').'</option>';
 
         foreach ($data as $info) {
             $select .= '<option value="' . $info->id . '"> ' . $info->name . '</option>';

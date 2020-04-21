@@ -32,6 +32,8 @@ return [
     'image' => 'Image ',
     'save' => 'Save ',
     'cancel' => 'Cancel ',
+    'male' => 'male ',
+    'female' => 'female ',
 
 
     'code' => 'code ',

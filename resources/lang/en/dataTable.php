@@ -48,7 +48,7 @@ return [
     'ssn_type' => 'ssn type',//
     'ssn' => ' ssn ',//قم البطاقة او الجواز
     'job' => 'job ',
-    'phone' => 'phone  ',
+    'w_phone' => 'phone  ',
     'relative_phone' => 'relative phone  ',
     'typeStatus' => 'typeStatus ',//checkAndTruckInPort => ' ' ,checkedAndCrossedFromPort => ' ' ,JustChecked => ' ' ,examinedAndQuarantined => ' ' ,noActionTaken
     'check_date' => ' check date',

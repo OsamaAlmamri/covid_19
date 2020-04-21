@@ -91,7 +91,7 @@
                 <div class="row">
                     <div class="input-group col-md-3">
                         <span class="input-group-addon">{{trans('menu.government')}}</span>
-                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
+                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
                         {!!Form ::select('governorate_id', array_reverse($getGovernorate,true),(isset($workTeam)) ?$workTeam->zone->zone->id:null,['class' => 'select2 form-control', 'id' => 'search_government_id'])!!}
 
                     </div>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="input-group col-md-3" id="pointOrCenter_idDiv">
                         <span class="input-group-addon">{{trans('menu.gender')}}</span>
-                        {!!Form ::select('gender', ['male'=>trans('menu.male'),'female'=>trans('menu.female')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
+                        {!!Form ::select('gender', ['all'=>trans('menu.all'),'male'=>trans('menu.male'),'female'=>trans('menu.female')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
 
                     </div>
 
@@ -317,6 +317,7 @@
         $(document).on('click', '.addToAssignList', function () {
 
             addMember($(this).data('id'), $(this).data('name'));
+            // alert($(this).data('name'));
         });
         center_workTeamType();
 

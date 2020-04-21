@@ -26,6 +26,8 @@ class InfosController extends Controller
 
         $allZones = Zone::all()->where('parent', $request['id']);
         $zones = '';
+        if ($request->type == 'all')
+            $zones .= '<option value="all"> ' . trans('menu.all') . '</option>';
         if ($allZones != null)
             foreach ($allZones as $zone) {
                 $zones .= '<option value="' . $zone->id . '"> ' . $zone->name_ar . '</option>';
@@ -34,10 +36,6 @@ class InfosController extends Controller
         return response(['data' => $zones], 200);
 
     }
-
-
-
-
 
 
 }

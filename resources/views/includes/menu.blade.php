@@ -10,6 +10,30 @@
             </li>
             {{--            @if (Auth::user()->can('show permissions') == true)--}}
 
+
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fa fa-bed"></i></span>
+                    <span class="pcoded-mtext ">{{trans('menu.blockPersonsReports')}}</span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    <li class="">
+                        <a href="{{route('block_persons.index')}}">
+                            <span class="pcoded-mtext ">  {{trans('menu.cases_management')}}</span>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="{{route('quarantines.create')}}">
+                            <span class="pcoded-mtext ">  {{trans('menu.case_registration')}}</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
@@ -87,32 +111,6 @@
                 </ul>
             </li>
 
-            <li class="pcoded-hasmenu">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="fa fa-file-text-o"></i></span>
-                    <span class="pcoded-mtext">{{trans('menu.Reports')}}</span>
-                </a>
-                <ul class="pcoded-submenu">
-                    <li class="">
-                        <a href="{{route('projects.index')}}">
-                            <span class="pcoded-mtext">  {{trans('menu.healthTeamReport')}}</span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a href="#">
-                            <span class="pcoded-mtext ">  {{trans('menu.checkPointsTeamReport')}}</span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a href="{{route('block_persons.index')}}">
-                            <span class="pcoded-mtext ">  {{trans('menu.blockPersonsReports')}}</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
 
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
@@ -137,11 +135,55 @@
                 </ul>
             </li>
 
-            <li class="">
-                <a href="{{route('block_persons.index')}}">
-                    <span class="pcoded-micon"><i class="fa fa-bed"></i></span>
-                    <span class="pcoded-mtext">{{trans('menu.blockPersonsReports')}}</span>
+
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="fa fa-file-text-o"></i></span>
+                    <span class="pcoded-mtext">{{trans('menu.Reports')}}</span>
                 </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{route('block_persons.index')}}">
+                            <span class="pcoded-mtext">  {{trans('menu.sumBlockPersons')}}</span>
+                            {{--                                        //--}}
+                        </a>
+                    </li>
+
+
+                    <li class="pcoded-hasmenu ">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-mtext">التقرير اليومي العمليات في المنافذ والنقاط</span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span class="pcoded-mtext">        خلاصة الوافدين </span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0)">
+                                    <span class="pcoded-mtext">        خلاصة سائقي الشاحنات التجارية   </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="">
+                        <a href="{{route('block_persons.index')}}">
+                            <span class="pcoded-mtext">  مرافق الايواء والحجر المجهزة مسبقا</span>
+                            {{--                                        //--}}
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="{{route('block_persons.index')}}">
+                            <span class="pcoded-mtext">  الوضع الصحي للمتواجدين في مكان الايواء /  الحجر </span>
+                            {{--                                        //--}}
+                        </a>
+                    </li>
+                </ul>
             </li>
 
 

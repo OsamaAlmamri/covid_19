@@ -1,44 +1,24 @@
-0
 <script>
-    function load_data(government, zone, center) {
+    function load_data(government, zone, center, from_date, to_date, gender,) {
+        // Function to convert an img URL to data URL
+
+        function getBase64FromImageUrl(url) {
+            var img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = function () {
+                var canvas = document.createElement("canvas");
+                canvas.width = this.width;
+                canvas.height = this.height;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(this, 0, 0);
+                var dataURL = canvas.toDataURL("image/png");
+                return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+            };
+            img.src = url;
+        }
+
         $('#orderdata').DataTable({
-                processing: true,
-                serverSide: true,
-                paging: true,
-                scrollX: true,
-                // responsive: true,
-                searching: true,
-                search: [
-                    regex => true,
-                ],
-                info: false,
-                searchDelay: 350,
-//                    'language' : ['url' : HostUrl('js/dataTables/language.json')],
-                dom: 'Blfrtip',
-                lengthMenu: [[10, 50, 100, -1], [10, 50, 100, 'all']],
-                buttons:
-                    [
-                        {
-                            extend: 'copyHtml5',
-                            text: '<i class="fa fa-copy" ></i> copy',
-                            className: 'btn btn-info '
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: '<i class="fa fa-file-excel-o" ></i> Excel',
-                            className: 'btn btn-info '
-                        },
-                        {
-                            extend: 'pdfHtml5',
-                            text: '<i class="fa fa-file-pdf-o" ></i> PDF',
-                            className: 'btn btn-info '
-                        },
-                        {
-                            extend: 'print',
-                            text: '<i class="fa fa-print" ></i> Print',
-                            className: 'btn btn-info '
-                        }
-                    ],
+                @include('includes.dataTables.btns')
                 ajax:
                     {
                         url: '{{route("block_persons.filterBlockPersons")}}',
@@ -50,6 +30,9 @@
                                 government: government,
                                 zone: zone,
                                 center: center,
+                                from_date: from_date,
+                                to_date: to_date,
+                                gender: gender,
                             },
                     },
                 columns: [
@@ -71,9 +54,12 @@
                         'title': '{{trans('dataTable.check_date')}}',
                     },
                     {
-                        'name': 'gender',
-                        'data': 'gender',
                         'title': '{{trans('dataTable.gender')}}',
+                        'name': 'gender',
+                        'data': "gender",
+                        'render': function (data, type, row) {
+                            return (data == 'male') ? 'ذكر ' : 'انثى';
+                        }
                     },
 
                     {
@@ -143,12 +129,16 @@
                         'name': 'sleeping',
                         'data': 'sleeping',
                         'title': "{{trans('dataTable.sleeping')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'sleep_date',
                         'data': 'sleep_date',
                         'title': "{{trans('dataTable.sleep_date')}}",
+
                     },
 
                     {
@@ -166,6 +156,22 @@
                         'name': 'status_at_reporting',
                         'data': 'status_at_reporting',
                         'title': "{{trans('dataTable.status_at_reporting')}}",
+                        'render': function (data, type, row) {
+                            //   -  -
+                            switch (data) {
+                                case 'stable':
+                                    return 'مستقرة';
+                                    break;
+                                case 'critical':
+                                    return 'حرجة';
+                                    break;
+                                case 'healing':
+                                    return 'شفاء';
+                                    break;
+                                default:
+                                    return ' '
+                            }
+                        }
                     },
 
 
@@ -173,36 +179,59 @@
                         'name': 'fever_symptoms',
                         'data': 'fever_symptoms',
                         'title': "{{trans('dataTable.fever_symptoms')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'sore_throat_symptoms',
                         'data': 'sore_throat_symptoms',
+
                         'title': "{{trans('dataTable.sore_throat_symptoms')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
+
                     {
                         'name': 'cough_symptoms',
                         'data': 'cough_symptoms',
                         'title': "{{trans('dataTable.cough_symptoms')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'descent_from_the_nose_symptoms',
                         'data': 'descent_from_the_nose_symptoms',
                         'title': "{{trans('dataTable.descent_from_the_nose_symptoms')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'headache_symptoms',
                         'data': 'headache_symptoms',
                         'title': "{{trans('dataTable.headache_symptoms')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'pain_in_chest',
                         'data': 'pain_in_chest',
                         'title': "{{trans('dataTable.pain_in_chest')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'pain_in_the_joints',
                         'data': 'pain_in_the_joints',
                         'title': "{{trans('dataTable.pain_in_the_joints')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'others_symptoms',
@@ -214,39 +243,60 @@
                         'name': 'heart_disease',
                         'data': 'heart_disease',
                         'title': "{{trans('dataTable.heart_disease')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'blood_pressure_disease',
                         'data': 'blood_pressure_disease',
                         'title': "{{trans('dataTable.blood_pressure_disease')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'diabetes_disease',
                         'data': 'diabetes_disease',
                         'title': "{{trans('dataTable.diabetes_disease')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'immunodeficiency_diseases',
                         'data': 'immunodeficiency_diseases',
                         'title': "{{trans('dataTable.immunodeficiency_diseases')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'liver_diseases',
                         'data': 'liver_diseases',
                         'title': "{{trans('dataTable.liver_diseases')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'chronic_respiratory_disease',
                         'data': 'chronic_respiratory_disease',
                         'title': "{{trans('dataTable.chronic_respiratory_disease')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'kidney_disease',
                         'data': 'kidney_disease',
                         'title': "{{trans('dataTable.kidney_disease')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'other_diseases',
@@ -258,54 +308,82 @@
                         'name': 'is_pregnant',
                         'data': 'is_pregnant',
                         'title': "{{trans('dataTable.is_pregnant')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'is_pregnant_in_first_3Month',
                         'data': 'is_pregnant_in_first_3Month',
                         'title': "{{trans('dataTable.is_pregnant_in_first_3Month')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'after_childbirth',
                         'data': 'after_childbirth',
                         'title': "{{trans('dataTable.after_childbirth')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'is_comming_from_other_country',
                         'data': 'is_comming_from_other_country',
                         'title': "{{trans('dataTable.is_comming_from_other_country')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'come_from_country',
                         'data': 'come_from_country',
                         'title': "{{trans('dataTable.come_from_country')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'comming_date',
                         'data': 'comming_date',
                         'title': "{{trans('dataTable.comming_date')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'out_from_country_date',
                         'data': 'out_from_country_date',
                         'title': "{{trans('dataTable.out_from_country_date')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'breathing_difficulty_symptoms',
                         'data': 'breathing_difficulty_symptoms',
                         'title': "{{trans('dataTable.breathing_difficulty_symptoms')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'comming_to_yemen_date',
                         'data': 'comming_to_yemen_date',
                         'title': "{{trans('dataTable.comming_to_yemen_date')}}",
+
                     }, {
                         'name': 'is_visit_health_center',
                         'data': 'is_visit_health_center',
                         'title': "{{trans('dataTable.is_visit_health_center')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
@@ -317,12 +395,31 @@
                         'name': 'is_mix_other_people',
                         'data': 'is_mix_other_people',
                         'title': "{{trans('dataTable.is_mix_other_people')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
                     {
                         'name': 'mix_people_type',
                         'data': 'mix_people_type',
                         'title': "{{trans('dataTable.mix_people_type')}}",
+                        'render': function (data, type, row) {
+                            //   -  -
+                            switch (data) {
+                                case 'healthWorker':
+                                    return 'العاملين الصحيين';
+                                    break;
+                                case 'family':
+                                    return 'اسرة المريض';
+                                    break;
+                                case 'both':
+                                    return 'كلاهم';
+                                    break;
+                                default:
+                                    return ' '
+                            }
+                        }
                     },
                     {
                         'name': 'other_mix_people',
@@ -335,11 +432,17 @@
                         'name': 'is_patientIdentical_standard_definition',
                         'data': 'is_patientIdentical_standard_definition',
                         'title': "{{trans('dataTable.is_patientIdentical_standard_definition')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'is_sample_collected',
                         'data': 'is_sample_collected',
                         'title': "{{trans('dataTable.is_sample_collected')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
 
 
@@ -347,6 +450,9 @@
                         'name': 'is_sample_sent',
                         'data': 'is_sample_sent',
                         'title': "{{trans('dataTable.is_sample_sent')}}",
+                        'render': function (data, type, row) {
+                            return (data == '1') ? 'نعم ' : 'لا';
+                        }
                     },
                     {
                         'name': 'sample_sent_date',
@@ -378,9 +484,25 @@
                         'title': "{{trans('dataTable.situation_result')}}",
                     },
                     {
+                        //investigation => ' ' ,file_closed => ' ' ,case_was_lost => ' ' ,other
                         'name': 'response_team_interventions',
                         'data': 'response_team_interventions',
                         'title': "{{trans('dataTable.response_team_interventions')}}",
+                        'render': function (data, type, row) {
+                            switch (data) {
+                                case 'investigation':
+                                    return '  تم التقصي تحت المتابعة';
+                                    break;
+                                case 'file_closed':
+                                    return 'تمت المتابعة واغلاق الملف ';
+                                    break;
+                                case 'case_was_lost':
+                                    return 'فقدت الحالة';
+                                    break;
+                                default:
+                                    return ' '
+                            }
+                        }
                     },
                     {
                         'name': 'other_response_team_interventions',
@@ -408,19 +530,22 @@
         $('#filter').click(function () {
 
             ChangeInput();
-            alert('Both Input is required');
 
         });
 
         function ChangeInput() {
             var government = $('#government_id').val();
             var zone = $('#zone_id').val();
+
             var center = $('#pointOrCenter_id').val();
+            var from_date = $('#from_date').val();
+            var to_date = $('#to_date').val();
+            var gender = $('#gender').val();
             if (government != '' && zone != '') {
                 if (firstTime != 0)
                     $('#orderdata').DataTable().destroy();
                 firstTime = 1;
-                load_data(government, zone, center);
+                load_data(government, zone, center, from_date, to_date, gender);
 
             } else {
                 alert('Both Input is required');

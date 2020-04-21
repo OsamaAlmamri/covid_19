@@ -9,6 +9,9 @@ return [
     */
 
     'permissions' => ' الصلاحيات ',
+    'allUsers' => ' كل المستخدمين ',
+    'all' => ' الكل  ',
+
     'dashboard' => 'لوحة التحكم',
     'home' => 'الرئيسية',
     'UsersMenu' => 'انواع المستخدمين',
@@ -23,42 +26,48 @@ return [
     'checkPoints' => '   نقاط التفتيش',
     'addCheckPoint' => ' اضافة نقطة تفتيش',
     'teamManagement' => ' ادارة الفرق ',
-    'pointTeams' => '  فريق التفتيش',
+    'pointTeams' => '  الفريق الامني ',
     'healthTeams' => '  فريق المرافق   ',
     'Reports' => ' تقارير   ',
     'healthTeamReport' => ' تقارير فرق مراكز الحجر  ',
     'checkPointsTeamReport' => '  تقارير فرق نقاط التفتيش  ',
-    'blockPersonsReports' => '  تقارير الاشخاص المحجورين ',
+    'blockPersonsReports' => '  أدارة الافراد في الحجر ',
     'usersManagement' => '  ادارة المستخدمين  ',
+    'case_registration' => 'تسجيل  حالة ',
+    'cases_management' => 'عرض سجل الحالات  ',
+
+    'pageName' => '   اسم المستند   ',
+    'pageOrientation' => '     اتجاة الطباعة   ',
+    'pageSize' => '   حجم الصفحة   ',
+    'centerTitleText' => '     العنوان بمنتصف راس الصفحة',
+    'titleText' => '  العنوان بيسار راس الصفحة ',
 
 
+    'teamWorkers' => ' افراد فرق التشغيل ',
+    'workTeams' => '  افراد فرق التشغيل',
 
-    'teamWorkers' =>' الفرق العاملة',
-    'workTeams' =>' الفرق العاملة',
-
-    'btn_filterCenter' =>' فلترة مراكز الحجر ',
-    'from_date' =>'من تاريخ  ',
-    'to_date' =>' الى تاريخ ',
-    'workTeamType' =>' نوع فريق العمل  ',
-    'center' =>'المركز ',
-    'btn_filterTeam' =>'  فلترة الفريق',
-    'government' =>'المحافظة  ',
-    'zone' =>'  المديرية',
-    'gender' =>'الجنس ',
-    'male' =>' ذكر',
-    'female' =>' انثى',
-    'filter'=>' فرز',
-    'health'=>'  مركز  حجر ',
-    'point'=>'  نقطة تفتيش',
-    'work_health'=>'  صحي  ',
-    'work_point'=>'امن',
-    'workType'=>'نوع العمل',
-    'team'=>'  الفريق',
+    'btn_filterCenter' => ' فلترة مراكز الحجر ',
+    'from_date' => 'من تاريخ  ',
+    'to_date' => ' الى تاريخ ',
+    'workTeamType' => ' نوع فريق العمل  ',
+    'center' => 'المركز ',
+    'btn_filterTeam' => '  فلترة الفريق',
+    'government' => 'المحافظة  ',
+    'zone' => '  المديرية',
+    'gender' => 'الجنس ',
+    'male' => ' ذكر',
+    'female' => ' انثى',
+    'filter' => ' فرز',
+    'health' => '  مركز  حجر ',
+    'point' => '  نقطة تفتيش',
+    'work_health' => '  صحي  ',
+    'work_point' => 'امن',
+    'workType' => 'نوع العمل',
+    'team' => '  الفريق',
 
 
     'block_persons' => '  الاشخاص المحجورين   ',
     'check_points' => '    نقاط التفتيش  ',
-
 
 
     'info' => 'معلومات  ',
@@ -66,7 +75,6 @@ return [
     'teemsManagement' => 'ادارة الفرق',
     'system' => 'النظام',
     'teams' => 'الفرق',
-
 
 
     'AccessGroup' => 'مجموعات الوصول',
@@ -86,16 +94,21 @@ return [
     'qrs' => 'الباركود',
 
 
-    'workTeams_male'=> ' فريق العمل الذكور',
-    'workTeams_female'=> ' فريق العمل الاناث',
-    'admins'=> ' مسسؤلي النظام',
-    'dataEntry'=> ' مدخلي البيانات',
-    's_healthTeams'=> ' فريق مراكز الحجر',
-    's_pointTeams'=> ' فريق نقاط التفتيش ',
-    's_block_persons'=> ' الاشخاص المحجورين',
-    'block_persons_male'=> ' المحجورين من الذكور ',
-    'block_persons_female'=> ' المحجورين من الاناث',
-    'governments'=> ' المحافظات',
-    'zones'=>'المديريات'
+    'workTeams_male' => ' فريق العمل الذكور',
+    'workTeams_female' => ' فريق العمل الاناث',
+    'admins' => ' مسسؤلي النظام',
+    'dataEntry' => ' مدخلي البيانات',
+    's_healthTeams' => ' فريق مراكز الحجر',
+    's_pointTeams' => ' فريق نقاط التفتيش ',
+    's_block_persons' => ' الاشخاص المحجورين',
+    'block_persons_male' => ' المحجورين من الذكور ',
+    'block_persons_female' => ' المحجورين من الاناث',
+    'governments' => ' المحافظات',
+    'zones' => 'المديريات',
+    'printSetting' => 'اعدادات الطباعة',
+    'sumBlockPersons' => ' التقرير التراكمي للأعداد للمحجورين',
+    'health_point_team' => ' فريق المرافق',
+    'check_point_team' => ' الفريق الامني',
+
 
 ];

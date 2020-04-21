@@ -7460,7 +7460,7 @@ span.badge {
 }
 
 .pcoded .pcoded-navbar[active-item-theme="theme2"] .pcoded-item li .pcoded-submenu li.active > a, .pcoded .pcoded-navbar[active-item-theme="theme2"] .pcoded-item li .pcoded-submenu li:hover > a {
-    color: #157fda !important
+    color: #000000 !important
 }
 
 .pcoded .pcoded-navbar[active-item-theme="theme2"] .pcoded-item li .pcoded-submenu li.active > a {
@@ -7473,7 +7473,7 @@ span.badge {
 
 .pcoded .pcoded-navbar[active-item-theme="theme2"] .pcoded-item li:hover > a {
     color: #fff !important;
-    background: #157fda
+    background: #4c9de3
 }
 
 .pcoded .pcoded-navbar[active-item-theme="theme2"] .pcoded-item > li.pcoded-trigger .pcoded-submenu li > a:before, .pcoded .pcoded-navbar[active-item-theme="theme2"] .pcoded-item > li.active .pcoded-submenu li > a:before {
@@ -16530,7 +16530,8 @@ table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selecte
     margin-left: -5px
 }
 
-button.dt-button, div.dt-button, a.dt-button, button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled), button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled) {
+button.dt-button, div.dt-button, a.dt-button, button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled), button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled),
+a.dt-button.active:not(.disabled) {
     background-color: #157fda;
     border-color: #157fda;
     border-radius: 2px;
@@ -16587,8 +16588,9 @@ button.dt-button.btn-inverse:hover:not(.disabled), div.dt-button.btn-inverse:hov
     border-color: #404E67
 }
 
-div.dt-button-collection button.dt-button:active:not(.disabled), div.dt-button-collection button.dt-button.active:not(.disabled), div.dt-button-collection div.dt-button:active:not(.disabled), div.dt-button-collection div.dt-button.active:not(.disabled), div.dt-button-collection a.dt-button:active:not(.disabled), div.dt-button-collection a.dt-button.active:not(.disabled) {
-    background-color: #157fda;
+div.dt-button-collection button.dt-button:active:not(.disabled), div.dt-button-collection button.dt-button.active:not(.disabled), div.dt-button-collection div.dt-button:active:not(.disabled), div.dt-button-collection div.dt-button.active:not(.disabled), div.dt-button-collection a.dt-button:active:not(.disabled),
+div.dt-button-collection a.dt-button.active:not(.disabled) {
+    /*background-color: #157fda;*/
     border-color: #157fda;
     background-image: none
 }

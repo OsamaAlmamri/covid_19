@@ -29,7 +29,7 @@ class CreateBlockedPeopleTable extends Migration
             $table->string('relative_phone')->nullable();
             $table->unsignedBigInteger('check_point_id');
             $table->foreign('check_point_id')->references('id')->on('check_points')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
-           $table->enum('bp_type', ['track_owner', 'people'])->default('people');
+           $table->enum('bp_type', ['truck_owner', 'people'])->default('people');
             $table->enum('bp_from', ['yemeni', 'arabic', 'align'])->default('yemeni');
             $table->enum('typeStatus', ['checkAndTruckInPort', 'checkedAndCrossedFromPort', 'JustChecked', 'examinedAndQuarantined', 'noActionTaken'])->default('noActionTaken');
             $table->string('truck_number')->nullable();

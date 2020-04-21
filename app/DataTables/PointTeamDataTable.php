@@ -86,7 +86,8 @@ class PointTeamDataTable extends DataTable
                     'dom' => 'Blfrtip',
                     'lengthMenu' => [[10, 25, 50, 100, -1], [10, 25, 50, 100, trans('dataTable.all')]],
                     'buttons' => [
-                        ['extend' => 'copyHtml5', 'text' => '<i class="fa fa-copy" ></i>' . trans('dataTable.btn.copy'), 'className' => 'btn btn-info ', 'exportOptions' => ['columns' => [0, 1, 2, 5]]],
+                        ['extend' => 'copyHtml5', 'text' => '<i class="fa fa-copy" ></i>' . trans('dataTable.btn.copy'),
+                            'className' => 'btn btn-info ', 'exportOptions' => ['columns' => [0, 1, 2, 5]]],
                         ['extend' => 'excelHtml5', 'text' => '<i class="fa fa-file-excel-o" ></i> ' . trans('dataTable.btn.excel'), 'className' => 'btn btn-info ', 'exportOptions' => ['columns' => ':visible']],
                         ['extend' => 'print', 'text' => '<i class="feather icon-printer close-card" ></i> ' . trans('dataTable.btn.print'), 'className' => 'btn btn-info ', 'exportOptions' => ['columns' => ':visible']],
                         ['extend' => 'pdfHtml5', 'text' => '<i class="fa fa-file-pdf-o" ></i> ' . trans('dataTable.btn.pdf'), 'className' => 'btn btn-info ', 'exportOptions' => ['columns' => [0, 1, 2, 5]]],
@@ -110,11 +111,13 @@ class PointTeamDataTable extends DataTable
                 'name' => 'gender',
                 'data' => 'gender',
                 'title' => trans('dataTable.gender'),
+
             ],
             [
                 'name' => 'workType',
                 'data' => 'workType',
                 'title' => trans('dataTable.workType'),
+
             ],
             [
                 'name' => 'job',
@@ -149,7 +152,7 @@ class PointTeamDataTable extends DataTable
             [
                 'name' => 'phone',
                 'data' => 'phone',
-                'title' => trans('dataTable.phone'),
+                'title' => trans('dataTable.w_phone'),
             ],
             [
                 'name' => 'ssn',
