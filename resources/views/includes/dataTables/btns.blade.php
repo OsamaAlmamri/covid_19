@@ -51,6 +51,7 @@ var logo = 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAw4AAACPCAIAAADcJBv6A
 doc.pageSize = $('#pageSize').val();
 doc.filename = $('#pageName').val();
 
+
 // by default we use portrait, you can change it to landscape if you wish
 doc.pageOrientation = $('#pageOrientation').val();
 
@@ -58,7 +59,7 @@ doc.pageOrientation = $('#pageOrientation').val();
 doc.pageMargins = [20, 60, 20, 30];
 // Set the font size fot the entire document
 doc.defaultStyle.fontSize = 7;
-// doc.defaultStyle.font = 'serif';
+ doc.defaultStyle.font = 'Amiri';
 // Set the fontsize for the table header
 
 
@@ -76,13 +77,13 @@ alignment: 'left',
 italics: true,
 text: titleText,
 fontSize: 18,
-font: 'arial',
+font: 'Amiri',
 margin: [10, 0]
 },
 {
 alignment: 'left',
 fontSize: 14,
-font: 'arial',
+font: 'Amiri',
 
 text: centerTitleText
 },

@@ -37,6 +37,7 @@ class CreateBlockedPeopleTable extends Migration
             $table->unsignedBigInteger('last_zone_visit_id')->nullable()->default(null);
             $table->foreign('last_zone_visit_id')->references('id')->on('zones')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
             $table->unsignedBigInteger('start_date_symptoms')->nullable();
+
             $table->boolean('sleeping')->default(false);
             $table->unsignedBigInteger('sleep_date')->nullable();
             $table->unsignedBigInteger('insulation_date')->nullable();
@@ -59,17 +60,19 @@ class CreateBlockedPeopleTable extends Migration
             $table->boolean('chronic_respiratory_disease')->default(false);;
             $table->boolean('kidney_disease')->default(false);;
             $table->string('other_diseases')->nullable();
+
+
             $table->boolean('is_pregnant')->default(false);;
             $table->boolean('is_pregnant_in_first_3Month')->default(false);;
             $table->boolean('after_childbirth')->default(false);;
 
+
+
             $table->boolean('is_comming_from_other_country')->default(false);
             $table->string('come_from_country')->nullable();
             $table->unsignedBigInteger('comming_date')->nullable();
-
             $table->unsignedBigInteger('out_from_country_date')->nullable();
             $table->unsignedBigInteger('comming_to_yemen_date')->nullable();
-
             $table->boolean('is_visit_health_center')->default(false);
             $table->string('health_center_name')->nullable();
 
@@ -82,9 +85,9 @@ class CreateBlockedPeopleTable extends Migration
             $table->boolean('is_sample_collected')->default(false);
             $table->boolean('is_sample_sent')->default(false);
             $table->unsignedBigInteger('sample_sent_date')->nullable();
-
             $table->enum('result_of_examining', ['indicates', 'passive', 'hangs', 'indecisive', 'none'])->default('none');
             $table->enum('situation_result', ['cured', 'dead', 'referred', 'none'])->default('none');
+
             $table->unsignedBigInteger('if_dead_date')->default(false);
             $table->unsignedBigInteger('quarantine_area_id')->nullable()->default(null);
             $table->foreign('quarantine_area_id')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpunsignedBigInteger('cascade');

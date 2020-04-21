@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
 
-    protected $with = ['work_team'];
+//    protected $with = ['work_team'];
 
     public function work_team()
     {

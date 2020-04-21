@@ -145,7 +145,7 @@
                     <li class="">
                         <a href="{{route('block_persons.index')}}">
                             <span class="pcoded-mtext">  {{trans('menu.sumBlockPersons')}}</span>
-                            {{--                                        //--}}
+
                         </a>
                     </li>
 
@@ -173,14 +173,14 @@
                     <li class="">
                         <a href="{{route('block_persons.index')}}">
                             <span class="pcoded-mtext">  مرافق الايواء والحجر المجهزة مسبقا</span>
-                            {{--                                        //--}}
+
                         </a>
                     </li>
 
                     <li class="">
                         <a href="{{route('block_persons.index')}}">
                             <span class="pcoded-mtext">  الوضع الصحي للمتواجدين في مكان الايواء /  الحجر </span>
-                            {{--                                        //--}}
+
                         </a>
                     </li>
                 </ul>

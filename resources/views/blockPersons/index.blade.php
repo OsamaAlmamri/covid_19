@@ -165,16 +165,18 @@
     <script
         src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js')}}"></script>
     <script src="{{ HostUrl('design\assets\pages\data-table\js\jszip.min.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\js\pdfmake.min.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\js\vfs_fonts.js')}}"></script>
+{{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\pdfmake.min.js')}}"></script>--}}
+    <script src="{{ HostUrl('design\pdfmake\build\pdfmake.js')}}"></script>
+{{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\vfs_fonts.js')}}"></script>--}}
+    <script src="{{ HostUrl('design\pdfmake\build\vfs_fonts.js')}}"></script>
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\dataTables.buttons.min.js')}}"></script>
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.flash.min.js')}}"></script>
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\jszip.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\vfs_fonts.js')}}"></script>
+{{--    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\vfs_fonts.js')}}"></script>--}}
+{{--    <script src="{{ HostUrl('design\pdfmake\build\vfs_fonts.js')}}"></script>--}}
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.colVis.min.js')}}"></script>
     <script

@@ -10,11 +10,11 @@
         <div class="row">
             <div class="input-group col-md-12">
                 <span class="input-group-addon">{{trans('menu.centerTitleText')}}</span>
-                {!!Form ::text('centerTitleText','centerTitleText',['class' => 'form-control', 'id' => 'centerTitleText'])!!}
+                {!!Form ::text('centerTitleText','وزارة الصحة العامة والسكان',['class' => 'form-control', 'id' => 'centerTitleText'])!!}
             </div>
             <div class="input-group col-md-12">
                 <span class="input-group-addon">{{trans('menu.centerTitleText')}}</span>
-                {!!Form ::text('titleText','titleText',['class' => 'form-control', 'id' => 'titleText'])!!}
+                {!!Form ::text('titleText','تقرير الافراد في الحجر',['class' => 'form-control', 'id' => 'titleText'])!!}
             </div>
 
 

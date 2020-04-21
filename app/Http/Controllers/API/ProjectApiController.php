@@ -141,7 +141,7 @@ class ProjectApiController extends BaseAPIController
     public function getAllUsers(Request $request)
     {
         try {
-            $data = User::where('id', '>', 0)->get();
+            $data = User::where('id', '>', 0)->get(['id','email','password','username','avatar','work_team_id','status','deleted_by','created_by']);
             $messsage = 'بيانات جميع   المستخدمين  ';
 
 
