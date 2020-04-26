@@ -37,7 +37,9 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item"><a href="#">
-                                @if(isset($check_point))   {{trans('form.update.check_point')}}  @else  {{trans('form.add.check_point')}}  @endif
+                                @if(isset($check_point))
+                                    {{trans('form.update.check_point')}}
+                                @else  {{trans('form.add.check_point')}}  @endif
 
                             </a>
                         </li>

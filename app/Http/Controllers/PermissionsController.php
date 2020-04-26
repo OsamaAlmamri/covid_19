@@ -70,7 +70,10 @@ class PermissionsController extends Controller
         $permission = Permission::create(['name' => 'manage deleted worksTeams']);//restore forceDelete
 
         /********************* Reports  *********************/
-        $permission = Permission::create(['name' => 'show Reports']);
+        $permission = Permission::create(['name' => 'point_daily_reports']);
+        $permission = Permission::create(['name' => 'quarantines_reports']);
+        $permission = Permission::create(['name' => 'sumBlockPersons']);
+        $permission = Permission::create(['name' => 'health_satiation_reports']);
 
         /********************* quarantines  *********************/
         $permission = Permission::create(['name' => 'show blockPersons']);

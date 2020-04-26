@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
 
     /*
     |--------------------------------------------------------------------------
@@ -47,6 +47,7 @@ return [
     'workTeams' => '  افراد فرق التشغيل',
 
     'btn_filterCenter' => ' فلترة مراكز الحجر ',
+    'btn_filterPoint' => ' فلترة نقاط التفتيش   ',
     'from_date' => 'من تاريخ  ',
     'to_date' => ' الى تاريخ ',
     'workTeamType' => ' نوع فريق العمل  ',
@@ -106,9 +107,23 @@ return [
     'governments' => ' المحافظات',
     'zones' => 'المديريات',
     'printSetting' => 'اعدادات الطباعة',
-    'sumBlockPersons' => ' التقرير التراكمي للأعداد للمحجورين',
+
+    'sumBlockPersonsByCenter' => 'حسب مراكز الحجر',
+    'sumBlockPersonsByZone' => ' حسب المديريات',
+    'sumBlockPersonsByGovernment' => 'حسب المحافظات',
+    'sumBlockPersons_zone' => '  التقرير التراكمي للأعداد للمحجورين حسب المديريات',
+    'sumBlockPersons_gov' => ' التقرير التراكمي للأعداد للمحجورين حسب المحافظات    ',
+    'truck_driver' => ' خلاصة سائقي الشاحنات التجارية',
+    'people_in_port' => "خلاصة الوافدين   ",
     'health_point_team' => ' فريق المرافق',
     'check_point_team' => ' الفريق الامني',
+    'quarantines_gov' => 'مراكز الحجر حسب المحافظات',
+    'quarantines_zone' => 'مراكز الحجر حسب المديريات',
+    'point_daily_reports' => 'التقرير اليومي العمليات في المنافذ والنقاط',
+    'quarantines_reports' => ' مرافق الايواء والحجر المجهزة مسبق',
+    'sumBlockPersons' => ' التقرير التراكمي للأعداد للمحجورين',
+    'health_satiation_reports' => ' الوضع الصحي للمتواجدين في مكان الايواء /  الحجر',
 
 
-];
+
+);

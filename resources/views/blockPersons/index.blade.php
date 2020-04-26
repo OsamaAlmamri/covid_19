@@ -5,7 +5,7 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>{{trans('menu.block_persons')}}</h4>
+                        <h4>{{trans('menu.'.$type)}}</h4>
 
                     </div>
                 </div>
@@ -17,9 +17,8 @@
                             <a href="{{route('home')}}"> <i class="fa fa-home"></i> {{trans('menu.home')}} </a>
                         </li>
                         <li class="breadcrumb-item"><a
-                                href="#">{{trans('menu.block_persons')}}
+                                href="#">{{trans('menu.'.$type)}}
                             </a>
-                        </li>
                         </li>
                     </ul>
                 </div>
@@ -56,55 +55,89 @@
 
         <div class="card-body">
             <div class="card-body">
-                <div class="sub-title"> {{trans('menu.btn_filterCenter')}}</div>
-                <div class="row">
-                    <div class="input-group col-md-4">
-                        <span class="input-group-addon">{{trans('menu.government')}}</span>
-                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
-                        {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
+                @if($type!='quarantines_gov' and $type!='quarantines_zone')
+                    @if ($type== 'block_persons')
+                        <div class="sub-title"> {{trans('menu.btn_filterCenter')}}</div>
+                    @else
+                        <div class="sub-title"> {{trans('menu.btn_filterPoint')}}</div>
+                    @endif
+                @endif
+                @if($type!='quarantines_gov' and $type!='quarantines_zone')
+                    <div class="row">
+                        @if($type!='sumBlockPersons_gov')
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon">{{trans('menu.government')}}</span>
+                                <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
+                                {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
 
+                            </div>
+                        @endif
+                        @if($type!='sumBlockPersons_gov'  and $type!='sumBlockPersons_zone' )
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon">{{trans('menu.zone')}}</span>
+                                {!!Form ::select('zone_id',getZones('all',1),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+
+                            </div>
+
+
+                            @if($type!='sumBlockPersons'  )
+
+                                <div class="input-group col-md-4" id="pointOrCenter_idDiv">
+                        <span
+                            class="input-group-addon">{{($type=='block_persons'or $type=='sumBlockPeopleAccordingByCenter')?trans('menu.center'):trans('menu.point')}}</span>
+                                    {!!Form ::select('pointOrCenter_id', ['all'=>'all   '],'',['class' => 'select2 form-control', 'id' => 'pointOrCenter_id'])!!}
+                                </div>
+                            @endif
+                        @endif
+
+                        <div class="input-group col-md-3">
+                            <span class="input-group-addon">{{trans('menu.from_date')}}</span>
+                            <input type="date" class="form-control" name="start" value="{{isset($start)?$start:''}}"
+                                   id="from_date">
+                        </div>
+
+                        <div class="input-group col-md-3">
+                            <span class="input-group-addon">{{trans('menu.to_date')}}</span>
+                            <input type="date" class="form-control" name="end" value="{{isset($end)?$end:''}}" required
+                                   id="to_date">
+                        </div>
+
+                        <div class="input-group col-md-3" id="pointOrCenter_idDiv">
+                            <span class="input-group-addon">{{trans('menu.gender')}}</span>
+                            {!!Form ::select('gender', ['all'=>trans('menu.all'),'male'=>trans('menu.male'),'female'=>trans('menu.female')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
+
+                        </div>
+                        <div class="input-group col-md-3">
+
+                            <button type="button" name="filter" id="filter"
+                                    class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}} <i
+                                    class="fa fa-filter"></i></button>
+
+                        </div>
                     </div>
-                    <div class="input-group col-md-4">
-                        <span class="input-group-addon">{{trans('menu.zone')}}</span>
-                        {!!Form ::select('zone_id',getZones('all',1),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+                @else
+                    @if($type!='quarantines_gov' )
+                        <div class="row">
+                            <div class="input-group col-md-4">
+                                <span class="input-group-addon">{{trans('menu.government')}}</span>
+                                <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
+                                {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
 
-                    </div>
+                            </div>
+                            @endif
+                            <div class="input-group col-md-3">
 
+                                <button type="button" name="filter" id="filter"
+                                        class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}}
+                                    <i
+                                        class="fa fa-filter"></i></button>
 
-                    <div class="input-group col-md-4" id="pointOrCenter_idDiv">
-                        <span class="input-group-addon">{{trans('menu.center')}}</span>
-                        {!!Form ::select('pointOrCenter_id', ['all'=>'all   '],'',['class' => 'select2 form-control', 'id' => 'pointOrCenter_id'])!!}
-                    </div>
-
-
-                    <div class="input-group col-md-3">
-                        <span class="input-group-addon">{{trans('menu.from_date')}}</span>
-                        <input type="date" class="form-control" name="start" value="{{isset($start)?$start:''}}"
-                               id="from_date">
-                    </div>
-
-                    <div class="input-group col-md-3">
-                        <span class="input-group-addon">{{trans('menu.to_date')}}</span>
-                        <input type="date" class="form-control" name="end" value="{{isset($end)?$end:''}}" required
-                               id="to_date">
-                    </div>
-
-                    <div class="input-group col-md-3" id="pointOrCenter_idDiv">
-                        <span class="input-group-addon">{{trans('menu.gender')}}</span>
-                        {!!Form ::select('gender', ['all'=>trans('menu.all'),'male'=>trans('menu.male'),'female'=>trans('menu.female')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
-
-                    </div>
-                    <div class="input-group col-md-3">
-
-                        <button type="button" name="filter" id="filter"
-                                class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}} <i
-                                class="fa fa-filter"></i></button>
-
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    @endif
 
 
-                @include('reports.printSetting')
+                    @include('reports.printSetting')
 
 
             </div>
@@ -165,9 +198,9 @@
     <script
         src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js')}}"></script>
     <script src="{{ HostUrl('design\assets\pages\data-table\js\jszip.min.js')}}"></script>
-{{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\pdfmake.min.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\pdfmake.min.js')}}"></script>--}}
     <script src="{{ HostUrl('design\pdfmake\build\pdfmake.js')}}"></script>
-{{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\vfs_fonts.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\vfs_fonts.js')}}"></script>--}}
     <script src="{{ HostUrl('design\pdfmake\build\vfs_fonts.js')}}"></script>
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\dataTables.buttons.min.js')}}"></script>
@@ -175,8 +208,8 @@
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.flash.min.js')}}"></script>
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\jszip.min.js')}}"></script>
-{{--    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\vfs_fonts.js')}}"></script>--}}
-{{--    <script src="{{ HostUrl('design\pdfmake\build\vfs_fonts.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\vfs_fonts.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\pdfmake\build\vfs_fonts.js')}}"></script>--}}
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.colVis.min.js')}}"></script>
     <script
@@ -222,7 +255,14 @@
         function center_workTeamType() {
             var zone = $('#zone_id').val();
             var government_id = $('#government_id').val();
-            var type = 'health';
+
+            var type = 'point';
+            if (
+                '{{$type}}' == 'sumBlockPersons_gov' ||
+                '{{$type}}' == 'sumBlockPersons_zone' ||
+                '{{$type}}' == 'block_persons' ||
+                '{{$type}}' == 'sumBlockPersons')
+                type = 'health';
             var selectList = $('#pointOrCenter_id');
             var _this = $('#center_workTeamType');
             $.ajax({
@@ -249,10 +289,10 @@
                 theme: 'bootstrap4'
             })
 
-            //Initialize Select2 Elements
+//Initialize Select2 Elements
             $('.select2').select2()
 
-            //Initialize Select2 Elements
+//Initialize Select2 Elements
             $('.select2').select2()
 
         });

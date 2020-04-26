@@ -195,7 +195,7 @@
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
-                                <p class="m-b-5"> {{trans('menu.workTeams_male')}}</p>
+                                <p class="m-b-5"> {{trans('menu.block_persons_male')}}</p>
                                 <h4 class="m-b-0">{{$block_persons_male}}</h4>
                             </div>
                             <div class="col col-auto text-right">

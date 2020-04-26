@@ -149,7 +149,14 @@ return [
     'transfer_zone' => ' المركز الصحي الذي تم نقلة الية ',
     'note' => ' ملاحظة ',
     'workType' => ' نوع العمل  ',
-    'quarantine_type' => ' نوع مركز الحجر  ',
+
+    'allBlockPeople' => ' العدد التراكمي لمن تم حجرهم  ',
+    'allBlockPeopleDead' => ' العدد التراكمي للمتوفين ',
+    'allBlockPeopleOut' => 'العدد التراكمي للمغادرين من  المركز ',
+    'allBlockPeopleNotOut' => ' العدد التراكمي للمتبقين بالمركز ',
+    'allBlockPeopleTransform' => ' العدد التراكمي لمن تم نقلهم  من المركز ',
+    'allTypes' => ' اجمالي مراكز الحجر',
+    'typeStatus' => ' الاجراء المتخذ  ',
 
 
     'add' => [

@@ -27,3 +27,17 @@
     margin-bottom: 20px;
     margin-right: 35px;
 }
+
+.pcoded .pcoded-navbar .pcoded-item > li > a {
+    font-weight: 700;
+    display: block;
+    font-size: 15px;
+}
+
+.j-forms label {
+    display: block;
+    color: inherit;
+    font-weight: normal;
+    text-align: right;
+    margin-bottom: 0;
+}

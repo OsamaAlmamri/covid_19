@@ -20,9 +20,10 @@
                 <div class="page-header-breadcrumb">
                     <ul class="breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="{{route('home')}}"> <i class="fa fa-home"></i>  {{trans('menu.home')}}</a>
+                            <a href="{{route('home')}}"> <i class="fa fa-home"></i> {{trans('menu.home')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{route('permissions.index')}}">{{trans('permissions.role.role')}}</a>
+                        <li class="breadcrumb-item"><a
+                                href="{{route('permissions.index')}}">{{trans('permissions.role.role')}}</a>
                         </li>
                         <li class="breadcrumb-item"><a href="#">
                                 @if(isset($role))   {{trans('permissions.role.update')}}  @else {{trans('permissions.role.new')}} @endif
@@ -70,12 +71,12 @@
                                 <div class="j-unit">
                                     <div class="accordion" id="accordionExample">
 
-                                        <label> <input type="checkbox" id="select_all"/>  {{trans('permissions.role.selectAll')}}
+                                        <label> <input type="checkbox"
+                                                       id="select_all"/> {{trans('permissions.role.selectAll')}}
                                         </label>
 
                                         @foreach($permissions as $k => $sub_permission)
                                             <div class="card">
-
 
 
                                                 <div class="card-header" id="headingOne">
@@ -83,7 +84,7 @@
                                                         <input type="checkbox" class="selectGroup"
                                                                data-id="{{$k}}"
                                                                onclick="selectSub($(this),'{{$k}}')"
-                                                               data-selected="0"/>  {{trans('permissions.role.selectAllFor')}} {{$k}}
+                                                               data-selected="0"/> {{trans('permissions.role.selectAllFor')}} {{$k}}
                                                         <a data-toggle="collapse" data-target="#{{$k}}"
                                                            aria-expanded="true" aria-controls="collapseOne">
                                                             <i style="font-size: 18px"
@@ -106,14 +107,16 @@
                                                             <br>
                                                             @foreach ($sub_permission as $k_sub => $permission)
                                                                 <div class=" col-md-4 col-sm-6 col-xs-12">
-                                                                    <label class="form-check-label">
-                                                                        <input type="checkbox" name="permissions[]"
-                                                                               @if(in_array($permission->id, $oldRolePermission))
-                                                                               checked
-                                                                               @endif
-                                                                               class="form-check-input selectAll select-message{{$k}}"
-                                                                               value="{{$permission->id}}"> {{$permission->name}}
-                                                                    </label>
+                                                                    <div class=" radio-inline">
+                                                                        <label>
+                                                                            <input type="checkbox" name="permissions[]"
+                                                                                   @if(in_array($permission->id, $oldRolePermission))
+                                                                                   checked
+                                                                                   @endif
+                                                                                   class=" selectAll select-message{{$k}}"
+                                                                                   value="{{$permission->id}}"> {{$permission->name}}
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
                                                         @endforeach
                                                         <!--                        @error('categories') <span class="btn-block badge badge-danger">{{ $message }}</span> @enderror-->

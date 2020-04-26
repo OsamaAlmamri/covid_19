@@ -310,6 +310,14 @@ function getAllQuarantineTyprs()
 
 }
 
+function getAllQuarantineTypeInfo()
+{
+    $all = \App\QuarantineAreaType::all();
+
+    return $all;
+
+}
+
 
 function getZones($governorate_id = 0, $withAll = 0)
 {

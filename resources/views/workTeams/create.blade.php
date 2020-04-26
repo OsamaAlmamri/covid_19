@@ -95,7 +95,7 @@
                                         <label class="icon-right" for="phone">
                                             <i class="fa fa-phone"></i>
                                         </label>
-                                        {!! Form::text('phone', null  , [ 'id' => 'phone'  ,'placeholder'=>trans("form.phone")]) !!}
+                                        {!! Form::text('phone', null  , [ 'id' => 'phone' ,'class'=>"form-control mob_no", "data-mask"=>"999-999-999"  ,'placeholder'=>trans("form.phone")]) !!}
 
                                         @error('phone') <span
                                             class="btn-block badge badge-danger">{{ $message }}</span> @enderror
@@ -294,7 +294,11 @@
 
 
 
-
+    <!-- Masking js -->
+    <script src="{{ HostUrl('design\assets\pages\form-masking\inputmask.js') }}"></script>
+    <script src="{{ HostUrl('design\assets\pages\form-masking\jquery.inputmask.js') }}"></script>
+    <script src="{{ HostUrl('design\assets\pages\form-masking\autoNumeric.js') }}"></script>
+    <script src="{{ HostUrl('design\assets\pages\form-masking\form-mask.j') }}s"></script>
 
     <script type="text/javascript">
         $('.dropify').dropify();

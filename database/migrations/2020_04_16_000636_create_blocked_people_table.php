@@ -20,9 +20,11 @@ class CreateBlockedPeopleTable extends Migration
             $table->unsignedBigInteger('birth_date')->nullable();
             $table->string('country')->default('yemen');
             $table->string('other_place_data')->nullable();
-            $table->string('ssn_type')->nullable()->default('ssn');
-            $table->string('ssn')->nullable();
+            $table->string('id_type')->nullable()->default('ssn');
+            $table->string('id_number')->nullable();
             $table->unsignedBigInteger('zone_id');
+            $table->unsignedBigInteger('compared_by');
+            $table->unsignedBigInteger('checked_by');
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
             $table->string('job')->nullable();
             $table->string('phone')->nullable();
@@ -31,7 +33,10 @@ class CreateBlockedPeopleTable extends Migration
             $table->foreign('check_point_id')->references('id')->on('check_points')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
            $table->enum('bp_type', ['truck_owner', 'people'])->default('people');
             $table->enum('bp_from', ['yemeni', 'arabic', 'align'])->default('yemeni');
-            $table->enum('typeStatus', ['checkAndTruckInPort', 'checkedAndCrossedFromPort', 'JustChecked', 'examinedAndQuarantined', 'noActionTaken'])->default('noActionTaken');
+            $table->enum('typeStatus',
+                ['checkAndTruckInPort', 'checkedAndCrossedFromPort',
+                    'JustChecked', 'examinedAndQuarantined',
+                    'noActionTaken'])->default('noActionTaken');
             $table->string('truck_number')->nullable();
 
             $table->unsignedBigInteger('last_zone_visit_id')->nullable()->default(null);
@@ -70,7 +75,7 @@ class CreateBlockedPeopleTable extends Migration
 
             $table->boolean('is_comming_from_other_country')->default(false);
             $table->string('come_from_country')->nullable();
-            $table->unsignedBigInteger('comming_date')->nullable();
+//            $table->unsignedBigInteger('comming_date')->nullable();
             $table->unsignedBigInteger('out_from_country_date')->nullable();
             $table->unsignedBigInteger('comming_to_yemen_date')->nullable();
             $table->boolean('is_visit_health_center')->default(false);
@@ -89,6 +94,7 @@ class CreateBlockedPeopleTable extends Migration
             $table->enum('situation_result', ['cured', 'dead', 'referred', 'none'])->default('none');
 
             $table->unsignedBigInteger('if_dead_date')->default(false);
+            $table->unsignedBigInteger('out_date')->default(false);
             $table->unsignedBigInteger('quarantine_area_id')->nullable()->default(null);
             $table->foreign('quarantine_area_id')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
 

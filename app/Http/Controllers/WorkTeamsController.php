@@ -8,6 +8,7 @@ use App\User;
 use App\WorkTeam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WorkTeamsController extends Controller
 {
@@ -29,6 +30,8 @@ class WorkTeamsController extends Controller
     {
 
         $request['birth_date'] = setEntryDateAttribute($request['birth_date']);
+        $request['phone'] =str_replace('-','',$request['phone']);
+
         $request['join_date'] = setEntryDateAttribute($request['join_date']);
         $workTeam = WorkTeam::create($request->all());
         return redirect()->route('workTeams.index')->with('success', 'workTeam  add successfully');
@@ -38,6 +41,8 @@ class WorkTeamsController extends Controller
     public function update(WorkTeamRequest $request, WorkTeam $workTeam)
     {
         $request['birth_date'] = setEntryDateAttribute($request['birth_date']);
+        $request['phone'] =str_replace('-','',$request['phone']);
+
         $request['join_date'] = setEntryDateAttribute($request['join_date']);
         $workTeam->update($request->all());
         return redirect()->route('workTeams.index')->with('success', '  workTeam updated successfully');
@@ -50,6 +55,7 @@ class WorkTeamsController extends Controller
         $new_status = 1;
         if ($r->status == 1)
             $new_status = 0;
+
         $user = User::withTrashed()->find($r->id);
         $user->status = $new_status;
         $user->save();

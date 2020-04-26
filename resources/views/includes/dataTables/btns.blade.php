@@ -18,18 +18,21 @@ buttons:
 text: '<i class="fa fa-file-pdf-o" ></i> pdf',
 extend: 'pdfHtml5',
 
+
 // orientation: $('#pageOrientation').val(),// 'landscape', //portrait
 // pageSize: $('#pageSize').val(),//'A3', //A3 , A5 , A6 , legal , letter
 exportOptions: {
 columns: ':visible',
 // columns: [0, 1],
 search: 'applied',
-order: 'applied'
+order: 'applied',
+
 
 },
 customize: function (doc) {
 //Remove the title created by datatTables
 doc.content.splice(0, 1);
+
 //Create a date string that we use in the footer. Format is dd-mm-yyyy
 var now = new Date();
 var titleText = $('#titleText').val();
@@ -73,7 +76,9 @@ return {
 columns: [
 
 {
-alignment: 'left',
+{{--alignment: 'left',--}}
+{{--alignment: 'right',--}}
+direction: 'rtl',
 italics: true,
 text: titleText,
 fontSize: 18,

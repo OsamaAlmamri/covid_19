@@ -109,7 +109,8 @@ Route::post('check_points/savePointTeamList', 'PointTeamController@savePointTeam
 Route::get('check_points/showOrdersDisputes/{type?}', 'PointTeamController@showOrdersDisputes')->name('check_points.showOrdersDisputes');
 Route::post('check_points/filterTeam', 'PointTeamController@filterTeamWorker')->name('check_points.filterTeam');
 
-Route::get('block_persons/index', 'BlockPersonsController@index')->name('block_persons.index');
+Route::get('block_persons/index/{type?}', 'BlockPersonsController@index')->name('block_persons.index');
+Route::get('block_persons/sumBlockPersonsAccordingForCenterData/{type?}', 'BlockPersonsController@sumBlockPersonsAccordingForCenterData')->name('block_persons.sumBlockPersonsAccordingForCenterData');
 Route::post('block_persons/filterBlockPersons', 'BlockPersonsController@filterBlockPersons')->name('block_persons.filterBlockPersons');
 
 

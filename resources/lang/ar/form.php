@@ -34,7 +34,7 @@ return [
 
 
 
-    'worker' => 'worker ',
+    'worker' => 'مالك الحساب  ',
 
 
     'verifyPhone' => 'التاكد من  التلفون ',
