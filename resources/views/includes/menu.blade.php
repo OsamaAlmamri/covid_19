@@ -240,7 +240,6 @@
                             </li>
                         @endif
                         @if (Auth::user()->can('health_satiation reports') == true)
-
                             <li class="">
                                 <a href="{{route('block_persons.index')}}">
                                     <span class="pcoded-mtext"> {{trans('menu.health_satiation_reports')}} </span>

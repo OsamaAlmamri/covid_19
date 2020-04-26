@@ -173,7 +173,7 @@ class UserDataTable extends DataTable
     function additionalData()
     {
 
-        if ($this->type == 'deleted')
+        if ($this->type == 'deleted' and (Auth::user()->can('manage deleted users') == false))
             return [
 
                 [

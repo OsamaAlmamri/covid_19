@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\QuarantineAreaType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -18,35 +19,30 @@ class BlockPersonsController extends Controller
 //        $this->middleware('permission:show admins', ['only' => ['index']]);
     }
 
-    public function index($type = 'block_persons')
+    public function index($type_query = 'block_persons')
     {
-//        return dd(             getZones_childs_ids('all'));
-//        return dd($this->getData(37, 5));
+        if (
+            ($type_query == 'sumBlockPersons'
+                or ($type_query == 'sumBlockPersons_zone')
+                or ($type_query == 'sumBlockPersons_gov')
+            )
+            and Auth::user()->can('sumBlockPersons reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
-//        $types = QuarantineAreaType::all();
-//        $cols = ['zones.name_ar as zone_name', 'ParentZone.name_ar as government_name'];
-//        $cols[]= DB::raw("(SELECT count(quarantine_areas.id) FROM quarantine_areas
-//                                WHERE zones.id = quarantine_areas.zone_id
-//                                )
-//                                as allTypes");
-//        foreach ($types as $type) {
-//            $cols[] =
-//                DB::raw("(SELECT count(quarantine_areas.id) FROM quarantine_areas
-//                                WHERE zones.id = quarantine_areas.zone_id and  quarantine_areas.quarantine_area_type_id=" . $type->id . "
-//                                )
-//                                as type_$type->id");
-//        }
-//
-//        $data = DB::table('zones')
-//            ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.id')
-//            ->select($cols
-//            )->where('zones.parent', '=', 2)->get();
-////        return $zone->render('admin.prices.index', ['title' => 'admins', 'deleted' => ($zoneType == '') ? false : true]);
-//
-//       $data=$this->getSumQuarantineGovData();
-//        return dd($data);
-//        return dd($type);
-        return view('blockPersons.index')->with('type', $type);
+        elseif (($type_query == 'truck_driver' or $type_query == 'people_in_port')
+            and Auth::user()->can('point_daily reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
+        elseif (($type_query == 'quarantines_zone' or $type_query == 'quarantines_gov')
+            and Auth::user()->can('quarantines reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+        elseif (Auth::user()->can('sumBlockPersons reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+        elseif (Auth::user()->can('show blockPersons') == true)
+            return view('blockPersons.index')->with('type', $type_query);
+        else
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
 //        return dd(date("d-m-Y", (1587250052936 / 1000)));
 
 //                return dd($this->getTeamWorkerData('all','all','point','male'));
@@ -97,7 +93,6 @@ class BlockPersonsController extends Controller
             $place_column = 'blocked_people.check_point_id';
         else
             $place_column = 'blocked_people.quarantine_area_id';
-
 
         if ($type_query == 'truck_driver') {
             $bp_type_v = 'truck_owner';
@@ -402,8 +397,8 @@ class BlockPersonsController extends Controller
         }
 
         $data = DB::table('zones')
-            ->select($cols)->where('zones.parent', '=',0)
-           ->get();
+            ->select($cols)->where('zones.parent', '=', 0)
+            ->get();
         return $data;
     }
 
@@ -420,6 +415,28 @@ class BlockPersonsController extends Controller
         $to = ($request->to_date == null) ? date('9999-01-01') : date($request->to_date);
         $from = strtotime($from) * 1000;
         $to = strtotime($to) * 1000;
+
+        //(Auth::user()->can('sumBlockPersons reports') == true) or
+        //                              (Auth::user()->can('point_daily reports') == true) or
+        //                              (Auth::user()->can('quarantines reports') == true) or
+        //                              (Auth::user()->can('health_satiation reports') == true)
+        if (
+            ($type_query == 'sumBlockPersons'
+                or ($type_query == 'sumBlockPersons_zone')
+                or ($type_query == 'sumBlockPersons_gov')
+            )
+            and Auth::user()->can('sumBlockPersons reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
+        elseif (($type_query == 'truck_driver' or $type_query == 'people_in_port')
+            and Auth::user()->can('point_daily reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
+        elseif (($type_query == 'quarantines_zone' or $type_query == 'quarantines_gov')
+            and Auth::user()->can('quarantines reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+        elseif (Auth::user()->can('sumBlockPersons reports') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
         if ($type_query == 'sumBlockPersons')
             $data = $this->getSumBlockPersonsAccordingForCenterData($government, $zone, $center, $gender, $from, $to, $type_query);

@@ -6,11 +6,14 @@ use App\DataTables\QuarantineTypeDataTable;
 use App\Http\Requests\QuaranitTypeRequest;
 use App\QuarantineArea;
 use App\QuarantineAreaType;
+use Illuminate\Support\Facades\Auth;
 
 class QuarntineTypesController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->can('show quarantineTypes') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $User = new QuarantineTypeDataTable();
         return $User->render('quarantineTypes.index');
     }
@@ -18,6 +21,8 @@ class QuarntineTypesController extends Controller
 
     public function create()
     {
+        if (Auth::user()->can('manage quarantineTypes') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         return view('quarantineTypes.create');
     }
 
@@ -38,13 +43,16 @@ class QuarntineTypesController extends Controller
 
     public function edit(QuarantineAreaType $quarantineType)
     {
+        if (Auth::user()->can('manage quarantineTypes') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         return view('quarantineTypes.create', compact('quarantineType'));
     }
 
 
     public function delete($id)
     {
-
+        if (Auth::user()->can('manage quarantineTypes') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $qt = QuarantineAreaType::find(decrypt($id));
         $q = QuarantineArea::all()->where('quarantine_area_type_id', '=', $qt->id)->count();
         if ($q > 0)

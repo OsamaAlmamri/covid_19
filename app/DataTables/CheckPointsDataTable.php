@@ -119,7 +119,7 @@ class CheckPointsDataTable extends DataTable
 
     protected function getColumns()
     {
-        $btnActive = (Auth::user()->can('active check_points') == true) ? [[
+        $btnActive = (Auth::user()->can('active checkPoints') == true) ? [[
             'name' => 'status',
             'data' => 'status',
             'title' => trans('dataTable.status'),
@@ -195,7 +195,7 @@ class CheckPointsDataTable extends DataTable
     function additionalData()
     {
 
-        if ($this->type == 'deleted')
+        if ($this->type == 'deleted' and (Auth::user()->can('manage deleted checkPoints') == false) )
             return [
 
                 [

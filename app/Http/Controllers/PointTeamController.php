@@ -7,6 +7,7 @@ use App\QuarantineArea;
 use App\WorkTeam;
 use App\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -23,13 +24,9 @@ class PointTeamController extends Controller
 
     public function index($type = 'point')
     {
-//        return dd(             getZones_childs_ids('all'));
-//        return dd($this->getData(37, 5));
+        if (Auth::user()->can('show pointTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
-//        $zone = new PricesDataTable($zone, $zoneType);
-//        return $zone->render('admin.prices.index', ['title' => 'admins', 'deleted' => ($zoneType == '') ? false : true]);
-
-//        return dd($type);
         return view('workTeams.point_teams')->with('workers_type', $type);
 
 //                return dd($this->getTeamWorkerData('all','all','point','male'));

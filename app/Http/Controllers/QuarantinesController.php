@@ -12,6 +12,9 @@ class QuarantinesController extends Controller
 {
     public function index($type = '')
     {
+        if (Auth::user()->can('show quarantines') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         $User = new QuarantineAreasDataTable($type);
         return $User->render('quarantines.index', ['deleted' => ($type == '') ? false : true]);
     }
@@ -19,12 +22,15 @@ class QuarantinesController extends Controller
 
     public function create()
     {
+        if (Auth::user()->can('manage quarantines') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         return view('quarantines.create');
     }
 
     public function store(QuarantineRequest $request)
     {
-        $quarantine = QuarantineArea::create(array_merge($request->all(),['created_by'=>auth()->user()->id]));
+        $quarantine = QuarantineArea::create(array_merge($request->all(), ['created_by' => auth()->user()->id]));
         return redirect()->route('quarantines.index')->with('success', 'quarantine  add successfully');
 
     }
@@ -62,12 +68,18 @@ class QuarantinesController extends Controller
 
     public function edit(QuarantineArea $quarantine)
     {
+        if (Auth::user()->can('manage quarantines') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         return view('quarantines.create', compact('quarantine'));
     }
 
 
     public function delete($id)
     {
+
+        if (Auth::user()->can('manage quarantines') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
         $quarantine = QuarantineArea::find(decrypt($id));
 //        return dd($User->profile);
@@ -83,6 +95,8 @@ class QuarantinesController extends Controller
 
     public function forceDelete($id)
     {
+        if (Auth::user()->can('manage deleted quarantines') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $quarantine = QuarantineArea::onlyTrashed()->find(decrypt($id));
         $quarantine->forceDelete();
         return redirect(route('quarantines.index', 'deleted'))->with('success', 'quarantine deleted successfully');
@@ -90,7 +104,8 @@ class QuarantinesController extends Controller
 
     public function restore($id)
     {
-
+        if (Auth::user()->can('manage deleted quarantines') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $quarantine = QuarantineArea::onlyTrashed()->find(decrypt($id));
         $quarantine->restore();
         return redirect(route('quarantines.index', 'deleted'))->with('success', 'quarantine restored successfully');

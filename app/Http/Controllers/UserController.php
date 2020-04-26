@@ -20,6 +20,8 @@ class UserController extends Controller
     public function index($UserType = '')
     {
 //        $_SESSION['lang']='ar';
+        if (Auth::user()->can('show users') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $User = new UserDataTable($UserType);
         return $User->render('users.index', ['title' => 'Users', 'deleted' => ($UserType == '') ? false : true]);
     }
@@ -39,6 +41,8 @@ class UserController extends Controller
 
     public function create()
     {
+        if (Auth::user()->can('manage users') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         return view('users.create')
             ->with('roles', $this->permissionsForUsers());;
     }
@@ -48,14 +52,13 @@ class UserController extends Controller
     {
         $request['password'] = Hash::make($request->password);
         $avatar = saveImage('images/Users/' . $request['username'], $request->file('avatar'));
-        $request['birthDate'] = setEntryDateAttribute($request['birthDate']);
         $user = User::create(array_merge($request->all(),
             [
                 'status' => 1,
                 'avatar' => $avatar,
                 'created_by' => Auth::user()->id,
             ]));
-        (Auth::user()->can('manage superUsers') == true) ? $user->syncRoles([$request->role]) : $user->syncRoles(['Employee']);
+        (Auth::user()->can('manage superUsers') == true) ? $user->syncRoles([$request->role]) : $user->syncRoles(['DataEntry']);
 
         return redirect()->route('users.index', $request->type)->with('success', $request->role . ' add successfully');
 
@@ -81,6 +84,8 @@ class UserController extends Controller
 
     public function permissions($id)
     {
+        if (Auth::user()->can('manage permissions') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $role = getUserrRole($id)[0];
         $User = User::find($id);
         $directPermissions = $User->getDirectPermissions();
@@ -111,6 +116,8 @@ class UserController extends Controller
 
     public function updatePermissions(Request $request, $id)
     {
+        if (Auth::user()->can('manage permissions') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 //        return dd($request);
         $user = User::find($id);
         $permissions = isset($request->permissions) ? $request->permissions : [];
@@ -146,7 +153,8 @@ class UserController extends Controller
 
     public function delete($id)
     {
-
+        if (Auth::user()->can('manage users') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $User = User::find(decrypt($id));
 //        return dd($User->profile);
 //        if ($User->open_courses->count() > 0)
@@ -161,7 +169,8 @@ class UserController extends Controller
 
     public function forceDelete($id)
     {
-
+        if (Auth::user()->can('manage deleted users') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $User = User::onlyTrashed()->find(decrypt($id));
         File::delete(public_path($User->avatar));
         $User->forceDelete();
@@ -171,6 +180,8 @@ class UserController extends Controller
 
     public function restore($id)
     {
+        if (Auth::user()->can('manage deleted users') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
         $User = User::onlyTrashed()->find(decrypt($id));
         $User->restore();

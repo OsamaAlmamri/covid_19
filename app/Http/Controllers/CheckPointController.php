@@ -14,24 +14,33 @@ class CheckPointController extends Controller
 {
     public function index($type = '')
     {
+        if (Auth::user()->can('show checkPoints') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
+
         $User = new CheckPointsDataTable($type);
         return $User->render('check_points.index', ['deleted' => ($type == '') ? false : true]);
     }
 
     public function team($id, $type)
     {
+        if (Auth::user()->can('show pointTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         if ($type == 'point_teams')
             $point = CheckPoint::find($id);
         else
             $point = QuarantineArea::find($id);
         $User = new PointTeamDataTable($id, $type);
         return $User->render('check_points.point_team', ['point' => $point, 'type' => $type]);
-         
+
     }
 
 
     public function create()
     {
+        if (Auth::user()->can('manage pointTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         return view('check_points.create');
     }
 
@@ -81,7 +90,8 @@ class CheckPointController extends Controller
 
     public function delete($id)
     {
-
+        if (Auth::user()->can('manage pointTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $check_point = CheckPoint::find(decrypt($id));
 //        return dd($User->profile);
 //        if ($User->open_courses->count() > 0)
@@ -96,6 +106,8 @@ class CheckPointController extends Controller
 
     public function forceDelete($id)
     {
+        if (Auth::user()->can('manage deleted pointTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $check_point = CheckPoint::onlyTrashed()->find(decrypt($id));
         $check_point->forceDelete();
         return redirect(route('check_points.index', 'deleted'))->with('success', 'check_point deleted successfully');
@@ -103,7 +115,8 @@ class CheckPointController extends Controller
 
     public function restore($id)
     {
-
+        if (Auth::user()->can('manage deleted pointTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $check_point = CheckPoint::onlyTrashed()->find(decrypt($id));
         $check_point->restore();
         return redirect(route('check_points.index', 'deleted'))->with('success', 'check_point restored successfully');

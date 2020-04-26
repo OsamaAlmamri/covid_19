@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -128,6 +129,8 @@ class PermissionsController extends Controller
 //$roles = $user->getRoleNames(); // Returns a collection
     public function index()
     {
+        if (Auth::user()->can('show permissions') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
 
 //        updateUserRole(auth()->user()->id, 'SuperAdmin');
@@ -141,6 +144,9 @@ class PermissionsController extends Controller
 
     public function edit($id)
     {
+        if (Auth::user()->can('manage permissions') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         $role = Role::find($id);
         $RolePermission = $role->getAllPermissions();
         $oldRolePermission = [];

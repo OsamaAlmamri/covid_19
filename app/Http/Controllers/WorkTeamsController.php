@@ -8,13 +8,14 @@ use App\User;
 use App\WorkTeam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class WorkTeamsController extends Controller
 {
     public function index($type = '')
     {
 //        return dd('f');
+        if (Auth::user()->can('show worksTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
         $User = new WorkTeamDataTable($type);
         return $User->render('workTeams.index', ['deleted' => ($type == '') ? false : true]);
@@ -23,6 +24,9 @@ class WorkTeamsController extends Controller
 
     public function create()
     {
+        if (Auth::user()->can('manage worksTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         return view('workTeams.create');
     }
 
@@ -30,7 +34,7 @@ class WorkTeamsController extends Controller
     {
 
         $request['birth_date'] = setEntryDateAttribute($request['birth_date']);
-        $request['phone'] =str_replace('-','',$request['phone']);
+        $request['phone'] = str_replace('-', '', $request['phone']);
 
         $request['join_date'] = setEntryDateAttribute($request['join_date']);
         $workTeam = WorkTeam::create($request->all());
@@ -41,7 +45,7 @@ class WorkTeamsController extends Controller
     public function update(WorkTeamRequest $request, WorkTeam $workTeam)
     {
         $request['birth_date'] = setEntryDateAttribute($request['birth_date']);
-        $request['phone'] =str_replace('-','',$request['phone']);
+        $request['phone'] = str_replace('-', '', $request['phone']);
 
         $request['join_date'] = setEntryDateAttribute($request['join_date']);
         $workTeam->update($request->all());
@@ -73,12 +77,17 @@ class WorkTeamsController extends Controller
     public function edit(WorkTeam $workTeam)
     {
 //        return dd();
+        if (Auth::user()->can('manage worksTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         return view('workTeams.create', compact('workTeam'));
     }
 
 
     public function delete($id)
     {
+        if (Auth::user()->can('manage worksTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
         $workTeam = WorkTeam::find(decrypt($id));
         if ($workTeam->user != null)
@@ -93,6 +102,9 @@ class WorkTeamsController extends Controller
 
     public function forceDelete($id)
     {
+        if (Auth::user()->can('manage deleted worksTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
+
         $workTeam = WorkTeam::onlyTrashed()->find(decrypt($id));
         $workTeam->forceDelete();
         return redirect(route('workTeams.index', 'deleted'))->with('success', 'workTeam deleted successfully');
@@ -100,6 +112,8 @@ class WorkTeamsController extends Controller
 
     public function restore($id)
     {
+        if (Auth::user()->can('manage deleted worksTeams') == false)
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
         $workTeam = WorkTeam::onlyTrashed()->find(decrypt($id));
         $workTeam->restore();
