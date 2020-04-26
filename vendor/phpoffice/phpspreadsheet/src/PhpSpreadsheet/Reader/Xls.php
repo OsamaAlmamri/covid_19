@@ -30,7 +30,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 // Original file header of ParseXL (used as the base for this class):
 // --------------------------------------------------------------------------------
-// Adapted from Excel_Spreadsheet_Reader developed by customer bizon153,
+// Adapted from Excel_Spreadsheet_Reader developed by users bizon153,
 // trex005, and mmp11 (SourceForge.net)
 // https://sourceforge.net/projects/phpexcelreader/
 // Primary changes made by canyoncasa (dvc) for ParseXL 1.00 ...
@@ -5075,7 +5075,7 @@ class Xls extends BaseReader
         // offset: 19; size: 2; option flags
         $options = self::getUInt2d($recordData, 19);
 
-        // bit: 0; mask 0x0001; 1 = user may edit objects, 0 = customer must not edit objects
+        // bit: 0; mask 0x0001; 1 = user may edit objects, 0 = users must not edit objects
         $bool = (0x0001 & $options) >> 0;
         $this->phpSheet->getProtection()->setObjects(!$bool);
 

@@ -97,7 +97,10 @@ class Random
                 $fp = @fopen('/dev/urandom', 'rb');
             }
             if ($fp !== true && $fp !== false) { // surprisingly faster than !is_bool() or is_resource()
-                return fread($fp, $length);
+                $temp = fread($fp, $length);
+                if (strlen($temp) == $length) {
+                    return $temp;
+                }
             }
             // method 3. pretty much does the same thing as method 2 per the following url:
             // https://github.com/php/php-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/ext/mcrypt/mcrypt.c#L1391
@@ -121,7 +124,7 @@ class Random
         // however, a ton of people visiting the website. obviously you don't want to base your seeding
         // soley on parameters a potential attacker sends but (1) not everything in $_SERVER is controlled
         // by the user and (2) this isn't just looking at the data sent by the current user - it's based
-        // on the data sent by all customer. one user requests the page and a hash of their info is saved.
+        // on the data sent by all users. one user requests the page and a hash of their info is saved.
         // another user visits the page and the serialization of their data is utilized along with the
         // server envirnment stuff and a hash of the previous http request data (which itself utilizes
         // a hash of the session data before that). certainly an attacker should be assumed to have

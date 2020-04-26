@@ -54,7 +54,7 @@ class Role extends Model implements RoleContract
     }
 
     /**
-     * A role belongs to some customer of the model associated with its guard.
+     * A role belongs to some users of the model associated with its guard.
      */
     public function users(): MorphToMany
     {
@@ -135,6 +135,10 @@ class Role extends Model implements RoleContract
      */
     public function hasPermissionTo($permission): bool
     {
+        if (config('permission.enable_wildcard_permission', false)) {
+            return $this->hasWildcardPermission($permission, $this->getDefaultGuardName());
+        }
+
         $permissionClass = $this->getPermissionClass();
 
         if (is_string($permission)) {

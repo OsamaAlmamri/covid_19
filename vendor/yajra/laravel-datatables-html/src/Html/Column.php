@@ -192,6 +192,17 @@ class Column extends Fluent
     }
 
     /**
+     * Set column hidden state.
+     *
+     * @return $this
+     * @see https://datatables.net/reference/option/columns.visible
+     */
+    public function hidden()
+    {
+        return $this->visible(false);
+    }
+
+    /**
      * Append a class name to field.
      *
      * @param string $class
@@ -489,6 +500,19 @@ class Column extends Fluent
     public function footer($value)
     {
         $this->attributes['footer'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set custom html title instead defult label.
+     *
+     * @param mixed $value
+     * @return $this
+     */
+    public function titleAttr($value)
+    {
+        $this->attributes['titleAttr'] = $value;
 
         return $this;
     }

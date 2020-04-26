@@ -9,6 +9,7 @@ class CheckPoint extends Model
 {
     use SoftDeletes;
 
+
     //
     protected $fillable = [
         'name', 'manager_id', 'zone_id', 'longitude', 'latitude', 'map_address', 'status', 'deleted_by', 'created_by',

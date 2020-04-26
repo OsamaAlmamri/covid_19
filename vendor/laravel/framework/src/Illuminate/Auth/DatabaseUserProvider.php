@@ -26,7 +26,7 @@ class DatabaseUserProvider implements UserProvider
     protected $hasher;
 
     /**
-     * The table containing the customers.
+     * The table containing the users.
      *
      * @var string
      */
@@ -124,7 +124,7 @@ class DatabaseUserProvider implements UserProvider
 
         // Now we are ready to execute the query to see if we have an user matching
         // the given credentials. If not, we will just return nulls and indicate
-        // that there are no matching customers for these given credential arrays.
+        // that there are no matching users for these given credential arrays.
         $user = $query->first();
 
         return $this->getGenericUser($user);

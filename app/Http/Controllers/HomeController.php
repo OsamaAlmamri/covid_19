@@ -41,9 +41,6 @@ class HomeController extends Controller
 
 
 
-
-
-
         $all = $users = User::all()->count();
         $dataEntry = User::role('dataEntry')->count();
         $admins = User::role('Admin')->count();
@@ -62,8 +59,6 @@ class HomeController extends Controller
         $s_block_persons = BlockedPerson::all()->count();
         $block_persons_male = BlockedPerson::all()->where('gender', '=', 'male')->count();
         $block_persons_female = BlockedPerson::all()->where('gender', '=', 'female')->count();
-
-
 
 
         return view('home')->with([

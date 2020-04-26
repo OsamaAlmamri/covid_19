@@ -85,7 +85,7 @@ class Encrypter implements EncrypterContract
 
         // First we will encrypt the value using OpenSSL. After this is encrypted we
         // will proceed to calculating a MAC for the encrypted value so that this
-        // value can be verified later as not having been changed by the customer.
+        // value can be verified later as not having been changed by the users.
         $value = \openssl_encrypt(
             $serialize ? serialize($value) : $value,
             $this->cipher, $this->key, 0, $iv

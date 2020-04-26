@@ -2179,7 +2179,11 @@ class X509
                 }
 
                 while (!feof($fsock)) {
-                    $data.= fread($fsock, 1024);
+                    $temp = fread($fsock, 1024);
+                    if ($temp === false) {
+                        return false;
+                    }
+                    $data.= $temp;
                 }
 
                 break;
@@ -3960,7 +3964,7 @@ class X509
             $crlNumber = $this->getExtension('id-ce-cRLNumber');
             // "The CRL number is a non-critical CRL extension that conveys a
             //  monotonically increasing sequence number for a given CRL scope and
-            //  CRL issuer.  This extension allows customer to easily determine when a
+            //  CRL issuer.  This extension allows users to easily determine when a
             //  particular CRL supersedes another CRL."
             // -- https://tools.ietf.org/html/rfc5280#section-5.2.3
             $crlNumber = $crlNumber !== false ? $crlNumber->add(new BigInteger(1)) : null;

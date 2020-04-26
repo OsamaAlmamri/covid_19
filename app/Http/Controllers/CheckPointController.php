@@ -14,6 +14,7 @@ class CheckPointController extends Controller
 {
     public function index($type = '')
     {
+
         if (Auth::user()->can('show checkPoints') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 

@@ -19,6 +19,7 @@ class UserController extends Controller
 {
     public function index($UserType = '')
     {
+
 //        $_SESSION['lang']='ar';
         if (Auth::user()->can('show users') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');

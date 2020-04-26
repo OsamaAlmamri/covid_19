@@ -998,7 +998,7 @@ class YourClient extends \Guzzle\Service\Client
 {
     "name":       "Zendesk REST API v2",
     "apiVersion": "2012-12-31",
-    "description":customer,
+    "description":"Provides access to Zendesk views, groups, tickets, ticket fields, and users",
     "operations": {
         "list_groups":  {
             "httpMethod":"GET",

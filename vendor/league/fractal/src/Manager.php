@@ -19,7 +19,7 @@ use League\Fractal\Serializer\SerializerAbstract;
  * Manager
  *
  * Not a wildly creative name, but the manager is what a Fractal user will interact
- * with the most. The manager has various configurable options, and allows customer
+ * with the most. The manager has various configurable options, and allows users
  * to create the "root scope" easily.
  */
 class Manager
