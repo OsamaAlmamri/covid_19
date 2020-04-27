@@ -21,6 +21,8 @@ class BlockPersonsController extends Controller
 
     public function index($type_query = 'block_persons')
     {
+
+//        return dd( getAllQuarantineTypeInfo());
         if (
             ($type_query == 'sumBlockPersons'
                 or ($type_query == 'sumBlockPersons_zone')
@@ -133,7 +135,6 @@ class BlockPersonsController extends Controller
                 DB::raw("FROM_UNIXTIME(start_date_symptoms/1000,'%Y-%m-%d') as birth_date "),
                 DB::raw("FROM_UNIXTIME(sleep_date/1000,'%Y-%m-%d') as sleep_date "),
                 DB::raw("FROM_UNIXTIME(insulation_date/1000,'%Y-%m-%d') as insulation_date "),
-                DB::raw("FROM_UNIXTIME(comming_date/1000,'%Y-%m-%d') as comming_date "),
                 DB::raw("FROM_UNIXTIME(out_from_country_date/1000,'%Y-%m-%d') as out_from_country_date "),
                 DB::raw("FROM_UNIXTIME(comming_to_yemen_date/1000,'%Y-%m-%d') as comming_to_yemen_date "),
                 DB::raw("FROM_UNIXTIME(sample_sent_date/1000,'%Y-%m-%d') as sample_sent_date "),
@@ -205,13 +206,13 @@ class BlockPersonsController extends Controller
                                 as allBlockPeopleTransform"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                                 WHERE blocked_people.quarantine_area_id = quarantine_areas.id and
-                                  blocked_people.out_date > 0 
+                                  blocked_people.insulation_end_date  > 0 
                                    " . $dateCondition . $genderCondition . "
                                 ) 
                                 as allBlockPeopleOut"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                                 WHERE blocked_people.quarantine_area_id = quarantine_areas.id and
-                                  blocked_people.out_date is null  and blocked_people.if_transfer_where is null
+                                  blocked_people.insulation_end_date  is null  and blocked_people.if_transfer_where is null
                                   and if_dead_date is null
                                    " . $dateCondition . $genderCondition . "
                                 ) 
@@ -265,14 +266,14 @@ class BlockPersonsController extends Controller
                                 as allBlockPeopleTransform"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
-                            WHERE  zones.id = quarantine_areas.zone_id and   blocked_people.out_date > 0 
+                            WHERE  zones.id = quarantine_areas.zone_id and   blocked_people.insulation_end_date  > 0 
                                  " . $dateCondition . $genderCondition . "
                                 ) 
                                 as allBlockPeopleOut"),
 
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
-                            WHERE  zones.id = quarantine_areas.zone_id and   blocked_people.out_date is null  and blocked_people.if_transfer_where is null
+                            WHERE  zones.id = quarantine_areas.zone_id and   blocked_people.insulation_end_date  is null  and blocked_people.if_transfer_where is null
                                   and if_dead_date is null
                                  " . $dateCondition . $genderCondition . "
                                 ) 
@@ -322,7 +323,7 @@ class BlockPersonsController extends Controller
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
                                 WHERE
                                   quarantine_areas.zone_id IN (SELECT id FROM zones as subZones where subZones.parent=zones.id )
-                                   and    blocked_people.out_date is null  and blocked_people.if_transfer_where is null
+                                   and    blocked_people.insulation_end_date  is null  and blocked_people.if_transfer_where is null
                                   and if_dead_date is null   " . $dateCondition . $genderCondition . "
                                   ) 
                                 as allBlockPeopleOut"),
@@ -330,7 +331,7 @@ class BlockPersonsController extends Controller
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
                                 WHERE
                                   quarantine_areas.zone_id IN (SELECT id FROM zones as subZones where subZones.parent=zones.id )
-                                   and  blocked_people.out_date > 0    " . $dateCondition . $genderCondition . "
+                                   and  blocked_people.insulation_end_date  > 0    " . $dateCondition . $genderCondition . "
                                   ) 
                                 as allBlockPeopleNotOut")
         ];

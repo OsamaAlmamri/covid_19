@@ -29,9 +29,10 @@ class CreateBlockedPeopleTable extends Migration
             $table->string('job')->nullable();
             $table->string('phone')->nullable();
             $table->string('relative_phone')->nullable();
+            $table->unsignedBigInteger('check_date');
             $table->unsignedBigInteger('check_point_id');
             $table->foreign('check_point_id')->references('id')->on('check_points')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
-           $table->enum('bp_type', ['truck_owner', 'people'])->default('people');
+            $table->enum('bp_type', ['truck_owner', 'people'])->default('people');
             $table->enum('bp_from', ['yemeni', 'arabic', 'align'])->default('yemeni');
             $table->enum('typeStatus',
                 ['checkAndTruckInPort', 'checkedAndCrossedFromPort',
@@ -72,7 +73,6 @@ class CreateBlockedPeopleTable extends Migration
             $table->boolean('after_childbirth')->default(false);;
 
 
-
             $table->boolean('is_comming_from_other_country')->default(false);
             $table->string('come_from_country')->nullable();
 //            $table->unsignedBigInteger('comming_date')->nullable();
@@ -94,19 +94,43 @@ class CreateBlockedPeopleTable extends Migration
             $table->enum('situation_result', ['cured', 'dead', 'referred', 'none'])->default('none');
 
             $table->unsignedBigInteger('if_dead_date')->default(false);
-            $table->unsignedBigInteger('out_date')->default(false);
             $table->unsignedBigInteger('quarantine_area_id')->nullable()->default(null);
             $table->foreign('quarantine_area_id')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
 
             $table->unsignedBigInteger('if_transfer_where')->nullable()->default(null);
             $table->foreign('if_transfer_where')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpunsignedBigInteger('cascade');
 
+///////////////////////
+            $table->unsignedBigInteger('insulation_end_date')->nullable()->default(null);
+            $table->string('form_id')->nullable();
+            $table->unsignedBigInteger('personal_info_checked_by')->nullable();
+            $table->unsignedBigInteger('medical_info_checked_by')->nullable();
+            $table->text('id_front_photo')->nullable();
+            $table->text('id_back_photo')->nullable();
+            $table->unsignedBigInteger('id_issue_date')->nullable();
+            $table->string('id_issue_address')->nullable();
+            $table->enum('martial_state', ['single', 'married', 'divorced', 'indecisive', 'widowed'])->default('single');
 
+            $table->string('kids_number')->nullable();
+            $table->string('source_stay_reason')->nullable();
+            $table->string('source_stay_job')->nullable();
+            $table->string('source_stay_period')->nullable();
+            $table->string('source_how_check_info')->nullable();
+            $table->string('dest_isolation_neighborhood')->nullable();
+            $table->string('dest_lane_village')->nullable();
+            $table->string('dest_aqel_moaref')->nullable();
+            $table->string('dest_aqel_phone')->nullable();
+            $table->string('dest_reason_of_coming_back')->nullable();
+            $table->string('dest_stay_period')->nullable();
+            $table->unsignedBigInteger('dest_exit_date')->nullable();
+            $table->enum('dest_home_type', ['rent', 'private'])->default('rent');
+            $table->string('dest_transportation_owner')->nullable();
+            $table->string('dest_transportation_type')->nullable();
+            $table->string('dest_transportation_number')->nullable();
 
             $table->enum('response_team_interventions',
                 ['investigation', 'file_closed', 'case_was_lost',
                     'other', 'none'])->default('none');
-
 
 
             $table->string('other_response_team_interventions')->nullable();

@@ -72,6 +72,9 @@ class WorkTeamDataTable extends DataTable
     public function html()
     {
         $btnAdd = [];
+        route('workTeams.team.show','health');
+        route('workTeams.team.show','point');
+
         $route = route('workTeams.create');
         if (Auth::user()->can('manage worksTeams') != false) {
             $btnAdd = ['className' => 'btn btn-info ', 'text' => '<i class="fa fa-plus" ></i> ' . trans('dataTable.add.workTeams'),

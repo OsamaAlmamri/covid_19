@@ -31,7 +31,7 @@ return [
     "sSortDescending" => ": Ordenar colunas de forma descendente",
 //maxCapacity,zone_name,government_name,quarantine_area_type
     'maxCapacity' => 'max Capacity',
-    'zone_name' => 'zone name',
+    'zone_name' => 'districts name',
     'government_name' => 'government name',
     'quarantine_area_type' => 'type',
     'manager_phone' => 'manager phone',
@@ -114,10 +114,10 @@ return [
     'age_year' => 'age by year ',
     'age_month' => ' age by month',
     'age_day' => 'age day ',
-    'visit_zone' => 'last visit zone ',
+    'visit_zone' => 'last visit districts ',
     'center_zone' => ' health center name',
     'mix_people_type' => ' mix people type',
-    'transfer_zone' => 'transfer zone ',
+    'transfer_zone' => 'transfer districts ',
     'note' => ' note',
     'workType' => ' work Type   ',
 

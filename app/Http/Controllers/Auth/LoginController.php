@@ -43,8 +43,8 @@ class LoginController extends Controller
 
     public function login()
     {
-//        return dd('d');
-        return view('auth.login')->with('type', 'admin');
+
+        return view('auth.login');
 
     }
 

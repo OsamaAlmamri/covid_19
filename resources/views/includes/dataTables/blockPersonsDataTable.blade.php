@@ -312,14 +312,7 @@
                     return (data == '1') ? 'نعم ' : 'لا';
                 }
             },
-            {
-                'name': 'comming_date',
-                'data': 'comming_date',
-                'title': "{{trans('dataTable.comming_date')}}",
-                'render': function (data, type, row) {
-                    return (data == '1') ? 'نعم ' : 'لا';
-                }
-            },
+
             {
                 'name': 'out_from_country_date',
                 'data': 'out_from_country_date',
@@ -877,19 +870,23 @@
                 'name': 'zone_name',
                 'data': 'zone_name',
                 'title': "{{trans('dataTable.zone_name')}}",
-            },
-            {
-                'name': 'allTypes',
-                'data': 'allTypes',
-                'title': "{{trans('dataTable.allTypes')}}"
-            },
-                @foreach( getAllQuarantineTypeInfo() as $t)
-            {
+            }
+            @foreach( getAllQuarantineTypeInfo() as $t)
+            , {
                 'name': 'type_{{$t->id}}',
                 'data': 'type_{{$t->id}}',
                 'title': "{{$t->name}}",
-            },
-                @endforeach
+            }
+            @endforeach
+            , {
+                'name': 'allTypes',
+                'data': 'allTypes',
+                'title': "{{trans('dataTable.allTypes')}}"
+            }, {
+                'name': 'allTypes',
+                'data': 'allTypes',
+                'title': "{{trans('dataTable.allTypes')}}"
+            }
 
         ];
         var quarantines_gov = [
@@ -905,19 +902,23 @@
                 'name': 'government_name',
                 'data': 'government_name',
                 'title': "{{trans('dataTable.government_name')}}",
-            },
-            {
-                'name': 'allTypes',
-                'data': 'allTypes',
-                'title': "{{trans('dataTable.allTypes')}}"
-            },
-                @foreach( getAllQuarantineTypeInfo() as $t)
-            {
+            }
+            @foreach( getAllQuarantineTypeInfo() as $t)
+            , {
                 'name': 'type_{{$t->id}}',
                 'data': 'type_{{$t->id}}',
                 'title': "{{$t->name}}",
-            },
+            }
             @endforeach
+            , {
+                'name': 'allTypes',
+                'data': 'allTypes',
+                'title': "{{trans('dataTable.allTypes')}}"
+            }, {
+                'name': 'allTypes',
+                'data': 'allTypes',
+                'title': "{{trans('dataTable.allTypes')}}"
+            }
 
         ];
         var column = [];

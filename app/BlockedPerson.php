@@ -27,8 +27,41 @@ class BlockedPerson extends Model
         'country',//if is county is not yemen
         'truck_number',//رقم القاطرة اذا كان صاحب قاطرة
         'check_date',
-//
-        //
+        ////////////////////////////
+
+        'personal_info_checked_by',
+        'medical_info_checked_by',
+        'id_issue_address',
+        'id_front_photo',
+        'id_back_photo',
+        'id_issue_date',
+        'id_issue_date',
+        'martial_state',
+        'kids_number',
+        'source_stay_reason',
+        'source_stay_job',
+        'source_stay_period',
+        'source_how_check_info',
+        'source_pass_country',
+        'source_stay_period',
+        'dest_zone_id',
+        'dest_isolation_neighborhood',
+        'dest_lane_village',
+        'dest_aqel_moaref',
+        'dest_aqel_phone',
+        'dest_reason_of_coming_back',
+        'dest_stay_period',
+        'dest_exit_date',
+        'dest_home_type',
+        'dest_transportation_owner',
+        'dest_transportation_type',
+        'dest_transportation_number',
+        'insulation_end_date',
+        'form_id',//رقم الاستمارة
+
+        // /////////
+        ///////////
+
         'compared_by',
         'checked_by',
 

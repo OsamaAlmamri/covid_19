@@ -315,9 +315,22 @@ function getAllQuarantineTypeInfo()
     $all = \App\QuarantineAreaType::all();
 
     return $all;
+    $d = [];
+//    foreach ($all as $t)
+//        $d[] = array(
+//            'name' => 'type_' . $t->id,
+//            'data' => 'type_' . $t->id,
+//            'title' => $t->id,
+//        );
+//    return json_encode($d);
+
+//        'name': 'type_{{$t->id}}',
+//                'data': 'type_{{$t->id}}',
+//                'title': "{{$t->name}}",
+//            }
+//}
 
 }
-
 
 function getZones($governorate_id = 0, $withAll = 0)
 {

@@ -52,7 +52,7 @@ return [
     'block_persons_male' => ' block persons male ',
     'block_persons_female' => ' block persons female',
     'governments' => ' governments',
-    'zones' => 'zones',
+    'zones' => 'districts',
 
 
     'teamWorkers' => ' teamWorkers',
@@ -64,7 +64,7 @@ return [
     'center' => 'center ',
     'btn_filterTeam' => ' filter Team',
     'government' => ' government ',
-    'zone' => '  zone',
+    'zone' => '  districts',
     'gender' => 'gender ',
     'male' => ' male',
     'female' => ' female',

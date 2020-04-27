@@ -22,12 +22,20 @@ class PointTeamController extends Controller
 //        $this->middleware('permission:show admins', ['only' => ['index']]);
     }
 
-    public function index($type = 'point')
+    public function index($type = 'point', $id = 0)
     {
         if (Auth::user()->can('show pointTeams') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
-        return view('workTeams.point_teams')->with('workers_type', $type);
+        if ($type == 'point' and $id > 0)
+            $center = CheckPoint::find($id);
+        elseif ($type != 'point' and $id > 0)
+            $center = QuarantineArea::find($id);
+        else
+            $center = null;
+
+//        return dd($center->zone->parent);
+        return view('workTeams.point_teams')->with('workers_type', $type)->with('center', $center);
 
 //                return dd($this->getTeamWorkerData('all','all','point','male'));
 //        return datatables()->of($this->getTeamWorkerData('all','all','point','male'))
@@ -133,16 +141,21 @@ class PointTeamController extends Controller
             $data = QuarantineArea::all()->whereIn('zone_id', $ids);
         }
         $firstData = '';
-        $firstData = '';
-        if ($data->first() != null) {
+        if ($request->type == 'point' and $request->point_id > 0) {
+            $d = CheckPoint::find($request->point_id);
+            $firstData = $this->getMembers($d);
+        } elseif ($request->type != 'point' and $request->point_id > 0) {
+            $d = QuarantineArea::find($request->point_id);
+            $firstData = $this->getMembers($d);
+        } elseif ($data->first() != null) {
             $data_members = $data->first();
             $firstData = $this->getMembers($data_members);
         }
 
 
         $select = ' ';
-        if(isset($request->all) and $request->all=='all')
-            $select .= '<option value="all">'.trans('menu.all').'</option>';
+        if (isset($request->all) and $request->all == 'all')
+            $select .= '<option value="all">' . trans('menu.all') . '</option>';
 
         foreach ($data as $info) {
             $select .= '<option value="' . $info->id . '"> ' . $info->name . '</option>';

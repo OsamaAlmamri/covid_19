@@ -111,7 +111,7 @@ return [
     'government' => 'government',
     'country' => 'country',
     'ssn' => 'ssn',
-    'zone' => 'zone',
+    'zone' => 'districts',
     'job' => 'job',
     'workType' => ' workType',
     'birth_date' => 'birth date  ',

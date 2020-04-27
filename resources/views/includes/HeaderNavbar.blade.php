@@ -40,11 +40,13 @@
                 <li class="user-profile header-notification">
                     <a href="{{route('lang',getOtherLang())}}">
                         @if(getOtherLang()=='ar')
-                            <img style="width: 20px;margin-bottom: 15px;"
-                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\ye.svg')}}">
+                            <span> AR</span>
+{{--                            <img style="width: 20px;margin-bottom: 15px;"--}}
+{{--                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\ye.svg')}}">--}}
                         @else
-                            <img style="width: 20px;margin-bottom: 15px;"
-                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\us.svg')}}">
+                            <span> EN</span>
+{{--                            <img style="width: 20px;margin-bottom: 15px;"--}}
+{{--                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\us.svg')}}">--}}
                         @endif
                     </a>
                 </li>

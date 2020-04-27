@@ -179,9 +179,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         anlutro\LaravelSettings\ServiceProvider::class,
+        Aloha\Twilio\Support\Laravel\ServiceProvider::class,
 
 
 
@@ -237,7 +239,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Setting' => anlutro\LaravelSettings\Facade::class,
+        'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
 
 
     ],

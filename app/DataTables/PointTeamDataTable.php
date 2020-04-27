@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Services\DataTable;
 
@@ -67,6 +68,22 @@ class PointTeamDataTable extends DataTable
      */
     public function html()
     {
+        $btnAdd = [];
+        if ($this->type == 'point_teams') {
+            $route = route('workTeams.team.show', ['point',$this->point_id]);
+        } else {
+            $route = route('workTeams.team.show', ['health',$this->point_id]);
+        }
+
+
+//        $route = route('quarantines.create');
+        if (Auth::user()->can('manage quarantines') != false) {
+            $btnAdd = ['className' => 'btn btn-info ', 'text' => '<i class="fa fa-edit" ></i> ' . trans('dataTable.update.workTeams'),
+                'action' => " function(){
+                              window.location.href='$route'
+                              }"];
+        }
+
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
@@ -86,6 +103,7 @@ class PointTeamDataTable extends DataTable
                     'dom' => 'Blfrtip',
                     'lengthMenu' => [[10, 25, 50, 100, -1], [10, 25, 50, 100, trans('dataTable.all')]],
                     'buttons' => [
+                        $btnAdd,
                         ['extend' => 'copyHtml5', 'text' => '<i class="fa fa-copy" ></i>' . trans('dataTable.btn.copy'),
                             'className' => 'btn btn-info ', 'exportOptions' => ['columns' => [0, 1, 2, 5]]],
                         ['extend' => 'excelHtml5', 'text' => '<i class="fa fa-file-excel-o" ></i> ' . trans('dataTable.btn.excel'), 'className' => 'btn btn-info ', 'exportOptions' => ['columns' => ':visible']],

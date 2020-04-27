@@ -16,10 +16,21 @@
                         <li class="breadcrumb-item">
                             <a href="{{route('home')}}"> <i class="fa fa-home"></i> {{trans('menu.home')}} </a>
                         </li>
-                        <li class="breadcrumb-item"><a
-                                href="#">{{trans('menu.'.$workers_type)}}
-                            </a>
-                        </li>
+                        @if($center!=null)
+                            <li class="breadcrumb-item"><a
+                                    href="{{route('check_points.team',['id'=>$center->id,'type'=>$workers_type.'_teams'])}}"> فريق {{$center->name}}
+                                </a>
+                            </li>
+                            @else
+                            <li class="breadcrumb-item"><a
+                                    href="#">{{trans('menu.'.$workers_type)}}
+                                </a>
+                            </li>
+
+                            @endif
+
+
+
                         </li>
                     </ul>
                 </div>
@@ -56,37 +67,48 @@
 
         <div class="card-body">
             <div class="card-body">
-                <div class="sub-title"> {{trans('menu.btn_filterCenter')}}</div>
-                <div class="row">
-                    <div class="input-group col-md-3">
-                        <span class="input-group-addon">{{trans('menu.government')}}</span>
-                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
-                        {{--                        {!!Form ::select('from_zone', array_reverse($getGovernorate,true),'',['class' => 'select2 form-control', 'id' => 'from_zone'])!!}--}}
-                        {!!Form ::select('governorate_id',  getGovernorates(),(isset($workTeam)) ?$workTeam->zone->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_governorate_id'])!!}
+                @if(isset($workers_type))
+                    <input type="hidden" name="workTeamType" id="center_workTeamType" value="{{$workers_type}}">
+                @endif
 
-                    </div>
-                    <div class="input-group col-md-3">
-                        <span class="input-group-addon">{{trans('menu.zone')}}</span>
-                        {{--                        {!!Form ::select('to_zone',  array_reverse($getGovernorate,true),'',['class' => 'select2 form-control', 'id' => 'to_zone'])!!}--}}
-                        {!!Form ::select('zone_id',(isset($workTeam))?getZones($workTeam->zone->zone->id):getZones(),(isset($workTeam))?$workTeam->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_zone_id'])!!}
+                @if($center!=null)
+                    <input type="hidden" name="center_governorate_id" id="center_governorate_id"
+                           value="{{$center->zone->zone_id}}">
+                    <input type="hidden" name="center_zone_id" id="center_zone_id" value="{{$center->zone_id}}">
+                    <input type="hidden" name="pointOrCenter_id" id="pointOrCenter_id" value="{{$center->id}}">
 
-                    </div>
+                @else
 
-                    @if(isset($workers_type))
-                        <input type="hidden" name="workTeamType" id="center_workTeamType" value="{{$workers_type}}">
-                    @else
+                    <div class="sub-title"> {{trans('menu.btn_filterCenter')}}</div>
+                    <div class="row">
                         <div class="input-group col-md-3">
-                            <span class="input-group-addon">{{trans('menu.workTeamType')}}</span>
-                            {!!Form ::select('workTeamType', workTeamTypes(),'',['class' => 'select2 form-control', 'id' => 'center_workTeamType'])!!}
+                            <span class="input-group-addon">{{trans('menu.government')}}</span>
+                            <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
+                            {{--                        {!!Form ::select('from_zone', array_reverse($getGovernorate,true),'',['class' => 'select2 form-control', 'id' => 'from_zone'])!!}--}}
+                            {!!Form ::select('governorate_id',  getGovernorates(),(isset($workTeam)) ?$workTeam->zone->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_governorate_id'])!!}
+
                         </div>
-                    @endif
+                        <div class="input-group col-md-3">
+                            <span class="input-group-addon">{{trans('menu.zone')}}</span>
+                            {{--                        {!!Form ::select('to_zone',  array_reverse($getGovernorate,true),'',['class' => 'select2 form-control', 'id' => 'to_zone'])!!}--}}
+                            {!!Form ::select('zone_id',(isset($workTeam))?getZones($workTeam->zone->zone->id):getZones(),(isset($workTeam))?$workTeam->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_zone_id'])!!}
+
+                        </div>
+
+                        @if(!isset($workers_type))
+                            <div class="input-group col-md-3">
+                                <span class="input-group-addon">{{trans('menu.workTeamType')}}</span>
+                                {!!Form ::select('workTeamType', workTeamTypes(),'',['class' => 'select2 form-control', 'id' => 'center_workTeamType'])!!}
+                            </div>
+                        @endif
 
 
-                    <div class="input-group col-md-3" id="pointOrCenter_idDiv">
-                        <span class="input-group-addon">{{trans('menu.center')}}</span>
-                        {!!Form ::select('pointOrCenter_id', ['no'=>'ليس هناك مراكز حاليا'],'',['class' => 'select2 form-control', 'id' => 'pointOrCenter_id'])!!}
+                        <div class="input-group col-md-3" id="pointOrCenter_idDiv">
+                            <span class="input-group-addon">{{trans('menu.center')}}</span>
+                            {!!Form ::select('pointOrCenter_id', ['no'=>'ليس هناك مراكز حاليا'],'',['class' => 'select2 form-control', 'id' => 'pointOrCenter_id'])!!}
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="sub-title"> {{trans('menu.btn_filterTeam')}}</div>
                 <div class="row">
                     <div class="input-group col-md-3">
@@ -326,12 +348,13 @@
             var government_id = $('#center_governorate_id').val();
             var type = $('#center_workTeamType').val();
             var selectList = $('#pointOrCenter_id');
+            var selectList_val = $('#pointOrCenter_id').val();
             var _this = $('#center_workTeamType');
             $.ajax({
                 url: '{{route('check_points.filterPlace_type')}}',//   var url=$('#news').attr('action');
                 method: 'POST',
                 dataType: 'json',// data type that i want to return
-                data: '_token=' + encodeURIComponent("{{csrf_token()}}") + '&type=' + type + '&zone_id=' + zone + '&government_id=' + government_id,
+                data: '_token=' + encodeURIComponent("{{csrf_token()}}") + '&type=' + type +  '&point_id=' + selectList_val+ '&zone_id=' + zone + '&government_id=' + government_id,
                 success: function (data) {
                     // console.log(data.firstData);
                     selectList.html(data.select);
