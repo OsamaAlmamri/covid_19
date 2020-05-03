@@ -25,7 +25,6 @@ class CreateWorkTeamsTable extends Migration
             $table->string('ssn')->nullable();
             $table->enum('workType', ['point', 'health'])->default('health');
             $table->unsignedBigInteger('zone_id');
-            $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('created_by')->nullable()->default(null);
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('deleted_by')->nullable()->default(null);

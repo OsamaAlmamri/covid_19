@@ -19,6 +19,7 @@ class CreateZonesTable extends Migration
             $table->string('name_en');
             $table->string('parent');
             $table->string('type');
+            $table->unsignedBigInteger('code');
             $table->timestamps();
         });
     }

@@ -86,6 +86,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('zones/getZones', 'ZoneController@getZones')->name('zones.getZones');
     Route::resource('zones', 'ZoneController')->except('index', 'create');
 
+    Route::post('logs/how', 'LogsController@how')->name('logs.how');
+    Route::post('logs/filter', 'LogsController@filter')->name('logs.filter');
+    Route::resource('logs', 'LogsController');
+
 
     Route::get('quarantines/index/{type?}', 'QuarantinesController@index')->name('quarantines.index');
     Route::get('quarantines/{id}/forceDelete', 'QuarantinesController@forceDelete')->name('quarantines.forceDelete');
@@ -114,12 +118,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('check_points/filterPlace_type', 'PointTeamController@filterPlace_type')->name('check_points.filterPlace_type');
     Route::post('check_points/changePointOrCenter', 'PointTeamController@changePointOrCenter')->name('check_points.changePointOrCenter');
     Route::post('check_points/savePointTeamList', 'PointTeamController@savePointTeamList')->name('check_points.savePointTeamList');
+    Route::post('check_points/movePerson', 'PointTeamController@movePerson')->name('check_points.movePerson');
     Route::get('check_points/showOrdersDisputes/{type?}', 'PointTeamController@showOrdersDisputes')->name('check_points.showOrdersDisputes');
     Route::post('check_points/filterTeam', 'PointTeamController@filterTeamWorker')->name('check_points.filterTeam');
 
     Route::get('block_persons/index/{type?}', 'BlockPersonsController@index')->name('block_persons.index');
+    Route::get('block_persons/check/{id}/{type?}', 'BlockPersonsController@check')->name('block_persons.check');
     Route::get('block_persons/sumBlockPersonsAccordingForCenterData/{type?}', 'BlockPersonsController@sumBlockPersonsAccordingForCenterData')->name('block_persons.sumBlockPersonsAccordingForCenterData');
     Route::post('block_persons/filterBlockPersons', 'BlockPersonsController@filterBlockPersons')->name('block_persons.filterBlockPersons');
+    Route::resource('block_persons', 'BlockPersonsController')->except('index');
 
 
     Route::get('quarantineTypes/{id}/delete', 'QuarntineTypesController@delete')->name('quarantineTypes.delete');

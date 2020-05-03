@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 
 use App\BlockedPerson;
 use App\CheckPoint;
+use App\HaraVil;
 use App\HealthTeam;
 use App\PointTeam;
 use App\QuarantineArea;
 use App\Rules\MatchOldPassword;
+use App\SubDi;
+use App\SubHaraVil;
 use App\User;
 use App\WorkTeam;
 use App\Zone;
@@ -46,7 +49,10 @@ class HomeController extends Controller
         $admins = User::role('Admin')->count();
         $SuperAdmin = User::role('SuperAdmin')->count();
 
-        $zones = Zone::all()->where('parent', '>', 0)->count();
+        $district = Zone::all()->where('parent', '>', 0)->where('type', 'like','district')->count();
+        $sub_dis = SubDi::all()->where('parent', '>', 0)->where('type', 'like','sub_dis')->count();
+        $hara_vil = HaraVil::all()->where('parent', '>', 0)->where('type', 'like','hara_vil')->count();
+        $sub_hara_vil = SubHaraVil::all()->where('parent', '>', 0)->where('type', 'like','sub_hara_vil')->count();
         $governments = Zone::all()->where('parent', '=', 0)->count();
         $quarantines = QuarantineArea::all()->count();
         $checkPoints = CheckPoint::all()->count();
@@ -66,8 +72,11 @@ class HomeController extends Controller
             'dataEntry' => $dataEntry,
             'admins' => $admins + $SuperAdmin,
 
-            'zones' => $zones,
-//            'governments' => $governments,
+            'sub_hara_vil' => $sub_hara_vil,
+            'hara_vil' => $hara_vil,
+            'sub_dis' => $sub_dis,
+            'district' => $district,
+            'governments' => $governments,
             'quarantines' => $quarantines,
             'checkPoints' => $checkPoints,
 

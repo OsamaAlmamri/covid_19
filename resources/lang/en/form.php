@@ -53,8 +53,14 @@ return [
     'gender' => ' gender ',
 
 
-    'verifyPhone' => ' verify Phone',
-    'verifyCode' => ' verify Code   ',
+    'everyday' => ' all Days',
+
+
+
+    'worker' => ' Account Owner  ',
+
+
+
 
 
     'add' => [
@@ -63,6 +69,7 @@ return [
         'check_point' => 'Add New check point',
         'workTeam' => 'Add New member   ',
         'member' => 'Add New member',
+        'quarantineType' => 'Add New quarantine Type',
     ],
 
 
@@ -75,6 +82,7 @@ return [
         'check_point' => 'Update the check point',
         'workTeam' => 'Update the member   ',
         'member' => 'Update the  member',
+        'quarantineType' => ' Update quarantine Type',
     ],
 
     'delete' => [
@@ -92,6 +100,7 @@ return [
         'check_point' => '  check point info ',
 
         'workTeam' => ' workTeam info  ',
+        'quarantineType' => 'quarantine Type info',
 
         'profile' => ' Profile  Info',
     ],

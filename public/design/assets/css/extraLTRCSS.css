@@ -19,3 +19,9 @@
 .form-control + .input-group-addon:not(:first-child) {
     border-left: 0
 }
+
+
+.work_team_name
+{
+    float: right;
+}

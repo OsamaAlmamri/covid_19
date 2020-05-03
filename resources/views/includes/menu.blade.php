@@ -23,7 +23,7 @@
                         </li>
 
                         <li class="">
-                            <a href="{{route('quarantines.create')}}">
+                            <a href="{{route('block_persons.create')}}">
                                 <span class="pcoded-mtext ">  {{trans('menu.case_registration')}}</span>
                             </a>
                         </li>
@@ -236,6 +236,7 @@
                                         </a>
                                     </li>
 
+
                                 </ul>
                             </li>
                         @endif
@@ -247,6 +248,14 @@
                                 </a>
                             </li>
                         @endif
+                        {{--                        @if (Auth::user()->can('health_satiation reports') == true)--}}
+                        <li class="">
+                            <a href="{{route('logs.index')}}">
+                                <span class="pcoded-mtext"> {{trans('menu.report_logs')}} </span>
+
+                            </a>
+                        </li>
+                        {{--                        @endif--}}
                     </ul>
                 </li>
 

@@ -4,16 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class WorkTeam extends Model
 {
     //
     use SoftDeletes;
+    use LogsActivity;
 
     protected $fillable = [
         'name', 'zone_id', 'phone', 'ssn', 'workType', 'job', 'birth_date',
         'gender', 'join_date', 'country', 'deleted_by', 'created_by',
     ];
+
+    protected static $logAttributes = ['name', 'zone_id', 'phone', 'ssn', 'workType', 'job', 'birth_date', 'join_date', 'country', 'deleted_by'];
 
     public function zone()
     {
@@ -32,6 +36,7 @@ class WorkTeam extends Model
     {
         return $this->belongsToMany('App\QuarantineArea', 'health_teams', 'quarantine_area_id', 'work_team_id')->orderByDesc('id');
     }
+
     public function check_points()
     {
         return $this->belongsToMany('App\CheckPoint', 'point_teams', 'work_team_id', 'check_point_id')->orderByDesc('id');

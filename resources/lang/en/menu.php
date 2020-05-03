@@ -102,8 +102,6 @@ return [
 
 
     'role' => 'role',
-    'male' => 'male',
-    'female' => 'female',
     'Admins' => 'Admins',
 
     'setting' => 'setting ',
@@ -116,10 +114,27 @@ return [
 
 
     'info' => 'Info  ',
-    'logOut' => 'logOut  ',
     'qrs' => 'QRs  ',
-    'printSetting' => 'Print Setting '
-
+    'printSetting' => 'Print Setting ',
+    'Users' => ' Users',
+    'btn_filterPoint' => 'Filter Checking Point   ',
+    'block_persons' => '  Block Persons    ',
+    'check_points' => '     check points  ',
+    'sumBlockPersonsByCenter' => '   By Quarantine Area',
+    'sumBlockPersonsByZone' => '  By District',
+    'sumBlockPersonsByGovernment' => 'By Government ',
+    'sumBlockPersons_zone' => ' Cumulative report of the number of block Persons by districts ',
+    'sumBlockPersons_gov' => 'Cumulative report of the number of block Persons by governorates   ',
+    'truck_driver' => ' Summary of commercial truck drivers',
+    'people_in_port' => "Summary of arrivals   ",
+    'health_point_team' => ' Quarantine Area Team ',
+    'check_point_team' => '   check points team',
+    'quarantines_gov' => 'Quarantine Area By Governorates ',
+    'quarantines_zone' => 'Quarantine Area By Districts',
+    'point_daily_reports' => 'Daily report of operations at ports and points',
+    'quarantines_reports' => 'Quarantine Area',
+    'sumBlockPersons' => 'The cumulative report of the numbers of block Persons',
+    'health_satiation_reports' => 'The health status of those present at the Quarantine Area ',
 
 
 ];

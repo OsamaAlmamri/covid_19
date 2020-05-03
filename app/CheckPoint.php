@@ -4,16 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
+
 
 class CheckPoint extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
 
     //
     protected $fillable = [
         'name', 'manager_id', 'zone_id', 'longitude', 'latitude', 'map_address', 'status', 'deleted_by', 'created_by',
     ];
+
+    protected static $logAttributes = ['name', 'manager_id', 'zone_id','status', 'deleted_by'];
 
     public function zone()
     {

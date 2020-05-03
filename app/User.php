@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use LogsActivity;
+
     use SoftDeletes;
     use HasRoles;
     use HasApiTokens;
@@ -35,6 +38,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected static $logAttributes = ['email', 'username', 'work_team_id', 'status'];
     /**
      * The attributes that should be cast to native types.
      *

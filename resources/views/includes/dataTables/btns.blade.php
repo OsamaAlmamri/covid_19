@@ -62,7 +62,7 @@ doc.pageOrientation = $('#pageOrientation').val();
 doc.pageMargins = [20, 60, 20, 30];
 // Set the font size fot the entire document
 doc.defaultStyle.fontSize = 7;
- doc.defaultStyle.font = 'Amiri';
+doc.defaultStyle.font = 'Amiri';
 // Set the fontsize for the table header
 
 

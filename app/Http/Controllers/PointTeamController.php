@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CheckPoint;
+use App\HealthTeam;
+use App\PointTeam;
 use App\QuarantineArea;
 use App\WorkTeam;
 use App\Zone;
@@ -68,16 +70,16 @@ class PointTeamController extends Controller
 
 
         $data = DB::table('work_teams')
-            ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.id')
-            ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+            ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.code')
+            ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
             ->leftJoin('point_teams', 'point_teams.work_team_id', '=', 'work_teams.id')
             ->leftJoin('check_points', 'point_teams.check_point_id', '=', 'check_points.id')
             ->leftJoin('health_teams', 'health_teams.work_team_id', '=', 'work_teams.id')
             ->leftJoin('quarantine_areas', 'health_teams.quarantine_area_id', '=', 'quarantine_areas.id')
-            ->leftJoin('zones as pointZone', 'check_points.zone_id', '=', 'pointZone.id')
-            ->leftJoin('zones as pointParentZone', 'pointZone.parent', '=', 'pointParentZone.id')
-            ->leftJoin('zones as teamZone', 'work_teams.zone_id', '=', 'teamZone.id')
-            ->leftJoin('zones as teamParentZone', 'teamZone.parent', '=', 'teamParentZone.id')
+            ->leftJoin('zones as pointZone', 'check_points.zone_id', '=', 'pointZone.code')
+            ->leftJoin('zones as pointParentZone', 'pointZone.parent', '=', 'pointParentZone.code')
+            ->leftJoin('zones as teamZone', 'work_teams.zone_id', '=', 'teamZone.code')
+            ->leftJoin('zones as teamParentZone', 'teamZone.parent', '=', 'teamParentZone.code')
             ->select('work_teams.*',
                 'quarantine_areas.name as quarantine_area_name', 'check_points.name as check_point_name',
                 'teamZone.name_ar as team_zone_name', 'teamParentZone.name_ar as team_government_name',
@@ -123,12 +125,12 @@ class PointTeamController extends Controller
     {
         $ids = [];
         if ($request->zone_id == 'all' and $request->government_id == 'all') {
-            $zones = Zone::all()->where('parent', '>', 0);
+            $zones = Zone::all()->where('parent', '>', 0)->where('type', 'like', 'district');
             foreach ($zones as $zone) {
                 $ids[] = $zone->id;
             }
         } elseif ($request->zone_id == 'all') {
-            $zones = Zone::all()->where('parent', '=', $request->government_id);
+            $zones = Zone::all()->where('parent', '=', $request->government_id)->where('type', 'like', 'district');;
             foreach ($zones as $zone) {
                 $ids[] = $zone->id;
             }
@@ -140,16 +142,20 @@ class PointTeamController extends Controller
         } else {
             $data = QuarantineArea::all()->whereIn('zone_id', $ids);
         }
-        $firstData = '';
-        if ($request->type == 'point' and $request->point_id > 0) {
-            $d = CheckPoint::find($request->point_id);
-            $firstData = $this->getMembers($d);
-        } elseif ($request->type != 'point' and $request->point_id > 0) {
-            $d = QuarantineArea::find($request->point_id);
-            $firstData = $this->getMembers($d);
-        } elseif ($data->first() != null) {
-            $data_members = $data->first();
-            $firstData = $this->getMembers($data_members);
+        if (isset($request->getTeam) and $request->getTeam == 0)
+            $firstData = '';
+        else {
+            $firstData = '';
+            if ($request->type == 'point' and $request->point_id > 0) {
+                $d = CheckPoint::find($request->point_id);
+                $firstData = $this->getMembers($d);
+            } elseif ($request->type != 'point' and $request->point_id > 0) {
+                $d = QuarantineArea::find($request->point_id);
+                $firstData = $this->getMembers($d);
+            } elseif ($data->first() != null) {
+                $data_members = $data->first();
+                $firstData = $this->getMembers($data_members);
+            }
         }
 
 
@@ -160,7 +166,9 @@ class PointTeamController extends Controller
         foreach ($data as $info) {
             $select .= '<option value="' . $info->id . '"> ' . $info->name . '</option>';
         }
-
+//        if ($request->getTeam == 0)
+//            return response(['select' => $select], 200);
+//        else
         return response(['select' => $select, 'firstData' => $firstData], 200);
 
     }
@@ -188,8 +196,11 @@ class PointTeamController extends Controller
                             <input type="hidden" class="membersArray" value="' . $team->id . '" name="membersArray"> 
                                  <label>
                                     <button type="button" onclick="$(\'#member_row' . $team->id . '\').remove();"><i class="fa fa-trash"> </i></button>
+                                
+                                    <button type="button" class="btn_move_person" data-id="' . $team->id . '" data-name="' . $team->name . '">
+                                    <i class="fa fa-refresh"> </i></button>
                                 </label>
-                                <div> ' . $team->name . '</div>
+                                <div class="work_team_name"> ' . $team->name . '</div>
                             </div>';
 
         }
@@ -221,6 +232,36 @@ class PointTeamController extends Controller
         }
 
         return response(['departments' => $data, 'status' => 'success'], 200);
+
+
+    }
+
+    public
+    function movePerson(Request $request)
+    {
+
+
+        if ($request->old_type == 'point')
+            $table = PointTeam::all()->where('work_team_id','=',$request->id)->first();
+
+        else
+            $table = HealthTeam::all()->where('work_team_id','=',$request->id)->first();
+        $table->delete();
+
+        if ($request->type == 'point')
+            $table = PointTeam::create([
+                'check_point_id' => $request->point,
+                'work_team_id' => $request->id
+            ]);
+
+        else
+            $table = HealthTeam::create([
+                'work_team_id' =>$request->id,
+                'quarantine_area_id' =>  $request->point
+            ]);
+
+
+        return response(['status' => 'success'], 200);
 
 
     }

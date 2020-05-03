@@ -84,8 +84,8 @@
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
-                                <p class="m-b-5">  {{trans('menu.zones')}}</p>
-                                <h4 class="m-b-0">{{$zones}}</h4>
+                                <p class="m-b-5">  {{trans('menu.governments')}}</p>
+                                <h4 class="m-b-0">{{$governments}}</h4>
                             </div>
                             <div class="col col-auto text-right">
                                 <i class="fa fa-adn f-50 text-c-yellow"></i>
@@ -94,6 +94,71 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-green text-white" style="background: #b0c4de;">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5">  {{trans('menu.district')}}</p>
+                                <h4 class="m-b-0">{{$district}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-adn f-50 text-c-yellow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-green text-white" style="background: #b0c4de;">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5">  {{trans('menu.sub_dis')}}</p>
+                                <h4 class="m-b-0">{{$sub_dis}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-adn f-50 text-c-yellow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-green text-white" style="background: #b0c4de;">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5">  {{trans('menu.hara_vil')}}</p>
+                                <h4 class="m-b-0">{{$hara_vil}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-adn f-50 text-c-yellow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-green text-white" style="background: #b0c4de;">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5">  {{trans('menu.sub_hara_vil')}}</p>
+                                <h4 class="m-b-0">{{$sub_hara_vil}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-adn f-50 text-c-yellow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-xl-4 col-md-6">
                 <div class="card bg-c-orenge text-white" style="background: #b0c4de">
                     <div class="card-block">
@@ -223,7 +288,7 @@
             </div>
 
 
-            <div class="col-xl-6 col-md-6">
+            <div class="col-xl-4 col-md-6">
                 <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">
@@ -239,7 +304,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-6 col-md-6">
+            <div class="col-xl-4 col-md-6">
                 <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
                     <div class="card-block">
                         <div class="row align-items-center">

@@ -37,8 +37,8 @@ class PointTeamDataTable extends DataTable
             $data = DB::table('point_teams')
                 ->join('check_points', 'point_teams.check_point_id', '=', 'check_points.id')
                 ->join('work_teams', 'point_teams.work_team_id', '=', 'work_teams.id')
-                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->select('work_teams.*', 'check_points.name as check_point_name',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
@@ -48,8 +48,8 @@ class PointTeamDataTable extends DataTable
             $data = DB::table('health_teams')
                 ->join('quarantine_areas', 'health_teams.quarantine_area_id', '=', 'quarantine_areas.id')
                 ->join('work_teams', 'health_teams.work_team_id', '=', 'work_teams.id')
-                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->select('work_teams.*', 'quarantine_areas.name as quarantine_area_name',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )

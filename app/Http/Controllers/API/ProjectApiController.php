@@ -5,8 +5,11 @@ namespace App\Http\Controllers\API;
 
 use App\BlockedPerson;
 use App\CheckPoint;
+use App\HaraVil;
 use App\QuarantineArea;
 use App\QuarantineAreaType;
+use App\SubDi;
+use App\SubHaraVil;
 use App\TempSave;
 use App\User;
 use App\Zone;
@@ -67,7 +70,7 @@ class ProjectApiController extends BaseAPIController
             $c = 0;
             foreach ($array as $temp) {
                 $c++;
-                BlockedPerson::create(array_merge($temp), ['created_by' => 1]);
+                BlockedPerson::create(array_merge($temp), ['created_by' => auth()->user()->id]);
             }
 
             return $this->sendResponse([], 'تم حفظ بيانات ' . $c . ' شخص  بنجاح  ');
@@ -105,7 +108,7 @@ class ProjectApiController extends BaseAPIController
     public function getBlockPerson(Request $request)
     {
         try {
-            $data = BlockedPerson::find($request->id);
+            $data = BlockedPerson::find($request->code);
             $messsage = 'بيانات المحجور    ' . $data->name;
 
             return $this->sendResponse($data, $messsage);
@@ -119,20 +122,27 @@ class ProjectApiController extends BaseAPIController
     public function getAllZones(Request $request)
     {
         try {
-            if ($request->id == 'all') {
-                $data = Zone::where('parent', '>', 0)->get();
-                $messsage = 'بيانات جميع مديريات  الــيمن ';
-            } else if ($request->id == 0) {
-                $data = Zone::all()->where('parent', '=', 0);
-                $messsage = 'بيانات جميع محافظات  الــيمن ';
 
-            } else {
-                $government = Zone::find($request->id);//
-                $messsage = 'بيانات جميع   مديريات محافظة  ' . $government->name_ar;
-                $data = Zone::all()->where('parent', '=', $request->id);
+            switch ($request->type) {
+
+                case 'district':
+                    $data = Zone::all()->where('type', 'like', $request->type)->where('parent', '>', 0);
+                    break;
+                case 'hara_vil':
+                    $data = HaraVil::where('type', 'like', $request->type)->where('parent', '>', 0)->get();
+                    break;
+                case 'sub_hara_vil':
+                    $data = SubHaraVil::where('type', 'like', $request->type)->where('parent', '>', 0)->get();
+                    break;
+                case 'sub_dis':
+                    $data = SubDi::where('type', 'like', $request->type)->where('parent', '>', 0)->get();
+                    break;
+                    default:
+                    $data = Zone::all()->where('type', 'like', $request->type)->where('parent', 0);
+                    break;
             }
 
-            return $this->sendResponse($data, $messsage);
+            return $this->sendResponse($data, '');
         } catch (Exception $ex) {
             return $ex->getMessage();
         }
@@ -141,7 +151,7 @@ class ProjectApiController extends BaseAPIController
     public function getAllUsers(Request $request)
     {
         try {
-            $data = User::where('id', '>', 0)->get(['id','email','password','username','avatar','work_team_id','status','deleted_by','created_by']);
+            $data = User::where('id', '>', 0)->get(['id', 'email', 'password', 'username', 'avatar', 'work_team_id', 'status', 'deleted_by', 'created_by']);
             $messsage = 'بيانات جميع   المستخدمين  ';
 
 
@@ -214,8 +224,8 @@ class ProjectApiController extends BaseAPIController
     function getAllBlockPersonsPerCenter(Request $request)
     {
         try {
-            $data = BlockedPerson::where('quarantine_area_id', '=', $request->id)->get();
-            $messsage = 'بيانات جميع المحجورين  للمركز  رقم  ' . $request->id;
+            $data = BlockedPerson::where('quarantine_area_id', '=', $request->code)->get();
+            $messsage = 'بيانات جميع المحجورين  للمركز  رقم  ' . $request->code;
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {

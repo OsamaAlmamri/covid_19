@@ -31,11 +31,15 @@ class QuarantineAreasDataTable extends DataTable
             ->addColumn('status', 'quarantines.btn.status')
             ->addColumn('show', 'quarantines.btn.show')
             ->addColumn('team', 'quarantines.btn.team')
+            ->addColumn('check_block_peoples', 'quarantines.btn.check_block_peoples')
+            ->addColumn('runAway', 'quarantines.btn.runAway_peoples')
             ->rawColumns([
                 'manage',
                 'manageDeleted',
                 'status',
                 'show',
+                'check_block_peoples',
+                'runAway',
                 'team',
             ]);
     }
@@ -46,8 +50,8 @@ class QuarantineAreasDataTable extends DataTable
         if ($this->type != "deleted")
             $data = DB::table('quarantine_areas')
                 ->leftJoin('work_teams', 'quarantine_areas.manager_id', '=', 'work_teams.id')
-                ->leftJoin('zones as Zone', 'quarantine_areas.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'quarantine_areas.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->leftJoin('quarantine_area_types', 'quarantine_areas.quarantine_area_type_id', '=', 'quarantine_area_types.id')
                 ->select('quarantine_areas.*',
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
@@ -60,8 +64,8 @@ class QuarantineAreasDataTable extends DataTable
             $data = DB::table('quarantine_areas')
                 ->leftJoin('users', 'quarantines.deleted_by', '=', 'users.id')
                 ->leftJoin('work_teams', 'quarantine_areas.manager_id', '=', 'work_teams.id')
-                ->leftJoin('zones as Zone', 'quarantine_areas.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'quarantine_areas.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->leftJoin('quarantine_area_types', 'quarantine_areas.quarantine_area_type_id', '=', 'quarantine_area_types.id')
                 ->select('quarantine_areas.*',
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
@@ -130,6 +134,20 @@ class QuarantineAreasDataTable extends DataTable
         ]] : [];
 
 
+        $btn_check_block_peoples = (Auth::user()->can('active quarantines') == true) ? [[
+            'name' => 'check_block_peoples',
+            'data' => 'check_block_peoples',
+            'title' => trans('menu.check_block_peoples'),
+        ]] : [];
+
+
+        $btn_runAway = (Auth::user()->can('active quarantines') == true) ? [[
+            'name' => 'runAway',
+            'data' => 'runAway',
+            'title' => trans('menu.runAway_block_peoples'),
+        ]] : [];
+
+
         $btnManager = ($this->type != 'deleted') ? [
             [
                 'name' => 'manager_name',
@@ -183,7 +201,9 @@ class QuarantineAreasDataTable extends DataTable
                     'title' => trans('dataTable.created_at'),
                 ],
             ],
-                $btnActive,
+//                $btnActive,
+                $btn_check_block_peoples,
+                $btn_runAway,
                 [
 //                    [
 //                        'name' => 'show',

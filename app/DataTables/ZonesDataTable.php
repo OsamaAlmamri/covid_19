@@ -45,7 +45,7 @@ class ZonesDataTable extends DataTable
     {
         if ($this->type != "deleted")
             $data = DB::table('zones')
-                ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.code')
                 ->select('zones.*', 'ParentZone.name_ar as p_name_ar', 'ParentZone.name_en as p_name_en')
                 ->WhereNull('zones.deleted_at')
                 ->where('zones.parent', '=', $this->zone)
@@ -53,7 +53,7 @@ class ZonesDataTable extends DataTable
         else
             $data = DB::table('zones')
                 ->leftJoin('admins', 'zones.deleted_by', '=', 'admins.id')
-                ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.code')
                 ->select('zones.*', 'ParentZone.name_ar as p_name_ar', 'ParentZone.name_en as p_name_en', 'admins.name as deleted_by_name')
                 ->WhereNotNull('zones.deleted_at')
                 ->where('zones.parent', '=', $this->zone)

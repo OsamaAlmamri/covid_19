@@ -40,12 +40,18 @@ return [
     'verifyPhone' => 'التاكد من  التلفون ',
     'verifyCode' => 'تحقق من الكود  ',
 
+    'id_front_photo'=> ' صورة امامية للهوية',
+    'id_back_photo'=> ' صورة خلفية للهوية',
 
     'add' => [
         'user' => 'اضافة مستخدم جديد',
         'quarantine' => 'اضافة مركز حجر جديد',
         'check_point' => 'اضافة نقطة تفتيش جديد',
         'workTeam' => 'اضافة  عامل جديد',
+        'quarantineType' => '  اضافة نوع مركز حجر جديد ',
+        'block_person' => ' اضافة شخص محجور ',
+
+
 
     ],
 
@@ -55,6 +61,9 @@ return [
         'quarantine' => 'تعديل بيانات المركز حجر',
         'check_point' => 'تعديل بيانات نقطة التفتيش ',
         'workTeam' => 'تعديل العامل ',
+        'quarantineType' => '  تعديل بيانات مركز الحجر  ',
+        'block_person' => ' تعديل بيانات الشخص محجور ',
+
 
 
     ],
@@ -68,6 +77,7 @@ return [
         'workTeam' => ' بيانات فريق العمل ',
 
         'profile' => ' البيانات الشخصية',
+        'quarantineType' => ' بيانات نوع مركز الحجر',
     ],
 
     'quarantines' => [

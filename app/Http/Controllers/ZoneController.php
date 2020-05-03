@@ -46,18 +46,20 @@ class ZoneController extends Controller
     {
 //       return $request['id'];
 
-        if($request['id']!='all')
-        $allZones = Zone::all()->where('parent', $request['id']);
+        if ($request['id'] != 'all')
+            $allZones = Zone::all()->where('parent', $request['id'])
+                ->where('type', 'like', $request->zone_type);
         else
-            $allZones = Zone::all()->where('parent','>', 0);
+            $allZones = Zone::all()->where('parent', '>', 0)
+                ->where('type', 'like', $request->zone_type);
 
         $zones = '';
-        if (isset($request['type']) and  $request['type']=='all')
+        if (isset($request['type']) and $request['type'] == 'all')
             $zones .= '<option value="all">all</option>';
 
         if ($allZones != null)
             foreach ($allZones as $zone) {
-                $zones .= '<option value="' . $zone->id . '"> ' . $zone->name_ar . '</option>';
+                $zones .= '<option value="' . $zone->code . '"> ' . $zone->name_ar . '</option>';
 
             }
         return response(['data' => $zones], 200);

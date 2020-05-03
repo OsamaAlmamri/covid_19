@@ -45,6 +45,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('getAllQuarantines', 'API\ProjectApiController@getAllQuarantines');//
     Route::post('getAllCheckPoint', 'API\ProjectApiController@getAllCheckPoint');//
     Route::post('getAllBlockPersonsPerCenter', 'API\ProjectApiController@getAllBlockPersonsPerCenter');//
+    Route::post('getMyAddBlockPerson', 'API\ProjectApiController@getMyAddBlockPerson');//
+
 
 
 

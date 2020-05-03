@@ -39,8 +39,8 @@ class WorkTeamToAssignDataTable extends DataTable
     {
         if ($this->type != "deleted")
             $data = DB::table('work_teams')
-                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->select('work_teams.*',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
@@ -49,8 +49,8 @@ class WorkTeamToAssignDataTable extends DataTable
         else
             $data = DB::table('work_teams')
                 ->leftJoin('users', 'work_teams.deleted_by', '=', 'users.id')
-                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->select('work_teams.*',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name', 'users.username as deleted_by_name'
                 )

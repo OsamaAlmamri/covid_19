@@ -1,71 +1,5 @@
 [
     {
-        "name": "aloha/twilio",
-        "version": "4.0.3",
-        "version_normalized": "4.0.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/aloha/laravel-twilio.git",
-            "reference": "6154c0e18f9cacdc765c41b7c5c5e6de2618cc5a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/aloha/laravel-twilio/zipball/6154c0e18f9cacdc765c41b7c5c5e6de2618cc5a",
-            "reference": "6154c0e18f9cacdc765c41b7c5c5e6de2618cc5a",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.0",
-            "twilio/sdk": "5.*"
-        },
-        "require-dev": {
-            "friendsofphp/php-cs-fixer": "^1.9",
-            "illuminate/console": "~4||~5",
-            "illuminate/support": "~4||~5",
-            "phpunit/phpunit": "~4.5"
-        },
-        "time": "2019-03-18T14:10:23+00:00",
-        "type": "library",
-        "extra": {
-            "laravel": {
-                "providers": [
-                    "Aloha\\Twilio\\Support\\Laravel\\ServiceProvider"
-                ],
-                "aliases": {
-                    "Twilio": "Aloha\\Twilio\\Support\\Laravel\\Facade"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Aloha\\Twilio\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Hannes Van De Vreken",
-                "email": "vandevreken.hannes@gmail.com"
-            },
-            {
-                "name": "Travis J Ryan",
-                "email": "travisjryan@gmail.com"
-            }
-        ],
-        "description": "Twilio API for Laravel",
-        "homepage": "https://github.com/aloha/laravel-twilio",
-        "keywords": [
-            "ivr",
-            "laravel",
-            "sms",
-            "twilio"
-        ]
-    },
-    {
         "name": "anlutro/l4-settings",
         "version": "v0.10.0",
         "version_normalized": "0.10.0.0",
@@ -127,64 +61,6 @@
             }
         ],
         "description": "Persistent settings in Laravel."
-    },
-    {
-        "name": "barryvdh/laravel-dompdf",
-        "version": "v0.8.6",
-        "version_normalized": "0.8.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/barryvdh/laravel-dompdf.git",
-            "reference": "d7108f78cf5254a2d8c224542967f133e5a6d4e8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/d7108f78cf5254a2d8c224542967f133e5a6d4e8",
-            "reference": "d7108f78cf5254a2d8c224542967f133e5a6d4e8",
-            "shasum": ""
-        },
-        "require": {
-            "dompdf/dompdf": "^0.8",
-            "illuminate/support": "^5.5|^6|^7",
-            "php": ">=7"
-        },
-        "time": "2020-02-25T20:44:34+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "0.8-dev"
-            },
-            "laravel": {
-                "providers": [
-                    "Barryvdh\\DomPDF\\ServiceProvider"
-                ],
-                "aliases": {
-                    "PDF": "Barryvdh\\DomPDF\\Facade"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Barryvdh\\DomPDF\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Barry vd. Heuvel",
-                "email": "barryvdh@gmail.com"
-            }
-        ],
-        "description": "A DOMPDF Wrapper for Laravel",
-        "keywords": [
-            "dompdf",
-            "laravel",
-            "pdf"
-        ]
     },
     {
         "name": "defuse/php-encryption",
@@ -476,74 +352,6 @@
             "parser",
             "php"
         ]
-    },
-    {
-        "name": "dompdf/dompdf",
-        "version": "v0.8.5",
-        "version_normalized": "0.8.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/dompdf/dompdf.git",
-            "reference": "6782abfc090b132134cd6cea0ec6d76f0fce2c56"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/dompdf/dompdf/zipball/6782abfc090b132134cd6cea0ec6d76f0fce2c56",
-            "reference": "6782abfc090b132134cd6cea0ec6d76f0fce2c56",
-            "shasum": ""
-        },
-        "require": {
-            "ext-dom": "*",
-            "ext-mbstring": "*",
-            "phenx/php-font-lib": "^0.5.1",
-            "phenx/php-svg-lib": "^0.3.3",
-            "php": "^7.1"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^7.5",
-            "squizlabs/php_codesniffer": "^3.5"
-        },
-        "suggest": {
-            "ext-gd": "Needed to process images",
-            "ext-gmagick": "Improves image processing performance",
-            "ext-imagick": "Improves image processing performance"
-        },
-        "time": "2020-02-20T03:52:51+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-develop": "0.7-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Dompdf\\": "src/"
-            },
-            "classmap": [
-                "lib/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "LGPL-2.1"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Ménager",
-                "email": "fabien.menager@gmail.com"
-            },
-            {
-                "name": "Brian Sweeney",
-                "email": "eclecticgeek@gmail.com"
-            },
-            {
-                "name": "Gabriel Bull",
-                "email": "me@gabrielbull.com"
-            }
-        ],
-        "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
-        "homepage": "https://github.com/dompdf/dompdf"
     },
     {
         "name": "dragonmantank/cron-expression",
@@ -893,60 +701,6 @@
         ]
     },
     {
-        "name": "fig/http-message-util",
-        "version": "1.1.4",
-        "version_normalized": "1.1.4.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/http-message-util.git",
-            "reference": "3242caa9da7221a304b8f84eb9eaddae0a7cf422"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/http-message-util/zipball/3242caa9da7221a304b8f84eb9eaddae0a7cf422",
-            "reference": "3242caa9da7221a304b8f84eb9eaddae0a7cf422",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.3 || ^7.0"
-        },
-        "suggest": {
-            "psr/http-message": "The package containing the PSR-7 interfaces"
-        },
-        "time": "2020-02-05T20:36:27+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.1.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Fig\\Http\\Message\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Utility classes and constants for use with PSR-7 (psr/http-message)",
-        "keywords": [
-            "http",
-            "http-message",
-            "psr",
-            "psr-7",
-            "request",
-            "response"
-        ]
-    },
-    {
         "name": "filp/whoops",
         "version": "2.7.1",
         "version_normalized": "2.7.1.0",
@@ -1112,341 +866,6 @@
             "faker",
             "fixtures"
         ]
-    },
-    {
-        "name": "giggsey/libphonenumber-for-php",
-        "version": "8.12.2",
-        "version_normalized": "8.12.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-            "reference": "030682bc4fcdc0c6fb85b68aec2ffeff6978768a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/030682bc4fcdc0c6fb85b68aec2ffeff6978768a",
-            "reference": "030682bc4fcdc0c6fb85b68aec2ffeff6978768a",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mbstring": "*",
-            "giggsey/locale": "^1.7",
-            "php": ">=5.3.2"
-        },
-        "require-dev": {
-            "pear/pear-core-minimal": "^1.9",
-            "pear/pear_exception": "^1.0",
-            "pear/versioncontrol_git": "^0.5",
-            "phing/phing": "^2.7",
-            "php-coveralls/php-coveralls": "^1.0|^2.0",
-            "phpunit/phpunit": "^4.8.36|^5.0",
-            "symfony/console": "^2.8|^3.0"
-        },
-        "time": "2020-04-22T19:37:04+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "8.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "libphonenumber\\": "src/"
-            },
-            "exclude-from-classmap": [
-                "/src/data/",
-                "/src/carrier/data/",
-                "/src/geocoding/data/",
-                "/src/timezone/data/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "Joshua Gigg",
-                "email": "giggsey@gmail.com",
-                "homepage": "https://giggsey.com/"
-            }
-        ],
-        "description": "PHP Port of Google's libphonenumber",
-        "homepage": "https://github.com/giggsey/libphonenumber-for-php",
-        "keywords": [
-            "geocoding",
-            "geolocation",
-            "libphonenumber",
-            "mobile",
-            "phonenumber",
-            "validation"
-        ]
-    },
-    {
-        "name": "giggsey/locale",
-        "version": "1.8",
-        "version_normalized": "1.8.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/giggsey/Locale.git",
-            "reference": "85a1b251bad11c986fec2a051b10d4b80a5caa1b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/giggsey/Locale/zipball/85a1b251bad11c986fec2a051b10d4b80a5caa1b",
-            "reference": "85a1b251bad11c986fec2a051b10d4b80a5caa1b",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2"
-        },
-        "require-dev": {
-            "pear/pear-core-minimal": "^1.9",
-            "pear/pear_exception": "^1.0",
-            "pear/versioncontrol_git": "^0.5",
-            "phing/phing": "~2.7",
-            "php-coveralls/php-coveralls": "^1.0|^2.0",
-            "phpunit/phpunit": "^4.8|^5.0",
-            "symfony/console": "^2.8|^3.0|^4.0",
-            "symfony/filesystem": "^2.8|^3.0|^4.0",
-            "symfony/finder": "^2.8|^3.0|^4.0",
-            "symfony/process": "^2.8|^3.0|^4.0"
-        },
-        "time": "2019-10-09T18:53:14+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Giggsey\\Locale\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Joshua Gigg",
-                "email": "giggsey@gmail.com",
-                "homepage": "http://giggsey.com/"
-            }
-        ],
-        "description": "Locale functions required by libphonenumber-for-php"
-    },
-    {
-        "name": "google/auth",
-        "version": "v1.8.0",
-        "version_normalized": "1.8.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/googleapis/google-auth-library-php.git",
-            "reference": "c7b295feb248f138f462a1e6b7d635e4244204c5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/c7b295feb248f138f462a1e6b7d635e4244204c5",
-            "reference": "c7b295feb248f138f462a1e6b7d635e4244204c5",
-            "shasum": ""
-        },
-        "require": {
-            "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
-            "guzzlehttp/guzzle": "~5.3.1|~6.0",
-            "guzzlehttp/psr7": "^1.2",
-            "php": ">=5.4",
-            "psr/cache": "^1.0",
-            "psr/http-message": "^1.0"
-        },
-        "require-dev": {
-            "friendsofphp/php-cs-fixer": "^1.11",
-            "guzzlehttp/promises": "0.1.1|^1.3",
-            "kelvinmo/simplejwt": "^0.2.5",
-            "phpseclib/phpseclib": "^2",
-            "phpunit/phpunit": "^4.8.36|^5.7",
-            "sebastian/comparator": ">=1.2.3"
-        },
-        "suggest": {
-            "phpseclib/phpseclib": "May be used in place of OpenSSL for signing strings or for token management. Please require version ^2."
-        },
-        "time": "2020-03-26T19:47:36+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Google\\Auth\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "description": "Google Auth Library for PHP",
-        "homepage": "http://github.com/google/google-auth-library-php",
-        "keywords": [
-            "Authentication",
-            "google",
-            "oauth2"
-        ]
-    },
-    {
-        "name": "google/cloud-core",
-        "version": "v1.36.2",
-        "version_normalized": "1.36.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/googleapis/google-cloud-php-core.git",
-            "reference": "4ae49980a6c32758824838ca96205a1b22c8fc7a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-cloud-php-core/zipball/4ae49980a6c32758824838ca96205a1b22c8fc7a",
-            "reference": "4ae49980a6c32758824838ca96205a1b22c8fc7a",
-            "shasum": ""
-        },
-        "require": {
-            "google/auth": "^1.6",
-            "guzzlehttp/guzzle": "^5.3|^6.0",
-            "guzzlehttp/promises": "^1.3",
-            "guzzlehttp/psr7": "^1.2",
-            "monolog/monolog": "^1.1|^2.0",
-            "php": ">=5.5",
-            "psr/http-message": "1.0.*",
-            "rize/uri-template": "~0.3"
-        },
-        "require-dev": {
-            "erusev/parsedown": "^1.6",
-            "google/common-protos": "^1.0",
-            "google/gax": "^1.1",
-            "opis/closure": "^3",
-            "phpdocumentor/reflection": "^3.0",
-            "phpunit/phpunit": "^4.8|^5.0",
-            "squizlabs/php_codesniffer": "2.*"
-        },
-        "suggest": {
-            "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
-            "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9"
-        },
-        "time": "2020-04-22T21:58:25+00:00",
-        "bin": [
-            "bin/google-cloud-batch"
-        ],
-        "type": "library",
-        "extra": {
-            "component": {
-                "id": "cloud-core",
-                "target": "googleapis/google-cloud-php-core.git",
-                "path": "Core",
-                "entry": "src/ServiceBuilder.php"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Google\\Cloud\\Core\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "description": "Google Cloud PHP shared dependency, providing functionality useful to all components."
-    },
-    {
-        "name": "google/cloud-storage",
-        "version": "v1.20.1",
-        "version_normalized": "1.20.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/googleapis/google-cloud-php-storage.git",
-            "reference": "876b5563555014563a3d8b2842674d95dacf95e1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/876b5563555014563a3d8b2842674d95dacf95e1",
-            "reference": "876b5563555014563a3d8b2842674d95dacf95e1",
-            "shasum": ""
-        },
-        "require": {
-            "google/cloud-core": "^1.35",
-            "google/crc32": "^0.1.0"
-        },
-        "require-dev": {
-            "erusev/parsedown": "^1.6",
-            "google/cloud-pubsub": "^1.0",
-            "phpdocumentor/reflection": "^3.0",
-            "phpseclib/phpseclib": "^2",
-            "phpunit/phpunit": "^4.8|^5.0",
-            "squizlabs/php_codesniffer": "2.*"
-        },
-        "suggest": {
-            "google/cloud-pubsub": "May be used to register a topic to receive bucket notifications.",
-            "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
-        },
-        "time": "2020-04-07T20:58:05+00:00",
-        "type": "library",
-        "extra": {
-            "component": {
-                "id": "cloud-storage",
-                "target": "googleapis/google-cloud-php-storage.git",
-                "path": "Storage",
-                "entry": "src/StorageClient.php"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Google\\Cloud\\Storage\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "description": "Cloud Storage Client for PHP"
-    },
-    {
-        "name": "google/crc32",
-        "version": "v0.1.0",
-        "version_normalized": "0.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/google/php-crc32.git",
-            "reference": "a8525f0dea6fca1893e1bae2f6e804c5f7d007fb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/google/php-crc32/zipball/a8525f0dea6fca1893e1bae2f6e804c5f7d007fb",
-            "reference": "a8525f0dea6fca1893e1bae2f6e804c5f7d007fb",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4"
-        },
-        "require-dev": {
-            "friendsofphp/php-cs-fixer": "^1.13 || v2.14.2",
-            "paragonie/random_compat": ">=2",
-            "phpunit/phpunit": "^4"
-        },
-        "time": "2019-05-09T06:24:58+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Google\\CRC32\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "authors": [
-            {
-                "name": "Andrew Brampton",
-                "email": "bramp@google.com"
-            }
-        ],
-        "description": "Various CRC32 implementations",
-        "homepage": "https://github.com/google/php-crc32"
     },
     {
         "name": "guzzlehttp/guzzle",
@@ -1877,322 +1296,6 @@
         "abandoned": "php-parallel-lint/php-console-highlighter"
     },
     {
-        "name": "kreait/clock",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/kreait/clock-php.git",
-            "reference": "7bc9a0c78946393a0e1ea52fc527e14779cac47c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/kreait/clock-php/zipball/7bc9a0c78946393a0e1ea52fc527e14779cac47c",
-            "reference": "7bc9a0c78946393a0e1ea52fc527e14779cac47c",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^7.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^6.5.14"
-        },
-        "time": "2019-08-26T15:59:46+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Kreait\\Clock\\": "src/Clock"
-            },
-            "files": [
-                "src/Clock.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jérôme Gamez",
-                "email": "jerome@gamez.name"
-            }
-        ],
-        "description": "A PHP 7.0 compatible clock abstraction"
-    },
-    {
-        "name": "kreait/firebase-php",
-        "version": "4.44.0",
-        "version_normalized": "4.44.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/kreait/firebase-php.git",
-            "reference": "61264eddd4ff5d9d6726318dbcabce39decea1e0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/kreait/firebase-php/zipball/61264eddd4ff5d9d6726318dbcabce39decea1e0",
-            "reference": "61264eddd4ff5d9d6726318dbcabce39decea1e0",
-            "shasum": ""
-        },
-        "require": {
-            "ext-ctype": "*",
-            "ext-json": "*",
-            "ext-mbstring": "*",
-            "ext-openssl": "*",
-            "giggsey/libphonenumber-for-php": "^8.9",
-            "google/auth": "^1.8",
-            "google/cloud-core": "^1.36",
-            "google/cloud-storage": "^1.14",
-            "guzzlehttp/guzzle": "^6.2.1|^7.0@beta",
-            "kreait/clock": "^1.0.1",
-            "kreait/firebase-tokens": "^1.10",
-            "kreait/gcp-metadata": "^1.1.0",
-            "lcobucci/jwt": "^3.3.1",
-            "mtdowling/jmespath.php": "^2.3",
-            "php": "^7.0",
-            "psr/cache": "^1.0",
-            "psr/simple-cache": "^1.0",
-            "riverline/multipart-parser": "^2.0",
-            "superbalist/flysystem-google-storage": "^7.0"
-        },
-        "require-dev": {
-            "friendsofphp/php-cs-fixer": "^2.16",
-            "google/cloud-firestore": "^1.11",
-            "jangregor/phpstan-prophecy": "^0.1.2|^0.2|^0.3|^0.4.2",
-            "phpstan/phpstan-phpunit": "^0.9.4|^0.11.2",
-            "phpunit/phpunit": "^6.5.14|^7.5.17",
-            "symfony/var-dumper": "^3.4|^4.4|^5.0"
-        },
-        "suggest": {
-            "google/cloud-firestore": "^1.0 to use the Firestore component"
-        },
-        "time": "2020-04-05T22:05:00+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.x-dev",
-                "dev-4.x": "4.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Kreait\\Firebase\\": "src/Firebase"
-            },
-            "files": [
-                "src/Firebase.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jérôme Gamez",
-                "homepage": "https://github.com/jeromegamez"
-            }
-        ],
-        "description": "Firebase Admin SDK",
-        "homepage": "https://github.com/kreait/firebase-php",
-        "keywords": [
-            "api",
-            "database",
-            "firebase",
-            "google",
-            "sdk"
-        ]
-    },
-    {
-        "name": "kreait/firebase-tokens",
-        "version": "1.10.0",
-        "version_normalized": "1.10.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/kreait/firebase-tokens-php.git",
-            "reference": "fb4449094a7ac27b26269a388bb21cfb35f90d3d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/kreait/firebase-tokens-php/zipball/fb4449094a7ac27b26269a388bb21cfb35f90d3d",
-            "reference": "fb4449094a7ac27b26269a388bb21cfb35f90d3d",
-            "shasum": ""
-        },
-        "require": {
-            "ext-json": "*",
-            "ext-openssl": "*",
-            "fig/http-message-util": "^1.1",
-            "guzzlehttp/guzzle": "^6.2.1|^7.0@beta",
-            "kreait/clock": "^1.0.1",
-            "lcobucci/jwt": "^3.2",
-            "php": "^7.0",
-            "psr/cache": "^1.0",
-            "psr/simple-cache": "^1.0"
-        },
-        "require-dev": {
-            "firebase/php-jwt": "^5.0",
-            "friendsofphp/php-cs-fixer": "^2.16",
-            "phpstan/phpstan-phpunit": "^0.9.4|^0.11.2",
-            "phpunit/phpunit": "^6.5.14|^7.5.17",
-            "symfony/cache": "^3.4|^4.4|^5.0",
-            "symfony/var-dumper": "^3.4|^4.4|^5.0"
-        },
-        "suggest": {
-            "firebase/php-jwt": "^5.0 can be used to create and parse tokens",
-            "guzzlehttp/guzzle": "^6.2.1|^7.0 can be used as an HTTP handler",
-            "lcobucci/jwt": "^3.2 can be used to create and parse tokens",
-            "psr/cache-implementation": "to cache fetched remote public keys",
-            "psr/simple-cache-implementation": "to cache fetched remote public keys"
-        },
-        "time": "2020-01-14T16:43:39+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Kreait\\Firebase\\JWT\\": "src/JWT",
-                "Firebase\\Auth\\Token\\": "src/Firebase/Auth/Token"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jérôme Gamez",
-                "homepage": "https://github.com/jeromegamez"
-            }
-        ],
-        "description": "A library to work with Firebase tokens",
-        "homepage": "https://github.com/kreait/firebase-token-php",
-        "keywords": [
-            "Authentication",
-            "auth",
-            "firebase",
-            "google",
-            "token"
-        ]
-    },
-    {
-        "name": "kreait/gcp-metadata",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/kreait/gcp-metadata-php.git",
-            "reference": "7ab206ba1d7b59a502be07e5ec2df617a7b1ba38"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/kreait/gcp-metadata-php/zipball/7ab206ba1d7b59a502be07e5ec2df617a7b1ba38",
-            "reference": "7ab206ba1d7b59a502be07e5ec2df617a7b1ba38",
-            "shasum": ""
-        },
-        "require": {
-            "guzzlehttp/guzzle": "^6.0",
-            "php": "^7.0",
-            "psr/http-message": "^1.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^6.5.14|^7.5.19"
-        },
-        "time": "2020-03-19T18:31:55+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Kreait\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jérôme Gamez",
-                "email": "jerome@gamez.name"
-            }
-        ],
-        "description": "Get the metadata from a Google Cloud Platform environment.",
-        "keywords": [
-            "gce",
-            "gcp",
-            "google",
-            "google-cloud",
-            "google-cloud-engine",
-            "google-cloud-platform"
-        ]
-    },
-    {
-        "name": "kreait/laravel-firebase",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/kreait/laravel-firebase.git",
-            "reference": "670361d36a6d030797763b1d26d979025a1e0417"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/kreait/laravel-firebase/zipball/670361d36a6d030797763b1d26d979025a1e0417",
-            "reference": "670361d36a6d030797763b1d26d979025a1e0417",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "^5.8|^6.0|^7.0",
-            "illuminate/support": "^5.8|^6.0|^7.0",
-            "kreait/firebase-php": "^4.40.1"
-        },
-        "require-dev": {
-            "laravel/lumen-framework": "^5.8|^6.0|^7.0"
-        },
-        "time": "2020-02-29T11:43:39+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.x-dev"
-            },
-            "laravel": {
-                "providers": [
-                    "Kreait\\Laravel\\Firebase\\ServiceProvider"
-                ],
-                "aliases": {
-                    "FirebaseAuth": "Kreait\\Laravel\\Firebase\\Facades\\FirebaseAuth",
-                    "FirebaseDatabase": "Kreait\\Laravel\\Firebase\\Facades\\FirebaseDatabase",
-                    "FirebaseDynamicLinks": "Kreait\\Laravel\\Firebase\\Facades\\FirebaseDynamicLinks",
-                    "FirebaseMessaging": "Kreait\\Laravel\\Firebase\\Facades\\FirebaseMessaging",
-                    "FirebaseRemoteConfig": "Kreait\\Laravel\\Firebase\\Facades\\FirebaseRemoteConfig",
-                    "FirebaseStorage": "Kreait\\Laravel\\Firebase\\Facades\\FirebaseStorage"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Kreait\\Laravel\\Firebase\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jérôme Gamez",
-                "email": "jerome@gamez.name"
-            }
-        ],
-        "description": "A Laravel package for the Firebase PHP Admin SDK",
-        "keywords": [
-            "FCM",
-            "firebase",
-            "gcm",
-            "laravel"
-        ]
-    },
-    {
         "name": "laminas/laminas-diactoros",
         "version": "2.3.0",
         "version_normalized": "2.3.0.0",
@@ -2337,17 +1440,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v6.18.10",
-        "version_normalized": "6.18.10.0",
+        "version": "v6.18.11",
+        "version_normalized": "6.18.11.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "9177744ccdd8d5db970fdff2383fe89c2e94aabe"
+            "reference": "73bc10bb23aab7539c8ffae6d5dc3c4b277de557"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/9177744ccdd8d5db970fdff2383fe89c2e94aabe",
-            "reference": "9177744ccdd8d5db970fdff2383fe89c2e94aabe",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/73bc10bb23aab7539c8ffae6d5dc3c4b277de557",
+            "reference": "73bc10bb23aab7539c8ffae6d5dc3c4b277de557",
             "shasum": ""
         },
         "require": {
@@ -2449,7 +1552,7 @@
             "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.2).",
             "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
         },
-        "time": "2020-04-21T18:53:10+00:00",
+        "time": "2020-04-28T15:18:58+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3143,17 +2246,17 @@
     },
     {
         "name": "league/oauth2-server",
-        "version": "8.0.0",
-        "version_normalized": "8.0.0.0",
+        "version": "8.1.0",
+        "version_normalized": "8.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/oauth2-server.git",
-            "reference": "e1dc4d708c56fcfa205be4bb1862b6d525b4baac"
+            "reference": "b53d324f774eb782250f7d8973811a33a75ecdef"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/e1dc4d708c56fcfa205be4bb1862b6d525b4baac",
-            "reference": "e1dc4d708c56fcfa205be4bb1862b6d525b4baac",
+            "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/b53d324f774eb782250f7d8973811a33a75ecdef",
+            "reference": "b53d324f774eb782250f7d8973811a33a75ecdef",
             "shasum": ""
         },
         "require": {
@@ -3162,7 +2265,7 @@
             "ext-openssl": "*",
             "lcobucci/jwt": "^3.3.1",
             "league/event": "^2.2",
-            "php": ">=7.1.0",
+            "php": ">=7.2.0",
             "psr/http-message": "^1.0.1"
         },
         "replace": {
@@ -3170,13 +2273,13 @@
             "lncd/oauth2": "*"
         },
         "require-dev": {
-            "phpstan/phpstan": "^0.11.8",
+            "laminas/laminas-diactoros": "^2.3.0",
+            "phpstan/phpstan": "^0.11.19",
             "phpstan/phpstan-phpunit": "^0.11.2",
-            "phpunit/phpunit": "^7.5.13 || ^8.2.3",
-            "roave/security-advisories": "dev-master",
-            "zendframework/zend-diactoros": "^2.1.2"
+            "phpunit/phpunit": "^8.5.4 || ^9.1.3",
+            "roave/security-advisories": "dev-master"
         },
-        "time": "2019-07-13T18:58:26+00:00",
+        "time": "2020-04-29T22:14:38+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -3608,65 +2711,6 @@
         ]
     },
     {
-        "name": "mtdowling/jmespath.php",
-        "version": "2.5.0",
-        "version_normalized": "2.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/jmespath/jmespath.php.git",
-            "reference": "52168cb9472de06979613d365c7f1ab8798be895"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/52168cb9472de06979613d365c7f1ab8798be895",
-            "reference": "52168cb9472de06979613d365c7f1ab8798be895",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0",
-            "symfony/polyfill-mbstring": "^1.4"
-        },
-        "require-dev": {
-            "composer/xdebug-handler": "^1.2",
-            "phpunit/phpunit": "^4.8.36|^7.5.15"
-        },
-        "time": "2019-12-30T18:03:34+00:00",
-        "bin": [
-            "bin/jp.php"
-        ],
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.5-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "JmesPath\\": "src/"
-            },
-            "files": [
-                "src/JmesPath.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Michael Dowling",
-                "email": "mtdowling@gmail.com",
-                "homepage": "https://github.com/mtdowling"
-            }
-        ],
-        "description": "Declaratively specify how to extract elements from a JSON document",
-        "keywords": [
-            "json",
-            "jsonpath"
-        ]
-    },
-    {
         "name": "myclabs/deep-copy",
         "version": "1.9.5",
         "version_normalized": "1.9.5.0",
@@ -3718,22 +2762,23 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "2.32.2",
-        "version_normalized": "2.32.2.0",
+        "version": "2.33.0",
+        "version_normalized": "2.33.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "f10e22cf546704fab1db4ad4b9dedbc5c797a0dc"
+            "reference": "4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f10e22cf546704fab1db4ad4b9dedbc5c797a0dc",
-            "reference": "f10e22cf546704fab1db4ad4b9dedbc5c797a0dc",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b",
+            "reference": "4d93cb95a80d9ffbff4018fe58ae3b7dd7f4b99b",
             "shasum": ""
         },
         "require": {
             "ext-json": "*",
             "php": "^7.1.8 || ^8.0",
+            "symfony/polyfill-mbstring": "^1.0",
             "symfony/translation": "^3.4 || ^4.0 || ^5.0"
         },
         "require-dev": {
@@ -3745,7 +2790,7 @@
             "phpunit/phpunit": "^7.5 || ^8.0",
             "squizlabs/php_codesniffer": "^3.4"
         },
-        "time": "2020-03-31T13:43:19+00:00",
+        "time": "2020-04-20T15:05:43+00:00",
         "bin": [
             "bin/carbon"
         ],
@@ -4272,87 +3317,6 @@
             }
         ],
         "description": "Library for handling version information and constraints"
-    },
-    {
-        "name": "phenx/php-font-lib",
-        "version": "0.5.2",
-        "version_normalized": "0.5.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/PhenX/php-font-lib.git",
-            "reference": "ca6ad461f032145fff5971b5985e5af9e7fa88d8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/ca6ad461f032145fff5971b5985e5af9e7fa88d8",
-            "reference": "ca6ad461f032145fff5971b5985e5af9e7fa88d8",
-            "shasum": ""
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^4.8.35 || ^5 || ^6 || ^7"
-        },
-        "time": "2020-03-08T15:31:32+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "FontLib\\": "src/FontLib"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "LGPL-3.0"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Ménager",
-                "email": "fabien.menager@gmail.com"
-            }
-        ],
-        "description": "A library to read, parse, export and make subsets of different types of font files.",
-        "homepage": "https://github.com/PhenX/php-font-lib"
-    },
-    {
-        "name": "phenx/php-svg-lib",
-        "version": "v0.3.3",
-        "version_normalized": "0.3.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/PhenX/php-svg-lib.git",
-            "reference": "5fa61b65e612ce1ae15f69b3d223cb14ecc60e32"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/5fa61b65e612ce1ae15f69b3d223cb14ecc60e32",
-            "reference": "5fa61b65e612ce1ae15f69b3d223cb14ecc60e32",
-            "shasum": ""
-        },
-        "require": {
-            "sabberworm/php-css-parser": "^8.3"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^5.5|^6.5"
-        },
-        "time": "2019-09-11T20:02:13+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Svg\\": "src/Svg"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "LGPL-3.0"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Ménager",
-                "email": "fabien.menager@gmail.com"
-            }
-        ],
-        "description": "A library to read, parse and export to PDF SVG files.",
-        "homepage": "https://github.com/PhenX/php-svg-lib"
     },
     {
         "name": "php-http/message-factory",
@@ -5219,54 +4183,6 @@
         ]
     },
     {
-        "name": "psr/cache",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/cache.git",
-            "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
-            "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2016-08-06T20:24:11+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Cache\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for caching libraries",
-        "keywords": [
-            "cache",
-            "psr",
-            "psr-6"
-        ]
-    },
-    {
         "name": "psr/container",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -5783,153 +4699,6 @@
             "guid",
             "identifier",
             "uuid"
-        ]
-    },
-    {
-        "name": "riverline/multipart-parser",
-        "version": "2.0.8",
-        "version_normalized": "2.0.8.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Riverline/multipart-parser.git",
-            "reference": "2fe9026789754c1ff07c06047f0acc113e90933a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Riverline/multipart-parser/zipball/2fe9026789754c1ff07c06047f0acc113e90933a",
-            "reference": "2fe9026789754c1ff07c06047f0acc113e90933a",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mbstring": "*",
-            "php": ">=5.6.0"
-        },
-        "require-dev": {
-            "laminas/laminas-diactoros": "^1.8.7",
-            "phpunit/phpunit": "^5.2 || ^6.0 || ^7.0",
-            "psr/http-message": "^1.0",
-            "symfony/psr-http-message-bridge": "^1.1"
-        },
-        "time": "2020-01-24T09:39:24+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Riverline\\MultiPartParser\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Romain Cambien",
-                "email": "romain@cambien.net"
-            },
-            {
-                "name": "Riverline",
-                "homepage": "http://www.riverline.fr"
-            }
-        ],
-        "description": "One class library to parse multipart content with encoding and charset support.",
-        "keywords": [
-            "http",
-            "multipart",
-            "parser"
-        ]
-    },
-    {
-        "name": "rize/uri-template",
-        "version": "0.3.2",
-        "version_normalized": "0.3.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/rize/UriTemplate.git",
-            "reference": "9e5fdd5c47147aa5adf7f760002ee591ed37b9ca"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/rize/UriTemplate/zipball/9e5fdd5c47147aa5adf7f760002ee591ed37b9ca",
-            "reference": "9e5fdd5c47147aa5adf7f760002ee591ed37b9ca",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.0.0"
-        },
-        "time": "2017-06-14T03:57:53+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Rize\\UriTemplate": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Marut K",
-                "homepage": "http://twitter.com/rezigned"
-            }
-        ],
-        "description": "PHP URI Template (RFC 6570) supports both expansion & extraction",
-        "keywords": [
-            "RFC 6570",
-            "template",
-            "uri"
-        ]
-    },
-    {
-        "name": "sabberworm/php-css-parser",
-        "version": "8.3.0",
-        "version_normalized": "8.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
-            "reference": "91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f",
-            "reference": "91bcc3e3fdb7386c9a2e0e0aa09ca75cc43f121f",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2"
-        },
-        "require-dev": {
-            "codacy/coverage": "^1.4",
-            "phpunit/phpunit": "~4.8"
-        },
-        "time": "2019-02-22T07:42:52+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Sabberworm\\CSS": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Raphael Schweikert"
-            }
-        ],
-        "description": "Parser for CSS Files written in PHP",
-        "homepage": "http://www.sabberworm.com/blog/2010/6/10/php-css-parser",
-        "keywords": [
-            "css",
-            "parser",
-            "stylesheet"
         ]
     },
     {
@@ -6695,6 +5464,84 @@
         ]
     },
     {
+        "name": "spatie/laravel-activitylog",
+        "version": "3.14.1",
+        "version_normalized": "3.14.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/laravel-activitylog.git",
+            "reference": "08a128edbfc96493f45d785381ab0be4479cd763"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/08a128edbfc96493f45d785381ab0be4479cd763",
+            "reference": "08a128edbfc96493f45d785381ab0be4479cd763",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/config": "^6.0|^7.0",
+            "illuminate/database": "^6.0|^7.0",
+            "illuminate/support": "^6.0|^7.0",
+            "php": "^7.2"
+        },
+        "require-dev": {
+            "ext-json": "*",
+            "orchestra/testbench": "^4.0|^5.0",
+            "phpunit/phpunit": "^8.0|^9.0"
+        },
+        "time": "2020-03-23T17:09:07+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Spatie\\Activitylog\\ActivitylogServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Spatie\\Activitylog\\": "src"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Freek Van der Herten",
+                "email": "freek@spatie.be",
+                "homepage": "https://spatie.be",
+                "role": "Developer"
+            },
+            {
+                "name": "Sebastian De Deyne",
+                "email": "sebastian@spatie.be",
+                "homepage": "https://spatie.be",
+                "role": "Developer"
+            },
+            {
+                "name": "Tom Witkowski",
+                "email": "dev.gummibeer@gmail.com",
+                "homepage": "https://gummibeer.de",
+                "role": "Developer"
+            }
+        ],
+        "description": "A very simple activity logger to monitor the users of your website or application",
+        "homepage": "https://github.com/spatie/activitylog",
+        "keywords": [
+            "activity",
+            "laravel",
+            "log",
+            "spatie",
+            "user"
+        ]
+    },
+    {
         "name": "spatie/laravel-backup",
         "version": "6.9.0",
         "version_normalized": "6.9.0.0",
@@ -6890,55 +5737,6 @@
         ]
     },
     {
-        "name": "superbalist/flysystem-google-storage",
-        "version": "7.2.2",
-        "version_normalized": "7.2.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Superbalist/flysystem-google-cloud-storage.git",
-            "reference": "87e2f450c0e4b5200fef9ffe6863068cc873d734"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Superbalist/flysystem-google-cloud-storage/zipball/87e2f450c0e4b5200fef9ffe6863068cc873d734",
-            "reference": "87e2f450c0e4b5200fef9ffe6863068cc873d734",
-            "shasum": ""
-        },
-        "require": {
-            "google/cloud-storage": "~1.0",
-            "league/flysystem": "~1.0",
-            "php": ">=5.5.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "0.9.*",
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2019-10-10T12:22:54+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Superbalist\\Flysystem\\GoogleStorage\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Superbalist.com a division of Takealot Online (Pty) Ltd",
-                "email": "info@superbalist.com"
-            }
-        ],
-        "description": "Flysystem adapter for Google Cloud Storage"
-    },
-    {
         "name": "swiftmailer/swiftmailer",
         "version": "v6.2.3",
         "version_normalized": "6.2.3.0",
@@ -7004,8 +5802,8 @@
     },
     {
         "name": "symfony/console",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/console.git",
@@ -7082,8 +5880,8 @@
     },
     {
         "name": "symfony/css-selector",
-        "version": "v5.0.7",
-        "version_normalized": "5.0.7.0",
+        "version": "v5.0.8",
+        "version_normalized": "5.0.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/css-selector.git",
@@ -7137,8 +5935,8 @@
     },
     {
         "name": "symfony/debug",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/debug.git",
@@ -7195,8 +5993,8 @@
     },
     {
         "name": "symfony/error-handler",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/error-handler.git",
@@ -7253,8 +6051,8 @@
     },
     {
         "name": "symfony/event-dispatcher",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/event-dispatcher.git",
@@ -7385,8 +6183,8 @@
     },
     {
         "name": "symfony/finder",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/finder.git",
@@ -7436,17 +6234,17 @@
     },
     {
         "name": "symfony/http-foundation",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/http-foundation.git",
-            "reference": "62f92509c9abfd1f73e17b8cf1b72c0bdac6611b"
+            "reference": "ec5bd254c223786f5fa2bb49a1e705c1b8e7cee2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/62f92509c9abfd1f73e17b8cf1b72c0bdac6611b",
-            "reference": "62f92509c9abfd1f73e17b8cf1b72c0bdac6611b",
+            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/ec5bd254c223786f5fa2bb49a1e705c1b8e7cee2",
+            "reference": "ec5bd254c223786f5fa2bb49a1e705c1b8e7cee2",
             "shasum": ""
         },
         "require": {
@@ -7458,7 +6256,7 @@
             "predis/predis": "~1.0",
             "symfony/expression-language": "^3.4|^4.0|^5.0"
         },
-        "time": "2020-03-30T14:07:33+00:00",
+        "time": "2020-04-18T20:40:08+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -7493,17 +6291,17 @@
     },
     {
         "name": "symfony/http-kernel",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/http-kernel.git",
-            "reference": "f356a489e51856b99908005eb7f2c51a1dfc95dc"
+            "reference": "1799a6c01f0db5851f399151abdb5d6393fec277"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/http-kernel/zipball/f356a489e51856b99908005eb7f2c51a1dfc95dc",
-            "reference": "f356a489e51856b99908005eb7f2c51a1dfc95dc",
+            "url": "https://api.github.com/repos/symfony/http-kernel/zipball/1799a6c01f0db5851f399151abdb5d6393fec277",
+            "reference": "1799a6c01f0db5851f399151abdb5d6393fec277",
             "shasum": ""
         },
         "require": {
@@ -7550,7 +6348,7 @@
             "symfony/console": "",
             "symfony/dependency-injection": ""
         },
-        "time": "2020-03-30T14:59:15+00:00",
+        "time": "2020-04-28T18:47:42+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -7585,17 +6383,17 @@
     },
     {
         "name": "symfony/mime",
-        "version": "v5.0.7",
-        "version_normalized": "5.0.7.0",
+        "version": "v5.0.8",
+        "version_normalized": "5.0.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/mime.git",
-            "reference": "481b7d6da88922fb1e0d86a943987722b08f3955"
+            "reference": "5d6c81c39225a750f3f43bee15f03093fb9aaa0b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/mime/zipball/481b7d6da88922fb1e0d86a943987722b08f3955",
-            "reference": "481b7d6da88922fb1e0d86a943987722b08f3955",
+            "url": "https://api.github.com/repos/symfony/mime/zipball/5d6c81c39225a750f3f43bee15f03093fb9aaa0b",
+            "reference": "5d6c81c39225a750f3f43bee15f03093fb9aaa0b",
             "shasum": ""
         },
         "require": {
@@ -7610,7 +6408,7 @@
             "egulias/email-validator": "^2.1.10",
             "symfony/dependency-injection": "^4.4|^5.0"
         },
-        "time": "2020-03-27T16:56:45+00:00",
+        "time": "2020-04-17T03:29:44+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -8012,23 +6810,23 @@
     },
     {
         "name": "symfony/process",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/process.git",
-            "reference": "3e40e87a20eaf83a1db825e1fa5097ae89042db3"
+            "reference": "4b6a9a4013baa65d409153cbb5a895bf093dc7f4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/process/zipball/3e40e87a20eaf83a1db825e1fa5097ae89042db3",
-            "reference": "3e40e87a20eaf83a1db825e1fa5097ae89042db3",
+            "url": "https://api.github.com/repos/symfony/process/zipball/4b6a9a4013baa65d409153cbb5a895bf093dc7f4",
+            "reference": "4b6a9a4013baa65d409153cbb5a895bf093dc7f4",
             "shasum": ""
         },
         "require": {
             "php": "^7.1.3"
         },
-        "time": "2020-03-27T16:54:36+00:00",
+        "time": "2020-04-15T15:56:18+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -8129,17 +6927,17 @@
     },
     {
         "name": "symfony/routing",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/routing.git",
-            "reference": "0f562fa613e288d7dbae6c63abbc9b33ed75a8f8"
+            "reference": "67b4e1f99c050cbc310b8f3d0dbdc4b0212c052c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/routing/zipball/0f562fa613e288d7dbae6c63abbc9b33ed75a8f8",
-            "reference": "0f562fa613e288d7dbae6c63abbc9b33ed75a8f8",
+            "url": "https://api.github.com/repos/symfony/routing/zipball/67b4e1f99c050cbc310b8f3d0dbdc4b0212c052c",
+            "reference": "67b4e1f99c050cbc310b8f3d0dbdc4b0212c052c",
             "shasum": ""
         },
         "require": {
@@ -8166,7 +6964,7 @@
             "symfony/http-foundation": "For using a Symfony Request object",
             "symfony/yaml": "For using the YAML loader"
         },
-        "time": "2020-03-30T11:41:10+00:00",
+        "time": "2020-04-21T19:59:53+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -8267,17 +7065,17 @@
     },
     {
         "name": "symfony/translation",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/translation.git",
-            "reference": "4e54d336f2eca5facad449d0b0118bb449375b76"
+            "reference": "8272bbd2b7e220ef812eba2a2b30068a5c64b191"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/translation/zipball/4e54d336f2eca5facad449d0b0118bb449375b76",
-            "reference": "4e54d336f2eca5facad449d0b0118bb449375b76",
+            "url": "https://api.github.com/repos/symfony/translation/zipball/8272bbd2b7e220ef812eba2a2b30068a5c64b191",
+            "reference": "8272bbd2b7e220ef812eba2a2b30068a5c64b191",
             "shasum": ""
         },
         "require": {
@@ -8310,7 +7108,7 @@
             "symfony/config": "",
             "symfony/yaml": ""
         },
-        "time": "2020-03-27T16:54:36+00:00",
+        "time": "2020-04-12T16:45:36+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -8404,17 +7202,17 @@
     },
     {
         "name": "symfony/var-dumper",
-        "version": "v4.4.7",
-        "version_normalized": "4.4.7.0",
+        "version": "v4.4.8",
+        "version_normalized": "4.4.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/var-dumper.git",
-            "reference": "5a0c2d93006131a36cf6f767d10e2ca8333b0d4a"
+            "reference": "c587e04ce5d1aa62d534a038f574d9a709e814cf"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/5a0c2d93006131a36cf6f767d10e2ca8333b0d4a",
-            "reference": "5a0c2d93006131a36cf6f767d10e2ca8333b0d4a",
+            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/c587e04ce5d1aa62d534a038f574d9a709e814cf",
+            "reference": "c587e04ce5d1aa62d534a038f574d9a709e814cf",
             "shasum": ""
         },
         "require": {
@@ -8437,7 +7235,7 @@
             "ext-intl": "To show region name in time zone dump",
             "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
         },
-        "time": "2020-03-27T16:54:36+00:00",
+        "time": "2020-04-12T16:14:02+00:00",
         "bin": [
             "Resources/bin/var-dump-server"
         ],
@@ -8572,58 +7370,6 @@
         ],
         "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
         "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles"
-    },
-    {
-        "name": "twilio/sdk",
-        "version": "5.42.2",
-        "version_normalized": "5.42.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/twilio/twilio-php.git",
-            "reference": "0cfcb871b18a9c427dd9e8f0ed7458d43009b48a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/twilio/twilio-php/zipball/0cfcb871b18a9c427dd9e8f0ed7458d43009b48a",
-            "reference": "0cfcb871b18a9c427dd9e8f0ed7458d43009b48a",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.0"
-        },
-        "require-dev": {
-            "apigen/apigen": "^4.1",
-            "guzzlehttp/guzzle": "^6.3",
-            "phpunit/phpunit": ">=4.5"
-        },
-        "suggest": {
-            "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
-        },
-        "time": "2020-02-05T19:55:13+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Twilio\\": "src/Twilio/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Twilio API Team",
-                "email": "api@twilio.com"
-            }
-        ],
-        "description": "A PHP wrapper for Twilio's API",
-        "homepage": "http://github.com/twilio/twilio-php",
-        "keywords": [
-            "api",
-            "sms",
-            "twilio"
-        ]
     },
     {
         "name": "vlucas/phpdotenv",

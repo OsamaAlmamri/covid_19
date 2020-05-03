@@ -46,8 +46,8 @@ class CheckPointsDataTable extends DataTable
         if ($this->type != "deleted")
             $data = DB::table('check_points')
                 ->leftJoin('work_teams', 'check_points.manager_id', '=', 'work_teams.id')
-                ->leftJoin('zones as Zone', 'check_points.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'check_points.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->select('check_points.*',
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
@@ -58,8 +58,8 @@ class CheckPointsDataTable extends DataTable
             $data = DB::table('check_points')
                 ->leftJoin('users', 'check_points.deleted_by', '=', 'users.id')
                 ->leftJoin('work_teams', 'check_points.manager_id', '=', 'work_teams.id')
-                ->leftJoin('zones as Zone', 'check_points.zone_id', '=', 'Zone.id')
-                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.id')
+                ->leftJoin('zones as Zone', 'check_points.zone_id', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->select('check_points.*',
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'

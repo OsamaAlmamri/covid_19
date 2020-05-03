@@ -1,5 +1,8 @@
 <?php
 
+use App\HaraVil;
+use App\SubDi;
+use App\SubHaraVil;
 use App\User;
 use App\Zone;
 use Carbon\Carbon;
@@ -212,35 +215,30 @@ function getAllWorker()
     return $allUsers;
 }
 
-function getProjectTeams($project)
-{
-    $users = $project->users;
-    $allUsers = [];
-    foreach ($users as $user) {
-        $allUsers[$user->id] = $user->name;
-    }
-    return $allUsers;
-}
-
-
-function assignUser($phase)
-{
-    $tasks = \App\Task::all()->where('phase_id', $phase->id);
-    $allUsers = [];
-    foreach ($tasks as $task) {
-        if ($task->user != null)
-            $allUsers[$task->user->id] = $task->user->id;
-    }
-    $allUsersData = User::all()->whereIn('id', $allUsers);
-    return $allUsersData;
-}
-
 
 function workTeamTypes()
 {
     return ['point' => trans('menu.work_point'),
         'health' => trans('menu.work_health'),
 
+    ];
+}
+
+
+function getReporsType()
+{
+
+    return [
+        'all' => trans('menu.all'),
+        'block_persons' => trans('menu.sumBlockPersons'),
+        'sumBlockPersons_zone' => trans('menu.sumBlockPersons_zone'),
+        'sumBlockPersons_gov' => trans('menu.sumBlockPersons_gov'),
+        'quarantines_gov' => trans('menu.quarantines_gov'),
+        'quarantines_zone' => trans('menu.quarantines_zone'),
+        'quarantines_reports' => trans('menu.quarantines_reports'),
+        'point_daily_reports' => trans('menu.point_daily_reports'),
+        'people_in_port' => trans('menu.people_in_port'),
+        'truck_driver' => trans('menu.truck_driver'),
     ];
 }
 
@@ -254,16 +252,55 @@ function getUserName($id)
         return "";
 }
 
-function getZones_childs_ids($parent)
+function getZones_childs_ids($parent, $type = 'district')
 {
 //        $zone = Zone::find($parent);
+
     if ($parent == 'all')
-        $to_zones = Zone::all();
+    {
+        switch ($type)
+        {
+            case 'gov':
+                $to_zones = Zone::all()->where('type', 'like', $type);
+                break;
+            case 'district':
+                $to_zones = Zone::all()->where('type', 'like', $type);
+                break;
+            case 'hara_vil':
+                $to_zones = HaraVil::all()->where('type', 'like', $type);
+                break;
+            case 'sub_hara_vil':
+                $to_zones = SubHaraVil::all()->where('type', 'like', $type);
+                break;
+            case 'sub_dis':
+                $to_zones = SubDi::all()->where('type', 'like', $type);
+                break;
+        }
+    }
     else
-        $to_zones = Zone::all()->where('parent', '=', $parent);
+    {
+        switch ($type)
+        {
+            case 'gov':
+                $to_zones = Zone::all()->where('type', 'like', $type)->where('parent', '=', $parent);
+                break;
+            case 'district':
+                $to_zones = Zone::all()->where('type', 'like', $type)->where('parent', '=', $parent);
+                break;
+            case 'hara_vil':
+                $to_zones = HaraVil::all()->where('type', 'like', $type)->where('parent', '=', $parent);
+                break;
+            case 'sub_hara_vil':
+                $to_zones = SubHaraVil::all()->where('type', 'like', $type)->where('parent', '=', $parent);
+                break;
+            case 'sub_dis':
+                $to_zones = SubDi::all()->where('type', 'like', $type)->where('parent', '=', $parent);
+                break;
+        }
+    }
     $to_Zone_ids = [];
     foreach ($to_zones as $zone) {
-        $to_Zone_ids[] = $zone->id;
+        $to_Zone_ids[] = $zone->code;
     }
     return $to_Zone_ids;
 }
@@ -273,7 +310,7 @@ function getGovernorates()
     $allGovernorate = \App\Zone::all()->where('parent', '=', 0);
     $governorates = [];
     foreach ($allGovernorate as $governorate) {
-        $governorates[$governorate->id] = $governorate->name_ar;
+        $governorates[$governorate->code] = $governorate->name_ar;
     }
 
     return $governorates;
@@ -332,31 +369,70 @@ function getAllQuarantineTypeInfo()
 
 }
 
-function getZones($governorate_id = 0, $withAll = 0)
+function getZones($governorate_id = 0, $type = 'district', $withAll = 0)
 {
 
 
     if ($governorate_id === 0) {
         $governorate = \App\Zone::where('parent', '=', '0')->first();
         if ($governorate != null)
-            $governorate_id = $governorate->id;
+            $governorate_id = $governorate->code;
         else
             return [];
 
     }
-
+    $allZones=[];
     if ($governorate_id == 'all')
-        $allZones = \App\Zone::all()->where('parent', '>', 0);
+    {
+        switch ($type)
+        {
+            case 'gov':
+                $allZones = Zone::all()->where('type', 'like', $type)->where('parent', '>', 0);
+                break;
+            case 'district':
+                $allZones = Zone::all()->where('type', 'like', $type)->where('parent', '>', 0);
+                break;
+            case 'hara_vil':
+                $allZones = HaraVil::all()->where('type', 'like', $type)->where('parent', '>', 0);
+                break;
+            case 'sub_hara_vil':
+                $allZones = SubHaraVil::all()->where('type', 'like', $type)->where('parent', '>', 0);
+                break;
+            case 'sub_dis':
+                $allZones = SubDi::all()->where('type', 'like', $type)->where('parent', '>', 0);
+                break;
+        }
+    }
+
 
     else
-        $allZones = \App\Zone::all()->where('parent', '=', $governorate_id);
+    {
+        switch ($type)
+        {
+            case 'gov':
+                $allZones = Zone::all()->where('parent', '=', $governorate_id);
+                break;
+            case 'district':
+                $allZones = Zone::all()->where('parent', '=', $governorate_id);
+                break;
+            case 'hara_vil':
+                $allZones = HaraVil::all()->where('parent', '=', $governorate_id);
+                break;
+            case 'sub_hara_vil':
+                $allZones = SubHaraVil::all()->where('parent', '=', $governorate_id);
+                break;
+            case 'sub_dis':
+                $allZones = SubDi::all()->where('parent', '=', $governorate_id);
+                break;
+        }
+    }
 
     $zones = [];
     if ($withAll == 1)
         $zones['all'] = trans('menu.all');
 
     foreach ($allZones as $zone) {
-        $zones[($zone->id)] = $zone->name_ar;
+        $zones[($zone->code)] = $zone->name_ar;
     }
     return $zones;
 

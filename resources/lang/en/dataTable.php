@@ -44,9 +44,9 @@ return [
     'gender' => '  gender  ',
 
 
-    'other_place_data' => ' other place data', //if is county is not yemen
-    'ssn_type' => 'ssn type',//
-    'ssn' => ' ssn ',//قم البطاقة او الجواز
+    'other_place_data' => ' Area-village', //if is county is not yemen
+    'ssn_type' => 'identifier type ',//
+    'ssn' => ' identifier number ',//قم البطاقة او الجواز
     'job' => 'job ',
     'w_phone' => 'phone  ',
     'relative_phone' => 'relative phone  ',
@@ -54,16 +54,20 @@ return [
     'check_date' => ' check date',
     'truck_number' => 'truck number  ',//رقم القاطرة اذا كان صاحب قاطرة
     'start_date_symptoms' => ' start date symptoms  ',//
-    'sleeping' => ' sleeping',
-    'sleep_date' => ' sleep date  ',
+    'sleeping' => ' hospitalization',
+    'sleep_date' => ' date hospitalization   ',
     'insulation_date' => 'insulation date',
     'status_at_reporting' => 'status at reporting',//stable - critical - healing
 
     'fever_symptoms' => ' fever symptoms',//حمى
     'sore_throat_symptoms' => ' 	sore throat symptoms',         //	ألم الحلق
+
+
+
+
     'cough_symptoms' => ' cough symptoms',     //سعال
-    'descent_from_the_nose_symptoms' => ' descent from the nose symptoms',        //	نزول من الانف
-    'breathing_difficulty_symptoms' => 'صعوبة breathing difficulty symptoms ',        //صعوبة التنفس
+    'descent_from_the_nose_symptoms' => ' runny nose symptoms',        //	نزول من الانف
+    'breathing_difficulty_symptoms' => ' Difficulty of breathing ',        //صعوبة التنفس
     'headache_symptoms' => 'headache symptoms ',        //صداع
     'pain_in_chest' => 'pain in chest   ',        //	ألم في الصدر
     'pain_in_the_joints' => ' pain in the joints  ',        //الم في المفاصل
@@ -82,11 +86,11 @@ return [
     'after_childbirth' => ' after childbirth',//"بعدالولاده ( أي اقل من6أسابيع)
 
 
-    'is_comming_from_other_country' => 'is comming from other country ',
+    'is_comming_from_other_country' => 'Is the patient delegation from an endemic area country /  Within 14 days  ',
     'come_from_country' => ' come from country',
     'comming_date' => ' comming date ',
-    'out_from_country_date' => 'out from country date  ',
-    'comming_to_yemen_date' => ' comming_to_yemen_date  ',
+    'out_from_country_date' => ' exit  from country date  ',
+    'comming_to_yemen_date' => ' date of entry to Yemen  ',
 
 
     'is_visit_health_center' => 'is visit health center',
@@ -120,6 +124,7 @@ return [
     'transfer_zone' => 'transfer districts ',
     'note' => ' note',
     'workType' => ' work Type   ',
+    'quarantine_type' => ' َQuarantine ِArea Type  ',
 
 
 
@@ -143,12 +148,18 @@ return [
     'employee_number' => ' employee number ',
     'birthDate' => ' birthDate ',
     'join_date' => ' join date ',
-    'gender' => ' gender ',
     'avatar' => ' avatar ',
     'tasks' => ' tasks ',
     'team' => ' team ',
 
 
+    'all' => 'الكل',
+    'allBlockPeople' => ' Cumulative number of quarantined persons ',
+    'allBlockPeopleDead' => ' Cumulative number of deceased persons',
+    'allBlockPeopleOut' => 'The cumulative number of departures from the center ',
+    'allBlockPeopleNotOut' => ' The cumulative number of remaining in the center ',
+    'allBlockPeopleTransform' => ' The cumulative number of those transferred from the center ',
+    'allTypes' => ' Total ',
 
 
     'add' => [
@@ -156,6 +167,8 @@ return [
         'quarantine' => 'Add quarantine',
         'check_point' => ' add   check point',
         'workTeams' => ' add team worker  ',
+        'quarantineType' => 'Add New quarantine Type',
+
 
     ],
     'update' => [
@@ -163,6 +176,8 @@ return [
         'quarantine' => 'Update quarantine',
         'check_point' => ' Update   check point',
         'workTeams' => ' Update team worker  ',
+        'quarantineType' => ' Update quarantine Type',
+
 
 
     ],

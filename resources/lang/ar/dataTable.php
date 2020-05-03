@@ -149,6 +149,7 @@ return [
     'transfer_zone' => ' المركز الصحي الذي تم نقلة الية ',
     'note' => ' ملاحظة ',
     'workType' => ' نوع العمل  ',
+    'quarantine_type' => ' نوع مركز الحجر ',
 
     'allBlockPeople' => ' العدد التراكمي لمن تم حجرهم  ',
     'allBlockPeopleDead' => ' العدد التراكمي للمتوفين ',
@@ -157,6 +158,68 @@ return [
     'allBlockPeopleTransform' => ' العدد التراكمي لمن تم نقلهم  من المركز ',
     'allTypes' => ' اجمالي مراكز الحجر',
     'typeStatus' => ' الاجراء المتخذ  ',
+    'personal_info_checked_by' => '  تم فحص المعلومات الشخصية بواسطة',
+    'medical_info_checked_by' => ' تم فحص المعلومات الطبية بواسطة',
+    'id_issue_address' => ' مكان اصدار الهوية',
+    'id_front_photo' => ' صورة امامية للهوية',
+    'id_back_photo' => ' صورة خلفية للهوية',
+    'id_issue_date' => 'تاريخ اصدار الهوية ',
+    'martial_state' => ' الحالة الاجتماعية',
+    'kids_number' => ' عدد الاطفال',
+    'source_stay_reason' => ' سبب البقاء',
+    'source_stay_job' => 'المهنة ',
+    'source_how_check_info' => ' كيف التحقق من المعلومات',
+    'source_pass_country' => 'قادم من بلد ',
+    'source_stay_period' => 'فترة البقاء ',
+
+    'dest_government' => ' المحافظة',
+    'dest_zone' => ' المديرية',
+    'dest_isolation_neighborhood' => ' العزلة/الحي',
+    'dest_lane_village' => ' حارة/قرية',
+    'dest_aqel_moaref' => 'العاقل/الشخص المعرف ',
+    'dest_aqel_phone' => 'رقم العاقل/المعرف ',
+    'dest_reason_of_coming_back' => ' سبب العودة',
+    'dest_stay_period' => 'فترة الاقامة المتوقعة ',
+    'dest_exit_date' => ' تاريخ الخروج',
+    'dest_home_type' => ' نوع المنزل',
+    'dest_transportation_owner' => ' ملكية وسيلة النقل',
+    'dest_transportation_type' => ' نوع وسيلة البنك',
+    'dest_transportation_number' => ' رقم وسيلة النقل',
+    'insulation_end_date' => ' تاريخ نهاية العزل',
+
+    'form_id' => ' رقم الاستمارة',//
+    'bp_name' => ' الاسم  ',//
+    'bp_type' => ' النوع  ',//
+    'id_number' => ' رقم الهوية',//
+    'id_type' => ' نوع الهوية ',//
+    'step' => ' خطوة ',//
+    'personal_info' => ' البيانات الشخصية ',//
+    'dest_info' => ' بيانات جهة التوجة ',//
+    'source_info' => ' بياناات جهة القدوم ',//
+    'health_info' => ' البيانات الطبية ',//
+    'last_governorate_visit' => ' اخر محافظة تم زيارتها ',//
+    'last_zone_visit' => ' المديرية ',//
+    'dest_governorate' => ' المحافظة ',//
+    'personal' => ' شخصية ',//
+    'passport' => ' جواز ',//
+    'yes' => ' نعم ',//
+    'no' => ' لا ',//
+    'single' => ' عازب ',//
+    'marrid' => ' المحافظة ',//
+    'married' => 'متزوج',
+    'divorced' => 'مطلق',
+    'indecisive' => 'محجوز',
+    'widowed' => 'ارمل',
+    'people' => 'شخص ',
+    'truck_owner' => 'صاحب قاطرة',
+    'rent' => 'ايجار',
+    'private' => 'ملك خاص',
+
+    'log_description' => ' نوع التقرير',
+    'file_type' => 'نوع الملف ',
+    'how_phone' => 'رقم التلفون ',
+    'log_created_at' => 'التاريخ ',
+
 
 
     'add' => [

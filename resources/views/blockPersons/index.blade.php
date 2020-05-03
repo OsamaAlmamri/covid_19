@@ -65,7 +65,7 @@
                 @if($type!='quarantines_gov' and $type!='quarantines_zone')
                     <div class="row">
                         @if($type!='sumBlockPersons_gov')
-                            <div class="input-group col-md-4">
+                            <div class="input-group col-md-3">
                                 <span class="input-group-addon">{{trans('menu.government')}}</span>
                                 <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
                                 {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
@@ -73,7 +73,7 @@
                             </div>
                         @endif
                         @if($type!='sumBlockPersons_gov'  and $type!='sumBlockPersons_zone' )
-                            <div class="input-group col-md-4">
+                            <div class="input-group col-md-3">
                                 <span class="input-group-addon">{{trans('menu.zone')}}</span>
                                 {!!Form ::select('zone_id',getZones('all',1),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
 
@@ -82,7 +82,7 @@
 
                             @if($type!='sumBlockPersons'  )
 
-                                <div class="input-group col-md-4" id="pointOrCenter_idDiv">
+                                <div class="input-group col-md-3" id="pointOrCenter_idDiv">
                         <span
                             class="input-group-addon">{{($type=='block_persons'or $type=='sumBlockPeopleAccordingByCenter')?trans('menu.center'):trans('menu.point')}}</span>
                                     {!!Form ::select('pointOrCenter_id', ['all'=>'all   '],'',['class' => 'select2 form-control', 'id' => 'pointOrCenter_id'])!!}
@@ -91,6 +91,11 @@
                         @endif
 
                         <div class="input-group col-md-3">
+                            <span class="input-group-addon">{{trans('menu.nationality')}}</span>
+                            {!!Form ::select('nationality', ['all'=>trans('menu.all'),'yemeni'=>trans('menu.yemeni'),'align'=>trans('menu.align')],null,['class' => 'select2 form-control', 'id' => 'nationality'])!!}
+
+                        </div>
+                        <div class="input-group col-md-3">
                             <span class="input-group-addon">{{trans('menu.from_date')}}</span>
                             <input type="date" class="form-control" name="start" value="{{isset($start)?$start:''}}"
                                    id="from_date">
@@ -98,7 +103,8 @@
 
                         <div class="input-group col-md-3">
                             <span class="input-group-addon">{{trans('menu.to_date')}}</span>
-                            <input type="date" class="form-control" name="end" value="{{isset($end)?$end:''}}" required
+                            <input type="date" class="form-control" name="end" value="{{isset($end)?$end:''}}"
+                                   required
                                    id="to_date">
                         </div>
 
@@ -107,10 +113,12 @@
                             {!!Form ::select('gender', ['all'=>trans('menu.all'),'male'=>trans('menu.male'),'female'=>trans('menu.female')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
 
                         </div>
+
                         <div class="input-group col-md-3">
 
                             <button type="button" name="filter" id="filter"
-                                    class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}} <i
+                                    class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}}
+                                <i
                                     class="fa fa-filter"></i></button>
 
                         </div>
@@ -231,7 +239,7 @@
 
 
     <script>
-        getZones('government_id', 'zone_id', 'all');
+        getZones('government_id', 'zone_id', 'district', 'all');
 
 
         $(document).on('change', '#center_workTeamType', function () {

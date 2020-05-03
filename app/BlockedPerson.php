@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
+
 
 class BlockedPerson extends Model
 {
     use SoftDeletes;
+    use LogsActivity;
 
     //
     protected $fillable = [
-
-
         'bp_name',
         'gender',
         'zone_id',//if is county is yemen
@@ -35,7 +36,6 @@ class BlockedPerson extends Model
         'id_front_photo',
         'id_back_photo',
         'id_issue_date',
-        'id_issue_date',
         'martial_state',
         'kids_number',
         'source_stay_reason',
@@ -43,7 +43,7 @@ class BlockedPerson extends Model
         'source_stay_period',
         'source_how_check_info',
         'source_pass_country',
-        'source_stay_period',
+
         'dest_zone_id',
         'dest_isolation_neighborhood',
         'dest_lane_village',
@@ -59,11 +59,14 @@ class BlockedPerson extends Model
         'insulation_end_date',
         'form_id',//رقم الاستمارة
 
-        // /////////
-        ///////////
 
-        'compared_by',
-        'checked_by',
+        ///////////
+        'gov_code',
+        'district_code',
+        'sub_district_code',
+        'hara_vill_code',
+        'sub_hara_vill_code',
+
 
         /******* come_from_country *******/
         'is_comming_from_other_country',
@@ -78,7 +81,8 @@ class BlockedPerson extends Model
         'birth_date',
         'job',
         'relative_phone',
-        'quarantine_area_id',
+        'quarantine_district_id',//############
+        'syncStatus',//***********
         'last_zone_visit_id',//
         'start_date_symptoms',//داية ظهور الاعراض
         'status_at_reporting',//stable - critical - healing

@@ -41,3 +41,16 @@
     text-align: right;
     margin-bottom: 0;
 }
+.j-pro label {
+    display: block;
+    color: inherit;
+    font-weight: normal;
+    text-align: right;
+    margin-bottom: 0;
+}
+
+
+.work_team_name
+{
+    float: left;
+}
