@@ -73,7 +73,7 @@ class BlockPersonsController extends Controller
 //        if (Auth::user()->can('show worksTeams') == false)
 //            return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
-        $block_persons = new BlockPersonsDataTable($id,$type);
+        $block_persons = new BlockPersonsDataTable($id, $type);
         return $block_persons->render('blockPersons.check', ['type' => $type]);
     }
 
@@ -133,9 +133,13 @@ class BlockPersonsController extends Controller
             $bp_type_v = 'people';
             $bp_type_op = 'like';
             $bp_type_col = 'blocked_people.bp_type';
+        } elseif ($type_query == 'runAway_block_peoples') {
+            $bp_type_v = 'runAway';
+            $bp_type_op = 'like';
+            $bp_type_col = 'blocked_people.typeStatus';
         } else {
             $bp_type_col = 'blocked_people.id';
-            $bp_type_v = 'truck_owner';
+            $bp_type_v = 0;
             $bp_type_op = '>';
         }
 
@@ -495,7 +499,7 @@ class BlockPersonsController extends Controller
             and Auth::user()->can('sumBlockPersons reports') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
-        elseif (($type_query == 'truck_driver' or $type_query == 'people_in_port')
+        elseif (($type_query == 'truck_driver' or $type_query == 'people_in_port' or $type_query == 'runAway_block_peoples')
             and Auth::user()->can('point_daily reports') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 

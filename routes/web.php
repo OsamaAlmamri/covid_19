@@ -115,6 +115,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('check_points/team/{id}/create', 'PointTeamController@create')->name('check_points.team.create');
     Route::resource('check_points', 'CheckPointController')->except('index');
 
+    Route::post('check_points/get_quarantine', 'PointTeamController@get_quarantine')->name('check_points.get_quarantine');
+    Route::post('check_points/filterCheckPoint', 'PointTeamController@filterCheckPoint')->name('check_points.filterCheckPoint');
     Route::post('check_points/filterPlace_type', 'PointTeamController@filterPlace_type')->name('check_points.filterPlace_type');
     Route::post('check_points/changePointOrCenter', 'PointTeamController@changePointOrCenter')->name('check_points.changePointOrCenter');
     Route::post('check_points/savePointTeamList', 'PointTeamController@savePointTeamList')->name('check_points.savePointTeamList');

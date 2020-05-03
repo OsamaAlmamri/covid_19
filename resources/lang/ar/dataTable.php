@@ -183,7 +183,7 @@ return [
     'dest_exit_date' => ' تاريخ الخروج',
     'dest_home_type' => ' نوع المنزل',
     'dest_transportation_owner' => ' ملكية وسيلة النقل',
-    'dest_transportation_type' => ' نوع وسيلة البنك',
+    'dest_transportation_type' => ' نوع وسيلة النقل',
     'dest_transportation_number' => ' رقم وسيلة النقل',
     'insulation_end_date' => ' تاريخ نهاية العزل',
 
@@ -219,6 +219,14 @@ return [
     'file_type' => 'نوع الملف ',
     'how_phone' => 'رقم التلفون ',
     'log_created_at' => 'التاريخ ',
+
+    'stable' => 'stable ',
+    'critical' => 'critical ',
+    'healing' => 'healing ',
+    'family' => 'family ',
+    'healthWorker' => 'healthWorker ',
+    'both' => 'both ',
+    'none' => 'none ',
 
 
 

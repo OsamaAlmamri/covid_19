@@ -130,10 +130,13 @@ return array(
     'health_satiation_reports' => ' الوضع الصحي للمتواجدين في مكان الايواء /  الحجر',
 
     'check_block_peoples' => ' تشييك الاشخاص المحجورين',
-    'runAway_block_peoples' => '   المحجورين الهاربين',
+    'runAway_block_peoples' => '   الوافدين الهاربين',
     'report_logs' => '  سجل الطباعة ',
     'btn_filterLogs' => '  فلترة التقارير  ',
     'reports' => '   التقارير  ',
+    'nationality' => '   الجنسية  ',
+    'yemeni' => '   يمني  ',
+    'align' => '   اجنبي  ',
 
 
 

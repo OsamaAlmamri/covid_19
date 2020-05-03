@@ -67,13 +67,19 @@ class ProjectApiController extends BaseAPIController
             ]);
 //
             $array = json_decode(($request->data), true);
-            $c = 0;
+            $add = 0;
+            $notAdd = 0;
             foreach ($array as $temp) {
-                $c++;
-                BlockedPerson::create(array_merge($temp), ['created_by' => auth()->user()->id]);
+                $old = BlockedPerson::all()->where('req_id', '=', $temp['req_id'])
+                    ->where('entry_date', '=', $temp['entry_date'])->count();
+                if ($old > 0)
+                    $notAdd++;
+                else {
+                    BlockedPerson::create(array_merge($temp), ['created_by' => auth()->user()->id]);
+                    $add++;
+                }
             }
-
-            return $this->sendResponse([], 'تم حفظ بيانات ' . $c . ' شخص  بنجاح  ');
+            return $this->sendResponse([], 'تم حفظ بيانات ' . $add . ' شخص  بنجاح  ' . 'وتجاهل     ' . $notAdd . ' شخص    ');
         } catch (Exception $ex) {
             return $ex->getMessage();
         }
@@ -137,7 +143,7 @@ class ProjectApiController extends BaseAPIController
                 case 'sub_dis':
                     $data = SubDi::where('type', 'like', $request->type)->where('parent', '>', 0)->get();
                     break;
-                    default:
+                default:
                     $data = Zone::all()->where('type', 'like', $request->type)->where('parent', 0);
                     break;
             }

@@ -600,9 +600,9 @@
                 'title': '{{trans('dataTable.check_date')}}',
             },
             {
-                'name': 'age_day',
-                'data': 'age_day',
-                'title': '{{trans('dataTable.age_day')}}',
+                'name': 'age_year',
+                'data': 'age_year',
+                'title': '{{trans('dataTable.age_year')}}',
             },
             {
                 'title': '{{trans('dataTable.gender')}}',
@@ -652,6 +652,9 @@
                             break;
                         case 'noActionTaken':
                             return 'لم يتم اتخاذ أي إجراء تجاههم';
+                            break;
+                        case 'runAway':
+                            return 'هارب     ';
                             break;
                         default:
                             return ' '
@@ -936,6 +939,8 @@
             column = quarantines_zone;
         else if ('{{$type}}' == 'quarantines_gov')
             column = quarantines_gov;
+        else if ('{{$type}}' == 'runAway_block_peoples')
+            column = people_in_port;
         else
             column = bloclkTabelColumn;
 

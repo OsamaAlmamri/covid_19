@@ -207,6 +207,12 @@
                                         </a>
                                     </li>
                                     <li class="">
+                                        <a href="{{route('block_persons.index','runAway_block_peoples')}}">
+                                  <span
+                                      class="pcoded-mtext">     {{trans('menu.runAway_block_peoples')}}    </span>
+                                        </a>
+                                    </li>
+                                    <li class="">
                                         <a href="{{route('block_persons.index','truck_driver')}}">
                                           <span
                                               class="pcoded-mtext">       {{trans('menu.truck_driver')}}      </span>

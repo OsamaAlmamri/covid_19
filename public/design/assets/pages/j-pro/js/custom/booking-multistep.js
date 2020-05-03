@@ -52,6 +52,10 @@ $(document).ready(function () {
     dateInit('#dest_exit_date');
     dateInit('#check_date');
     dateInit('#start_date_symptoms');
+    dateInit('#check_date');
+    dateInit('#insulation_date');
+    dateInit('#sleep_date');
+    dateInit('#start_date_symptoms');
 
     // Initialize date range
     dateFrom('#date_from', '#date_to');

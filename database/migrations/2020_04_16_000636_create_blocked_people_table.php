@@ -143,6 +143,8 @@ class CreateBlockedPeopleTable extends Migration
             $table->unsignedBigInteger('sub_hara_vill_code')->nullable()->default(null);
 
 
+            $table->unsignedBigInteger('entry_date');
+            $table->unsignedBigInteger('req_id');
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');;
 

@@ -14,6 +14,8 @@ class BlockedPerson extends Model
 
     //
     protected $fillable = [
+        'entry_date',
+        'req_id',
         'bp_name',
         'gender',
         'zone_id',//if is county is yemen

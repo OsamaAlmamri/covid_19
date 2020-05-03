@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ZonesDataTable;
+use App\HaraVil;
 use App\Http\Requests\zonesRequest;
 use App\Price;
+use App\SubDi;
+use App\SubHaraVil;
 use App\Zone;
 use Illuminate\Http\Request;
 
@@ -42,21 +45,58 @@ class ZoneController extends Controller
         return $zone->render('admin.zones.index', ['title' => 'admins', 'deleted' => ($zoneType == '') ? false : true]);
     }
 
+//    public function getZones(Request $request)
+//    {
+////       return $request['id'];
+//
+//        if ($request['id'] != 'all')
+//            $allZones = Zone::all()->where('parent', $request['id'])
+//                ->where('type', 'like', $request->zone_type);
+//        else
+//            $allZones = Zone::all()->where('parent', '>', 0)
+//                ->where('type', 'like', $request->zone_type);
+//
+//        $zones = '';
+//        if (isset($request['type']) and $request['type'] == 'all')
+//            $zones .= '<option value="all">all</option>';
+//
+//        if ($allZones != null)
+//            foreach ($allZones as $zone) {
+//                $zones .= '<option value="' . $zone->code . '"> ' . $zone->name_ar . '</option>';
+//
+//            }
+//        return response(['data' => $zones], 200);
+//
+//    }
+
     public function getZones(Request $request)
     {
 //       return $request['id'];
-
-        if ($request['id'] != 'all')
-            $allZones = Zone::all()->where('parent', $request['id'])
-                ->where('type', 'like', $request->zone_type);
+        $allZones=[];
+        if (isset($request->zone_type) and $request->zone_type != null)
+            $type = $request->zone_type;
         else
-            $allZones = Zone::all()->where('parent', '>', 0)
-                ->where('type', 'like', $request->zone_type);
-
+            $type = 'district';
+        switch ($type) {
+            case 'gov':
+                $allZones = Zone::all()->where('type', 'like', $type)->where('parent', $request['id']);
+                break;
+            case 'district':
+                $allZones = Zone::all()->where('type', 'like', $type)->where('parent', $request['id']);
+                break;
+            case 'hara_vil':
+                $allZones = HaraVil::all()->where('type', 'like', $type)->where('parent', $request['id']);
+                break;
+            case 'sub_hara_vil':
+                $allZones = SubHaraVil::all()->where('type', 'like', $type)->where('parent', $request['id']);
+                break;
+            case 'sub_dis':
+                $allZones = SubDi::all()->where('type', 'like', $type)->where('parent', $request['id']);
+                break;
+        }
         $zones = '';
-        if (isset($request['type']) and $request['type'] == 'all')
-            $zones .= '<option value="all">all</option>';
-
+        if ($request->type == 'all')
+            $zones .= '<option value="all"> ' . trans('menu.all') . '</option>';
         if ($allZones != null)
             foreach ($allZones as $zone) {
                 $zones .= '<option value="' . $zone->code . '"> ' . $zone->name_ar . '</option>';
@@ -65,8 +105,6 @@ class ZoneController extends Controller
         return response(['data' => $zones], 200);
 
     }
-
-
     public function create($z)
     {
         $zone = Zone::find($z);

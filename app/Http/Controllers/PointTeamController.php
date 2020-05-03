@@ -173,6 +173,35 @@ class PointTeamController extends Controller
 
     }
 
+    public function filterCheckPoint(Request $request)
+    {
+        $ids = [];
+        $zones = Zone::all()->where('parent', '=', $request->government_id);
+        foreach ($zones as $zone) {
+            $ids[] = $zone->code;
+        }
+        $data = CheckPoint::all()->whereIn('zone_id', $ids);
+        $select = ' ';
+        foreach ($data as $info) {
+            $select .= '<option value="' . $info->id . '"> ' . $info->name . '</option>';
+        }
+        return response(['select' => $select], 200);
+
+    }
+
+    public function get_quarantine(Request $request)
+    {
+
+
+        $data = QuarantineArea::all()->where('zone_id', '=', $request->zone_id);
+        $select = ' ';
+        foreach ($data as $info) {
+            $select .= '<option value="' . $info->id . '"> ' . $info->name . '</option>';
+        }
+        return response(['select' => $select], 200);
+
+    }
+
     public
     function changePointOrCenter(Request $request)
     {
@@ -242,10 +271,10 @@ class PointTeamController extends Controller
 
 
         if ($request->old_type == 'point')
-            $table = PointTeam::all()->where('work_team_id','=',$request->id)->first();
+            $table = PointTeam::all()->where('work_team_id', '=', $request->id)->first();
 
         else
-            $table = HealthTeam::all()->where('work_team_id','=',$request->id)->first();
+            $table = HealthTeam::all()->where('work_team_id', '=', $request->id)->first();
         $table->delete();
 
         if ($request->type == 'point')
@@ -256,8 +285,8 @@ class PointTeamController extends Controller
 
         else
             $table = HealthTeam::create([
-                'work_team_id' =>$request->id,
-                'quarantine_area_id' =>  $request->point
+                'work_team_id' => $request->id,
+                'quarantine_area_id' => $request->point
             ]);
 
 
