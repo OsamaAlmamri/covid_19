@@ -39,7 +39,7 @@ class BlockPersonsDataTable extends DataTable
                 ->select(
                     'bp_name', 'phone', 'relative_phone',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name')
-                ->where('quarantine_district_id', '=', $this->quarntine_id)
+                ->where('quarantine_area_id', '=', $this->quarntine_id)
                 ->orderByDesc('blocked_people.id')->get();
         else
             $data = DB::table('blocked_people')
@@ -48,7 +48,7 @@ class BlockPersonsDataTable extends DataTable
                 ->select('bp_name', 'phone', 'relative_phone',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name')
                 ->where('typeStatus', 'like', 'runAway')
-                ->where('quarantine_district_id', '=', $this->quarntine_id)
+                ->where('quarantine_area_id', '=', $this->quarntine_id)
                 ->orderByDesc('blocked_people.id')->get();
 
         return $data;

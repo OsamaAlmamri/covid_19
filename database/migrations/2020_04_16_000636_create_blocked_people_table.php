@@ -41,7 +41,6 @@ class CreateBlockedPeopleTable extends Migration
 
             $table->unsignedBigInteger('last_zone_visit_id')->nullable()->default(null);//
             $table->unsignedBigInteger('start_date_symptoms')->nullable();//
-
             $table->boolean('sleeping')->default(false);//
             $table->unsignedBigInteger('sleep_date')->nullable();//
             $table->unsignedBigInteger('insulation_date')->nullable();//
@@ -74,7 +73,6 @@ class CreateBlockedPeopleTable extends Migration
 
             $table->boolean('is_comming_from_other_country')->default(false);//
             $table->string('come_from_country')->nullable();//
-//            $table->unsignedBigInteger('comming_date')->nullable();
             $table->unsignedBigInteger('out_from_country_date')->nullable();//
             $table->unsignedBigInteger('comming_to_yemen_date')->nullable();//
             $table->boolean('is_visit_health_center')->default(false);//
@@ -92,9 +90,10 @@ class CreateBlockedPeopleTable extends Migration
             $table->enum('result_of_examining', ['indicates', 'passive', 'hangs', 'indecisive', 'none'])->default('none');//
             $table->enum('situation_result', ['cured', 'dead', 'referred', 'none'])->default('none');//
 
+
             $table->unsignedBigInteger('if_dead_date')->default(false);//
-            $table->unsignedBigInteger('quarantine_district_id')->nullable()->default(null);//###########
-            $table->foreign('quarantine_district_id')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpdate('cascade');;
+            $table->unsignedBigInteger('quarantine_area_id')->nullable()->default(null);//###########
+            $table->foreign('quarantine_area_id')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpdate('cascade');;
 
             $table->unsignedBigInteger('if_transfer_where')->nullable()->default(null);//
             $table->foreign('if_transfer_where')->references('id')->on('quarantine_areas')->onDelete('cascade')->onUpdate('cascade');;

@@ -227,7 +227,24 @@ return [
     'healthWorker' => 'healthWorker ',
     'both' => 'both ',
     'none' => 'none ',
+    'checkAndTruckInPort' => 'checkAndTruckInPort ',
+    'checkedAndCrossedFromPort' => 'checkedAndCrossedFromPort ',
+    'JustChecked' => 'JustChecked ',
+    'examinedAndQuarantined' => 'examinedAndQuarantined ',
+    'runAway' => 'runAway ',
+    'noActionTaken' => 'noActionTaken ',
 
+    'investigation' => 'investigation ',
+    'file_closed' => 'file_closed ',
+    'case_was_lost' => 'case_was_lost ',
+    'other' => 'other ',
+
+    'cured' => 'cured ',
+    'dead' => 'dead ',
+    'referred' => 'referred ',
+    'passive' => 'passive ',
+    'indicates' => 'indicates ',
+    'hangs' => 'hangs ',
 
 
     'add' => [

@@ -60,11 +60,11 @@ class ProjectApiController extends BaseAPIController
     public function saveIncommingBlockPersion(Request $request)
     {
         try {
-            $project = TempSave::create([
-                'data' => $request->data,
-                'user_id' => auth()->user()->id,
-                'team_work_id' => auth()->user()->work_team->id,
-            ]);
+//            $project = TempSave::create([
+//                'data' => $request->data,
+//                'user_id' => auth()->user()->id,
+//                'team_work_id' => auth()->user()->work_team->id,
+//            ]);
 //
             $array = json_decode(($request->data), true);
             $add = 0;
@@ -75,7 +75,7 @@ class ProjectApiController extends BaseAPIController
                 if ($old > 0)
                     $notAdd++;
                 else {
-                    BlockedPerson::create(array_merge($temp), ['created_by' => auth()->user()->id]);
+                    BlockedPerson::create(array_merge($temp, ['created_by' => auth()->user()->id]));
                     $add++;
                 }
             }

@@ -11,7 +11,7 @@
                      {{--                     src="{{ Setting::get('site_logo') ? Setting::get('site_logo') :  HostUrl('images/logo.png') }}"--}}
                       alt="">
 
-                {{--                {{ Setting::get('site_title')}}--}}
+                                {{ Setting::get('site_title')}}
 
             </a>
             <a class="mobile-options">

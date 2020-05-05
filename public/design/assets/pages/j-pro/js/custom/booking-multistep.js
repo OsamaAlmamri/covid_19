@@ -56,6 +56,8 @@ $(document).ready(function () {
     dateInit('#insulation_date');
     dateInit('#sleep_date');
     dateInit('#start_date_symptoms');
+    dateInit('#insulation_end_date');
+    dateInit('#sample_sent_date');
 
     // Initialize date range
     dateFrom('#date_from', '#date_to');
@@ -67,102 +69,78 @@ $(document).ready(function () {
     // Validation
     $("#j-pro").justFormsPro({
         rules: {
-            // bp_name: {
-            //     required: true
-            // },
-            // id_number: {
-            //     required: true
-            // },
-            // job: {
-            //     required: true
-            // },
-            // email: {
+            bp_name: {
+                required: true
+            },
+            check_date: {
+                required: true
+            },
+            id_number: {
+                required: true
+            },
+            job: {
+                required: true
+            },
+
+            phone: {
+                required: true
+            },
+            country: {
+                required: true
+            },
+
+            // children: {
             //     required: true,
-            //     email: true
+            //     integer: true,
+            //     minvalue: 0
             // },
-            // phone: {
-            //     required: true
-            // },
-            // country: {
-            //     required: true
-            // },
-            adults: {
-                required: true,
-                integer: true,
-                minvalue: 0
-            },
-            children: {
-                required: true,
-                integer: true,
-                minvalue: 0
-            },
-            // birth_date: {
-            //     required: true
-            // },
-            date_from: {
+            birth_date: {
                 required: true
             },
-            date_to: {
-                required: true
-            },
-            message: {
-                required: true
-            }
+
         },
         messages: {
-            // bp_name: {
-            //     required: "الاسم مطلوب"
-            // },
-            // birth_date: {
-            //     required: "تاريخ الميلاد مطلوب"
-            // },
-            // id_number: {
-            //     required: "رقم المعرف  مطلوب"
-            // },
-            // job: {
-            //     required: "نوع الوظيفة  مطلوب"
-            // },
-            // country: {
-            //     required: "الدولة    مطلوبة"
-            // },
-            // email: {
-            //     required: "Add your email",
-            //     email: "Incorrect email format"
-            // },
-            // phone: {
-            //     required: "رقم التلفون مطلوب"
-            // },
-            adults: {
-                required: "Field is required",
-                integer: "Only integer allowed",
-                minvalue: "Value not less than 0"
+            bp_name: {
+                required: "الاسم مطلوب"
             },
-            children: {
-                required: "Field is required",
-                integer: "Only integer allowed",
-                minvalue: "Value not less than 0"
+            birth_date: {
+                required: "تاريخ الميلاد مطلوب"
             },
-            date_from: {
-                required: "Select check-in date"
+            check_date: {
+                required: "تاريخ الفحص مطلوب"
             },
-            date_to: {
-                required: "Select check-out date"
+            id_number: {
+                required: "رقم المعرف  مطلوب"
             },
-            message: {
-                required: "Enter your message"
-            }
+            job: {
+                required: "نوع الوظيفة  مطلوب"
+            },
+            country: {
+                required: "الدولة    مطلوبة"
+            },
+
+            phone: {
+                required: "رقم التلفون مطلوب"
+            },
+
+            // children: {
+            //     required: "Field is required",
+            //     integer: "Only integer allowed",
+            //     minvalue: "Value not less than 0"
+            // },
+
         },
         formType: {
             multistep: true
         },
         afterSubmitHandler: function () {
             // Destroy date range
-            destroyDate("#date_from");
-            destroyDate("#date_to");
+            // destroyDate("#date_from");
+            // destroyDate("#date_to");
 
             // Initialize date range
-            dateFrom("#date_from", "#date_to");
-            dateTo("#date_from", "#date_to");
+            // dateFrom("#date_from", "#date_to");
+            // dateTo("#date_from", "#date_to");
 
             return true;
         }

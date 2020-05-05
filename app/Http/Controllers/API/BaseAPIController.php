@@ -15,6 +15,7 @@ class BaseAPIController extends Controller
     public function sendResponse($result, $message)
     {
         $response = [
+            'code' => 200,
             'success' => true,
             'data' => $result,
             'message' => $message
@@ -25,6 +26,7 @@ class BaseAPIController extends Controller
     public function sendError($error, $errorMessages = [], $code = 404)
     {
         $response = [
+            'code' => 400,
             'success' => false,
             'message' => $error
         ];

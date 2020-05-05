@@ -68,7 +68,7 @@
 
                                     <div class="col-md-2">
                                         <img
-                                            src="{{ HostUrl('images\logo.png')}}" width="400px" alt="small-logo.png">
+                                            src="{{ HostUrl('images\logo3.png')}}" width="400px" alt="small-logo.png">
                                     </div>
                                 </div>
                             </div>

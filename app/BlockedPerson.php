@@ -18,7 +18,7 @@ class BlockedPerson extends Model
         'req_id',
         'bp_name',
         'gender',
-        'zone_id',//if is county is yemen
+//        'zone_id',//if is county is yemen
         'other_place_data',//if is county is not yemen
         'id_type',//قم البطاقة او الجواز
         'id_number',//قم البطاقة او الجواز
@@ -83,7 +83,7 @@ class BlockedPerson extends Model
         'birth_date',
         'job',
         'relative_phone',
-        'quarantine_district_id',//############
+        'quarantine_area_id',//############
         'syncStatus',//***********
         'last_zone_visit_id',//
         'start_date_symptoms',//داية ظهور الاعراض

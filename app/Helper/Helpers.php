@@ -264,7 +264,7 @@ function getZones_childs_ids($parent, $type = 'district')
                 $to_zones = Zone::all()->where('type', 'like', $type);
                 break;
             case 'district':
-                $to_zones = Zone::all()->where('type', 'like', $type);
+                $to_zones = Zone::all()->where('type', 'like', $type);;
                 break;
             case 'hara_vil':
                 $to_zones = HaraVil::all()->where('type', 'like', $type);

@@ -62,10 +62,11 @@
                     <div class="card-block">
                         <div class="j-wrapper j-wrapper-640">
                             @if(isset($blockPerson))
-                                {!! Form::model($blockPerson, ['route' => ['check_points.update', $blockPerson->id], 'method' => 'put','class'=>'j-pro j-multistep','id' => 'j-pro', 'files' => true]) !!}
+                                {!! Form::model($blockPerson, ['route' => ['block_persons.update', $blockPerson->id], 'method' => 'put','class'=>'j-pro j-multistep','id' => 'j-pro', 'files' => true]) !!}
                             @else
-                                {!! Form::open(['role' => 'form', 'route' => 'check_points.store', 'class'=>'j-pro j-multistep','id' => 'j-pro', 'method' => 'post', 'files' => true]) !!}
+                                {!! Form::open(['role' => 'form', 'route' => 'block_persons.store', 'class'=>'j-pro j-multistep','id' => 'j-pro', 'method' => 'post', 'files' => true]) !!}
                             @endif
+                            @csrf
                             <div class="j-content">
                                 <fieldset>
                                     <div class="j-divider-text j-gap-top-20 j-gap-bottom-45">
@@ -298,7 +299,7 @@
                                             <input type="file" accept="image/*" name="id_front_photo"
                                                    class="dropify form-control"
                                                    id="id_front_photo"
-                                                   aria-describedby="fileHelp" required>
+                                                   aria-describedby="fileHelp" >
 
                                             @error('avatar') <span
                                                 class="btn-block badge badge-danger">{{ $message }}</span> @enderror
@@ -312,7 +313,7 @@
                                             <input type="file" accept="image/*" name="id_back_photo"
                                                    class="dropify form-control"
                                                    id="id_back_photo"
-                                                   aria-describedby="fileHelp" required>
+                                                   aria-describedby="fileHelp" >
 
                                             @error('avatar') <span
                                                 class="btn-block badge badge-danger">{{ $message }}</span> @enderror
@@ -669,8 +670,6 @@
 
 
                                 </fieldset>
-
-
                                 <fieldset>
                                     <div class="j-divider-text j-gap-top-20 j-gap-bottom-45">
                                         <span>{{trans('dataTable.step')}} 4/4 - {{trans("dataTable.health_info")}}</span>
@@ -735,47 +734,22 @@
                                         <div class="j-span6 j-unit">
                                             <div class="checkbox j-label">
                                                 <label class="j-label">
-                                                    <input type="checkbox" name="is_visit_health_center" value="true"
+                                                    <input type="checkbox" name="is_visit_health_center" value=1
                                                            @if(isset($blockPerson) and $blockPerson->is_visit_health_center==true) checked @endif>
                                                     {{trans('dataTable.is_visit_health_center')}}</label>
                                             </div>
                                         </div>
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.quar_government')}}</label>
+                                            <label class="j-label"> {{trans('form.health_center_name')}}</label>
                                             <div class="j-input">
-                                                <label class="j-icon-right" for="governorate_id">
+                                                <label class="j-icon-right" for="health_center_name">
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
-                                                {!!Form ::select('quar_governorate_id', getGovernorates(),(isset($blockPerson)) ?$blockPerson->governorate_id:null,['class' => 'select2 form-control', 'id' => 'quar_governorate_id'])!!}
+                                                {!! Form::text('health_center_name', null, [ 'id' => 'health_center_name'  ,'placeholder'=>trans("dataTable.health_center_name")]) !!}
 
                                             </div>
                                         </div>
 
-
-                                    </div>
-
-                                    <div class="j-row">
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('form.quar_zone')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="quar_zone_id">
-                                                    <i class="icofont icofont-envelope"></i>
-                                                </label>
-                                                {!!Form ::select('quar_zone_id',(isset($blockPerson))?getZones($blockPerson->zone->zone->id):getZones(),(isset($blockPerson))?$blockPerson->zone->id:null,['class' => 'select2 form-control', 'id' => 'quar_zone_id'])!!}
-
-                                            </div>
-                                        </div>
-
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.quarantine_district_id')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="quarantine_district_id">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!!Form ::select('quarantine_district_id', [],null,['class' => 'select2 form-control', 'id' => 'quarantine_district_id'])!!}
-
-                                            </div>
-                                        </div>
 
                                     </div>
 
@@ -793,18 +767,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="j-span6 j-unit">
-                                            <label
-                                                class="j-label"> {{trans('dataTable.insulation_date')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="check_date">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!! Form::text('insulation_date', null, [ 'id' => 'insulation_date'  ,'placeholder'=>trans("dataTable.insulation_date")]) !!}
-
-                                            </div>
-                                        </div>
-
 
                                     </div>
 
@@ -814,7 +776,7 @@
                                         <div class="j-span6 j-unit">
                                             <div class="checkbox j-label">
                                                 <label class="j-label">
-                                                    <input type="checkbox" name="is_mix_other_people" value="true"
+                                                    <input type="checkbox" name="is_mix_other_people" value=1
                                                            @if(isset($blockPerson) and $blockPerson->is_mix_other_people==true) checked @endif>
                                                     {{trans('dataTable.is_mix_other_people')}}</label>
                                             </div>
@@ -857,7 +819,7 @@
                                         <div class="j-span6 j-unit">
                                             <div class="checkbox j-label">
                                                 <label class="j-label">
-                                                    <input type="checkbox" name="sleeping" value="true"
+                                                    <input type="checkbox" name="sleeping" value=1
                                                            @if(isset($blockPerson) and $blockPerson->sleeping==true) checked @endif>
                                                     {{trans('dataTable.sleeping')}}</label>
                                             </div>
@@ -875,7 +837,6 @@
                                         </div>
 
                                     </div>
-
 
 
                                     <div class="j-row">
@@ -900,19 +861,19 @@
 
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="is_pregnant" value="true"
+                                                <input type="checkbox" name="is_pregnant" value=1
                                                        @if(isset($blockPerson) and $blockPerson->is_pregnant==true) checked @endif>
                                                 {{trans('dataTable.is_pregnant')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="is_pregnant_in_first_3Month" value="true"
+                                                <input type="checkbox" name="is_pregnant_in_first_3Month" value=1
                                                        @if(isset($blockPerson) and $blockPerson->is_pregnant_in_first_3Month==true) checked @endif>
                                                 {{trans('dataTable.is_pregnant_in_first_3Month')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="after_childbirth" value="true"
+                                                <input type="checkbox" name="after_childbirth" value=1
                                                        @if(isset($blockPerson) and $blockPerson->after_childbirth==true) checked @endif>
                                                 {{trans('dataTable.after_childbirth')}}</label>
                                         </div>
@@ -922,52 +883,52 @@
                                     <div class="j-unit">
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="fever_symptoms" value="true"
+                                                <input type="checkbox" name="fever_symptoms" value=1
                                                        @if(isset($blockPerson) and $blockPerson->fever_symptoms==true) checked @endif>
                                                 {{trans('dataTable.fever_symptoms')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="sore_throat_symptoms" value="true"
+                                                <input type="checkbox" name="sore_throat_symptoms" value=1
                                                        @if(isset($blockPerson) and $blockPerson->sore_throat_symptoms==true) checked @endif>
                                                 {{trans('dataTable.sore_throat_symptoms')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="cough_symptoms" value="true"
+                                                <input type="checkbox" name="cough_symptoms" value=1
                                                        @if(isset($blockPerson) and $blockPerson->cough_symptoms==true) checked @endif>
                                                 {{trans('dataTable.cough_symptoms')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
                                                 <input type="checkbox" name="descent_from_the_nose_symptoms"
-                                                       value="true"
+                                                       value=1
                                                        @if(isset($blockPerson) and $blockPerson->descent_from_the_nose_symptoms==true) checked @endif>
                                                 {{trans('dataTable.descent_from_the_nose_symptoms')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
                                                 <input type="checkbox" name="breathing_difficulty_symptoms"
-                                                       value="true"
+                                                       value=1
                                                        @if(isset($blockPerson) and $blockPerson->breathing_difficulty_symptoms==true) checked @endif>
                                                 {{trans('dataTable.breathing_difficulty_symptoms')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="headache_symptoms" value="true"
+                                                <input type="checkbox" name="headache_symptoms" value=1
                                                        @if(isset($blockPerson) and $blockPerson->headache_symptoms==true) checked @endif>
                                                 {{trans('dataTable.headache_symptoms')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="pain_in_chest" value="true"
+                                                <input type="checkbox" name="pain_in_chest" value=1
                                                        @if(isset($blockPerson) and $blockPerson->pain_in_chest==true) checked @endif>
                                                 {{trans('dataTable.pain_in_chest')}}</label>
                                         </div>
 
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="pain_in_the_joints" value="true"
+                                                <input type="checkbox" name="pain_in_the_joints" value=1
                                                        @if(isset($blockPerson) and $blockPerson->pain_in_the_joints==true) checked @endif>
                                                 {{trans('dataTable.pain_in_the_joints')}}</label>
                                         </div>
@@ -989,44 +950,44 @@
                                     <div class="j-unit">
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="heart_disease" value="true"
+                                                <input type="checkbox" name="heart_disease" value=1
                                                        @if(isset($blockPerson) and $blockPerson->heart_disease==true) checked @endif>
                                                 {{trans('dataTable.heart_disease')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="blood_pressure_disease" value="true"
+                                                <input type="checkbox" name="blood_pressure_disease" value=1
                                                        @if(isset($blockPerson) and $blockPerson->blood_pressure_disease==true) checked @endif>
                                                 {{trans('dataTable.blood_pressure_disease')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="diabetes_disease" value="true"
+                                                <input type="checkbox" name="diabetes_disease" value=1
                                                        @if(isset($blockPerson) and $blockPerson->diabetes_disease==true) checked @endif>
                                                 {{trans('dataTable.diabetes_disease')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="immunodeficiency_diseases" value="true"
+                                                <input type="checkbox" name="immunodeficiency_diseases" value=1
                                                        @if(isset($blockPerson) and $blockPerson->immunodeficiency_diseases==true) checked @endif>
                                                 {{trans('dataTable.immunodeficiency_diseases')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="liver_diseases" value="true"
+                                                <input type="checkbox" name="liver_diseases" value=1
                                                        @if(isset($blockPerson) and $blockPerson->liver_diseases==true) checked @endif>
                                                 {{trans('dataTable.liver_diseases')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
                                                 <input type="checkbox" name="chronic_respiratory_disease"
-                                                       value="true"
+                                                       value=1
                                                        @if(isset($blockPerson) and $blockPerson->chronic_respiratory_disease==true) checked @endif>
                                                 {{trans('dataTable.chronic_respiratory_disease')}}</label>
                                         </div>
                                         <div class="checkbox j-label">
                                             <label class="j-label">
-                                                <input type="checkbox" name="kidney_disease" value="true"
+                                                <input type="checkbox" name="kidney_disease" value=1
                                                        @if(isset($blockPerson) and $blockPerson->kidney_disease==true) checked @endif>
                                                 {{trans('dataTable.kidney_disease')}}</label>
                                         </div>
@@ -1044,6 +1005,225 @@
 
                                         </div>
                                     </div>
+
+                                    <div class="j-row">
+
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('form.typeStatus')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="typeStatus">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!!Form ::select('typeStatus',[
+                                                'examinedAndQuarantined'=>trans('dataTable.examinedAndQuarantined'),
+                                                'checkedAndCrossedFromPort'=>trans('dataTable.checkedAndCrossedFromPort'),
+                                                'checkAndTruckInPort'=>trans('dataTable.checkAndTruckInPort'),
+                                                'runAway'=>trans('dataTable.runAway'),
+                                                'JustChecked'=>trans('dataTable.JustChecked'),
+                                                'noActionTaken'=>trans('noActionTaken.yes')
+                                                ]
+                                                ,null,['class' => 'select2 form-control', 'id' => 'typeStatus'])!!}
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('form.quar_government')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="governorate_id">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!!Form ::select('quar_governorate_id', getGovernorates(),(isset($blockPerson)) ?$blockPerson->governorate_id:null,['class' => 'select2 form-control', 'id' => 'quar_governorate_id'])!!}
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="j-row">
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label">{{trans('form.quar_zone')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="quar_zone_id">
+                                                    <i class="icofont icofont-envelope"></i>
+                                                </label>
+                                                {!!Form ::select('quar_zone_id',(isset($blockPerson))?getZones($blockPerson->zone->zone->id):getZones(),(isset($blockPerson))?$blockPerson->zone->id:null,['class' => 'select2 form-control', 'id' => 'quar_zone_id'])!!}
+
+                                            </div>
+                                        </div>
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('form.quarantine_area_id')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="quarantine_area_id">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!!Form ::select('quarantine_area_id', [],null,['class' => 'select2 form-control', 'id' => 'quarantine_area_id'])!!}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="j-row">
+                                        <div class="j-span6 j-unit">
+                                            <label
+                                                class="j-label"> {{trans('dataTable.insulation_date')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="check_date">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!! Form::text('insulation_date', null, [ 'id' => 'insulation_date'  ,'placeholder'=>trans("dataTable.insulation_date")]) !!}
+
+                                            </div>
+                                        </div>
+
+                                        <div class="j-span6 j-unit">
+                                            <label
+                                                class="j-label">{{trans("dataTable.insulation_end_date")}} </label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="insulation_end_date">
+                                                    <i class="icofont icofont-ui-user"></i>
+                                                </label>
+                                                {!! Form::text('insulation_end_date', null, [ 'id' => 'insulation_end_date'  ,'placeholder'=>trans("dataTable.insulation_end_date")]) !!}
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="j-row">
+                                        {{--                                        $table->enum('result_of_examining', ['indicates', 'passive', 'hangs', 'indecisive', 'none'])->default('none');//--}}
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('form.situation_result')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="situation_result">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+
+                                                {!!Form ::select('situation_result',['none'=>trans('dataTable.none'),
+                                                                                    'dead'=>trans('dataTable.dead'),
+                                                                                    'cured'=>trans('dataTable.cured'),
+                                                                                    'referred'=>trans('dataTable.referred')
+                                                                                    ] ,null,['class' => 'select2 form-control', 'id' => 'situation_result'])!!}
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="j-span6 j-unit">
+                                            <label
+                                                class="j-label"> {{trans('form.response_team_interventions')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="response_team_interventions">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+
+                                                {!!Form ::select('response_team_interventions',['none'=>trans('dataTable.none'),
+                                                                                    'investigation'=>trans('dataTable.investigation'),
+                                                                                    'file_closed'=>trans('dataTable.file_closed'),
+                                                                                    'case_was_lost'=>trans('dataTable.case_was_lost'),
+                                                                                    'other'=>trans('dataTable.other')
+                                                                                    ] ,null,['class' => 'select2 form-control', 'id' => 'response_team_interventions'])!!}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="j-unit">
+                                        <label
+                                            class="j-label">{{trans("dataTable.other_response_team_interventions")}} </label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="other_response_team_interventions">
+                                                <i class="icofont icofont-ui-user"></i>
+                                            </label>
+                                            {!! Form::text('other_response_team_interventions', null, [ 'id' => 'other_response_team_interventions'  ,'placeholder'=>trans("dataTable.other_response_team_interventions")]) !!}
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="j-unit">
+
+
+                                        <div class="checkbox j-label">
+                                            <label class="j-label">
+                                                <input type="checkbox" name="is_patientIdentical_standard_definition"
+                                                       value=1
+                                                       @if(isset($blockPerson) and $blockPerson->is_patientIdentical_standard_definition==true) checked @endif>
+                                                {{trans('dataTable.is_patientIdentical_standard_definition')}}</label>
+                                        </div>
+                                        <div class="checkbox j-label">
+                                            <label class="j-label">
+                                                <input type="checkbox" name="is_sample_collected" value=1
+                                                       @if(isset($blockPerson) and $blockPerson->is_sample_collected==true) checked @endif>
+                                                {{trans('dataTable.is_sample_collected')}}</label>
+                                        </div>
+                                        <div class="checkbox j-label">
+                                            <label class="j-label">
+                                                <input type="checkbox" name="is_sample_sent" value=1
+                                                       @if(isset($blockPerson) and $blockPerson->is_sample_sent==true) checked @endif>
+                                                {{trans('dataTable.is_sample_sent')}}</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="j-row">
+                                        {{--                                        $table->enum('result_of_examining', ['indicates', 'passive', 'hangs', 'indecisive', 'none'])->default('none');//--}}
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('form.result_of_examining')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="result_of_examining">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+
+                                                {!!Form ::select('result_of_examining',[
+                                                'none'=>trans('dataTable.none'),
+                                                'indicates'=>trans('dataTable.indicates'),
+                                                                                    'passive'=>trans('dataTable.passive'),
+                                                                                    'hangs'=>trans('dataTable.hangs'),
+                                                                                    'indecisive'=>trans('dataTable.indecisive')
+                                                                                    ] ,null,['class' => 'select2 form-control', 'id' => 'result_of_examining'])!!}
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="j-span6 j-unit">
+                                            <label
+                                                class="j-label"> {{trans('form.sample_sent_date')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="sample_sent_date">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+
+                                                {!! Form::text('sample_sent_date', null, [ 'id' => 'sample_sent_date'  ,'placeholder'=>trans("dataTable.sample_sent_date")]) !!}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="j-unit">
+                                        <label
+                                            class="j-label">{{trans("dataTable.note")}} </label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="note">
+                                                <i class="icofont icofont-ui-user"></i>
+                                            </label>
+                                            {!! Form::text('note', null, [ 'id' => 'note'  ,'placeholder'=>trans("dataTable.note")]) !!}
+
+                                        </div>
+                                    </div>
+
+
                                     <!-- end message -->
                                 </fieldset>
                                 <!-- start response from server -->
@@ -1052,7 +1232,7 @@
                             </div>
                             <!-- end /.content -->
                             <div class="j-footer">
-                                <button type="submit" class="btn btn-primary j-multi-submit-btn">save</button>
+                                <button type="submit" class="btn btn-primary  j-multi-submit-btn">save</button>
                                 <button type="button" class="btn btn-primary j-multi-next-btn">Next</button>
                                 <button type="button" class="btn btn-default m-r-20 j-multi-prev-btn">Back</button>
                             </div>
@@ -1141,7 +1321,7 @@
         function get_quarantine() {
             var zone_id = $('#quar_zone_id').val();
             var type = 'point';
-            var selectList = $('#quarantine_district_id');
+            var selectList = $('#quarantine_area_id');
             $.ajax({
                 url: '{{route('check_points.get_quarantine')}}',//   var url=$('#news').attr('action');
                 method: 'POST',

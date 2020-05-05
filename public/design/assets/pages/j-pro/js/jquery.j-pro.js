@@ -507,19 +507,19 @@ JustFormsPro.prototype = {
 		}
 
 		// Form validation
-		if ( config.validationEvent.onsubmit ) {
-			// Buttons disabled
-			$submitBtn.toggleClass( "j-processing", true ).attr( "disabled", true );
-			if ( config.formType.multistep ) {
-				$prevBtn.attr( "disabled", true );
-			}
-
-			// Clear a form
-			self.clearForm();
-
-			// Validate form
-			self.validateForm();
-		}
+		// if ( config.validationEvent.onsubmit ) {
+		// 	// Buttons disabled
+		// 	$submitBtn.toggleClass( "j-processing", true ).attr( "disabled", true );
+		// 	if ( config.formType.multistep ) {
+		// 		$prevBtn.attr( "disabled", true );
+		// 	}
+        //
+		// 	// Clear a form
+		// 	self.clearForm();
+        //
+		// 	// Validate form
+		// 	self.validateForm();
+		// }
 
 		// If errors exist
 		if ( self.errorExists ) {
@@ -542,14 +542,14 @@ JustFormsPro.prototype = {
 		}
 
 		// Before submit custom handler
-		if ( !config.submit || !config.beforeSubmitHandler() ) {
-			// Buttons enabled
-			$submitBtn.toggleClass( "j-processing", false ).removeAttr( "disabled" );
-			if ( self.config.formType.multistep ) {
-				$prevBtn.removeAttr( "disabled" );
-			}
-			return false;
-		}
+		// if ( !config.submit || !config.beforeSubmitHandler() ) {
+		// 	// Buttons enabled
+		// 	$submitBtn.toggleClass( "j-processing", false ).removeAttr( "disabled" );
+		// 	if ( self.config.formType.multistep ) {
+		// 		$prevBtn.removeAttr( "disabled" );
+		// 	}
+		// 	return false;
+		// }
 
 		// Send form data
 		self.getServerResponse();
@@ -683,7 +683,7 @@ JustFormsPro.prototype = {
 			if ( $formObj[name] === undefined || $formObj[name] === null ) {
 				return;
 			}
-			
+
 			// Skip the validation if field is hidden
 			if ( _hiddenCheck( $formObj[name] ) ){
 				return;
@@ -1112,7 +1112,7 @@ JustFormsPro.prototype = {
 					$submitBtn.removeClass( "j-hiddenBtn" );
 					$nextBtn.addClass( "j-hiddenBtn" );
 				}
-			
+
 			// If current fieldset has validation errors
 			} else {
 				// Scroll to first element with error
