@@ -2,17 +2,18 @@
     <div class="navbar-wrapper">
         <div class="navbar-logo">
             <a class="mobile-menu" id="mobile-collapse" href="#!">
-                <i class="feather icon-menu"></i>
+                <i class="feather icon-menu"  style="float: right;
+"></i>
             </a>
 
             <a href="{{route('home')}}">
                 <img class="img-fluid"
-                     src="{{   HostUrl('images/logo.png') }}"
+                     {{--                     src="{{   HostUrl('images/logo2.png') }}"--}}
                      {{--                     src="{{ Setting::get('site_logo') ? Setting::get('site_logo') :  HostUrl('images/logo.png') }}"--}}
-                      alt="">
+                     alt="">
 
-                                {{ Setting::get('site_title')}}
-
+                {{--                                {{ Setting::get('site_title')}}--}}
+               <H5>  ادارة مراكز الفحص والتفتيش</H5>
             </a>
             <a class="mobile-options">
                 <i class="feather icon-more-horizontal"></i>
@@ -41,12 +42,12 @@
                     <a href="{{route('lang',getOtherLang())}}">
                         @if(getOtherLang()=='ar')
                             <span> AR</span>
-{{--                            <img style="width: 20px;margin-bottom: 15px;"--}}
-{{--                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\ye.svg')}}">--}}
+                            {{--                            <img style="width: 20px;margin-bottom: 15px;"--}}
+                            {{--                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\ye.svg')}}">--}}
                         @else
                             <span> EN</span>
-{{--                            <img style="width: 20px;margin-bottom: 15px;"--}}
-{{--                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\us.svg')}}">--}}
+                            {{--                            <img style="width: 20px;margin-bottom: 15px;"--}}
+                            {{--                                 src="{{ HostUrl('design\assets\icon\flag-icons\fonts\us.svg')}}">--}}
                         @endif
                     </a>
                 </li>

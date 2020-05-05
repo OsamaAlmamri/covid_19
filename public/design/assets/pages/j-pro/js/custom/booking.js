@@ -106,6 +106,8 @@ $(document).ready(function() {
                 required: "Enter your message"
             }
         },
+        submit: false,
+        debug: true,
         afterSubmitHandler: function() {
             // Destroy date range
             destroyDate("#date_from");

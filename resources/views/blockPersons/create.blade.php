@@ -214,7 +214,7 @@
                                                 <label class="j-icon-right" for="zone_id">
                                                     <i class="icofont icofont-envelope"></i>
                                                 </label>
-                                                {!!Form ::select('zone_id',(isset($blockPerson))?getZones($blockPerson->zone->zone->id):getZones(),(isset($blockPerson))?$blockPerson->zone->id:null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+                                                {!!Form ::select('district_code',(isset($blockPerson))?getZones($blockPerson->zone->zone->id):getZones(),(isset($blockPerson))?$blockPerson->zone->id:null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
 
                                             </div>
                                         </div>
@@ -496,51 +496,24 @@
                                             </div>
                                         </div>
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.dest_hara')}}</label>
+                                            <label class="j-label">{{trans('dataTable.dest_isolation_neighborhood')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="dest_hara">
                                                     <i class="icofont icofont-envelope"></i>
                                                 </label>
-                                                {!!Form ::select('dest_hara',(isset($blockPerson))?getZones($blockPerson->dest_zone->zone->code):getZones(),(isset($blockPerson))?$blockPerson->dest_zone->id:null,['class' => 'select2 form-control', 'id' => 'dest_hara'])!!}
+                                                {!!Form ::select('dest_isolation_neighborhood',(isset($blockPerson))?getZones($blockPerson->dest_zone->zone->code):getZones(),(isset($blockPerson))?$blockPerson->dest_zone->id:null,['class' => 'select2 form-control', 'id' => 'dest_hara'])!!}
 
                                             </div>
                                         </div>
 
 
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.dest_sub_hara')}}</label>
+                                            <label class="j-label">{{trans('dataTable.dest_lane_village')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="dest_sub_hara">
                                                     <i class="icofont icofont-envelope"></i>
                                                 </label>
-                                                {!!Form ::select('dest_sub_hara',(isset($blockPerson))?getZones($blockPerson->dest_zone->zone->code):getZones(),(isset($blockPerson))?$blockPerson->dest_zone->id:null,['class' => 'select2 form-control', 'id' => 'dest_sub_hara'])!!}
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="j-row">
-                                        <div class="j-span6 j-unit">
-                                            <label
-                                                class="j-label"> {{trans('dataTable.dest_isolation_neighborhood')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="dest_isolation_neighborhood">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!! Form::text('dest_isolation_neighborhood', null, [ 'id' => 'dest_isolation_neighborhood'  ,'placeholder'=>trans("dataTable.dest_isolation_neighborhood")]) !!}
-
-                                            </div>
-                                        </div>
-
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('dataTable.dest_lane_village')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="dest_lane_village">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!! Form::text('dest_lane_village', null, [ 'id' => 'dest_lane_village'  ,'placeholder'=>trans("dataTable.dest_lane_village")]) !!}
+                                                {!!Form ::select('dest_lane_village',(isset($blockPerson))?getZones($blockPerson->dest_zone->zone->code):getZones(),(isset($blockPerson))?$blockPerson->dest_zone->id:null,['class' => 'select2 form-control', 'id' => 'dest_sub_hara'])!!}
 
                                             </div>
                                         </div>
@@ -678,7 +651,7 @@
                                     <!-- start message -->
                                     <div class="j-row">
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('form.check_point_id')}}</label>
+                                            <label class="j-label">{{trans('dataTable.check_point_id')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="check_point_id">
                                                     <i class="icofont icofont-envelope"></i>
@@ -740,7 +713,7 @@
                                             </div>
                                         </div>
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.health_center_name')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.health_center_name')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="health_center_name">
                                                     <i class="icofont icofont-phone"></i>
@@ -756,7 +729,7 @@
 
                                     <div class="j-row">
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('form.status_at_reporting')}}</label>
+                                            <label class="j-label">{{trans('dataTable.status_at_reporting')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="status_at_reporting">
                                                     <i class="icofont icofont-envelope"></i>
@@ -782,7 +755,7 @@
                                             </div>
                                         </div>
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.mix_people_type')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.mix_people_type')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="mix_people_type">
                                                     <i class="icofont icofont-phone"></i>
@@ -825,7 +798,7 @@
                                             </div>
                                         </div>
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.sleep_date')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.sleep_date')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="sleep_date">
                                                     <i class="icofont icofont-phone"></i>
@@ -842,7 +815,7 @@
                                     <div class="j-row">
 
                                         <div class=" j-unit">
-                                            <label class="j-label"> {{trans('form.start_date_symptoms')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.start_date_symptoms')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="start_date_symptoms">
                                                     <i class="icofont icofont-phone"></i>
@@ -1010,7 +983,7 @@
 
 
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.typeStatus')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.typeStatus')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="typeStatus">
                                                     <i class="icofont icofont-phone"></i>
@@ -1030,7 +1003,7 @@
 
 
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.quar_government')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.quar_government')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="governorate_id">
                                                     <i class="icofont icofont-phone"></i>
@@ -1045,7 +1018,7 @@
 
                                     <div class="j-row">
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('form.quar_zone')}}</label>
+                                            <label class="j-label">{{trans('dataTable.quar_zone')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="quar_zone_id">
                                                     <i class="icofont icofont-envelope"></i>
@@ -1056,7 +1029,7 @@
                                         </div>
 
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.quarantine_area_id')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.quarantine_area_id')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="quarantine_area_id">
                                                     <i class="icofont icofont-phone"></i>
@@ -1098,7 +1071,7 @@
                                         {{--                                        $table->enum('result_of_examining', ['indicates', 'passive', 'hangs', 'indecisive', 'none'])->default('none');//--}}
 
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.situation_result')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.situation_result')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="situation_result">
                                                     <i class="icofont icofont-phone"></i>
@@ -1116,7 +1089,7 @@
 
                                         <div class="j-span6 j-unit">
                                             <label
-                                                class="j-label"> {{trans('form.response_team_interventions')}}</label>
+                                                class="j-label"> {{trans('dataTable.response_team_interventions')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="response_team_interventions">
                                                     <i class="icofont icofont-phone"></i>
@@ -1178,7 +1151,7 @@
                                         {{--                                        $table->enum('result_of_examining', ['indicates', 'passive', 'hangs', 'indecisive', 'none'])->default('none');//--}}
 
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.result_of_examining')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.result_of_examining')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="result_of_examining">
                                                     <i class="icofont icofont-phone"></i>
@@ -1198,7 +1171,7 @@
 
                                         <div class="j-span6 j-unit">
                                             <label
-                                                class="j-label"> {{trans('form.sample_sent_date')}}</label>
+                                                class="j-label"> {{trans('dataTable.sample_sent_date')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="sample_sent_date">
                                                     <i class="icofont icofont-phone"></i>
@@ -1232,9 +1205,9 @@
                             </div>
                             <!-- end /.content -->
                             <div class="j-footer">
-                                <button type="submit" class="btn btn-primary  j-multi-submit-btn">save</button>
-                                <button type="button" class="btn btn-primary j-multi-next-btn">Next</button>
-                                <button type="button" class="btn btn-default m-r-20 j-multi-prev-btn">Back</button>
+                                <button type="submit" class="btn btn-primary  j-multi-submit-btn"> {{trans("form.save")}} </button>
+                                <button type="button" class="btn btn-primary j-multi-next-btn">{{trans("form.next")}}</button>
+                                <button type="button" class="btn btn-default m-r-20 j-multi-prev-btn">{{trans("form.back")}}</button>
                             </div>
                             </form>
                         </div>

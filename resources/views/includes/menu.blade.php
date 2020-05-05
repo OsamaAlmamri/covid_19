@@ -1,5 +1,5 @@
 <nav class="pcoded-navbar">
-    <div class="pcoded-inner-navbar main-menu">
+    <div class="pcoded-inner-navbar main-menu" style="    background: #ffffff;">
         {{--        <div class="pcoded-navigatio-lavel">{{trans('menu.dashboard')}}</div>--}}
         <ul class="pcoded-item pcoded-left-item">
             <li class="">

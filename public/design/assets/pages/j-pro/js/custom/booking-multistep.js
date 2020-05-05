@@ -21,6 +21,12 @@ $(document).ready(function () {
         });
     }
 
+    // Start date
+    function afterSubmit() {
+        console.log('ssssssss');
+        alert('dsd');
+    }
+
     // Finish date
     function dateTo(date_from, date_to) {
         $(date_to).datepicker({
@@ -88,6 +94,12 @@ $(document).ready(function () {
             country: {
                 required: true
             },
+            quarantine_area_id: {
+                required: true
+            },
+            check_point_id: {
+                required: true
+            },
 
             // children: {
             //     required: true,
@@ -122,6 +134,12 @@ $(document).ready(function () {
             phone: {
                 required: "رقم التلفون مطلوب"
             },
+            quarantine_area_id: {
+                required: "يجب تحديد مركز  "
+            },
+            check_point_id: {
+                required: "يجب تحديد نقطة الفحص او التفتيش  "
+            },
 
             // children: {
             //     required: "Field is required",
@@ -133,12 +151,20 @@ $(document).ready(function () {
         formType: {
             multistep: true
         },
+        afterSuccessSubmit: function (data) {
+            // alert('sss');
+            toastr.success(' تم الاضافة بنجاح');
+            location.reload();
+            return true;
+        },
         afterSubmitHandler: function () {
+            afterSubmit();
+            // console.log(data);
             // Destroy date range
             // destroyDate("#date_from");
             // destroyDate("#date_to");
-
-            // Initialize date range
+            // //
+            // // Initialize date range
             // dateFrom("#date_from", "#date_to");
             // dateTo("#date_from", "#date_to");
 
