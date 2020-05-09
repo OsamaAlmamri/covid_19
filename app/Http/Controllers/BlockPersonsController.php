@@ -84,6 +84,12 @@ class BlockPersonsController extends Controller
         $request['dest_exit_date'] = $this->dateToMiliSecond($request->dest_exit_date);
         $request['birth_date'] = $this->dateToMiliSecond($request->birth_date);
 
+        if ($request->is_comming_from_other_country == 1)
+            $request['last_zone_visit_id'] = null;
+
+        if ($request->bp_from == 'align')
+            $request['district_code'] = null;
+
 
         $person = BlockedPerson::create(array_merge($request->all(),
             [
@@ -310,6 +316,7 @@ class BlockPersonsController extends Controller
 
         return $data;
     }
+
 
     public function getSumBlockPersonsAccordingForZoneData($government, $gender, $from_date, $to_date, $type_query, $nationality)
 

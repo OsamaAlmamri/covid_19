@@ -84,12 +84,12 @@
                         <div class="input-group col-md-3">
                             <span class="input-group-addon">{{trans('menu.government')}}</span>
                             <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
-                            {!!Form ::select('governorate_id',  getGovernorates(),(isset($workTeam)) ?$workTeam->zone->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_governorate_id'])!!}
+                            {!!Form ::select('governorate_id',  getGovernorates(),(isset($workTeam)) ?$workTeam->zone->zone->code:null,['class' => 'select2 form-control', 'id' => 'center_governorate_id'])!!}
 
                         </div>
                         <div class="input-group col-md-3">
                             <span class="input-group-addon">{{trans('menu.zone')}}</span>
-                            {!!Form ::select('zone_id',(isset($workTeam))?getZones($workTeam->zone->zone->id):getZones(),(isset($workTeam))?$workTeam->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_zone_id'])!!}
+                            {!!Form ::select('zone_id',(isset($workTeam))?getZones($workTeam->zone->zone->code):getZones(),(isset($workTeam))?$workTeam->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_zone_id'])!!}
 
                         </div>
 
@@ -336,7 +336,7 @@
     <script>
         getZones('modal_governorate_id', 'modal_zone_id');
         getZones('center_governorate_id', 'center_zone_id');
-        getZones('search_government_id', 'search_zone_id', 'all');
+        getZones('search_government_id', 'search_zone_id','district', 'all');
 
 
         function addMember(id, name) {

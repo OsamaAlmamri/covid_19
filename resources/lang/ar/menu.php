@@ -139,5 +139,16 @@ return array(
     'align' => '   اجنبي  ',
 
 
+    'id_info' => '   معلومات البطاقة المعرفة ',
+    'sourse_reside_info' => '  معلومات سبب البقاء  ',
+    'transpiration_info' => '   معلومات وسيلة النقل  ',
+    'form_info' => '   معلومات تاريخ ومكان الفحص ',
+    'initialInfo' => '   المعلومات الاولوية ',
+    'symptoms' => '   الاعراض  ',
+    'diseases' => '   الامراض  ',
+    'for_female' => '   للأناث  ',
+    'procedures' => '   الاجراءات   ',
+    'sampleInfo' => '  معلومات العينة ',
+
 
 );

@@ -139,7 +139,7 @@ return [
 
     'sub_hara_vil' => 'Neighborhood',
     'hara_vil' => 'Villages',
-    'sub_dis' => 'العزل',
+    'sub_dis' => 'town',
     'district' => 'districts',
 
     'check_block_peoples' => ' check Quarantine peoples',
@@ -150,6 +150,18 @@ return [
     'nationality' => '   nationality  ',
     'yemeni' => '   yemeni  ',
     'align' => '   align  ',
+
+
+    'id_info' => '   ID Information  ',
+    'sourse_reside_info' => '  Source Resident Info  ',
+    'transpiration_info' => '  Transpiration Info  ',
+    'form_info' => '  Form Info  ',
+    'initialInfo' => '  Initial  Info  ',
+    'diseases' => '  ]iseases  ',
+    'symptoms' => ' Symptoms  ',
+    'for_female' => '   For Female  ',
+    'procedures' => '   Procedures  ',
+    'sampleInfo' => '   Sample Info  ',
 
 
 ];

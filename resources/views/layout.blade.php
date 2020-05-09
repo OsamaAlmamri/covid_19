@@ -14,7 +14,7 @@
           content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
     <!-- Favicon icon -->
-    <meta name="google-site-verification" content="M9gUKXm-MlzvyxHTkSxKjI6MkTZsqW-8gd7Tkq3B_po"/>
+{{--    <meta name="google-site-verification" content="M9gUKXm-MlzvyxHTkSxKjI6MkTZsqW-8gd7Tkq3B_po"/>--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{HostUrl('images\logo.png')}}" type="image/x-icon">
 {{--    <link rel="shortcut icon" href="{{ Setting::get('site_favicon', asset('favicon.ico')) }}">--}}

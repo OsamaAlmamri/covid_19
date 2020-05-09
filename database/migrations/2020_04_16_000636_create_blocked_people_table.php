@@ -21,7 +21,7 @@ class CreateBlockedPeopleTable extends Migration
             $table->string('country')->default('yemen');//
             $table->string('other_place_data')->nullable();//**********عدل اسم *******
             $table->string('syncStatus')->nullable();//**********اضاف*******
-            $table->string('id_type')->nullable()->default('ssn');//
+            $table->enum('id_type', ['passport', 'personal','temporary','family','military'])->default('personal');//
             $table->string('id_number')->nullable();//
             $table->unsignedBigInteger('zone_id');//
 

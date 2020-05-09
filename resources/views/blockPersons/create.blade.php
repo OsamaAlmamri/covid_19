@@ -88,10 +88,67 @@
                                     <!-- start email phone -->
                                     <div class="j-row">
                                         <div class="j-span6 j-unit">
+                                            <label class="j-label">{{trans("dataTable.bp_from")}} </label>
+                                            <div class=" radio-inline">
+                                                <label>
+                                                    <input type="radio" name="bp_from" value="yemeni" class="bp_from"
+                                                           @if(isset($blockPerson)and $blockPerson->bp_from=='yemeni')  checked="checked"
+                                                           @endif checked="checked">
+                                                    <i class="helper"></i> {{trans("dataTable.yemeni")}}
+                                                </label>
+                                            </div>
+                                            <div class=" radio-inline">
+                                                <label>
+                                                    <input type="radio" name="bp_from" value="align" class="bp_from"
+                                                           @if(isset($blockPerson)and $blockPerson->bp_from=='align') checked="checked" @endif>
+                                                    <i class="helper"></i> {{trans("dataTable.align")}}
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label">{{trans('dataTable.country')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="country">
+                                                    <i class="icofont icofont-envelope"></i>
+                                                </label>
+                                                {!! Form::text('country', 'اليمن', [ 'id' => 'country','disabled'=>true ,'placeholder'=>trans("dataTable.country")]) !!}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="j-row" id="if_yemeni">
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('form.government')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="governorate_id">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!!Form ::select('governorate_id', getGovernorates(),(isset($blockPerson)) ?$blockPerson->governorate_id:null,['class' => 'select2 form-control', 'id' => 'governorate_id'])!!}
+
+                                            </div>
+                                        </div>
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label">{{trans('form.zone')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="zone_id">
+                                                    <i class="icofont icofont-envelope"></i>
+                                                </label>
+                                                {!!Form ::select('district_code',(isset($blockPerson))?getZones($blockPerson->zone->zone->id):getZones(),(isset($blockPerson))?$blockPerson->zone->id:null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="j-row">
+                                        <div class="j-span6 j-unit">
                                             <label class="j-label">{{trans("dataTable.gender")}} </label>
                                             <div class=" radio-inline">
                                                 <label>
-                                                    <input type="radio" name="gender" value="male"
+                                                    <input type="radio" name="gender" value="male" class="gender"
                                                            @if(isset($blockPerson)and $blockPerson->gender=='male')  checked="checked"
                                                            @endif checked="checked">
                                                     <i class="helper"></i> {{trans("form.male")}}
@@ -99,7 +156,7 @@
                                             </div>
                                             <div class=" radio-inline">
                                                 <label>
-                                                    <input type="radio" name="gender" value="female"
+                                                    <input type="radio" name="gender" value="female" class="gender"
                                                            @if(isset($blockPerson)and $blockPerson->gender=='female') checked="checked" @endif>
                                                     <i class="helper"></i> {{trans("form.female")}}
                                                 </label>
@@ -116,36 +173,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="j-row">
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans("dataTable.id_type")}} </label>
-                                            <div class=" radio-inline">
-                                                <label>
-                                                    <input type="radio" name="id_type" value="personal"
-                                                           @if(isset($blockPerson)and $blockPerson->id_type=='personal')  checked="checked"
-                                                           @endif checked="checked">
-                                                    <i class="helper"></i> {{trans("dataTable.personal")}}
-                                                </label>
-                                            </div>
-                                            <div class=" radio-inline">
-                                                <label>
-                                                    <input type="radio" name="id_type" value="passport"
-                                                           @if(isset($blockPerson)and $blockPerson->id_type=='passport') checked="checked" @endif>
-                                                    <i class="helper"></i> {{trans("dataTable.passport")}}
-                                                </label>
-                                            </div>
-                                        </div>
 
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.id_number')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="id_number">
-                                                    <i class="icofont icofont-ui-calendar"></i>
-                                                </label>
-                                                {!! Form::text('id_number', null, [ 'id' => 'id_number'  ,'placeholder'=>trans("dataTable.id_number")]) !!}
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="j-row">
                                         <div class="j-span6 j-unit">
@@ -183,39 +211,76 @@
                                             </div>
                                         </div>
 
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.country')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="country">
-                                                    <i class="icofont icofont-envelope"></i>
-                                                </label>
-                                                {!! Form::text('country', null, [ 'id' => 'job'  ,'placeholder'=>trans("dataTable.country")]) !!}
-
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div class="j-row">
 
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.government')}}</label>
+                                            <label class="j-label"> {{trans('dataTable.martial_state')}}</label>
                                             <div class="j-input">
-                                                <label class="j-icon-right" for="governorate_id">
+                                                <label class="j-icon-right" for="martial_state">
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
-                                                {!!Form ::select('governorate_id', getGovernorates(),(isset($blockPerson)) ?$blockPerson->governorate_id:null,['class' => 'select2 form-control', 'id' => 'governorate_id'])!!}
+                                                {!!Form ::select('martial_state', ['married'=>trans('dataTable.married'),'single'=>trans('dataTable.single'),
+                                                'divorced'=>trans('dataTable.divorced'),'indecisive'=>trans('dataTable.indecisive'),'widowed'=>trans('dataTable.widowed')],null,['class' => 'select2 form-control', 'id' => 'martial_state'])!!}
 
                                             </div>
                                         </div>
 
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('form.zone')}}</label>
+                                        <div class="j-span6 j-unit" id="div_kids_number">
+                                            <label class="j-label">{{trans('dataTable.kids_number')}}</label>
                                             <div class="j-input">
-                                                <label class="j-icon-right" for="zone_id">
+                                                <label class="j-icon-right" for="kids_number">
                                                     <i class="icofont icofont-envelope"></i>
                                                 </label>
-                                                {!!Form ::select('district_code',(isset($blockPerson))?getZones($blockPerson->zone->zone->id):getZones(),(isset($blockPerson))?$blockPerson->zone->id:null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+                                                {!! Form::number('kids_number', null, [ 'id' => 'kids_number' ,'min'=>0 ,'placeholder'=>trans("dataTable.kids_number")]) !!}
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="j-row">
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('dataTable.bp_type')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="bp_type">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!!Form ::select('bp_type', ['people'=>trans('dataTable.people'),'truck_owner'=>trans('dataTable.truck_owner')],null,['class' => 'select2 form-control', 'id' => 'bp_type'])!!}
+
+                                            </div>
+                                        </div>
+
+                                        <div class="j-span6 j-unit" id="div_truck_number" style="display: none">
+                                            <label class="j-label">{{trans('dataTable.truck_number')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="truck_number">
+                                                    <i class="icofont icofont-envelope"></i>
+                                                </label>
+                                                {!! Form::text('truck_number', null, [ 'id' => 'truck_number' ,'placeholder'=>trans("dataTable.truck_number")]) !!}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-title"> {{trans('menu.id_info')}} </div>
+
+                                    <div class="j-row">
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label">{{trans("dataTable.id_type")}} </label>
+                                            {!!Form ::select('id_type', [
+                                            'personal'=>trans('dataTable.personal'),'passport'=>trans('dataTable.passport'),
+                                            'temporary'=>trans('dataTable.temporary'),'family'=>trans('dataTable.card_family'),'military'=>trans('dataTable.military')
+                                            ],null,['class' => 'select2 form-control', 'id' => 'bp_type'])!!}
+                                        </div>
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label">{{trans('dataTable.id_number')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="id_number">
+                                                    <i class="icofont icofont-ui-calendar"></i>
+                                                </label>
+                                                {!! Form::text('id_number', null, [ 'id' => 'id_number'  ,'placeholder'=>trans("dataTable.id_number")]) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -244,62 +309,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="j-row">
 
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('dataTable.martial_state')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="martial_state">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!!Form ::select('martial_state', ['single'=>trans('dataTable.single'),'married'=>trans('dataTable.married'),
-                                                'divorced'=>trans('dataTable.divorced'),'indecisive'=>trans('dataTable.indecisive'),'widowed'=>trans('dataTable.widowed')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
-
-                                            </div>
-                                        </div>
-
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.kids_number')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="kids_number">
-                                                    <i class="icofont icofont-envelope"></i>
-                                                </label>
-                                                {!! Form::number('kids_number', null, [ 'id' => 'kids_number' ,'min'=>0 ,'placeholder'=>trans("dataTable.kids_number")]) !!}
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="j-row">
-
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('dataTable.bp_type')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="bp_type">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!!Form ::select('bp_type', ['people'=>trans('dataTable.people'),'truck_owner'=>trans('dataTable.truck_owner')],null,['class' => 'select2 form-control', 'id' => 'bp_type'])!!}
-
-                                            </div>
-                                        </div>
-
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.truck_number')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="truck_number">
-                                                    <i class="icofont icofont-envelope"></i>
-                                                </label>
-                                                {!! Form::text('truck_number', null, [ 'id' => 'truck_number' ,'placeholder'=>trans("dataTable.truck_number")]) !!}
-
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="j-row">
                                         <label class="j-label"> {{trans("dataTable.id_front_photo")}}</label>
                                         <div class="form-group col-xs-12 mb-2">
                                             <input type="file" accept="image/*" name="id_front_photo"
                                                    class="dropify form-control"
                                                    id="id_front_photo"
-                                                   aria-describedby="fileHelp" >
+                                                   aria-describedby="fileHelp">
 
                                             @error('avatar') <span
                                                 class="btn-block badge badge-danger">{{ $message }}</span> @enderror
@@ -313,7 +330,7 @@
                                             <input type="file" accept="image/*" name="id_back_photo"
                                                    class="dropify form-control"
                                                    id="id_back_photo"
-                                                   aria-describedby="fileHelp" >
+                                                   aria-describedby="fileHelp">
 
                                             @error('avatar') <span
                                                 class="btn-block badge badge-danger">{{ $message }}</span> @enderror
@@ -328,7 +345,49 @@
                                         <span>{{trans('dataTable.step')}} 2/4  {{trans("dataTable.source_info")}}</span>
                                     </div>
 
-                                    <div class="j-row">
+                                    <div class="j-unit">
+                                        <label
+                                            class="j-label"> {{trans('dataTable.is_comming_from_other_country')}}</label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="is_comming_from_other_country">
+                                                <i class="icofont icofont-phone"></i>
+                                            </label>
+                                            {!!Form ::select('is_comming_from_other_country', [0=>trans('dataTable.no'),1=>trans('dataTable.yes')],null,['class' => 'select2 form-control', 'id' => 'is_comming_from_other_country'])!!}
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="j-row" id="dev_is_come_from_country_true" style="display: none">
+
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('dataTable.come_from_country')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="come_from_country">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!! Form::text('come_from_country', null, [ 'id' => 'come_from_country'  ,'placeholder'=>trans("dataTable.come_from_country")]) !!}
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="j-span6 j-unit">
+                                            <label
+                                                class="j-label"> {{trans('dataTable.source_pass_country')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="source_pass_country">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!! Form::text('source_pass_country', null, [ 'id' => 'source_pass_country'  ,'placeholder'=>trans("dataTable.source_pass_country")]) !!}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="j-row" id="dev_is_come_from_country_false">
 
                                         <div class="j-span6 j-unit">
                                             <label
@@ -354,64 +413,20 @@
                                         </div>
                                     </div>
 
-                                    <div class="j-row">
 
-                                        <div class="j-span6 j-unit">
-                                            <label
-                                                class="j-label"> {{trans('dataTable.is_comming_from_other_country')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="is_comming_from_other_country">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!!Form ::select('is_comming_from_other_country', [false=>trans('dataTable.no'),true=>trans('dataTable.yes')],null,['class' => 'select2 form-control', 'id' => 'is_comming_from_other_country'])!!}
 
-                                            </div>
+
+                                    <div class="sub-title"> {{trans('menu.sourse_reside_info')}} </div>
+                                    <div class="j-unit">
+                                        <label class="j-label">{{trans("dataTable.source_stay_reason")}} </label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="source_stay_reason">
+                                                <i class="icofont icofont-ui-user"></i>
+                                            </label>
+                                            {!! Form::text('source_stay_reason', null, [ 'id' => 'source_stay_reason'  ,'placeholder'=>trans("dataTable.source_stay_reason")]) !!}
+
                                         </div>
-
-
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('dataTable.come_from_country')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="come_from_country">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!! Form::text('come_from_country', null, [ 'id' => 'come_from_country'  ,'placeholder'=>trans("dataTable.come_from_country")]) !!}
-
-                                            </div>
-                                        </div>
-
-
                                     </div>
-
-
-                                    <div class="j-row">
-                                        <div class="j-span6 j-unit">
-                                            <label
-                                                class="j-label"> {{trans('dataTable.source_pass_country')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="source_pass_country">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!! Form::text('source_pass_country', null, [ 'id' => 'source_pass_country'  ,'placeholder'=>trans("dataTable.source_pass_country")]) !!}
-
-                                            </div>
-                                        </div>
-
-                                        <div class="j-span6 j-unit">
-                                            <label
-                                                class="j-label"> {{trans('dataTable.source_how_check_info')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="source_how_check_info">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!! Form::text('source_how_check_info', null, [ 'id' => 'source_how_check_info'  ,'placeholder'=>trans("dataTable.source_how_check_info")]) !!}
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
 
                                     <div class="j-row">
                                         <div class="j-span6 j-unit">
@@ -439,18 +454,17 @@
 
                                     </div>
 
-
                                     <div class="j-unit">
-                                        <label class="j-label">{{trans("dataTable.source_stay_reason")}} </label>
+                                        <label
+                                            class="j-label"> {{trans('dataTable.source_how_check_info')}}</label>
                                         <div class="j-input">
-                                            <label class="j-icon-right" for="source_stay_reason">
-                                                <i class="icofont icofont-ui-user"></i>
+                                            <label class="j-icon-right" for="source_how_check_info">
+                                                <i class="icofont icofont-phone"></i>
                                             </label>
-                                            {!! Form::text('source_stay_reason', null, [ 'id' => 'source_stay_reason'  ,'placeholder'=>trans("dataTable.source_stay_reason")]) !!}
+                                            {!! Form::text('source_how_check_info', null, [ 'id' => 'source_how_check_info'  ,'placeholder'=>trans("dataTable.source_how_check_info")]) !!}
 
                                         </div>
                                     </div>
-
 
                                 </fieldset>
 
@@ -496,7 +510,8 @@
                                             </div>
                                         </div>
                                         <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.dest_isolation_neighborhood')}}</label>
+                                            <label
+                                                class="j-label">{{trans('dataTable.dest_isolation_neighborhood')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="dest_hara">
                                                     <i class="icofont icofont-envelope"></i>
@@ -572,6 +587,20 @@
 
                                     </div>
 
+
+                                    <div class="j-unit">
+                                        <label
+                                            class="j-label">{{trans("dataTable.dest_reason_of_coming_back")}} </label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="dest_reason_of_coming_back">
+                                                <i class="icofont icofont-ui-user"></i>
+                                            </label>
+                                            {!! Form::text('dest_reason_of_coming_back', null, [ 'id' => 'source_stay_reason'  ,'placeholder'=>trans("dataTable.dest_reason_of_coming_back")]) !!}
+
+                                        </div>
+                                    </div>
+
+
                                     <div class="j-row">
 
                                         <div class="j-span6 j-unit">
@@ -584,6 +613,7 @@
                                             </div>
                                         </div>
 
+                                        <div class="sub-title"> {{trans('menu.transpiration_info')}} </div>
 
                                         <div class="j-span6 j-unit">
                                             <label
@@ -629,19 +659,6 @@
                                     </div>
 
 
-                                    <div class="j-unit">
-                                        <label
-                                            class="j-label">{{trans("dataTable.dest_reason_of_coming_back")}} </label>
-                                        <div class="j-input">
-                                            <label class="j-icon-right" for="dest_reason_of_coming_back">
-                                                <i class="icofont icofont-ui-user"></i>
-                                            </label>
-                                            {!! Form::text('dest_reason_of_coming_back', null, [ 'id' => 'source_stay_reason'  ,'placeholder'=>trans("dataTable.dest_reason_of_coming_back")]) !!}
-
-                                        </div>
-                                    </div>
-
-
                                 </fieldset>
                                 <fieldset>
                                     <div class="j-divider-text j-gap-top-20 j-gap-bottom-45">
@@ -649,30 +666,7 @@
                                     </div>
 
                                     <!-- start message -->
-                                    <div class="j-row">
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label">{{trans('dataTable.check_point_id')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="check_point_id">
-                                                    <i class="icofont icofont-envelope"></i>
-                                                </label>
-                                                {!!Form ::select('check_point_id',[],null,['class' => 'select2 form-control', 'id' => 'check_point_id'])!!}
-
-                                            </div>
-                                        </div>
-
-                                        <div class="j-span6 j-unit">
-                                            <label class="j-label"> {{trans('form.government')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="governorate_id">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-                                                {!!Form ::select('port_governorate_id', getGovernorates(),null,['class' => 'select2 form-control', 'id' => 'port_governorate_id'])!!}
-
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <div class="sub-title"> {{trans('menu.form_info')}} </div>
 
                                     <div class="j-row">
                                         <div class="j-span6 j-unit">
@@ -702,17 +696,44 @@
                                     </div>
 
                                     <div class="j-row">
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label">{{trans('dataTable.check_point_id')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="check_point_id">
+                                                    <i class="icofont icofont-envelope"></i>
+                                                </label>
+                                                {!!Form ::select('check_point_id',[],null,['class' => 'select2 form-control', 'id' => 'check_point_id'])!!}
+
+                                            </div>
+                                        </div>
+
+                                        <div class="j-span6 j-unit">
+                                            <label class="j-label"> {{trans('form.government')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="governorate_id">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+                                                {!!Form ::select('port_governorate_id', getGovernorates(),null,['class' => 'select2 form-control', 'id' => 'port_governorate_id'])!!}
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sub-title"> {{trans('menu.initialInfo')}} </div>
+
+
+                                    <div class="j-row">
 
 
                                         <div class="j-span6 j-unit">
                                             <div class="checkbox j-label">
                                                 <label class="j-label">
-                                                    <input type="checkbox" name="is_visit_health_center" value=1
+                                                    <input type="checkbox" id="is_visit_health_center" name="is_visit_health_center" value=1
                                                            @if(isset($blockPerson) and $blockPerson->is_visit_health_center==true) checked @endif>
                                                     {{trans('dataTable.is_visit_health_center')}}</label>
                                             </div>
                                         </div>
-                                        <div class="j-span6 j-unit">
+                                        <div class="j-span6 j-unit" id="dev_health_center_name">
                                             <label class="j-label"> {{trans('dataTable.health_center_name')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="health_center_name">
@@ -760,12 +781,15 @@
                                                 <label class="j-icon-right" for="mix_people_type">
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
+                                                {!!Form ::select('mix_people_type', [
+                                                'none'=>trans('dataTable.none'),
+                                                'family'=>trans('dataTable.family'),
+                                                'healthWorker'=>trans('dataTable.healthWorker'),
+                                                'both'=>trans('dataTable.both'),
+                                                'private'=>trans('dataTable.private')]
+                                                ,null,['class' => 'select2 form-control', 'id' => 'mix_people_type'])!!}
 
-                                                {!!Form ::select('mix_people_type',['none'=>trans('dataTable.none'),
-                                                                                    'family'=>trans('dataTable.family'),
-                                                                                    'healthWorker'=>trans('dataTable.healthWorker'),
-                                                                                    'both'=>trans('dataTable.both')
-                                                                                    ] ,null,['class' => 'select2 form-control', 'id' => 'mix_people_type'])!!}
+
 
                                             </div>
                                         </div>
@@ -792,12 +816,13 @@
                                         <div class="j-span6 j-unit">
                                             <div class="checkbox j-label">
                                                 <label class="j-label">
-                                                    <input type="checkbox" name="sleeping" value=1
+                                                    <input type="checkbox" name="sleeping" value=1 id="sleeping"
                                                            @if(isset($blockPerson) and $blockPerson->sleeping==true) checked @endif>
                                                     {{trans('dataTable.sleeping')}}</label>
                                             </div>
                                         </div>
-                                        <div class="j-span6 j-unit">
+                                        <div class="j-span6 j-unit" id="div_sleep_date" style="display: none"
+                                             @if(isset($blockPerson) and $blockPerson->sleeping==1) style="display: inline-block" @endif>
                                             <label class="j-label"> {{trans('dataTable.sleep_date')}}</label>
                                             <div class="j-input">
                                                 <label class="j-icon-right" for="sleep_date">
@@ -812,25 +837,9 @@
                                     </div>
 
 
-                                    <div class="j-row">
+                                    <div class="sub-title"> {{trans('menu.for_female')}} </div>
 
-                                        <div class=" j-unit">
-                                            <label class="j-label"> {{trans('dataTable.start_date_symptoms')}}</label>
-                                            <div class="j-input">
-                                                <label class="j-icon-right" for="start_date_symptoms">
-                                                    <i class="icofont icofont-phone"></i>
-                                                </label>
-
-                                                {!! Form::text('start_date_symptoms', null, [ 'id' => 'start_date_symptoms'  ,'placeholder'=>trans("dataTable.start_date_symptoms")]) !!}
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="j-unit">
-
+                                    <div class="j-unit" id="if_gender_femal">
 
                                         <div class="checkbox j-label">
                                             <label class="j-label">
@@ -852,6 +861,25 @@
                                         </div>
 
                                     </div>
+
+                                    <div class="sub-title"> {{trans('menu.symptoms')}} </div>
+
+                                    <div class="j-row">
+
+                                        <div class=" j-unit">
+                                            <label class="j-label"> {{trans('dataTable.start_date_symptoms')}}</label>
+                                            <div class="j-input">
+                                                <label class="j-icon-right" for="start_date_symptoms">
+                                                    <i class="icofont icofont-phone"></i>
+                                                </label>
+
+                                                {!! Form::text('start_date_symptoms', null, [ 'id' => 'start_date_symptoms'  ,'placeholder'=>trans("dataTable.start_date_symptoms")]) !!}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
 
                                     <div class="j-unit">
                                         <div class="checkbox j-label">
@@ -919,6 +947,8 @@
                                         </div>
                                     </div>
                                     <!-- end message -->
+                                    <div class="sub-title"> {{trans('menu.diseases')}} </div>
+
 
                                     <div class="j-unit">
                                         <div class="checkbox j-label">
@@ -978,6 +1008,8 @@
 
                                         </div>
                                     </div>
+                                    <div class="sub-title"> {{trans('menu.procedures')}} </div>
+
 
                                     <div class="j-row">
 
@@ -994,7 +1026,7 @@
                                                 'checkAndTruckInPort'=>trans('dataTable.checkAndTruckInPort'),
                                                 'runAway'=>trans('dataTable.runAway'),
                                                 'JustChecked'=>trans('dataTable.JustChecked'),
-                                                'noActionTaken'=>trans('noActionTaken.yes')
+                                                'noActionTaken'=>trans('dataTable.noActionTaken')
                                                 ]
                                                 ,null,['class' => 'select2 form-control', 'id' => 'typeStatus'])!!}
 
@@ -1119,8 +1151,7 @@
                                         </div>
                                     </div>
 
-
-
+                                    <div class="sub-title"> {{trans('menu.sampleInfo')}} </div>
 
                                     <div class="j-unit">
 
@@ -1205,9 +1236,12 @@
                             </div>
                             <!-- end /.content -->
                             <div class="j-footer">
-                                <button type="submit" class="btn btn-primary  j-multi-submit-btn"> {{trans("form.save")}} </button>
-                                <button type="button" class="btn btn-primary j-multi-next-btn">{{trans("form.next")}}</button>
-                                <button type="button" class="btn btn-default m-r-20 j-multi-prev-btn">{{trans("form.back")}}</button>
+                                <button type="submit"
+                                        class="btn btn-primary  j-multi-submit-btn"> {{trans("form.save")}} </button>
+                                <button type="button"
+                                        class="btn btn-primary j-multi-next-btn">{{trans("form.next")}}</button>
+                                <button type="button"
+                                        class="btn btn-default m-r-20 j-multi-prev-btn">{{trans("form.back")}}</button>
                             </div>
                             </form>
                         </div>
@@ -1258,6 +1292,82 @@
         getZones('dest_zone_id', 'dest_sub_zone', 'sub_dis');
         getZones('dest_sub_zone', 'dest_hara', 'hara_vil');
         getZones('dest_hara', 'dest_sub_hara', 'sub_hara_vil');
+
+        $(document).on('click', '#sleeping', function () {
+
+            if ($(this).prop("checked") == true) {
+                $("#div_sleep_date").show();
+            } else {
+                $("#div_sleep_date").hide();
+            }
+        });
+
+        $(document).on('click', '#is_visit_health_center', function () {
+
+            if ($(this).prop("checked") == true) {
+                $("#dev_health_center_name").show();
+            } else {
+                $("#dev_health_center_name").hide();
+            }
+        });
+
+        $(document).on('change', '#is_comming_from_other_country', function () {
+
+            if ($(this).val() == 1) {
+                $("#dev_is_come_from_country_false").hide();
+                $("#dev_is_come_from_country_true").show();
+            } else {
+                $("#dev_is_come_from_country_false").show();
+                $("#dev_is_come_from_country_true").hide();
+            }
+
+
+        });
+
+
+        $(document).on('click', '.bp_from', function () {
+            if ($(this).val() == 'yemeni') {
+                $("#country").attr('disabled', true);
+                $("#country").val('اليمن');
+                $("#if_yemeni").show();
+
+            } else {
+                $("#country").attr('disabled', false);
+                $("#country").val('الصومال');
+                $("#if_yemeni").hide();
+            }
+        });
+
+        $(document).on('click', '.gender', function () {
+            if ($(this).val() == 'female') {
+
+                $("#if_gender_femal").show();
+
+            } else {
+
+                $("#if_gender_femal").hide();
+            }
+        });
+
+        $(document).on('change', '#martial_state', function () {
+            if ($(this).val() != 'single') {
+
+                $("#div_kids_number").show();
+
+            } else {
+                $("#div_kids_number").hide();
+            }
+        });
+        $(document).on('change', '#bp_type', function () {
+            if ($(this).val() == 'truck_owner') {
+
+                $("#div_truck_number").show();
+
+            } else {
+                $("#div_truck_number").hide();
+            }
+        });
+
 
         $(document).on('change', '#port_governorate_id', function () {
             get_check_point();
@@ -1317,11 +1427,6 @@
     <script>
         $('.dropify').dropify();
 
-        $(".dropper-border").dateDropper({
-            dropWidth: 200,
-            dropPrimaryColor: "#1abc9c",
-            dropBorder: "2px solid #1abc9c"
-        });
 
         $(function () {
             $('.select2bs4').select2({

@@ -56,11 +56,7 @@ return [
     'everyday' => ' all Days',
 
 
-
     'worker' => ' Account Owner  ',
-
-
-
 
 
     'add' => [
@@ -70,10 +66,10 @@ return [
         'workTeam' => 'Add New member   ',
         'member' => 'Add New member',
         'quarantineType' => 'Add New quarantine Type',
+
+        'block_person' => '  Add New Quarantine Person',
+
     ],
-
-
-
 
     'update' => [
 
@@ -83,6 +79,8 @@ return [
         'workTeam' => 'Update the member   ',
         'member' => 'Update the  member',
         'quarantineType' => ' Update quarantine Type',
+
+        'block_person' => 'Update Quarantine Person',
     ],
 
     'delete' => [
@@ -117,6 +115,8 @@ return [
         'name' => '  name ',
         'manager' => '  manager  ',
     ],
+
+
     'government' => 'government',
     'country' => 'country',
     'ssn' => 'ssn',
@@ -127,6 +127,16 @@ return [
 
     'not_found' => 'The requested resource was not found!',
     'whoops' => 'Whoops! Looks like something went wrong. Please try again later!',
+
+
+    'id_front_photo' => ' ID front photo',
+
+
+    'next' => 'next',
+    'back' => 'back',
+
+
+    'role' => 'role',
 
 
 ];

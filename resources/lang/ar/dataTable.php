@@ -215,17 +215,18 @@ return [
     'rent' => 'ايجار',
     'private' => 'ملك خاص',
 
-    'log_description' => ' نوع التقرير',
-    'file_type' => 'نوع الملف ',
-    'how_phone' => 'رقم التلفون ',
-    'log_created_at' => 'التاريخ ',
-
     'stable' => 'مستقرة ',
     'critical' => 'حرجة ',
     'healing' => 'شفاء ',
     'family' => 'اسرة المريض  ',
     'healthWorker' => 'العاملين الصحيين ',
     'both' => 'كلاهما ',
+
+    'log_description' => ' نوع التقرير',
+    'file_type' => 'نوع الملف ',
+    'how_phone' => 'رقم التلفون ',
+    'log_created_at' => 'التاريخ ',
+
     'none' => 'لا احد ',
     'checkAndTruckInPort' => 'تم فحصها ولا تزال الشاحنة بالمنفذ ',
     'checkedAndCrossedFromPort' => 'تم فحصها ومغادرتها المنفذ ',
@@ -239,6 +240,12 @@ return [
     'case_was_lost' => 'فقدت الحالة ',
     'other' => 'أخرى اذكرها ',
 
+    'bp_from' => 'الجنسية ',
+    'yemeni' => 'يمني ',
+    'align' => 'اجنبي ',
+    'temporary' => 'موقتة ',
+    'military' => 'عسكرية ',
+    'card_family' => 'عائلية ',
     'cured' => 'شفيت ',
     'dead' => 'توفيت ',
     'referred' => 'احالة  ',

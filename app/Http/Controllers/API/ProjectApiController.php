@@ -10,7 +10,6 @@ use App\QuarantineArea;
 use App\QuarantineAreaType;
 use App\SubDi;
 use App\SubHaraVil;
-use App\TempSave;
 use App\User;
 use App\Zone;
 use Exception;
@@ -20,6 +19,24 @@ use Validator;
 
 class ProjectApiController extends BaseAPIController
 {
+
+
+    public function createImage($img)
+    {
+
+        $folderPath = "images/";
+
+//        $image_parts = explode(";base64,", $img);
+//        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type ='png';
+        $image_base64 = base64_decode($img);
+        $file = $folderPath . uniqid() . '.' . $image_type;
+
+
+        file_put_contents($file, $image_base64);
+        return $file;
+
+    }
 
     public function getAllBlockPersonsPerZone(Request $request)
     {
@@ -65,11 +82,17 @@ class ProjectApiController extends BaseAPIController
 //                'user_id' => auth()->user()->id,
 //                'team_work_id' => auth()->user()->work_team->id,
 //            ]);
+
+
 //
             $array = json_decode(($request->data), true);
             $add = 0;
             $notAdd = 0;
             foreach ($array as $temp) {
+                if ($temp['id_back_photo'] != null)
+                    $temp['id_back_photo'] = $this->createImage($temp['id_back_photo']);
+                if ($temp['id_front_photo'] != null)
+                    $temp['id_front_photo'] = $this->createImage($temp['id_front_photo']);
                 $old = BlockedPerson::all()->where('req_id', '=', $temp['req_id'])
                     ->where('entry_date', '=', $temp['entry_date'])->count();
                 if ($old > 0)
