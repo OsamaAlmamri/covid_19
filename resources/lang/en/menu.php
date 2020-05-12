@@ -7,6 +7,7 @@ return [
     | Shop Language Lines
     |--------------------------------------------------------------------------
     */
+    'systemName' => 'Ports Management System',
     'permissions' => 'Permissions',
     'allUsers' => ' All Users  ',
     'all' => ' All   ',
@@ -139,7 +140,7 @@ return [
 
     'sub_hara_vil' => 'Neighborhood',
     'hara_vil' => 'Villages',
-    'sub_dis' => 'town',
+    'sub_dis' => 'Sub Districts',
     'district' => 'districts',
 
     'check_block_peoples' => ' check Quarantine peoples',

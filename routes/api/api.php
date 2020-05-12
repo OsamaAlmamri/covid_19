@@ -36,7 +36,7 @@ Route::middleware('auth:api')->group(function () {
 
 
     Route::post('getAllBlockPersonsPerZone', 'API\ProjectApiController@getAllBlockPersonsPerZone');//
-    Route::post('saveIncommingBlockPersion', 'API\ProjectApiController@saveIncommingBlockPersion');//
+    Route::post('saveIncommingBlockPersion', 'API\ProjectApiController@saveIncommingBlockPersion');
     Route::post('getAllUsers', 'API\ProjectApiController@getAllUsers');//
     Route::post('getAllQuarantineTypes', 'API\ProjectApiController@getAllQuarantineTypes');//
     Route::post('getMyAddBlockPerson', 'API\ProjectApiController@getMyAddBlockPerson');//

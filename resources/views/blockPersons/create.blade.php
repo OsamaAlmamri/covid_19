@@ -756,7 +756,7 @@
                                                     <i class="icofont icofont-envelope"></i>
                                                 </label>
                                                 {!!Form ::select('status_at_reporting',
-                                                ['stable'=>trans('dataTable.stable'),'critical'=>trans('dataTable.critical'),'healing'=>trans('dataTable.healing')],null,['class' => 'select2 form-control', 'id' => 'status_at_reporting'])!!}
+                                                ['stable'=>trans('dataTable.stable'),'critical'=>trans('dataTable.critical'),'healthy'=>trans('dataTable.healthy'),'healing'=>trans('dataTable.healing')],null,['class' => 'select2 form-control', 'id' => 'status_at_reporting'])!!}
 
                                             </div>
                                         </div>

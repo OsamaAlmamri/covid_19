@@ -175,7 +175,7 @@ return [
 
     'dest_government' => ' government',
     'dest_zone' => ' districts',
-    'dest_sub_zone' => 'town  ',
+    'dest_sub_zone' => 'Sub Districts  ',
 
     'dest_isolation_neighborhood' => ' neighborhood',
     'dest_lane_village' => ' village',
@@ -220,6 +220,7 @@ return [
     'stable' => 'stable ',
     'critical' => 'critical ',
     'healing' => 'healing ',
+    'healthy' => 'healthy ',
     'family' => 'family   ',
     'healthWorker' => 'health Worker  ',
     'both' => 'both ',
@@ -254,7 +255,7 @@ return [
     'passive' => 'passive ',
     'indicates' => 'indicates ',
     'hangs' => 'hangs ',
-    'dest_sub_zone' => 'العزلة  ',
+    'dest_sub_zone' => 'Sub Districts  ',
     'quar_government' => 'Government  ',
     'quar_zone' => 'District ',
     'quarantine_area_id' => 'Quarantine Area  ',

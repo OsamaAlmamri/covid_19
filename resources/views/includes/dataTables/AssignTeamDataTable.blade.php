@@ -24,21 +24,21 @@
                     lengthMenu: [[10, 50, 100, -1], [10, 50, 100, 'all']],
                     buttons:
                         [
-                            {
-                                extend: 'copyHtml5',
-                                text: '<i class="fa fa-copy" ></i> copy',
-                                className: 'btn btn-info '
-                            },
+                            // {
+                            //     extend: 'copyHtml5',
+                            //     text: '<i class="fa fa-copy" ></i> copy',
+                            //     className: 'btn btn-info '
+                            // },
                             {
                                 extend: 'excelHtml5',
                                 text: '<i class="fa fa-file-excel-o" ></i> Excel',
                                 className: 'btn btn-info '
                             },
-                            {
-                                extend: 'pdfHtml5',
-                                text: '<i class="fa fa-file-pdf-o" ></i> PDF',
-                                className: 'btn btn-info '
-                            },
+                            // {
+                            //     extend: 'pdfHtml5',
+                            //     text: '<i class="fa fa-file-pdf-o" ></i> PDF',
+                            //     className: 'btn btn-info '
+                            // },
                             {
                                 extend: 'print',
                                 text: '<i class="fa fa-print" ></i> Print',

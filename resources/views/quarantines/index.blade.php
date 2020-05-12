@@ -108,35 +108,13 @@
 
 @section('dataTablesJs')
 
-
     <script src="{{ HostUrl('design\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
-    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\js\jszip.min.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\js\pdfmake.min.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\js\vfs_fonts.js')}}"></script>
     <script
         src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\dataTables.buttons.min.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.flash.min.js')}}"></script>
     <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\jszip.min.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\vfs_fonts.js')}}"></script>
-    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.colVis.min.js')}}"></script>
     <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.print.min.js')}}"></script>
     <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.html5.min.js')}}"></script>
     <script src="{{ HostUrl('design\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js')}}"></script>
-    <script
-        src="{{ HostUrl('design\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js')}}"></script>
-
-
-    <!-- sweet alert js -->
-    <script type="text/javascript"
-            src="{{ HostUrl('design\bower_components\sweetalert\js\sweetalert.min.js')}}"></script>
-    <script type="text/javascript" src="{{ HostUrl('design\assets\js\modal.js')}}"></script>
-    <!-- sweet alert modal.js intialize js -->
-    <!-- modalEffects js nifty modal window effects -->
-    <script type="text/javascript" src="{{ HostUrl('design\assets\js\modalEffects.js')}}"></script>
-    <script type="text/javascript" src="{{ HostUrl('design\assets\js\classie.js')}}"></script>
     @include('includes.active')
     <script>
 

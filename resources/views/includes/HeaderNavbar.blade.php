@@ -13,7 +13,7 @@
                      alt="">
 
                 {{--                                {{ Setting::get('site_title')}}--}}
-               <H5>  ادارة مراكز الفحص والتفتيش</H5>
+               <h5>  {{trans('menu.systemName')}} </h5>
             </a>
             <a class="mobile-options">
                 <i class="feather icon-more-horizontal"></i>

@@ -15,7 +15,7 @@ class BaseAPIController extends Controller
     public function sendResponse($result, $message)
     {
         $response = [
-            'code' => 200,
+//            'code' => 200,
             'success' => true,
             'data' => $result,
             'message' => $message
@@ -23,10 +23,10 @@ class BaseAPIController extends Controller
         return response()->json($response, 200);
     }
 
-    public function sendError($error, $errorMessages = [], $code = 404)
+    public function sendError($error, $errorMessages = [], $code = 400)
     {
         $response = [
-            'code' => 400,
+//            'code' => 400,
             'success' => false,
             'message' => $error
         ];

@@ -70,7 +70,8 @@ class ProjectApiController extends BaseAPIController
             }
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+//            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
         }
     }
 
@@ -104,7 +105,8 @@ class ProjectApiController extends BaseAPIController
             }
             return $this->sendResponse([], 'تم حفظ بيانات ' . $add . ' شخص  بنجاح  ' . 'وتجاهل     ' . $notAdd . ' شخص    ');
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
     }
 
@@ -116,7 +118,8 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
     }
 
@@ -130,7 +133,8 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
     }
 
@@ -142,7 +146,8 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
 
 
@@ -173,7 +178,8 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, '');
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+
         }
     }
 
@@ -186,7 +192,8 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
     }
 
@@ -215,7 +222,8 @@ class ProjectApiController extends BaseAPIController
             }
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
     }
 
@@ -245,7 +253,8 @@ class ProjectApiController extends BaseAPIController
             }
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
     }
 
@@ -258,7 +267,8 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage()) ;
+//            return $ex->getMessage();
         }
     }
 
@@ -275,7 +285,8 @@ class ProjectApiController extends BaseAPIController
             $user = Auth::user();
             return $this->sendResponse($user, 'success');
         } catch (Exception $ex) {
-            return $ex->getMessage();
+            return $this->sendError('error',$ex->getMessage(),$ex->getCode()) ;
+//            return $ex->getMessage();
 
         }
     }

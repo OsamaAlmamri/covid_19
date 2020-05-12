@@ -218,6 +218,7 @@ return [
     'stable' => 'مستقرة ',
     'critical' => 'حرجة ',
     'healing' => 'شفاء ',
+    'healthy' => 'سليم ',
     'family' => 'اسرة المريض  ',
     'healthWorker' => 'العاملين الصحيين ',
     'both' => 'كلاهما ',
