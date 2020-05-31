@@ -16,9 +16,11 @@ class Zone extends Model
         'name_ar',
         'name_en',
         'parent',
-        'type',
+        'type'
     ];
-
+	//protected $visible = ['code'];
+	//protected $attributes = ['code'];
+	//protected $appends = ['code'];
     /**
      * The attributes that should be hidden for arrays.
      *

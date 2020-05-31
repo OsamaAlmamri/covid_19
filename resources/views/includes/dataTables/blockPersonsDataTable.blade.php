@@ -1,6 +1,7 @@
 <script>
     function load_data(government, zone, center, from_date, to_date, gender, nationality) {
         // Function to convert an img URL to data URL
+		//alert('gov: '+government+' '+'zon: '+zone+' '+'cen: '+center+' '+'fda: '+from_date+' '+'tda: '+to_date+' '+'gen: '+gender+' '+'nat: '+nationality);
         var bloclkTabelColumn = [
             {
                 title: '#',
@@ -1145,7 +1146,8 @@
                                 to_date: to_date,
                                 gender: gender,
                                 nationality: nationality,
-                            },
+                            }
+										
                     },
                 columns: column
             }

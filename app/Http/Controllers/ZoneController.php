@@ -71,7 +71,7 @@ class ZoneController extends Controller
 
     public function getZones(Request $request)
     {
-//       return $request['id'];
+       //return $request['id'];
         $allZones=[];
         if (isset($request->zone_type) and $request->zone_type != null)
             $type = $request->zone_type;
@@ -105,6 +105,7 @@ class ZoneController extends Controller
         return response(['data' => $zones], 200);
 
     }
+	
     public function create($z)
     {
         $zone = Zone::find($z);

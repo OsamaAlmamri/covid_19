@@ -252,9 +252,8 @@ function getUserName($id)
         return "";
 }
 
-function getZones_childs_ids($parent, $type = 'district')
+function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPersons')
 {
-//        $zone = Zone::find($parent);
 
     if ($parent == 'all')
     {
@@ -264,7 +263,7 @@ function getZones_childs_ids($parent, $type = 'district')
                 $to_zones = Zone::all()->where('type', 'like', $type);
                 break;
             case 'district':
-                $to_zones = Zone::all()->where('type', 'like', $type);;
+                $to_zones = Zone::all()->where('type', 'like', $type);
                 break;
             case 'hara_vil':
                 $to_zones = HaraVil::all()->where('type', 'like', $type);
@@ -298,10 +297,15 @@ function getZones_childs_ids($parent, $type = 'district')
                 break;
         }
     }
+	
     $to_Zone_ids = [];
     foreach ($to_zones as $zone) {
-        $to_Zone_ids[] = $zone->code;
+		if($op != 'getSumBlockPersons')
+			$to_Zone_ids[] = $zone->parent;
+		else
+			$to_Zone_ids[] = $zone->code;
     }
+	
     return $to_Zone_ids;
 }
 

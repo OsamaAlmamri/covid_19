@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BlockedPerson;
 use App\DataTables\BlockPersonsDataTable;
+use App\DataTables\ZonesDataTable;
 use App\QuarantineAreaType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,7 +122,7 @@ class BlockPersonsController extends Controller
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
-            $filter_zones = getZones_childs_ids($government);
+            $filter_zones = getZones_childs_ids($government,'district','getSumBlockPersons');
         } else
             $filter_zones [] = $zone;
         if ($center == 'all') {
@@ -246,7 +247,7 @@ class BlockPersonsController extends Controller
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
-            $filter_zones = getZones_childs_ids($government);
+            $filter_zones = getZones_childs_ids($government,'district','getSumBlockPersons');
         } else
             $filter_zones [] = $zone;
         if ($center == 'all') {
@@ -322,8 +323,9 @@ class BlockPersonsController extends Controller
 
     {
         $filter_zones = [];
+		
         if ($government == 'all') {
-            $filter_zones = getZones_childs_ids($government);
+            $filter_zones  = getZones_childs_ids($government,'district','ZoneData');
         } else
             $filter_zones [] = $government;
 
@@ -340,8 +342,7 @@ class BlockPersonsController extends Controller
 
         else
             $nationalityCondition = " and blocked_people.bp_from not like '%$nationality%' ";
-
-
+		
         $data = DB::table('zones')
             ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.code')
             ->select('zones.*', 'zones.name_ar as zone_name', 'ParentZone.name_ar as government_name',
@@ -378,11 +379,10 @@ class BlockPersonsController extends Controller
                                 ) 
                                 as allBlockPeopleNotOut")
             )
-            ->whereIn('zones.parent', $filter_zones)
+			->whereIn('zones.parent', $filter_zones)
             ->orderByDesc('id')->get();
 
-
-        return $data;
+		return $data;
     }
 
     public function getSumBlockPersonsAccordingForGovernmentData($gender, $from_date, $to_date, $type_query, $nationality)
@@ -458,10 +458,13 @@ class BlockPersonsController extends Controller
 
     {
         $filter_zones = [];
+		
         if ($government == 'all') {
-            $filter_zones = getZones_childs_ids($government);
+            $filter_zones = getZones_childs_ids($government,'district','SumQuarantine');
         } else
             $filter_zones [] = $government;
+		
+		
         $types = QuarantineAreaType::all();
         $cols = ['zones.name_ar as zone_name', 'ParentZone.name_ar as government_name'];
         $cols[] = DB::raw("(SELECT count(quarantine_areas.id) FROM quarantine_areas
@@ -478,7 +481,7 @@ class BlockPersonsController extends Controller
 
         $data = DB::table('zones')
             ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.code')
-            ->select($cols)->whereIn('zones.parent', $filter_zones)
+            ->select($cols)->whereIn('zones.id', $filter_zones)
             ->get();
         return $data;
     }
