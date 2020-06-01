@@ -64,13 +64,11 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row">
 
-                                    <div class="col-md-2">
-                                        <img
-                                            src="{{ HostUrl('images\logo3.png')}}" width="400px" alt="small-logo.png">
-                                    </div>
-                                </div>
+                                <p style="text-align: center;">
+                                    <img src="{{ HostUrl('images\logo3.png')}}" width="300px" alt="small-logo.png">
+                                </p>
+
                             </div>
                         </div>
                     </form>
