@@ -71,8 +71,8 @@ class ZoneController extends Controller
 
     public function getZones(Request $request)
     {
-       //return $request['id'];
-        $allZones=[];
+        //return $request['id'];
+        $allZones = [];
         if (isset($request->zone_type) and $request->zone_type != null)
             $type = $request->zone_type;
         else
@@ -102,10 +102,16 @@ class ZoneController extends Controller
                 $zones .= '<option value="' . $zone->code . '"> ' . $zone->name_ar . '</option>';
 
             }
-        return response(['data' => $zones], 200);
+        $x = $allZones->first();
+        if ($x != null)
+            $first_id = $x->code;
+        else
+            $first_id = 0;
+
+        return response(['data' => $zones, 'first' => $first_id], 200);
 
     }
-	
+
     public function create($z)
     {
         $zone = Zone::find($z);

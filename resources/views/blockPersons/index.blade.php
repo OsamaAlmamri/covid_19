@@ -108,13 +108,22 @@
                                    id="to_date">
                         </div>
 
-                        <div class="input-group col-md-3" id="pointOrCenter_idDiv">
+                        <div class="input-group col-md-2" id="pointOrCenter_idDiv">
                             <span class="input-group-addon">{{trans('menu.gender')}}</span>
                             {!!Form ::select('gender', ['all'=>trans('menu.all'),'male'=>trans('menu.male'),'female'=>trans('menu.female')],null,['class' => 'select2 form-control', 'id' => 'gender'])!!}
 
                         </div>
+                        @if($type=="block_persons")
+                            <div class="input-group col-md-2" id="isQuarantineDiv">
+                                <span class="input-group-addon">{{trans('menu.isQuarantine')}}</span>
+                                {!!Form ::select('isQuarantine', ['all'=>trans('menu.all'),'yes'=>trans('menu.yes'),'no'=>trans('menu.no')],null,['class' => 'select2 form-control', 'id' => 'isQuarantine'])!!}
 
-                        <div class="input-group col-md-3">
+                            </div>
+                            @else
+                            <input type="hidden" value="all" id="isQuarantine">
+                        @endif
+
+                        <div class="input-group col-md-2">
 
                             <button type="button" name="filter" id="filter"
                                     class="btn btn-primary btn-ms waves-effect waves-light">{{trans('menu.filter')}}
@@ -145,7 +154,7 @@
                     @endif
 
 
-                    @include('reports.printSetting')
+{{--                    @include('reports.printSetting')--}}
 
 
             </div>
@@ -202,21 +211,22 @@
 
 
     <script src="{{ HostUrl('design\bower_components\datatables.net\js\jquery.dataTables.min.js')}}"></script>
-{{--    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js')}}"></script>--}}
-{{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\jszip.min.js')}}"></script>--}}
-{{--    <script src="{{ HostUrl('design\pdfmake\build\pdfmake.js')}}"></script>--}}
-{{--    <script src="{{ HostUrl('design\pdfmake\build\vfs_fonts.js')}}"></script>--}}
-    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\dataTables.buttons.min.js')}}"></script>
-{{--    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.flash.min.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\assets\pages\data-table\js\jszip.min.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\pdfmake\build\pdfmake.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\pdfmake\build\vfs_fonts.js')}}"></script>--}}
+    <script
+        src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\dataTables.buttons.min.js')}}"></script>
+    {{--    <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.flash.min.js')}}"></script>--}}
     <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\jszip.min.js')}}"></script>
     <script src="{{ HostUrl('design\assets\pages\data-table\extensions\buttons\js\buttons.colVis.min.js')}}"></script>
-{{--    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.print.min.js')}}"></script>--}}
+    {{--    <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.print.min.js')}}"></script>--}}
     <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.html5.min.js')}}"></script>
     <script src="{{ HostUrl('design\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js')}}"></script>
-{{--    <script--}}
-{{--        src="{{ HostUrl('design\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js')}}"></script>--}}
-{{--    <script--}}
-{{--        src="{{ HostUrl('design\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js')}}"></script>--}}
+    {{--    <script--}}
+    {{--        src="{{ HostUrl('design\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js')}}"></script>--}}
+    {{--    <script--}}
+    {{--        src="{{ HostUrl('design\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js')}}"></script>--}}
 
 
     <script src="{{HostUrl('design\bower_components\select2\dist\js\select2.full.min.js')}}"></script>

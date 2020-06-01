@@ -260,10 +260,10 @@ function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPers
         switch ($type)
         {
             case 'gov':
-                $to_zones = Zone::all()->where('type', 'like', $type);
+                $to_zones = Zone::all()->where('id', '<', 24);
                 break;
             case 'district':
-                $to_zones = Zone::all()->where('type', 'like', $type);
+                $to_zones = Zone::all()->where('id', '>', 23);
                 break;
             case 'hara_vil':
                 $to_zones = HaraVil::all()->where('type', 'like', $type);
@@ -281,10 +281,10 @@ function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPers
         switch ($type)
         {
             case 'gov':
-                $to_zones = Zone::all()->where('type', 'like', $type)->where('parent', '=', $parent);
+                $to_zones = Zone::all()->where('id', '<', 24);
                 break;
             case 'district':
-                $to_zones = Zone::all()->where('type', 'like', $type)->where('parent', '=', $parent);
+                $to_zones = Zone::all()->where('id', '>', 23)->where('parent', '=', $parent);
                 break;
             case 'hara_vil':
                 $to_zones = HaraVil::all()->where('type', 'like', $type)->where('parent', '=', $parent);
@@ -297,15 +297,15 @@ function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPers
                 break;
         }
     }
-	
+
     $to_Zone_ids = [];
     foreach ($to_zones as $zone) {
-		if($op != 'getSumBlockPersons')
-			$to_Zone_ids[] = $zone->parent;
-		else
+//		if($op != 'getSumBlockPersons')
+//			$to_Zone_ids[] = $zone->parent;
+//		else
 			$to_Zone_ids[] = $zone->code;
     }
-	
+
     return $to_Zone_ids;
 }
 

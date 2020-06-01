@@ -257,6 +257,7 @@ return [
     'quar_government' => 'المحافظة  ',
     'quar_zone' => 'المديرية ',
     'quarantine_area_id' => 'مركز الحجر ',
+    'quarantine_area_name' => 'مركز الحجر ',
     'check_point_id' => 'نقطة الفحص او التفتيش ',
 
 

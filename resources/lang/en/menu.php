@@ -163,6 +163,11 @@ return [
     'for_female' => '   For Female  ',
     'procedures' => '   Procedures  ',
     'sampleInfo' => '   Sample Info  ',
+    'isQuarantine' => '  Is Quarantine  ',
+    'yes' => '  Yes   ',
+    'no' => '  NO   ',
+    'all_block_persons' => ' All Record persons   ',
+    'not_block_persons' => '  No Quarantine   ',
 
 
 ];

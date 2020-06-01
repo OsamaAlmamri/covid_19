@@ -1,5 +1,5 @@
 <script>
-    function load_data(government, zone, center, from_date, to_date, gender, nationality) {
+    function load_data(government, zone, center, from_date, to_date, gender, nationality,isQuarantine) {
         // Function to convert an img URL to data URL
 		//alert('gov: '+government+' '+'zon: '+zone+' '+'cen: '+center+' '+'fda: '+from_date+' '+'tda: '+to_date+' '+'gen: '+gender+' '+'nat: '+nationality);
         var bloclkTabelColumn = [
@@ -19,6 +19,11 @@
                 'name': 'check_date',
                 'data': 'check_date',
                 'title': '{{trans('dataTable.check_date')}}',
+            },
+            {
+                'name': 'quarantine_area_name',
+                'data': 'quarantine_area_name',
+                'title': '{{trans('dataTable.quarantine_area_name')}}',
             },
             {
                 'title': '{{trans('dataTable.gender')}}',
@@ -1140,6 +1145,7 @@
                                 government: government,
                                 zone: zone,
                                 center: center,
+                                isQuarantine: isQuarantine,
                                 type_query: '{{$type}}',
                                 bb: '{{$type}}',
                                 from_date: from_date,
@@ -1147,7 +1153,7 @@
                                 gender: gender,
                                 nationality: nationality,
                             }
-										
+
                     },
                 columns: column
             }
@@ -1176,11 +1182,12 @@
             var to_date = $('#to_date').val();
             var gender = $('#gender').val();
             var nationality = $('#nationality').val();
+            var isQuarantine = $('#isQuarantine').val();
             if (government != '' && zone != '') {
                 if (firstTime != 0)
                     $('#orderdata').DataTable().destroy();
                 firstTime = 1;
-                load_data(government, zone, center, from_date, to_date, gender, nationality);
+                load_data(government, zone, center, from_date, to_date, gender, nationality,isQuarantine);
 
             } else {
                 alert('Both Input is required');

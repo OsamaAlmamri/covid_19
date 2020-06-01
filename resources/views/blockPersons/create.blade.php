@@ -414,8 +414,6 @@
                                     </div>
 
 
-
-
                                     <div class="sub-title"> {{trans('menu.sourse_reside_info')}} </div>
                                     <div class="j-unit">
                                         <label class="j-label">{{trans("dataTable.source_stay_reason")}} </label>
@@ -728,7 +726,8 @@
                                         <div class="j-span6 j-unit">
                                             <div class="checkbox j-label">
                                                 <label class="j-label">
-                                                    <input type="checkbox" id="is_visit_health_center" name="is_visit_health_center" value=1
+                                                    <input type="checkbox" id="is_visit_health_center"
+                                                           name="is_visit_health_center" value=1
                                                            @if(isset($blockPerson) and $blockPerson->is_visit_health_center==true) checked @endif>
                                                     {{trans('dataTable.is_visit_health_center')}}</label>
                                             </div>
@@ -788,7 +787,6 @@
                                                 'both'=>trans('dataTable.both'),
                                                 'private'=>trans('dataTable.private')]
                                                 ,null,['class' => 'select2 form-control', 'id' => 'mix_people_type'])!!}
-
 
 
                                             </div>
@@ -1271,8 +1269,7 @@
 
     <script
         src="{{HostUrl('design\bower_components\select2\dist\js\select2.full.min.js')}}"></script>
-    <script
-        src="{{HostUrl('design\assets\pages\j-pro\js\custom\booking-multistep.js')}}"></script>
+    {{--    <script src="{{HostUrl('design\assets\pages\j-pro\js\custom\booking-multistep.js')}}"></script>--}}
 
     <script type="text/javascript"
             src="{{ asset('design/custom/dropify/dist/js/dropify.min.js') }}"></script>
@@ -1285,13 +1282,245 @@
 
 
     <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            // Phone masking
+            $('#phone').mask('999-999-999', {placeholder: 'x'});
+            $('#dest_aqel_phone').mask('999-999-999', {placeholder: 'x'});
+            $('#relative_phone').mask('999-999-999', {placeholder: 'x'});
+
+            /***************************************/
+            /* Datepicker */
+            /***************************************/
+
+            // Start date
+            function dateFrom(date_from, date_to) {
+                $(date_from).datepicker({
+                    dateFormat: 'mm/dd/yy',
+                    prevText: '<i class="fa fa-caret-left"></i>',
+                    nextText: '<i class="fa fa-caret-right"></i>',
+                    onClose: function (selectedDate) {
+                        $(date_to).datepicker('option', 'minDate', selectedDate);
+                    }
+                });
+            }
+
+            // Start date
+            function afterSubmit() {
+                console.log('ssssssss');
+                alert('dsd');
+            }
+
+            // Finish date
+            function dateTo(date_from, date_to) {
+                $(date_to).datepicker({
+                    dateFormat: 'mm/dd/yy',
+                    prevText: '<i class="fa fa-caret-left"></i>',
+                    nextText: '<i class="fa fa-caret-right"></i>',
+                    onClose: function (selectedDate) {
+                        $(date_from).datepicker('option', 'maxDate', selectedDate);
+                    }
+                });
+            }// Finish date
+            function dateInit(date) {
+                $(date).datepicker({
+                    dateFormat: 'mm-dd-yy',
+
+
+                });
+            }
+
+            // Destroy date
+            function destroyDate(date) {
+                $(date).datepicker('destroy');
+            }
+
+            dateInit('#birth_date');
+            dateInit('#id_issue_date');
+            dateInit('#out_from_country_date');
+            dateInit('#comming_to_yemen_date');
+            dateInit('#dest_exit_date');
+            dateInit('#check_date');
+            dateInit('#start_date_symptoms');
+            dateInit('#check_date');
+            dateInit('#insulation_date');
+            dateInit('#sleep_date');
+            dateInit('#start_date_symptoms');
+            dateInit('#insulation_end_date');
+            dateInit('#sample_sent_date');
+
+            // Initialize date range
+            dateFrom('#date_from', '#date_to');
+            dateTo('#date_from', '#date_to');
+            /***************************************/
+            /* end datepicker */
+            /***************************************/
+
+            // Validation
+            $("#j-pro").justFormsPro({
+                rules: {
+                    bp_name: {
+                        required: true
+                    },
+                    check_date: {
+                        required: true
+                    },
+                    id_number: {
+                        required: true
+                    },
+                    job: {
+                        required: true
+                    },
+
+                    phone: {
+                        required: true
+                    },
+                    country: {
+                        required: true
+                    },
+                    // quarantine_area_id: {
+                    //     required: true
+                    // },
+                    check_point_id: {
+                        required: true
+                    },
+
+                    // children: {
+                    //     required: true,
+                    //     integer: true,
+                    //     minvalue: 0
+                    // },
+                    birth_date: {
+                        required: true
+                    },
+
+                },
+                messages: {
+                    bp_name: {
+                        required: "الاسم مطلوب"
+                    },
+                    birth_date: {
+                        required: "تاريخ الميلاد مطلوب"
+                    },
+                    check_date: {
+                        required: "تاريخ الفحص مطلوب"
+                    },
+                    id_number: {
+                        required: "رقم المعرف  مطلوب"
+                    },
+                    job: {
+                        required: "نوع الوظيفة  مطلوب"
+                    },
+                    country: {
+                        required: "الدولة    مطلوبة"
+                    },
+
+                    phone: {
+                        required: "رقم التلفون مطلوب"
+                    },
+                    // quarantine_area_id: {
+                    //     required: "يجب تحديد مركز  "
+                    // },
+                    check_point_id: {
+                        required: "يجب تحديد نقطة الفحص او التفتيش  "
+                    },
+
+                    // children: {
+                    //     required: "Field is required",
+                    //     integer: "Only integer allowed",
+                    //     minvalue: "Value not less than 0"
+                    // },
+
+                },
+                formType: {
+                    multistep: true
+                },
+                afterSuccessSubmit: function (data) {
+                    // alert('sss');
+                    toastr.success(' تم الاضافة بنجاح');
+                    location.reload();
+                    return true;
+                },
+                afterSubmitHandler: function () {
+                    afterSubmit();
+                    return true;
+                }
+            });
+        });
+
+
         getZones('governorate_id', 'zone_id');
         getZones('quar_governorate_id', 'quar_zone_id');
         getZones('last_governorate_visit_id', 'last_zone_visit_id');
-        getZones('dest_governorate_id', 'dest_zone_id');
-        getZones('dest_zone_id', 'dest_sub_zone', 'sub_dis');
-        getZones('dest_sub_zone', 'dest_hara', 'hara_vil');
+        // getZones('dest_governorate_id', 'dest_zone_id');
+        // getZones('dest_zone_id', 'dest_sub_zone', 'sub_dis');
+        // getZones('dest_sub_zone', 'dest_hara', 'hara_vil');
         getZones('dest_hara', 'dest_sub_hara', 'sub_hara_vil');
+
+        function dest_governorate_id(zone_code) {
+            $.when(get_dest_zone(zone_code, 'dest_zone_id')).then(function (district) {
+                var dis_code = district.first;
+                return get_dest_zone(dis_code, 'dest_sub_zone', 'sub_dis')
+            }).then(function (sub_dis) {
+                var sub_dis_code = sub_dis.first;
+                return get_dest_zone(sub_dis_code, 'dest_hara', 'hara_vil');
+            }).then(function (hara_vil) {
+                var dis_code = hara_vil.first;
+                return get_dest_zone(dis_code, 'dest_sub_hara', 'sub_hara_vil')
+            });
+        }
+
+        $(document).on('change', '#dest_governorate_id', function () {
+            var zone_code = $(this).val();
+            dest_governorate_id(zone_code);
+        });
+        $(document).ready(function () {
+            var zone_code = $('#dest_governorate_id').val();
+            dest_governorate_id(zone_code);
+        });
+
+        $(document).on('change', '#dest_zone_id', function () {
+            var zone_code = $(this).val();
+            $.when(get_dest_zone(zone_code, 'dest_sub_zone', 'sub_dis')).then(function (sub_dis) {
+                var sub_dis_code = sub_dis.first;
+                console.log(sub_dis);
+                return get_dest_zone(sub_dis_code, 'dest_hara', 'hara_vil')
+            }).then(function (hara_vil) {
+                console.log(hara_vil);
+                var dis_code = hara_vil.first;
+                return get_dest_zone(dis_code, 'dest_sub_hara', 'sub_hara_vil')
+            });
+        });
+        $(document).on('change', '#dest_sub_zone', function () {
+            var zone_code = $(this).val();
+            $.when(get_dest_zone(zone_code, 'dest_hara', 'hara_vil')).then(function (hara_vil) {
+                console.log(hara_vil);
+                var dis_code = hara_vil.first;
+                return get_dest_zone(dis_code, 'dest_sub_hara', 'sub_hara_vil')
+            });
+        });
+
+
+        function get_dest_zone(zone_code, zone_list, zone_type = 'district', type = 'noAll') {
+            var zone = $('#' + zone_list);
+            var _this = $(this);
+            return $.ajax({
+                url: '<?php echo e(route('zones.getZones')); ?>',
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: '_token=' + encodeURIComponent("<?php echo e(csrf_token()); ?>") +
+                    '&id=' + zone_code + '&zone_type=' + zone_type + '&type=' + type,
+                success: function (data) {
+                    zone.html(data.data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+
+        }
+
 
         $(document).on('click', '#sleeping', function () {
 
@@ -1301,6 +1530,7 @@
                 $("#div_sleep_date").hide();
             }
         });
+
 
         $(document).on('click', '#is_visit_health_center', function () {
 

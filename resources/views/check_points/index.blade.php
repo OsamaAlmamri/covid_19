@@ -103,7 +103,7 @@
     {{--          href="{{ HostUrl('design\assets\pages\data-table\extensions\responsive\css\responsive.dataTables.css')}}">--}}
 
     <!-- sweet alert framework -->
-    <link rel="stylesheet" type="text/css" href="{{ HostUrl('design\bower_components\sweetalert\css\sweetalert.css')}}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ HostUrl('design\bower_components\sweetalert\css\sweetalert.css')}}">--}}
 @endsection
 
 @section('dataTablesJs')

@@ -103,7 +103,7 @@
     {{--          href="{{ HostUrl('design\assets\pages\data-table\extensions\responsive\css\responsive.dataTables.css')}}">--}}
 
     <!-- sweet alert framework -->
-    <link rel="stylesheet" type="text/css" href="{{ HostUrl('design\bower_components\sweetalert\css\sweetalert.css')}}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ HostUrl('design\bower_components\sweetalert\css\sweetalert.css')}}">--}}
 @endsection
 
 @section('dataTablesJs')
@@ -115,8 +115,8 @@
     <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.print.min.js')}}"></script>
     <script src="{{ HostUrl('design\bower_components\datatables.net-buttons\js\buttons.html5.min.js')}}"></script>
     <script src="{{ HostUrl('design\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js')}}"></script>
-	
-	
+
+
     @include('includes.active')
     <script>
 

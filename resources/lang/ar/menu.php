@@ -22,7 +22,7 @@ return array(
     'quarantine' => ' مراكز الحجر',
     'quarantines' => ' مراكز الحجر',
     'addQuarantine' => '  اضافة مركز حجر جديد ',
-    'quarantineTypes' => 'اتواع مركز الحجر',
+    'quarantineTypes' => 'انواع مركز الحجر',
     'checkPointsManagement' => 'ادارة نقاط الفحص و التفتيش',
     'checkPoints' => '   نقاط التفتيش',
     'addCheckPoint' => ' اضافة نقطة تفتيش',
@@ -150,6 +150,11 @@ return array(
     'for_female' => '   للأناث  ',
     'procedures' => '   الاجراءات   ',
     'sampleInfo' => '  معلومات العينة ',
+    'isQuarantine' => ' تم حجرة ',
+    'yes' => '  نعم   ',
+    'no' => '  لا   ',
+    'all_block_persons' => 'كل الاشخاص المسجلين  ',
+    'not_block_persons' => ' لم يتم حجرهم  ',
 
 
 );

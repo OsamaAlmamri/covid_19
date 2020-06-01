@@ -62,10 +62,11 @@ class HomeController extends Controller
         $workTeams_female = WorkTeam::all()->where('gender', '=', 'female')->count();
         $s_healthTeams = HealthTeam::all()->count();
         $s_pointTeams = PointTeam::all()->count();
-        $s_block_persons = BlockedPerson::all()->count();
-        $block_persons_male = BlockedPerson::all()->where('gender', '=', 'male')->count();
-        $block_persons_female = BlockedPerson::all()->where('gender', '=', 'female')->count();
-
+        $all_block_persons = BlockedPerson::all()->count();
+        $not_block_persons = BlockedPerson::all()->whereNull('quarantine_area_id')->count();
+        $s_block_persons = BlockedPerson::all()->where('quarantine_area_id','>',0)->count();
+        $block_persons_male = BlockedPerson::all()->where('quarantine_area_id','>',0)->where('gender', '=', 'male')->count();
+        $block_persons_female = BlockedPerson::all()->where('quarantine_area_id','>',0)->where('gender', '=', 'female')->count();
 
         return view('home')->with([
             'allUsers' => $all,
@@ -87,6 +88,8 @@ class HomeController extends Controller
             's_healthTeams' => $s_healthTeams,
             's_pointTeams' => $s_pointTeams,
 
+            'all_block_persons' => $all_block_persons,
+            'not_block_persons' => $not_block_persons,
             's_block_persons' => $s_block_persons,
             'block_persons_male' => $block_persons_male,
             'block_persons_female' => $block_persons_female,

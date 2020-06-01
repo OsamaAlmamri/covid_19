@@ -244,6 +244,38 @@
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col">
+                                <p class="m-b-5"> {{trans('menu.all_block_persons')}}</p>
+                                <h4 class="m-b-0">{{$all_block_persons}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-users f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <p class="m-b-5"> {{trans('menu.not_block_persons')}}</p>
+                                <h4 class="m-b-0">{{$not_block_persons}}</h4>
+                            </div>
+                            <div class="col col-auto text-right">
+                                <i class="fa fa-users f-50 text-c-green"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <div class="card bg-simple-c-lite-green text-white" style="background: #b0c4de">
+                    <div class="card-block">
+                        <div class="row align-items-center">
+                            <div class="col">
                                 <p class="m-b-5"> {{trans('menu.s_block_persons')}}</p>
                                 <h4 class="m-b-0">{{$s_block_persons}}</h4>
                             </div>

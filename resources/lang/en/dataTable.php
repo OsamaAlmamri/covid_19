@@ -258,6 +258,7 @@ return [
     'dest_sub_zone' => 'Sub Districts  ',
     'quar_government' => 'Government  ',
     'quar_zone' => 'District ',
+    'quarantine_area_name' => 'Quarantine Area  ',
     'quarantine_area_id' => 'Quarantine Area  ',
     'check_point_id' => 'Check Point  ',
 

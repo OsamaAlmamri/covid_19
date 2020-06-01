@@ -118,11 +118,11 @@ class BlockPersonsController extends Controller
     }
 
 
-    public function getBlockPersonsData($government, $zone, $center, $gender, $from_date, $to_date, $type_query, $nationality)
+    public function getBlockPersonsData($government, $zone, $center, $gender, $from_date, $to_date, $type_query, $nationality, $isQuarantine)
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
-            $filter_zones = getZones_childs_ids($government,'district','getSumBlockPersons');
+            $filter_zones = getZones_childs_ids($government, 'district', 'getSumBlockPersons');
         } else
             $filter_zones [] = $zone;
         if ($center == 'all') {
@@ -132,6 +132,21 @@ class BlockPersonsController extends Controller
             $op = '=';
             $val = $center;
         }
+
+        if ($isQuarantine == 'all') {
+            $isQuarantine_col = 'blocked_people.id';
+            $isQuarantine_op = '>';
+            $isQuarantine_val = 0;
+        } elseif ($isQuarantine == 'yes') {
+            $isQuarantine_col = 'blocked_people.quarantine_area_id';
+            $isQuarantine_op = '>';
+            $isQuarantine_val = 0;
+        } else {
+            $isQuarantine_col = 'blocked_people.quarantine_area_id';
+            $isQuarantine_op = 'like';
+            $isQuarantine_val = '';
+        }
+
         if ($gender == 'all') {
             $gender_v = 0;
             $gender_col = 'blocked_people.id';
@@ -170,6 +185,9 @@ class BlockPersonsController extends Controller
             $bp_type_op = 'like';
             $bp_type_col = 'blocked_people.bp_type';
         } elseif ($type_query == 'people_in_port') {
+//            $bp_type_col = 'blocked_people.id';
+//            $bp_type_v = 0;
+//            $bp_type_op = '>';
             $bp_type_v = 'people';
             $bp_type_op = 'like';
             $bp_type_col = 'blocked_people.bp_type';
@@ -185,8 +203,54 @@ class BlockPersonsController extends Controller
 
 
         //        zone_id,check_point_id,quarantine_area_id,last_zone_visit_id,if_transfer_where
-
-        $data = DB::table('blocked_people')
+        if ($isQuarantine != 'no')
+            $data = DB::table('blocked_people')
+                ->leftJoin('zones as Zone', 'blocked_people.district_code', '=', 'Zone.code')
+                ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
+                ->leftJoin('check_points', 'blocked_people.check_point_id', '=', 'check_points.id')
+                ->leftJoin('quarantine_areas', 'blocked_people.quarantine_area_id', '=', 'quarantine_areas.id')
+                ->leftJoin('zones as visit_zone', 'blocked_people.last_zone_visit_id', '=', 'visit_zone.code')
+                ->leftJoin('zones as visit_ParentZone', 'visit_zone.parent', '=', 'visit_ParentZone.code')
+                ->leftJoin('quarantine_areas as quarantine_areas_transfer', 'blocked_people.if_transfer_where', '=', 'quarantine_areas_transfer.id')
+                ->leftJoin('zones as transfer_zone', 'quarantine_areas_transfer.zone_id', '=', 'transfer_zone.code')
+                ->leftJoin('zones as transfer_ParentZone', 'transfer_zone.parent', '=', 'transfer_ParentZone.code')
+                ->leftJoin('zones as health_center_zone', 'check_points.zone_id', '=', 'health_center_zone.code')
+                ->leftJoin('zones as health_center_parent_zone', 'health_center_zone.parent', '=', 'health_center_parent_zone.code')
+                ->leftJoin('zones as check_point_zone', 'blocked_people.district_code', '=', 'check_point_zone.code')
+                ->leftJoin('zones as check_point_parent_zone', 'check_point_zone.parent', '=', 'check_point_parent_zone.code')
+                ->select('blocked_people.*',
+                    DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24*365)) as age_year "),
+                    DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24*30)) as age_month "),
+                    DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24)) as age_day "),
+                    DB::raw("FROM_UNIXTIME(start_date_symptoms/1000,'%Y-%m-%d') as start_date_symptoms "),
+                    DB::raw("FROM_UNIXTIME(start_date_symptoms/1000,'%Y-%m-%d') as birth_date "),
+                    DB::raw("FROM_UNIXTIME(sleep_date/1000,'%Y-%m-%d') as sleep_date "),
+                    DB::raw("FROM_UNIXTIME(insulation_date/1000,'%Y-%m-%d') as insulation_date "),
+                    DB::raw("FROM_UNIXTIME(out_from_country_date/1000,'%Y-%m-%d') as out_from_country_date "),
+                    DB::raw("FROM_UNIXTIME(comming_to_yemen_date/1000,'%Y-%m-%d') as comming_to_yemen_date "),
+                    DB::raw("FROM_UNIXTIME(sample_sent_date/1000,'%Y-%m-%d') as sample_sent_date "),
+                    DB::raw("FROM_UNIXTIME(if_dead_date/1000,'%Y-%m-%d') as if_dead_date "),
+                    DB::raw("FROM_UNIXTIME(check_date/1000,'%Y-%m-%d') as check_date "),
+                    DB::raw("CONCAT(COALESCE(ParentZone.name_ar,'') , ' /' ,COALESCE(Zone.name_ar,'')) AS from_zone"),
+                    DB::raw("CONCAT(COALESCE(visit_ParentZone.name_ar,'') , ' / ' ,COALESCE(visit_zone.name_ar,'')) AS visit_zone"),
+                    DB::raw("CONCAT(COALESCE(transfer_ParentZone.name_ar,'') ,' / ',COALESCE(transfer_zone.name_ar,''),' / ',COALESCE(quarantine_areas_transfer.name,'')) AS transfer_zone"),
+                    DB::raw("CONCAT(COALESCE(health_center_parent_zone.name_ar,''),' / ' ,COALESCE(health_center_zone.name_ar,''),' / ' ,COALESCE(quarantine_areas.name,'')) AS center_zone"),
+                    DB::raw("CONCAT(COALESCE(check_point_parent_zone.name_ar,'') ,' / ',COALESCE(check_point_zone.name_ar,'')) AS point_zone"),
+                    'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
+                    'quarantine_areas.name as quarantine_area_name', 'check_points.name as check_point_name'
+                )
+//            ->WhereNotNull('work_teams.deleted_at')
+//            ->whereIn('blocked_people.district_code', $filter_zones)
+                ->whereIn('blocked_people.dest_zone_id', $filter_zones)
+                ->whereBetween('blocked_people.check_date', [$from_date, $to_date])
+                ->where($gender_col, $gender_op, $gender_v)
+//            ->where($place_column, $op, $val)
+                ->where($nationality_col, $nationality_op, $nationality_v)
+//            ->$typeCondition($typeCondition)
+                ->where($isQuarantine_col, $isQuarantine_op, $isQuarantine_val)
+                ->where($bp_type_col, $bp_type_op, $bp_type_v)
+                ->orderByDesc('id')->get();
+        else        $data = DB::table('blocked_people')
             ->leftJoin('zones as Zone', 'blocked_people.district_code', '=', 'Zone.code')
             ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
             ->leftJoin('check_points', 'blocked_people.check_point_id', '=', 'check_points.id')
@@ -222,11 +286,14 @@ class BlockPersonsController extends Controller
                 'quarantine_areas.name as quarantine_area_name', 'check_points.name as check_point_name'
             )
 //            ->WhereNotNull('work_teams.deleted_at')
-            ->whereIn('blocked_people.district_code', $filter_zones)
+//            ->whereIn('blocked_people.district_code', $filter_zones)
+            ->whereIn('blocked_people.dest_zone_id', $filter_zones)
             ->whereBetween('blocked_people.check_date', [$from_date, $to_date])
             ->where($gender_col, $gender_op, $gender_v)
 //            ->where($place_column, $op, $val)
             ->where($nationality_col, $nationality_op, $nationality_v)
+//            ->$typeCondition($typeCondition)
+            ->whereNull($isQuarantine_col)
             ->where($bp_type_col, $bp_type_op, $bp_type_v)
             ->orderByDesc('id')->get();
 
@@ -247,9 +314,11 @@ class BlockPersonsController extends Controller
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
-            $filter_zones = getZones_childs_ids($government,'district','getSumBlockPersons');
+            $filter_zones = getZones_childs_ids($government, 'district', 'getSumBlockPersons');
         } else
             $filter_zones [] = $zone;
+
+
         if ($center == 'all') {
             $op = '>';
             $val = 0;
@@ -257,6 +326,8 @@ class BlockPersonsController extends Controller
             $op = '=';
             $val = $center;
         }
+
+
         if ($gender == 'all')
             $genderCondition = '';
         else
@@ -280,33 +351,33 @@ class BlockPersonsController extends Controller
             ->leftJoin('zones as Zone', 'quarantine_areas.zone_id', '=', 'Zone.code')
             ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
             ->select('quarantine_areas.*',
-                DB::raw("(SELECT count(blocked_people.id) FROM blocked_people 
+                DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 WHERE blocked_people.quarantine_area_id = quarantine_areas.id " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeople"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                                 WHERE blocked_people.quarantine_area_id = quarantine_areas.id and
-                                  blocked_people.if_dead_date > 1000 
-                                ) 
+                                  blocked_people.if_dead_date > 1000
+                                )
                                 as allBlockPeopleDead"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                                 WHERE blocked_people.quarantine_area_id = quarantine_areas.id and
-                                  blocked_people.if_transfer_where > 0 
+                                  blocked_people.if_transfer_where > 0
                                    " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeopleTransform"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                                 WHERE blocked_people.quarantine_area_id = quarantine_areas.id and
-                                  blocked_people.insulation_end_date  > 0 
+                                  blocked_people.insulation_end_date  > 0
                                    " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeopleOut"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                                 WHERE blocked_people.quarantine_area_id = quarantine_areas.id and
                                   blocked_people.insulation_end_date  is null  and blocked_people.if_transfer_where is null
                                   and if_dead_date is null
                                    " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeopleNotOut"),
                 'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
             )
@@ -323,9 +394,9 @@ class BlockPersonsController extends Controller
 
     {
         $filter_zones = [];
-		
+
         if ($government == 'all') {
-            $filter_zones  = getZones_childs_ids($government,'district','ZoneData');
+            $filter_zones = getZones_childs_ids($government, 'district', 'ZoneData');
         } else
             $filter_zones [] = $government;
 
@@ -342,7 +413,7 @@ class BlockPersonsController extends Controller
 
         else
             $nationalityCondition = " and blocked_people.bp_from not like '%$nationality%' ";
-		
+
         $data = DB::table('zones')
             ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.code')
             ->select('zones.*', 'zones.name_ar as zone_name', 'ParentZone.name_ar as government_name',
@@ -350,25 +421,25 @@ class BlockPersonsController extends Controller
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
                                 WHERE zones.code = quarantine_areas.zone_id
                                  " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeople"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
-                                WHERE zones.code = quarantine_areas.zone_id and blocked_people.if_dead_date > 1000 
+                                WHERE zones.code = quarantine_areas.zone_id and blocked_people.if_dead_date > 1000
                                  " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeopleDead"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
-                              WHERE zones.code = quarantine_areas.zone_id and  blocked_people.if_transfer_where > 0 
+                              WHERE zones.code = quarantine_areas.zone_id and  blocked_people.if_transfer_where > 0
                                  " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeopleTransform"),
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
-                            WHERE  zones.code = quarantine_areas.zone_id and   blocked_people.insulation_end_date  > 0 
+                            WHERE  zones.code = quarantine_areas.zone_id and   blocked_people.insulation_end_date  > 0
                                  " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeopleOut"),
 
                 DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
@@ -376,13 +447,13 @@ class BlockPersonsController extends Controller
                             WHERE  zones.code = quarantine_areas.zone_id and   blocked_people.insulation_end_date  is null  and blocked_people.if_transfer_where is null
                                   and if_dead_date is null
                                  " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                ) 
+                                )
                                 as allBlockPeopleNotOut")
             )
-			->whereIn('zones.parent', $filter_zones)
+            ->whereIn('zones.parent', $filter_zones)
             ->orderByDesc('id')->get();
 
-		return $data;
+        return $data;
     }
 
     public function getSumBlockPersonsAccordingForGovernmentData($gender, $from_date, $to_date, $type_query, $nationality)
@@ -412,21 +483,21 @@ class BlockPersonsController extends Controller
                                 WHERE
                                   quarantine_areas.zone_id IN (SELECT code FROM zones as subZones where subZones.parent=zones.code )
                                     " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                  ) 
+                                  )
                                 as allBlockPeople"),
             DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
                                 WHERE
                                   quarantine_areas.zone_id IN (SELECT code FROM zones as subZones where subZones.parent=zones.code )
                                    and blocked_people.if_dead_date > 1000   " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                  ) 
+                                  )
                                 as allBlockPeopleDead"),
             DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
                                 WHERE
                                   quarantine_areas.zone_id IN (SELECT code FROM zones as subZones where subZones.parent=zones.code )
                                    and blocked_people.if_transfer_where > 0   " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                  ) 
+                                  )
                                 as allBlockPeopleTransform"),
             DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
@@ -434,14 +505,14 @@ class BlockPersonsController extends Controller
                                   quarantine_areas.zone_id IN (SELECT code FROM zones as subZones where subZones.parent=zones.code )
                                    and    blocked_people.insulation_end_date  is null  and blocked_people.if_transfer_where is null
                                   and if_dead_date is null   " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                  ) 
+                                  )
                                 as allBlockPeopleOut"),
             DB::raw("(SELECT count(blocked_people.id) FROM blocked_people
                 INNER JOIN quarantine_areas ON quarantine_areas.id=blocked_people.quarantine_area_id
                                 WHERE
                                   quarantine_areas.zone_id IN (SELECT code FROM zones as subZones where subZones.parent=zones.code )
                                    and  blocked_people.insulation_end_date  > 0    " . $dateCondition . $genderCondition . $nationalityCondition . "
-                                  ) 
+                                  )
                                 as allBlockPeopleNotOut")
         ];
 
@@ -458,13 +529,13 @@ class BlockPersonsController extends Controller
 
     {
         $filter_zones = [];
-		
+
         if ($government == 'all') {
-            $filter_zones = getZones_childs_ids($government,'district','SumQuarantine');
+            $filter_zones = getZones_childs_ids($government, 'district', 'SumQuarantine');
         } else
             $filter_zones [] = $government;
-		
-		
+
+
         $types = QuarantineAreaType::all();
         $cols = ['zones.name_ar as zone_name', 'ParentZone.name_ar as government_name'];
         $cols[] = DB::raw("(SELECT count(quarantine_areas.id) FROM quarantine_areas
@@ -493,8 +564,8 @@ class BlockPersonsController extends Controller
         $cols = ['zones.name_ar as government_name'];
         $cols[] = DB::raw("(SELECT count(quarantine_areas.id) FROM quarantine_areas
                               INNER JOIN zones as SubZone ON quarantine_areas.zone_id=SubZone.code
-                                WHERE 
-                                zones.code = SubZone.parent 
+                                WHERE
+                                zones.code = SubZone.parent
                                 )
                                 as allTypes");
         foreach ($types as $type) {
@@ -502,7 +573,7 @@ class BlockPersonsController extends Controller
                 DB::raw("(SELECT count(quarantine_areas.id)
                  FROM quarantine_areas
                  INNER JOIN zones as SubZone ON quarantine_areas.zone_id=SubZone.code
-                                WHERE 
+                                WHERE
                                 zones.code = SubZone.parent and
                                   quarantine_areas.quarantine_area_type_id=" . $type->id . "
                                 )
@@ -521,6 +592,7 @@ class BlockPersonsController extends Controller
 
         $center = $request->center;
         $government = $request->government;
+        $isQuarantine = $request->isQuarantine;
         $zone = $request->zone;
         $nationality = $request->nationality;
         $type_query = $request->type_query;
@@ -563,7 +635,7 @@ class BlockPersonsController extends Controller
         elseif ($type_query == 'quarantines_gov')
             $data = $this->getSumQuarantineGovData();
         else
-            $data = $this->getBlockPersonsData($government, $zone, $center, $gender, $from, $to, $type_query, $nationality);
+            $data = $this->getBlockPersonsData($government, $zone, $center, $gender, $from, $to, $type_query, $nationality, $isQuarantine);
 
         return datatables()->of($data)
             ->addIndexColumn()
