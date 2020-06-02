@@ -46,7 +46,7 @@ if (!function_exists('lang')) {
             if (setting('default_lang') != null)
                 return setting('default_lang');
             else
-                return 'en';
+                return 'ar';
         }
     }
 }

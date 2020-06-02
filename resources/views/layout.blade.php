@@ -162,8 +162,13 @@
                             @yield('content')
 
                             <!-- Page body end -->
+
+
+
                             </div>
+
                         </div>
+
                         <!-- Main-body end -->
 
 {{--                                                <div id="styleSelector">--}}
@@ -172,14 +177,27 @@
 
                     {{--                        <div id="locationStyleSelector">--}}
 
+                    <div class="footer" style="background-color: #2196f3;    position: relative; ">
+                        <div class="container">
+                            <div class="col-md-12 text-center">
+                                <div class="footer-text">
+                                    <p>
+                                        Copyright © 2020 <a target="_blank"  href="http://targetsguide.com"
+                                                            style="font-size: 14px; color: #000000;"><big>Targets Guide</big> </a>. All Rights Reserved 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-</div>
-</div>
 
+</div>
+</div>
 
 <div id="sound"></div>
 
