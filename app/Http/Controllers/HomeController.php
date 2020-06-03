@@ -16,6 +16,7 @@ use App\User;
 use App\WorkTeam;
 use App\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 
@@ -67,6 +68,31 @@ class HomeController extends Controller
         $s_block_persons = BlockedPerson::all()->where('quarantine_area_id','>',0)->count();
         $block_persons_male = BlockedPerson::all()->where('quarantine_area_id','>',0)->where('gender', '=', 'male')->count();
         $block_persons_female = BlockedPerson::all()->where('quarantine_area_id','>',0)->where('gender', '=', 'female')->count();
+
+//        $user->deleted_at=0;
+//        $user['deleted_at']=0;
+
+        $user=User::where('id',auth()->user()->id)->get();
+//                $user->deleted_at=0;
+//        $user[0]['deleted_at']=0;
+//        $user['deleted_at']=0;
+        $user=array(
+            "id" => auth()->user()->id,
+        "username" => auth()->user()->username,
+        "email" => auth()->user()->email,
+        "email_verified_at" => auth()->user()->email_verified_at,
+        "password" => auth()->user()->password,
+        "status" => auth()->user()->status,
+        "avatar" => auth()->user()->avatar,
+        "created_by" => auth()->user()->created_by,
+        "work_team_id" => auth()->user()->work_team_id,
+        "deleted_by" => auth()->user()->deleted_by,
+        "deleted_at" => 0,
+        "remember_token" => auth()->user()->remember_token,
+        "created_at" => 0,
+        "updated_at" =>0
+        );
+        return dd($user);
 
         return view('home')->with([
             'allUsers' => $all,

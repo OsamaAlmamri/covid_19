@@ -190,7 +190,7 @@
                                         <label class="icon-right" for="workType">
                                             <i class="fa fa-id-card"></i>
                                         </label>
-                                        {!!Form ::select('workType', ['point'=>trans('menu.point'),'health'=>trans('menu.health')],null,['class' => 'select2 form-control', 'id' => 'workType'])!!}
+                                        {!!Form ::select('workType', ['point'=>trans('menu.point'),'health'=>trans('menu.health'),'admin'=>trans('menu.admin')],null,['class' => 'select2 form-control', 'id' => 'workType'])!!}
 
                                         @error('workType') <span
                                             class="btn-block badge badge-danger">{{ $message }}</span> @enderror

@@ -210,7 +210,7 @@ function getAllWorker()
     $users = \App\WorkTeam::all();
     $allUsers = [];
     foreach ($users as $user) {
-        $allUsers[$user->id] = $user->name;
+        $allUsers[$user->id] = $user->name.'/'.$user->workType;
     }
     return $allUsers;
 }
@@ -220,6 +220,8 @@ function workTeamTypes()
 {
     return ['point' => trans('menu.work_point'),
         'health' => trans('menu.work_health'),
+//        'admin' => trans('menu.admin'),
+
 
     ];
 }

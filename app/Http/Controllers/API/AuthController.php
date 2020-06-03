@@ -30,6 +30,8 @@ class AuthController extends BaseAPIController
                 $user = Auth::user();
                 if ($user->status == 1) {
                     $success['token'] = $user->createToken('MyApp')->accessToken;;
+
+                    $user['deleted_at']=0;
                     return $this->sendResponse([
                         "status" => 1,
                         "access_token" => $success['token'],

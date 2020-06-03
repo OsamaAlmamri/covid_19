@@ -68,6 +68,7 @@ return array(
     'health' => '  مركز  حجر ',
     'point' => '  نقطة تفتيش',
     'work_health' => '  صحي  ',
+    'admin' => 'مسؤول نظام',
     'work_point' => 'امن',
     'workType' => 'نوع العمل',
     'team' => '  الفريق',

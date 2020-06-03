@@ -73,6 +73,7 @@ return [
     'health' => ' health center',
     'work_health' => '  health  ',
     'work_point' => 'secret',
+    'admin' => 'admin',
     'workType' => 'work Type',
     'point' => ' check point',
     'team' => '  team',

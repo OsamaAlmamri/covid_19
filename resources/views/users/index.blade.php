@@ -121,7 +121,7 @@
     @include('includes.active')
     <script>
 
-        Active('/users/active');
+        Active("{{route('users.active')}}");
 
         function check_all() {
             $('input[class="item_checkbox"]:checkbox').each(function () {
