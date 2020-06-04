@@ -46,7 +46,7 @@ class UserDataTable extends DataTable
         if ($this->type != "deleted")
             $data = DB::table('users')
                 ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
-                ->select('users.*', 'work_teams.name', 'work_teams.phone')
+                ->select('users.*', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
                 ->WhereNull('users.deleted_at')
                 ->orderByDesc('id')->get();
         else
@@ -54,7 +54,7 @@ class UserDataTable extends DataTable
                 ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
                 ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
                 ->leftJoin('users as CrearedSuperUsers', 'users.deleted_by', '=', 'CrearedSuperUsers.id')
-                ->select('users.*', 'work_teams.name', 'work_teams.phone', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
+                ->select('users.*', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
                 ->WhereNotNull('users.deleted_at')
                 ->orderByDesc('id')->get();
 
@@ -154,6 +154,11 @@ class UserDataTable extends DataTable
                         'name' => 'phone',
                         'data' => 'phone',
                         'title' => trans('dataTable.w_phone'),
+                    ],
+                    [
+                        'name' => 'workType',
+                        'data' => 'workType',
+                        'title' => trans('menu.workType'),
                     ],
                     [
                         'name' => 'created_at',
