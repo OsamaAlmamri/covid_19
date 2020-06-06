@@ -92,7 +92,6 @@ class HomeController extends Controller
         "created_at" => 0,
         "updated_at" =>0
         );
-        return dd($user);
 
         return view('home')->with([
             'allUsers' => $all,

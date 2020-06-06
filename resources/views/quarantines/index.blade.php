@@ -120,7 +120,8 @@
     @include('includes.active')
     <script>
 
-        Active('/users/active');
+        Active("{{route('quarantines.active')}}");
+
 
         function check_all() {
             $('input[class="item_checkbox"]:checkbox').each(function () {

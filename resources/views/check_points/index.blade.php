@@ -122,8 +122,7 @@
     @include('includes.active')
     <script>
 
-        Active('/users/active');
-
+        Active("{{route('check_points.active')}}");
         function check_all() {
             $('input[class="item_checkbox"]:checkbox').each(function () {
                 if ($('input[class="check_all"]:checkbox:checked').length == 0) {

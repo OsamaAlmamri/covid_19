@@ -414,6 +414,9 @@ class BlockPersonsController extends Controller
         else
             $nationalityCondition = " and blocked_people.bp_from not like '%$nationality%' ";
 
+
+
+
         $data = DB::table('zones')
             ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.code')
             ->select('zones.*', 'zones.name_ar as zone_name', 'ParentZone.name_ar as government_name',
@@ -530,10 +533,10 @@ class BlockPersonsController extends Controller
     {
         $filter_zones = [];
 
-        if ($government == 'all') {
-            $filter_zones = getZones_childs_ids($government, 'district', 'SumQuarantine');
-        } else
-            $filter_zones [] = $government;
+//        if ($government == 'all') {
+        $filter_zones = getZones_childs_ids($government, 'district', 'SumQuarantine');
+//        } else
+//            $filter_zones [] = $government;
 
 
         $types = QuarantineAreaType::all();
@@ -552,7 +555,8 @@ class BlockPersonsController extends Controller
 
         $data = DB::table('zones')
             ->leftJoin('zones as ParentZone', 'zones.parent', '=', 'ParentZone.code')
-            ->select($cols)->whereIn('zones.id', $filter_zones)
+            ->select($cols)
+            ->whereIn('zones.code', $filter_zones)
             ->get();
         return $data;
     }
