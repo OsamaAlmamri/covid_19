@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -64,12 +66,27 @@ class LoginController extends Controller
         $credential_email = ['email' => $request->email, 'password' => $request->password, 'status' => 1];
         $credential_username = ['username' => $request->email, 'password' => $request->password, 'status' => 1];
 
+//        $r = User::all()->where('email', 'like', $request->email)
+//            ->where('password', 'like', Hash::make($request->password))
+//            ->where('status', '=', 1)->count();
+//        return dd(Auth::attempt($credential_email));
+        //"$2y$10$H1aewqingjVnwT5CTIDJVOWm9kldf495Y3vP2Caq1XpMsO8E9Vnre"
+        //  "$2y$10$qTyquJby7p5/uUP8CTygke6Y7ZgCGZE5pOSVNca7u4q.eA3XBUu6i"
+        //"$2y$10$4eeMukQSyMsRPq1aQz5sxOSWnArfRk5SU4dKk8eMw.gvD.dSa33Uq"
+
         if (
             Auth::attempt($credential_email)
             or Auth::attempt($credential_username)
         ) {
+            if (auth()->user()->work_team->workType != 'admin') {
+//                return dd(auth()->user()->work_team->workType);
+                session()->flash('auth.noAllow', 'ok');
 
-            return redirect()->route('home');
+                auth()->logout();
+                return back();
+            }
+            else
+                return redirect()->route('home');
         } else {
             session()->flash('auth.failed', 'ok');
             return back();

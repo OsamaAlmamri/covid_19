@@ -17,6 +17,12 @@
                                 class="badge badge-danger btn-block text-center">  اسم المستخدم أو كلمة المرور خطأ </span>
                             </div>
                         @endif
+                        @if(session()->has('auth.noAllow'))
+                            <div class="input-group mb-3">
+                            <span
+                                class="badge badge-danger btn-block text-center">  هذه المستخدم غير مصرح لدخول النظام</span>
+                            </div>
+                        @endif
                         <div class="text-center">
                             <img src="{{ HostUrl('images\logo2.png')}}" width="300px" alt="logo.png">
                         </div>
