@@ -46,17 +46,24 @@ class UserDataTable extends DataTable
         if ($this->type != "deleted")
             $data = DB::table('users')
                 ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
-                ->select('users.*', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
+                ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+                ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+                ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
+                ->select('users.*', 'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
                 ->WhereNull('users.deleted_at');
         else
             $data = DB::table('users')
                 ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
+                ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+                ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
                 ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
                 ->leftJoin('users as CrearedSuperUsers', 'users.deleted_by', '=', 'CrearedSuperUsers.id')
-                ->select('users.*', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
+                ->select('users.*', 'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
                 ->WhereNotNull('users.deleted_at');
         if (auth()->user()->government !== 0)
             $data = $data->where('users.government', auth()->user()->government);
+        if (auth()->user()->getRoleNames()->first() !== 'Developer')
+            $data = $data->where('roles.name','<>','Developer');
         $data = $data->orderByDesc('id')->get();
         return $data;
 
@@ -159,6 +166,11 @@ class UserDataTable extends DataTable
                         'name' => 'workType',
                         'data' => 'workType',
                         'title' => trans('menu.workType'),
+                    ],
+                    [
+                        'name' => 'role_name',
+                        'data' => 'role_name',
+                        'title' => trans('menu.role_name'),
                     ],
                     [
                         'name' => 'created_at',

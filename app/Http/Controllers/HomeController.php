@@ -17,6 +17,7 @@ use App\WorkTeam;
 use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 
@@ -50,6 +51,11 @@ class HomeController extends Controller
         $filter_zones = getZones_childs_ids($government, 'district', 'SumQuarantine');
 
         $all = $users = User::all()->count();
+        $all = DB::table('users')
+            ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
+            ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+            ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->where('roles.name','<>','Developer')->count();
         $dataEntry = User::role('dataEntry')->count();
         $admins = User::role('Admin')->count();
         $SuperAdmin = User::role('SuperAdmin')->count();
