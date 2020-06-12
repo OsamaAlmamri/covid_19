@@ -132,9 +132,10 @@ class PermissionsController extends Controller
         if (Auth::user()->can('show permissions') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
-
+//        $role = Role::create(['guard_name' => 'web', 'name' => 'Developer']);
 //        updateUserRole(auth()->user()->id, 'SuperAdmin');
-        $roles = Role::all();
+        $roles = Role::all()->where('name','<>','Developer');
+//        $roles = Role::all();
 //        return dd(Role::all());
 //        $this->addPermissions();
         return view('permissions.index')

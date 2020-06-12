@@ -153,10 +153,10 @@ function getFirstRole($user_id)
 {
     $user = \App\User::withTrashed()->find($user_id);
     $roles = $user->getRoleNames()->first();
-    if (($roles!=null))
+    if (($roles != null))
         $r = Role::all()->where('name', $roles)->first();
 
-    return ( ($roles==null) ? null : $r->id);
+    return (($roles == null) ? null : $r->id);
 }
 
 function getRole($user_id)
@@ -173,10 +173,10 @@ function getAllRole()
 //    return dd(auth()->user()->getRoleNames()->first());
     foreach ($roles as $role) {
         if (auth()->user()->getRoleNames()->first() === 'SuperAdmin') {
-
-            $allRoles[$role->id] = $role->name;
+            if ($role->name != 'Developer')
+                $allRoles[$role->id] = $role->name;
         } else {
-            if ($role->name != 'SuperAdmin')
+            if ($role->name != 'SuperAdmin' or $role->name != 'Developer')
                 $allRoles[$role->id] = $role->name;
         }
     }
