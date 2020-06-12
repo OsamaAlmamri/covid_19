@@ -43,54 +43,58 @@ class HomeController extends Controller
     public function index()
     {
 
-
+        if (auth()->user()->government == 0)
+            $government = 'all';
+        else
+            $government = auth()->user()->government;
+        $filter_zones = getZones_childs_ids($government, 'district', 'SumQuarantine');
 
         $all = $users = User::all()->count();
         $dataEntry = User::role('dataEntry')->count();
         $admins = User::role('Admin')->count();
         $SuperAdmin = User::role('SuperAdmin')->count();
-
-        $district = Zone::all()->where('parent', '>', 0)->where('type', 'like','district')->count();
-        $sub_dis = SubDi::all()->where('parent', '>', 0)->where('type', 'like','sub_dis')->count();
-        $hara_vil = HaraVil::all()->where('parent', '>', 0)->where('type', 'like','hara_vil')->count();
-        $sub_hara_vil = SubHaraVil::all()->where('parent', '>', 0)->where('type', 'like','sub_hara_vil')->count();
+        $district = Zone::all()->where('parent', '>', 0)->where('type', 'like', 'district')->count();
+        $sub_dis = SubDi::all()->where('parent', '>', 0)->where('type', 'like', 'sub_dis')->count();
+        $hara_vil = HaraVil::all()->where('parent', '>', 0)->where('type', 'like', 'hara_vil')->count();
+        $sub_hara_vil = SubHaraVil::all()->where('parent', '>', 0)->where('type', 'like', 'sub_hara_vil')->count();
         $governments = Zone::all()->where('parent', '=', 0)->count();
-        $quarantines = QuarantineArea::all()->count();
-        $checkPoints = CheckPoint::all()->count();
+            $quarantines = QuarantineArea::all()->whereIn('zone_id', $filter_zones)->count();
 
-        $workTeams = WorkTeam::all()->count();
-        $workTeams_male = WorkTeam::all()->where('gender', '=', 'male')->count();
-        $workTeams_female = WorkTeam::all()->where('gender', '=', 'female')->count();
-        $s_healthTeams = HealthTeam::all()->count();
-        $s_pointTeams = PointTeam::all()->count();
-        $all_block_persons = BlockedPerson::all()->count();
-        $not_block_persons = BlockedPerson::all()->whereNull('quarantine_area_id')->count();
-        $s_block_persons = BlockedPerson::all()->where('quarantine_area_id','>',0)->count();
-        $block_persons_male = BlockedPerson::all()->where('quarantine_area_id','>',0)->where('gender', '=', 'male')->count();
-        $block_persons_female = BlockedPerson::all()->where('quarantine_area_id','>',0)->where('gender', '=', 'female')->count();
+        $checkPoints = CheckPoint::all()->whereIn('zone_id', $filter_zones)->count();
+
+        $workTeams = WorkTeam::all()->whereIn('zone_id', $filter_zones)->count();
+        $workTeams_male = WorkTeam::all()->whereIn('zone_id', $filter_zones)->where('gender', '=', 'male')->count();
+        $workTeams_female = WorkTeam::all()->whereIn('zone_id', $filter_zones)->where('gender', '=', 'female')->count();
+        $s_healthTeams = HealthTeam::all()->whereIn('zone_id', $filter_zones)->count();
+        $s_pointTeams = PointTeam::all()->whereIn('zone_id', $filter_zones)->count();
+        $all_block_persons = BlockedPerson::all()->whereIn('dest_zone_id', $filter_zones)->count();
+        $not_block_persons = BlockedPerson::all()->whereIn('dest_zone_id', $filter_zones)->whereNull('quarantine_area_id')->count();
+        $s_block_persons = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->count();
+        $block_persons_male = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->where('gender', '=', 'male')->count();
+        $block_persons_female = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->where('gender', '=', 'female')->count();
 
 //        $user->deleted_at=0;
 //        $user['deleted_at']=0;
 
-        $user=User::where('id',auth()->user()->id)->get();
+        $user = User::where('id', auth()->user()->id)->get();
 //                $user->deleted_at=0;
 //        $user[0]['deleted_at']=0;
 //        $user['deleted_at']=0;
-        $user=array(
+        $user = array(
             "id" => auth()->user()->id,
-        "username" => auth()->user()->username,
-        "email" => auth()->user()->email,
-        "email_verified_at" => auth()->user()->email_verified_at,
-        "password" => auth()->user()->password,
-        "status" => auth()->user()->status,
-        "avatar" => auth()->user()->avatar,
-        "created_by" => auth()->user()->created_by,
-        "work_team_id" => auth()->user()->work_team_id,
-        "deleted_by" => auth()->user()->deleted_by,
-        "deleted_at" => 0,
-        "remember_token" => auth()->user()->remember_token,
-        "created_at" => 0,
-        "updated_at" =>0
+            "username" => auth()->user()->username,
+            "email" => auth()->user()->email,
+            "email_verified_at" => auth()->user()->email_verified_at,
+            "password" => auth()->user()->password,
+            "status" => auth()->user()->status,
+            "avatar" => auth()->user()->avatar,
+            "created_by" => auth()->user()->created_by,
+            "work_team_id" => auth()->user()->work_team_id,
+            "deleted_by" => auth()->user()->deleted_by,
+            "deleted_at" => 0,
+            "remember_token" => auth()->user()->remember_token,
+            "created_at" => 0,
+            "updated_at" => 0
         );
 
         return view('home')->with([
