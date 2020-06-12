@@ -72,6 +72,7 @@ return array(
     'work_point' => 'امن',
     'workType' => 'نوع العمل',
     'team' => '  الفريق',
+    'role_name' => '  الدور ',
 
 
     'block_persons' => '  الاشخاص المحجورين   ',

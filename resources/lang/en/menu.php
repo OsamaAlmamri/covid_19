@@ -77,6 +77,7 @@ return [
     'workType' => 'work Type',
     'point' => ' check point',
     'team' => '  team',
+    'role_name' => '  role name',
 
 
     'daysQrs' => 'daysQrs  ',

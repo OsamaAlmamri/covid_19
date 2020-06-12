@@ -137,6 +137,7 @@
                             <div class="j-row">
 
                                 {{--                                                                    @if(isset($user))--}}
+
                                 <div class="span6 unit">
                                     <label class="j-label">  {{trans('form.role')}}</label>
                                     <div class="j-input">
