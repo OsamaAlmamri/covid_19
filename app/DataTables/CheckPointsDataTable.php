@@ -43,7 +43,7 @@ class CheckPointsDataTable extends DataTable
 
     public function query()
     {
-        if ($this->type != "deleted")
+        if ($this->type != "deleted") {
             $data = DB::table('check_points')
                 ->leftJoin('work_teams', 'check_points.manager_id', '=', 'work_teams.id')
                 ->leftJoin('zones as Zone', 'check_points.zone_id', '=', 'Zone.code')
@@ -52,9 +52,8 @@ class CheckPointsDataTable extends DataTable
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
-                ->WhereNull('check_points.deleted_at')
-                ->orderByDesc('id')->get();
-        else
+                ->WhereNull('check_points.deleted_at');
+        } else {
             $data = DB::table('check_points')
                 ->leftJoin('users', 'check_points.deleted_by', '=', 'users.id')
                 ->leftJoin('work_teams', 'check_points.manager_id', '=', 'work_teams.id')
@@ -64,9 +63,13 @@ class CheckPointsDataTable extends DataTable
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
-                ->WhereNotNull('check_points.deleted_at')
-                ->orderByDesc('id')->get();
+                ->WhereNotNull('check_points.deleted_at');
 
+
+        }
+        if (auth()->user()->government !== 0)
+            $data = $data->where('ParentZone.code', auth()->user()->government);
+        $data = $data->orderByDesc('id')->get();
         return $data;
 
     }
@@ -195,7 +198,7 @@ class CheckPointsDataTable extends DataTable
     function additionalData()
     {
 
-        if ($this->type == 'deleted' and (Auth::user()->can('manage deleted checkPoints') == false) )
+        if ($this->type == 'deleted' and (Auth::user()->can('manage deleted checkPoints') == false))
             return [
 
                 [

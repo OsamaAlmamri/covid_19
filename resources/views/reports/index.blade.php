@@ -20,7 +20,6 @@
                                 href="#">{{trans('menu.block_persons')}}
                             </a>
                         </li>
-                        </li>
                     </ul>
                 </div>
             </div>

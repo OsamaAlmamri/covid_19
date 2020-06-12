@@ -20,6 +20,7 @@ return [
     'everyday' => 'كل يوم',
     'status' => 'الحالة',
     'description' => 'الوصف',
+    'governmentWorker' => 'المحافظة الذي يعمل بها',
 
 
     'username' => 'اسم المستخدم ',

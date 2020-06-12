@@ -1163,7 +1163,8 @@
 
     $(document).ready(function () {
         // load_data(1, 5);
-        var firstTime = 0;
+        var firstTime = 1;
+
 
         // ChangeInput();
 
@@ -1200,7 +1201,8 @@
         // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         // var yyyy = today.getFullYear();
         // today = yyyy + '-' + mm + '-' + dd;
-        // load_data('all', 'all', today, today, 'male', 'point');
+        load_data($('#government_id').val(), $('#zone_id').val(),
+            $('#pointOrCenter_id').val(), '', '', $('#gender').val(),$('#nationality').val(),$('#isQuarantine').val());
 
     })
     ;

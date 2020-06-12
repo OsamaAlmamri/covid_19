@@ -65,17 +65,22 @@
                 @if($type!='quarantines_gov' and $type!='quarantines_zone')
                     <div class="row">
                         @if($type!='sumBlockPersons_gov')
-                            <div class="input-group col-md-3">
-                                <span class="input-group-addon">{{trans('menu.government')}}</span>
-                                <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
-                                {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
+                            @if(auth()->user()->government==0)
+                                <div class="input-group col-md-3">
+                                    <span class="input-group-addon">{{trans('menu.government')}}</span>
+                                    <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
+                                    {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
 
-                            </div>
+                                </div>
+                            @else
+                                <input type="hidden" name="government_id" id="government_id"
+                                       value="{{auth()->user()->government}}">
+                            @endif
                         @endif
                         @if($type!='sumBlockPersons_gov'  and $type!='sumBlockPersons_zone' )
                             <div class="input-group col-md-3">
                                 <span class="input-group-addon">{{trans('menu.zone')}}</span>
-                                {!!Form ::select('zone_id',getZones('all',1),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+                                {!!Form ::select('zone_id',getZones(auth()->user()->government),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
 
                             </div>
 
@@ -119,7 +124,7 @@
                                 {!!Form ::select('isQuarantine', ['all'=>trans('menu.all'),'yes'=>trans('menu.yes'),'no'=>trans('menu.no')],null,['class' => 'select2 form-control', 'id' => 'isQuarantine'])!!}
 
                             </div>
-                            @else
+                        @else
                             <input type="hidden" value="all" id="isQuarantine">
                         @endif
 
@@ -134,13 +139,24 @@
                     </div>
                 @else
                     @if($type!='quarantines_gov' )
-                        <div class="row">
-                            <div class="input-group col-md-4">
-                                <span class="input-group-addon">{{trans('menu.government')}}</span>
-                                <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
-                                {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
 
-                            </div>
+                        <div class="row">
+
+                            @if($type!='sumBlockPersons_gov')
+                                @if(auth()->user()->government==0)
+
+                                    <div class="input-group col-md-4">
+                                        <span class="input-group-addon">{{trans('menu.government')}}</span>
+                                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = trans('menu.all'); ?>
+                                        {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
+
+                                    </div>
+                                @else
+                                    <input type="hidden" name="government_id" id="government_id"
+                                           value="{{auth()->user()->government}}">
+                                @endif
+                            @endif
+
                             @endif
                             <div class="input-group col-md-3">
 
@@ -154,7 +170,7 @@
                     @endif
 
 
-{{--                    @include('reports.printSetting')--}}
+                    {{--                    @include('reports.printSetting')--}}
 
 
             </div>

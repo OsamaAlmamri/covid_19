@@ -19,7 +19,6 @@
                         <li class="breadcrumb-item">
                             <a href="{{route('home')}}"> <i class="fa fa-home"></i> {{trans('menu.home')}} </a>
                         </li>
-                        </li>
                         <li class="breadcrumb-item"><a href="{{($type == 'point_teams')?route('check_points.index'):route('quarantines.index')}}">
                                 @if ($type == 'point_teams')
                                     {{trans('menu.check_point_team')}}

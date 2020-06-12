@@ -20,7 +20,6 @@
                                 href="#">{{trans('menu.report_logs')}}
                             </a>
                         </li>
-                        </li>
                     </ul>
                 </div>
             </div>

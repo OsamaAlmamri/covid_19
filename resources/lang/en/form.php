@@ -21,6 +21,7 @@ return [
     'status' => 'Status',
     'description' => 'Description',
 
+    'governmentWorker' => 'government Worker',
 
     'username' => 'User Name',
     'full_name' => 'Full Name',

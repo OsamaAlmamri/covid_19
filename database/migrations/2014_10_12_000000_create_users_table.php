@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('status')->default(1);
+            $table->integer('government')->default(0);
             $table->string('avatar')->default('images/avatar/avatar.png');
             $table->unsignedBigInteger('created_by')->nullable()->default(null);
             $table->unsignedBigInteger('work_team_id')->nullable()->default(null);

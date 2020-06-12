@@ -52,6 +52,11 @@ class PointTeamController extends Controller
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
+            if (auth()->user()->government == 0)
+                $government = $government;
+            else
+                $government = auth()->user()->government;
+
             $filter_zones = getZones_childs_ids($government);
         } else
             $filter_zones [] = $zone;
@@ -222,10 +227,10 @@ class PointTeamController extends Controller
         $firstData = '';
         foreach ($data->workTeams as $team) {
             $firstData .= '<div class="checkbox-fade fade-in-primary" id="member_row' . $team->id . '">
-                            <input type="hidden" class="membersArray" value="' . $team->id . '" name="membersArray"> 
+                            <input type="hidden" class="membersArray" value="' . $team->id . '" name="membersArray">
                                  <label>
                                     <button type="button" onclick="$(\'#member_row' . $team->id . '\').remove();"><i class="fa fa-trash"> </i></button>
-                                
+
                                     <button type="button" class="btn_move_person" data-id="' . $team->id . '" data-name="' . $team->name . '">
                                     <i class="fa fa-refresh"> </i></button>
                                 </label>

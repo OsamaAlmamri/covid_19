@@ -122,6 +122,10 @@ class BlockPersonsController extends Controller
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
+            if (auth()->user()->government == 0)
+                $government = $government;
+            else
+                $government = auth()->user()->government;
             $filter_zones = getZones_childs_ids($government, 'district', 'getSumBlockPersons');
         } else
             $filter_zones [] = $zone;
@@ -314,6 +318,10 @@ class BlockPersonsController extends Controller
     {
         $filter_zones = [];
         if ($zone == 'all' or $government == 'all') {
+            if (auth()->user()->government == 0)
+                $government = $government;
+            else
+                $government = auth()->user()->government;
             $filter_zones = getZones_childs_ids($government, 'district', 'getSumBlockPersons');
         } else
             $filter_zones [] = $zone;
@@ -396,6 +404,10 @@ class BlockPersonsController extends Controller
         $filter_zones = [];
 
         if ($government == 'all') {
+            if (auth()->user()->government == 0)
+                $government = $government;
+            else
+                $government = auth()->user()->government;
             $filter_zones = getZones_childs_ids($government, 'district', 'ZoneData');
         } else
             $filter_zones [] = $government;
@@ -413,8 +425,6 @@ class BlockPersonsController extends Controller
 
         else
             $nationalityCondition = " and blocked_people.bp_from not like '%$nationality%' ";
-
-
 
 
         $data = DB::table('zones')
@@ -534,6 +544,10 @@ class BlockPersonsController extends Controller
         $filter_zones = [];
 
 //        if ($government == 'all') {
+        if (auth()->user()->government == 0)
+            $government = $government;
+        else
+            $government = auth()->user()->government;
         $filter_zones = getZones_childs_ids($government, 'district', 'SumQuarantine');
 //        } else
 //            $filter_zones [] = $government;

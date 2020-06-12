@@ -81,15 +81,22 @@
 
                     <div class="sub-title"> {{trans('menu.btn_filterCenter')}}</div>
                     <div class="row">
-                        <div class="input-group col-md-3">
-                            <span class="input-group-addon">{{trans('menu.government')}}</span>
-                            <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
-                            {!!Form ::select('governorate_id',  getGovernorates(),(isset($workTeam)) ?$workTeam->zone->zone->code:null,['class' => 'select2 form-control', 'id' => 'center_governorate_id'])!!}
 
-                        </div>
+                        @if(auth()->user()->government==0)
+
+                            <div class="input-group col-md-3">
+                                <span class="input-group-addon">{{trans('menu.government')}}</span>
+                                <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
+                                {!!Form ::select('governorate_id',  getGovernorates(),(isset($workTeam)) ?$workTeam->zone->zone->code:null,['class' => 'select2 form-control', 'id' => 'center_governorate_id'])!!}
+
+                            </div>
+                        @else
+                            <input type="hidden" name="governorate_id" id="center_governorate_id"
+                                   value="{{auth()->user()->government}}">
+                        @endif
                         <div class="input-group col-md-3">
                             <span class="input-group-addon">{{trans('menu.zone')}}</span>
-                            {!!Form ::select('zone_id',(isset($workTeam))?getZones($workTeam->zone->zone->code):getZones(),(isset($workTeam))?$workTeam->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_zone_id'])!!}
+                            {!!Form ::select('zone_id',(isset($workTeam))?getZones($workTeam->zone->zone->code):getZones(auth()->user()->government),(isset($workTeam))?$workTeam->zone->id:null,['class' => 'select2 form-control', 'id' => 'center_zone_id'])!!}
 
                         </div>
 

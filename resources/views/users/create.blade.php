@@ -153,6 +153,21 @@
                                     @error('work_team_id') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
                                 </div>
+                                @if(auth()->user()->government==0)
+                                    <div class="span6 unit">
+                                        <label class="j-label">  {{trans('form.governmentWorker')}}</label>
+                                        <div class="j-input">
+                                            <?php $getGovernorate = getGovernorates(); $getGovernorate[0] = trans('menu.all'); ?>
+                                            {!!Form ::select('government',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government'])!!}
+                                        </div>
+                                        @error('government') <span
+                                            class="btn-block badge badge-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                @else
+                                    <input type="hidden" name="government" id="government"
+                                           value="{{auth()->user()->government}}">
+                                @endif
+
 
                             </div>
                             <div class="j-row">

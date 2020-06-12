@@ -58,8 +58,7 @@ class QuarantineAreasDataTable extends DataTable
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
                     'quarantine_area_types.name as quarantine_area_type'
                 )
-                ->WhereNull('quarantine_areas.deleted_at')
-                ->orderByDesc('id')->get();
+                ->WhereNull('quarantine_areas.deleted_at');
         else
             $data = DB::table('quarantine_areas')
                 ->leftJoin('users', 'quarantines.deleted_by', '=', 'users.id')
@@ -72,8 +71,11 @@ class QuarantineAreasDataTable extends DataTable
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
                     'quarantine_area_types.name as quarantine_area_type', 'users.name as deleted_by_name'
                 )
-                ->WhereNotNull('quarantine_areas.deleted_at')
-                ->orderByDesc('id')->get();
+                ->WhereNotNull('quarantine_areas.deleted_at');
+
+        if (auth()->user()->government !== 0)
+            $data = $data->where('ParentZone.code', auth()->user()->government);
+        $data = $data->orderByDesc('id')->get();
 
         return $data;
 

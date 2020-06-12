@@ -42,8 +42,7 @@ class PointTeamDataTable extends DataTable
                 ->select('work_teams.*', 'check_points.name as check_point_name',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
-                ->where('point_teams.check_point_id', '=', $this->point_id)
-                ->orderByDesc('id')->get();
+                ->where('point_teams.check_point_id', '=', $this->point_id);
         else
             $data = DB::table('health_teams')
                 ->join('quarantine_areas', 'health_teams.quarantine_area_id', '=', 'quarantine_areas.id')
@@ -53,8 +52,10 @@ class PointTeamDataTable extends DataTable
                 ->select('work_teams.*', 'quarantine_areas.name as quarantine_area_name',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
-                ->where('health_teams.quarantine_area_id', '=', $this->point_id)
-                ->orderByDesc('id')->get();
+                ->where('health_teams.quarantine_area_id', '=', $this->point_id);
+        if (auth()->user()->government !== 0)
+            $data = $data->where('ParentZone.code', auth()->user()->government);
+        $data = $data->orderByDesc('id')->get();
 
         return $data;
 

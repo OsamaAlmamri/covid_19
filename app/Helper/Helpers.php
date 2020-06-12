@@ -210,7 +210,7 @@ function getAllWorker()
     $users = \App\WorkTeam::all();
     $allUsers = [];
     foreach ($users as $user) {
-        $allUsers[$user->id] = $user->name.'/'.$user->workType;
+        $allUsers[$user->id] = $user->name . '/' . $user->workType;
     }
     return $allUsers;
 }
@@ -257,10 +257,8 @@ function getUserName($id)
 function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPersons')
 {
 
-    if ($parent == 'all')
-    {
-        switch ($type)
-        {
+    if ($parent == 'all') {
+        switch ($type) {
             case 'gov':
                 $to_zones = Zone::all()->where('id', '<', 24);
                 break;
@@ -277,11 +275,8 @@ function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPers
                 $to_zones = SubDi::all()->where('type', 'like', $type);
                 break;
         }
-    }
-    else
-    {
-        switch ($type)
-        {
+    } else {
+        switch ($type) {
             case 'gov':
                 $to_zones = Zone::all()->where('id', '<', 24);
                 break;
@@ -305,7 +300,7 @@ function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPers
 //		if($op != 'getSumBlockPersons')
 //			$to_Zone_ids[] = $zone->parent;
 //		else
-			$to_Zone_ids[] = $zone->code;
+        $to_Zone_ids[] = $zone->code;
     }
 
     return $to_Zone_ids;
@@ -315,6 +310,19 @@ function getGovernorates()
 {
     $allGovernorate = \App\Zone::all()->where('parent', '=', 0);
     $governorates = [];
+    foreach ($allGovernorate as $governorate) {
+        $governorates[$governorate->code] = $governorate->name_ar;
+    }
+
+    return $governorates;
+}
+
+function getGovernorateToWork()
+{
+    $allGovernorate = \App\Zone::all()->where('parent', '=', 0);
+    $governorates = [];
+    $governorates[0] = trans('menu.all');
+
     foreach ($allGovernorate as $governorate) {
         $governorates[$governorate->code] = $governorate->name_ar;
     }
@@ -387,11 +395,9 @@ function getZones($governorate_id = 0, $type = 'district', $withAll = 0)
             return [];
 
     }
-    $allZones=[];
-    if ($governorate_id == 'all')
-    {
-        switch ($type)
-        {
+    $allZones = [];
+    if ($governorate_id == 'all') {
+        switch ($type) {
             case 'gov':
                 $allZones = Zone::all()->where('type', 'like', $type)->where('parent', '>', 0);
                 break;
@@ -408,13 +414,8 @@ function getZones($governorate_id = 0, $type = 'district', $withAll = 0)
                 $allZones = SubDi::all()->where('type', 'like', $type)->where('parent', '>', 0);
                 break;
         }
-    }
-
-
-    else
-    {
-        switch ($type)
-        {
+    } else {
+        switch ($type) {
             case 'gov':
                 $allZones = Zone::all()->where('parent', '=', $governorate_id);
                 break;

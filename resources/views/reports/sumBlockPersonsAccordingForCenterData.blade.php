@@ -58,15 +58,21 @@
             <div class="card-body">
                 <div class="sub-title"> {{trans('menu.btn_filterCenter')}}</div>
                 <div class="row">
-                    <div class="input-group col-md-3">
-                        <span class="input-group-addon">{{trans('menu.government')}}</span>
-                        <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
-                        {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
+                    @if(auth()->user()->government==0)
+                        <div class="input-group col-md-3">
+                            <span class="input-group-addon">{{trans('menu.government')}}</span>
+                            <?php $getGovernorate = getGovernorates(); $getGovernorate['all'] = 'all'; ?>
+                            {!!Form ::select('government_id',array_reverse($getGovernorate,true),null,['class' => 'select2 form-control', 'id' => 'government_id'])!!}
 
-                    </div>
+                        </div>
+                    @else
+                        <input type="hidden" name="government_id" id="government_id"
+                               value="{{auth()->user()->government}}">
+                    @endif
+
                     <div class="input-group col-md-3">
                         <span class="input-group-addon">{{trans('menu.zone')}}</span>
-                        {!!Form ::select('zone_id',getZones('all',1),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+                        {!!Form ::select('zone_id',getZones(auth()->user()->government),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
 
                     </div>
 

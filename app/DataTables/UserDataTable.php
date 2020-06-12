@@ -47,17 +47,17 @@ class UserDataTable extends DataTable
             $data = DB::table('users')
                 ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
                 ->select('users.*', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
-                ->WhereNull('users.deleted_at')
-                ->orderByDesc('id')->get();
+                ->WhereNull('users.deleted_at');
         else
             $data = DB::table('users')
                 ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
                 ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
                 ->leftJoin('users as CrearedSuperUsers', 'users.deleted_by', '=', 'CrearedSuperUsers.id')
                 ->select('users.*', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
-                ->WhereNotNull('users.deleted_at')
-                ->orderByDesc('id')->get();
-
+                ->WhereNotNull('users.deleted_at');
+        if (auth()->user()->government !== 0)
+            $data = $data->where('users.government', auth()->user()->government);
+        $data = $data->orderByDesc('id')->get();
         return $data;
 
     }

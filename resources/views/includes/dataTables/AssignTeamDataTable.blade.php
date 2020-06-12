@@ -2,7 +2,7 @@
 <script>
     $(document).ready(function () {
         // load_data(1, 5);
-        var firstTime = 0;
+        var firstTime = 1;
 
         // ChangeInput();
         function load_data(government, zone, from_date, to_date, gender, workTeamType) {
@@ -157,7 +157,7 @@
         // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         // var yyyy = today.getFullYear();
         // today = yyyy + '-' + mm + '-' + dd;
-        // load_data('all', 'all', today, today, 'male', 'point');
+        load_data($('#search_government_id').val(), $('#search_zone_id').val(), '', '', $('#gender').val(), $('#workTeamType').val());
 
     })
     ;

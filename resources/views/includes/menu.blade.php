@@ -184,12 +184,14 @@
                                       class="pcoded-mtext">     {{trans('menu.sumBlockPersonsByZone')}}    </span>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="{{route('block_persons.index','sumBlockPersons_gov')}}">
+                                    @if(auth()->user()->government==0)
+                                        <li class="">
+                                            <a href="{{route('block_persons.index','sumBlockPersons_gov')}}">
                                   <span
                                       class="pcoded-mtext">     {{trans('menu.sumBlockPersonsByGovernment')}}    </span>
-                                        </a>
-                                    </li>
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif
@@ -235,12 +237,14 @@
                                       class="pcoded-mtext">     {{trans('menu.sumBlockPersonsByZone')}}    </span>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="{{route('block_persons.index','quarantines_gov')}}">
+                                    @if(auth()->user()->government==0)
+                                        <li class="">
+                                            <a href="{{route('block_persons.index','quarantines_gov')}}">
                                   <span
                                       class="pcoded-mtext">       {{trans('menu.sumBlockPersonsByGovernment')}}      </span>
-                                        </a>
-                                    </li>
+                                            </a>
+                                        </li>
+                                    @endif
 
 
                                 </ul>
