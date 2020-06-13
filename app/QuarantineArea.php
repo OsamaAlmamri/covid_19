@@ -22,7 +22,7 @@ class QuarantineArea extends Model
 
     public function zone()
     {
-        return $this->belongsTo('App\Zone', 'zone_id', 'id');
+        return $this->belongsTo('App\Zone', 'zone_id', 'code');
         // return $this->belongsTo('App\UserAddress');     # Should work but not working
     }
 

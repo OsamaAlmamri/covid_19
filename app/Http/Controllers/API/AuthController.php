@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers\API;
 
-
+use App\BlockedPerson;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +28,30 @@ class AuthController extends BaseAPIController
                 or Auth::attempt($credential_username)
             ) {
                 $user = Auth::user();
+                $max_req_id = BlockedPerson::where('created_by',$user->id)->max('req_id');
                 if ($user->status == 1) {
-                    $success['token'] = $user->createToken('MyApp')->accessToken;;
+                    $success['token'] = $user->createToken('MyApp')->accessToken;
+                    $user->deleted_by = ($user->deleted_by == null ? 0 : $user->deleted_by);
+                    $user->deleted_at = ($user->deleted_at == null ? '1970-01-01 00:00:00' : $user->deleted_at);
+                    $user->max_request = ($max_req_id == null ? 0 : $max_req_id);
 
-                    $user['deleted_at']=0;
+                    /* $user2=array(
+"id" => auth()->user()->id,
+"username" => auth()->user()->username,
+"email" => auth()->user()->email,
+"email_verified_at" => auth()->user()->email_verified_at,
+"password" => auth()->user()->password,
+"status" => auth()->user()->status,
+"avatar" => auth()->user()->avatar,
+"created_by" => auth()->user()->created_by,
+"work_team_id" => auth()->user()->work_team_id,
+"deleted_by" => 0,
+"deleted_at" => 0,
+"remember_token" => auth()->user()->remember_token,
+"created_at" => 0,
+"updated_at" =>0
+); */
+
                     return $this->sendResponse([
                         "status" => 1,
                         "access_token" => $success['token'],
