@@ -26,7 +26,7 @@ class User extends Authenticatable
      */
 
     protected $fillable = [
-        'email', 'password', 'username', 'avatar', 'work_team_id', 'status', 'deleted_by', 'created_by',
+        'email',   'government', 'password', 'username', 'avatar', 'work_team_id', 'status', 'deleted_by', 'created_by',
     ];
 //'App\\Student',
     /**

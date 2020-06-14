@@ -298,7 +298,7 @@
     <script src="{{ HostUrl('design\assets\pages\form-masking\inputmask.js') }}"></script>
     <script src="{{ HostUrl('design\assets\pages\form-masking\jquery.inputmask.js') }}"></script>
     <script src="{{ HostUrl('design\assets\pages\form-masking\autoNumeric.js') }}"></script>
-    <script src="{{ HostUrl('design\assets\pages\form-masking\form-mask.j') }}s"></script>
+    <script src="{{ HostUrl('design\assets\pages\form-masking\form-mask.js') }}"></script>
 
     <script type="text/javascript">
         $('.dropify').dropify();

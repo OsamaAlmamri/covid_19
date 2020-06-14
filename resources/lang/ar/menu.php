@@ -27,7 +27,7 @@ return array(
     'checkPoints' => '   نقاط التفتيش',
     'addCheckPoint' => ' اضافة نقطة تفتيش',
     'teamManagement' => ' ادارة الفرق ',
-    'pointTeams' => '  الفريق الامني ',
+    'pointTeams' => '  فريق المنافذ  ',
     'healthTeams' => '  فريق المرافق   ',
     'Reports' => ' تقارير   ',
     'healthTeamReport' => ' تقارير فرق مراكز الحجر  ',

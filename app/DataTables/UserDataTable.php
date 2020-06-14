@@ -48,8 +48,10 @@ class UserDataTable extends DataTable
                 ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
                 ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
                 ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
+                ->leftJoin('zones', 'users.government', '=', 'zones.code')
+
                 ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
-                ->select('users.*', 'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
+                ->select('users.*','zones.name_ar as government_name', 'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
                 ->WhereNull('users.deleted_at');
         else
             $data = DB::table('users')
@@ -57,8 +59,9 @@ class UserDataTable extends DataTable
                 ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
                 ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
                 ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
+                ->leftJoin('zones', 'users.government', '=', 'zones.code')
                 ->leftJoin('users as CrearedSuperUsers', 'users.deleted_by', '=', 'CrearedSuperUsers.id')
-                ->select('users.*', 'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
+                ->select('users.*', 'zones.name_ar as government_name','roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
                 ->WhereNotNull('users.deleted_at');
         if (auth()->user()->government !== 0)
             $data = $data->where('users.government', auth()->user()->government);
@@ -166,6 +169,11 @@ class UserDataTable extends DataTable
                         'name' => 'workType',
                         'data' => 'workType',
                         'title' => trans('menu.workType'),
+                    ],
+                    [
+                        'name' => 'government_name',
+                        'data' => 'government_name',
+                        'title' => trans('dataTable.government_name'),
                     ],
                     [
                         'name' => 'role_name',

@@ -169,7 +169,8 @@
                                                 <label class="j-icon-right" for="birth_date">
                                                     <i class="icofont icofont-ui-calendar"></i>
                                                 </label>
-                                                <input type="text" id="birth_date" name="birth_date" readonly="">
+                                                <input type="date" id="birth_date" name="birth_date">
+
                                             </div>
                                         </div>
                                     </div>
@@ -304,8 +305,9 @@
                                                 <label class="j-icon-right" for="id_issue_date">
                                                     <i class="icofont icofont-envelope"></i>
                                                 </label>
-                                                {!! Form::text('id_issue_date', null, [ 'id' => 'id_issue_date'  ,'placeholder'=>trans("dataTable.id_issue_date")]) !!}
-
+                                                {{--                                                {!! Form::text('id_issue_date', null, [ 'id' => 'id_issue_date'  ,'placeholder'=>trans("dataTable.id_issue_date")]) !!}--}}
+                                                <input type="date" name="id_issue_date" id="id_issue_date"
+                                                       placeholder="{{trans("dataTable.id_issue_date")}}">
                                             </div>
                                         </div>
                                     </div>
@@ -577,7 +579,9 @@
                                                 <label class="j-icon-right" for="dest_exit_date">
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
-                                                {!! Form::text('dest_exit_date', null, [ 'id' => 'dest_exit_date'  ,'placeholder'=>trans("dataTable.dest_exit_date")]) !!}
+                                                {{--                                                {!! Form::text('dest_exit_date', null, [ 'id' => 'dest_exit_date'  ,'placeholder'=>trans("dataTable.dest_exit_date")]) !!}--}}
+                                                <input type="date" name="dest_exit_date" id="dest_exit_date"
+                                                       placeholder="{{trans("dataTable.dest_exit_date")}}">
 
                                             </div>
                                         </div>
@@ -685,7 +689,9 @@
                                                 <label class="j-icon-right" for="check_date">
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
-                                                {!! Form::text('check_date', null, [ 'id' => 'check_date'  ,'placeholder'=>trans("dataTable.check_date")]) !!}
+{{--                                                {!! Form::text('check_date', null, [ 'id' => 'check_date'  ,'placeholder'=>trans("dataTable.check_date")]) !!}--}}
+                                                <input type="date" name="check_date" id="check_date"
+                                                       placeholder="{{trans("dataTable.check_date")}}">
 
                                             </div>
                                         </div>
@@ -827,7 +833,9 @@
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
 
-                                                {!! Form::text('sleep_date', null, [ 'id' => 'sleep_date'  ,'placeholder'=>trans("dataTable.sleep_date")]) !!}
+                                                {{--                                                {!! Form::text('sleep_date', null, [ 'id' => 'sleep_date'  ,'placeholder'=>trans("dataTable.sleep_date")]) !!}--}}
+                                                <input type="date" name="sleep_date" id="sleep_date"
+                                                       placeholder="{{trans("dataTable.sleep_date")}}">
 
                                             </div>
                                         </div>
@@ -871,7 +879,9 @@
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
 
-                                                {!! Form::text('start_date_symptoms', null, [ 'id' => 'start_date_symptoms'  ,'placeholder'=>trans("dataTable.start_date_symptoms")]) !!}
+                                                {{--                                                {!! Form::text('start_date_symptoms', null, [ 'id' => 'start_date_symptoms'  ,'placeholder'=>trans("dataTable.start_date_symptoms")]) !!}--}}
+                                                <input type="date" name="start_date_symptoms" id="start_date_symptoms"
+                                                       placeholder="{{trans("dataTable.start_date_symptoms")}}">
 
                                             </div>
                                         </div>
@@ -1078,7 +1088,9 @@
                                                 <label class="j-icon-right" for="check_date">
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
-                                                {!! Form::text('insulation_date', null, [ 'id' => 'insulation_date'  ,'placeholder'=>trans("dataTable.insulation_date")]) !!}
+                                                {{--                                                {!! Form::text('insulation_date', null, [ 'id' => 'insulation_date'  ,'placeholder'=>trans("dataTable.insulation_date")]) !!}--}}
+                                                <input type="date" name="insulation_date" id="insulation_date"
+                                                       placeholder="{{trans("dataTable.insulation_date")}}">
 
                                             </div>
                                         </div>
@@ -1090,7 +1102,9 @@
                                                 <label class="j-icon-right" for="insulation_end_date">
                                                     <i class="icofont icofont-ui-user"></i>
                                                 </label>
-                                                {!! Form::text('insulation_end_date', null, [ 'id' => 'insulation_end_date'  ,'placeholder'=>trans("dataTable.insulation_end_date")]) !!}
+                                                {{--                                                {!! Form::text('insulation_end_date', null, [ 'id' => 'insulation_end_date'  ,'placeholder'=>trans("dataTable.insulation_end_date")]) !!}--}}
+                                                <input type="date" name="insulation_end_date" id="insulation_end_date"
+                                                       placeholder="{{trans("dataTable.insulation_end_date")}}">
 
                                             </div>
 
@@ -1206,7 +1220,9 @@
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
 
-                                                {!! Form::text('sample_sent_date', null, [ 'id' => 'sample_sent_date'  ,'placeholder'=>trans("dataTable.sample_sent_date")]) !!}
+                                                {{--                                                {!! Form::text('sample_sent_date', null, [ 'id' => 'sample_sent_date'  ,'placeholder'=>trans("dataTable.sample_sent_date")]) !!}--}}
+                                                <input type="date" name="sample_sent_date" id="sample_sent_date"
+                                                       placeholder="{{trans("dataTable.sample_sent_date")}}">
 
                                             </div>
                                         </div>
@@ -1336,19 +1352,17 @@
                 $(date).datepicker('destroy');
             }
 
-            dateInit('#birth_date');
-            dateInit('#id_issue_date');
-            dateInit('#out_from_country_date');
-            dateInit('#comming_to_yemen_date');
-            dateInit('#dest_exit_date');
-            dateInit('#check_date');
-            dateInit('#start_date_symptoms');
-            dateInit('#check_date');
-            dateInit('#insulation_date');
-            dateInit('#sleep_date');
-            dateInit('#start_date_symptoms');
-            dateInit('#insulation_end_date');
-            dateInit('#sample_sent_date');
+            // dateInit('#birth_date');
+            // dateInit('#id_issue_date');
+            // dateInit('#out_from_country_date');
+            // dateInit('#comming_to_yemen_date');
+            // dateInit('#dest_exit_date');
+            // dateInit('#check_date');
+            // dateInit('#start_date_symptoms');
+            // dateInit('#insulation_date');
+            // dateInit('#sleep_date');
+            // dateInit('#insulation_end_date');
+            // dateInit('#sample_sent_date');
 
             // Initialize date range
             dateFrom('#date_from', '#date_to');

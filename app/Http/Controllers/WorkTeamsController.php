@@ -35,6 +35,7 @@ class WorkTeamsController extends Controller
 
         $request['birth_date'] = setEntryDateAttribute($request['birth_date']);
         $request['phone'] = str_replace('-', '', $request['phone']);
+        $request['phone'] = str_replace('_', '', $request['phone']);
 
         $request['join_date'] = setEntryDateAttribute($request['join_date']);
         $workTeam = WorkTeam::create($request->all());
@@ -46,6 +47,7 @@ class WorkTeamsController extends Controller
     {
         $request['birth_date'] = setEntryDateAttribute($request['birth_date']);
         $request['phone'] = str_replace('-', '', $request['phone']);
+        $request['phone'] = str_replace('_', '', $request['phone']);
 
         $request['join_date'] = setEntryDateAttribute($request['join_date']);
         $workTeam->update($request->all());
