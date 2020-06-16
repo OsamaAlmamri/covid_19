@@ -104,27 +104,26 @@ class ProjectApiController extends BaseAPIController
 
             // check req_id is not null
 
-//            $old = BlockedPerson::all()->where('req_id', '=', $array['req_id'])
-//                ->where('entry_date', '=', $array['entry_date'])->count();
+            $old = BlockedPerson::all()
+                ->where('req_id', '=', $array['req_id'])
+                ->where('entry_date', '=', $array['entry_date'])
+                ->where('created_by','=', auth()->user()->id)
+                ->count();
 
-            if ($request->filled('id_back_photo'))
-//            if ($request->filled('id_back_photo') && $old == 0)
+            if ($request->filled('id_back_photo') && $old == 0)
                 $array['id_back_photo'] = $this->createImage($array['id_back_photo']);
-//            if ($request->filled('id_front_photo') && $old == 0)
-            if ($request->filled('id_front_photo'))
+            if ($request->filled('id_front_photo') && $old == 0)
                 $array['id_front_photo'] = $this->createImage($array['id_front_photo']);
 
-//            if ($old > 0){
-//                $notAdd++;
-//                $message = '';
-//            }
-//            else {
-            $b = BlockedPerson::create(array_merge($array, ['created_by' => auth()->user()->id]));
-//                $add++;
-//            }
+            if ($old > 0) {
+                $notAdd++;
+                $message = '';
+            } else {
+                BlockedPerson::create(array_merge($array, ['created_by' => auth()->user()->id]));
+                $add++;
+            }
 
-            return $this->sendResponse($b->id);
-//            return $this->sendResponse([], 'تم حفظ بيانات ' . $add . ' شخص  بنجاح  ' . 'وتجاهل     ' . $notAdd . ' شخص    ');
+            return $this->sendResponse([], 'تم حفظ بيانات ' . $add . ' شخص  بنجاح  ' . 'وتجاهل     ' . $notAdd . ' شخص    ');
         } catch (Exception $ex) {
             return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();

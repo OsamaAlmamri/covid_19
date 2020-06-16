@@ -315,7 +315,7 @@
                                     <div class="j-row">
                                         <label class="j-label"> {{trans("dataTable.id_front_photo")}}</label>
                                         <div class="form-group col-xs-12 mb-2">
-                                            <input type="file" accept="image/*" name="id_front_photo"
+                                            <input type="file" accept="image/*" name="front_photo"
                                                    class="dropify form-control"
                                                    id="id_front_photo"
                                                    aria-describedby="fileHelp">
@@ -329,7 +329,7 @@
                                     <div class="j-row">
                                         <label class="j-label"> {{trans("dataTable.id_back_photo")}}</label>
                                         <div class="form-group col-xs-12 mb-2">
-                                            <input type="file" accept="image/*" name="id_back_photo"
+                                            <input type="file" accept="image/*" name="back_photo"
                                                    class="dropify form-control"
                                                    id="id_back_photo"
                                                    aria-describedby="fileHelp">

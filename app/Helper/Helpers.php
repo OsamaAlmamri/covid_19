@@ -501,6 +501,20 @@ function saveImage($folder, $file)
     return $folder . 'default.png';
 }
 
+function saveBlockPersonImage($folder, $file)
+{
+    $folder = '/' . $folder . '/';
+
+
+    $Image = '';
+    if ($file) {
+        $Image = time() . $file->getClientOriginalName();
+        $file->move(public_path($folder), $Image);
+        return $folder . $Image;
+    }
+    return '';
+}
+
 
 function updateImage($folder, $file, $old_image)
 {

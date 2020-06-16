@@ -84,6 +84,8 @@ class BlockPersonsController extends Controller
         $request['id_issue_date'] = $this->dateToMiliSecond($request->id_issue_date);
         $request['dest_exit_date'] = $this->dateToMiliSecond($request->dest_exit_date);
         $request['birth_date'] = $this->dateToMiliSecond($request->birth_date);
+        $front = saveBlockPersonImage('images/blockPersons/front_photo', $request->file('front_photo'));
+        $back = saveBlockPersonImage('images/blockPersons/back_photo', $request->file('back_photo'));
 
         if ($request->is_comming_from_other_country == 1)
             $request['last_zone_visit_id'] = null;
@@ -94,8 +96,10 @@ class BlockPersonsController extends Controller
 
         $person = BlockedPerson::create(array_merge($request->all(),
             [
+                'id_front_photo' => $front,
+                'id_back_photo' => $back,
                 'entry_date' => strtotime('now') * 1000,
-                'req_id' => auth()->user()->id,
+                'req_id' => 0,
                 'created_by' => auth()->user()->id]));
         return response(['data' => $person->id], 200);
     }
