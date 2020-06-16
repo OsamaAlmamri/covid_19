@@ -16,11 +16,12 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+
 //use Closure;
 
 class ProjectApiController extends BaseAPIController
 {
-    
+
     public function createImage($img)
     {
 
@@ -30,14 +31,14 @@ class ProjectApiController extends BaseAPIController
 //        $image_type_aux = explode("image/", $image_parts[0]);
         //$image_type ='png';
         $image_base64 = base64_decode($img);
-        
+
         $f = finfo_open();
 
         $image_type = finfo_buffer($f, $image_base64, FILEINFO_MIME_TYPE);
-        $image_type = (strpos($image_type,'jpeg')>0 ? 'jpg' : substr($image_type,-3));
-        
+        $image_type = (strpos($image_type, 'jpeg') > 0 ? 'jpg' : substr($image_type, -3));
+
         finfo_close($f);
-        
+
         $file = $folderPath . uniqid() . '.' . $image_type;
 
 
@@ -79,7 +80,7 @@ class ProjectApiController extends BaseAPIController
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
 //            return $ex->getMessage();
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
         }
     }
 
@@ -94,34 +95,38 @@ class ProjectApiController extends BaseAPIController
 
 
 //
-            
+
             $array = $request->input();
-            
+
             $add = 0;
             $notAdd = 0;
             $message = '';
-            
+
             // check req_id is not null
-            
-            $old = BlockedPerson::all()->where('req_id', '=', $array['req_id'])->where('entry_date', '=', $array['entry_date'])->count();
-            
-            if ($request->filled('id_back_photo') && $old == 0)
-                    $array['id_back_photo'] = $this->createImage($array['id_back_photo']);
-            if ($request->filled('id_front_photo') && $old == 0)
-                    $array['id_front_photo'] = $this->createImage($array['id_front_photo']);    
-            
-            if ($old > 0){
-                $notAdd++;
-                $message = '';
-            }
-            else {
-                BlockedPerson::create(array_merge($array, ['created_by' => auth()->user()->id]));
-                $add++;
-            }                    
-           
-            return $this->sendResponse([], 'تم حفظ بيانات ' . $add . ' شخص  بنجاح  ' . 'وتجاهل     ' . $notAdd . ' شخص    ');
+
+//            $old = BlockedPerson::all()->where('req_id', '=', $array['req_id'])
+//                ->where('entry_date', '=', $array['entry_date'])->count();
+
+            if ($request->filled('id_back_photo'))
+//            if ($request->filled('id_back_photo') && $old == 0)
+                $array['id_back_photo'] = $this->createImage($array['id_back_photo']);
+//            if ($request->filled('id_front_photo') && $old == 0)
+            if ($request->filled('id_front_photo'))
+                $array['id_front_photo'] = $this->createImage($array['id_front_photo']);
+
+//            if ($old > 0){
+//                $notAdd++;
+//                $message = '';
+//            }
+//            else {
+            $b = BlockedPerson::create(array_merge($array, ['created_by' => auth()->user()->id]));
+//                $add++;
+//            }
+
+            return $this->sendResponse($b->id);
+//            return $this->sendResponse([], 'تم حفظ بيانات ' . $add . ' شخص  بنجاح  ' . 'وتجاهل     ' . $notAdd . ' شخص    ');
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
     }
@@ -134,7 +139,7 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
     }
@@ -149,7 +154,7 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
     }
@@ -162,7 +167,7 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
 
@@ -194,7 +199,7 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, '');
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 
         }
     }
@@ -208,7 +213,7 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
     }
@@ -238,7 +243,7 @@ class ProjectApiController extends BaseAPIController
             }
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
     }
@@ -269,7 +274,7 @@ class ProjectApiController extends BaseAPIController
             }
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
     }
@@ -283,7 +288,7 @@ class ProjectApiController extends BaseAPIController
 
             return $this->sendResponse($data, $messsage);
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage()) ;
+            return $this->sendError('error', $ex->getMessage());
 //            return $ex->getMessage();
         }
     }
@@ -301,7 +306,7 @@ class ProjectApiController extends BaseAPIController
             $user = Auth::user();
             return $this->sendResponse($user, 'success');
         } catch (Exception $ex) {
-            return $this->sendError('error',$ex->getMessage(),$ex->getCode()) ;
+            return $this->sendError('error', $ex->getMessage(), $ex->getCode());
 //            return $ex->getMessage();
 
         }

@@ -12,6 +12,9 @@ return array(
     'permissions' => ' الصلاحيات ',
     'allUsers' => ' كل المستخدمين ',
     'all' => ' الكل  ',
+    'app_link' => ' رابط التطبيق  ',
+    'show_app_link' => 'عرض رابط التطبيق ',
+    'edit_app_link' => 'تعديل رابط التطبيق ',
 
     'dashboard' => 'لوحة التحكم',
     'home' => 'الرئيسية',

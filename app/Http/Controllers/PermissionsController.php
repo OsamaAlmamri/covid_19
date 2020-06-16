@@ -104,6 +104,10 @@ class PermissionsController extends Controller
         $permission = Permission::create(['name' => 'manage pointTeams']);//add ,update , delete
         $permission = Permission::create(['name' => 'manage deleted pointTeams']);//restore forceDelete
 
+        /********************* APP_Link  *********************/
+        $permission = Permission::create(['name' => 'show app_link']);
+        $permission = Permission::create(['name' => 'manage app_link']);//add ,update , delete
+
 
     }
 /// Create a superadmin role for the admin days_qrs
@@ -132,8 +136,10 @@ class PermissionsController extends Controller
         if (Auth::user()->can('show permissions') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
 
-//        $role = Role::create(['guard_name' => 'web', 'name' => 'Developer']);
-//        updateUserRole(auth()->user()->id, 'SuperAdmin');
+//        $permission = Permission::create(['name' => 'show app_link']);
+//        $permission = Permission::create(['name' => 'manage app_link']);//add ,update , delete
+
+
         $roles = Role::all()->where('name','<>','Developer');
 //        $roles = Role::all();
 //        return dd(Role::all());

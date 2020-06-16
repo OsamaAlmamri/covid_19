@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logs/filter', 'LogsController@filter')->name('logs.filter');
     Route::resource('logs', 'LogsController');
 
+    Route::post('setting/changeSetting', 'SettingController@changeSetting')->name('changeSetting');
 
     Route::get('quarantines/index/{type?}', 'QuarantinesController@index')->name('quarantines.index');
     Route::get('quarantines/{id}/forceDelete', 'QuarantinesController@forceDelete')->name('quarantines.forceDelete');

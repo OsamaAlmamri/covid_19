@@ -11,6 +11,9 @@ return [
     'permissions' => 'Permissions',
     'allUsers' => ' All Users  ',
     'all' => ' All   ',
+    'app_link' => ' APP Link   ',
+    'show_app_link' => 'Show APP Link    ',
+    'edit_app_link' => 'Edit APP Link    ',
 
     'dashboard' => 'Dashboard',
     'home' => 'Home',

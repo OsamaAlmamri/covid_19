@@ -50,12 +50,14 @@ class HomeController extends Controller
             $government = auth()->user()->government;
         $filter_zones = getZones_childs_ids($government, 'district', 'SumQuarantine');
 
-        $all = $users = User::all()->count();
         $all = DB::table('users')
             ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
             ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
             ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
-            ->where('roles.name','<>','Developer')->count();
+            ->WhereNull('users.deleted_at');
+        if (auth()->user()->getRoleNames()->first() !== 'Developer')
+            $all = $all->where('roles.name', '<>', 'Developer');
+        $all = $all->count();
         $dataEntry = User::role('dataEntry')->count();
         $admins = User::role('Admin')->count();
         $SuperAdmin = User::role('SuperAdmin')->count();
@@ -64,7 +66,7 @@ class HomeController extends Controller
         $hara_vil = HaraVil::all()->where('parent', '>', 0)->where('type', 'like', 'hara_vil')->count();
         $sub_hara_vil = SubHaraVil::all()->where('parent', '>', 0)->where('type', 'like', 'sub_hara_vil')->count();
         $governments = Zone::all()->where('parent', '=', 0)->count();
-            $quarantines = QuarantineArea::all()->whereIn('zone_id', $filter_zones)->count();
+        $quarantines = QuarantineArea::all()->whereIn('zone_id', $filter_zones)->count();
 
         $checkPoints = CheckPoint::all()->whereIn('zone_id', $filter_zones)->count();
 

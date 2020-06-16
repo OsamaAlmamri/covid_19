@@ -138,6 +138,7 @@ return [
 
 
     'role' => 'role',
+    'close' => 'close',
 
 
 ];

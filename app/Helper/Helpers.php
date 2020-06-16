@@ -168,7 +168,7 @@ function getRole($user_id)
 
 function getAllRole()
 {
-    if (auth()->user()->getRoleNames()->first() !== 'Developer')
+    if (auth()->user()->getRoleNames()->first() === 'Developer')
         $roles = Role::all();
     else
         $roles = Role::all()->where('name', '<>', 'Developer');

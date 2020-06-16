@@ -270,6 +270,36 @@
                 </li>
 
             @endif
+
+            @if ((Auth::user()->can('show app_link') == true) or (Auth::user()->can('manage app_link') == true) )
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)">
+
+                        <span class="pcoded-micon"><i class="fa fa-android"></i> </span>
+                        <span class="pcoded-mtext"> {{trans('menu.app_link')}} </span>
+                    </a>
+
+                    <ul class="pcoded-submenu">
+                        @if (Auth::user()->can('show app_link') == true)
+                            <li class="">
+                                <a href="javascript:void(0)" onclick="showAppModal()">
+                                    <span class="pcoded-mtext">  {{trans('menu.show_app_link')}}</span>
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->can('manage app_link') == true)
+                            <li class="">
+                                <a href="javascript:void(0)" onclick="editAppModal()">
+                                    <span class="pcoded-mtext"
+                                          id="edit_app_link">  {{trans('menu.edit_app_link')}}</span>
+                                </a>
+                            </li>
+                        @endif
+
+                    </ul>
+                </li>
+            @endif
+
         </ul>
 
 
