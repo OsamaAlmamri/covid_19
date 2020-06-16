@@ -41,6 +41,7 @@ return [
     'manager_name' => ' اسم المدير',
 
 
+    'adminCreatedInfo' => ' اضيف بواسطة',
     'username' => ' اسم المستخدم',
     'email' => 'الايميل',
     'w_phone' => 'رقم الهاتف',

@@ -171,7 +171,7 @@ function getAllRole()
     if (auth()->user()->getRoleNames()->first() !== 'Developer')
         $roles = Role::all();
     else
-        $roles = Role::all()->where('name','<>','Developer');
+        $roles = Role::all()->where('name', '<>', 'Developer');
     $allRoles = [];
 //    return dd(auth()->user()->getRoleNames()->first());
     foreach ($roles as $role) {
@@ -218,9 +218,21 @@ function getAllManagers()
     return $allUsers;
 }
 
-function getAllWorker()
+function getAllWorker($id = 0)
 {
-    $users = \App\WorkTeam::all();
+    $user = User::all();
+    $data = DB::table('work_teams')
+        ->leftJoin('users', 'users.work_team_id', '=', 'work_teams.id')
+        ->select('work_teams.*', 'users.id', 'users.work_team_id')
+        ->WhereNull('users.work_team_id')
+        ->orWhere('work_teams.id', $id);
+//    return dd($data);
+
+
+    if (auth()->user()->getRoleNames()->first() === 'Admin')
+        $data = $data->where('work_teams.created_by', auth()->user()->id);
+    $users = $data->get();
+
     $allUsers = [];
     foreach ($users as $user) {
         $allUsers[$user->id] = $user->name . '/' . $user->workType;

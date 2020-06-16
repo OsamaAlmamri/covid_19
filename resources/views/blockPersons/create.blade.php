@@ -1380,16 +1380,16 @@
                     check_date: {
                         required: true
                     },
-                    id_number: {
-                        required: true
-                    },
+                    // id_number: {
+                    //     required: true
+                    // },
                     job: {
                         required: true
                     },
 
-                    phone: {
-                        required: true
-                    },
+                    // phone: {
+                    //     required: true
+                    // },
                     country: {
                         required: true
                     },
@@ -1405,24 +1405,24 @@
                     //     integer: true,
                     //     minvalue: 0
                     // },
-                    birth_date: {
-                        required: true
-                    },
+                    // birth_date: {
+                    //     required: true
+                    // },
 
                 },
                 messages: {
                     bp_name: {
                         required: "الاسم مطلوب"
                     },
-                    birth_date: {
-                        required: "تاريخ الميلاد مطلوب"
-                    },
+                    // birth_date: {
+                    //     required: "تاريخ الميلاد مطلوب"
+                    // },
                     check_date: {
                         required: "تاريخ الفحص مطلوب"
                     },
-                    id_number: {
-                        required: "رقم المعرف  مطلوب"
-                    },
+                    // id_number: {
+                    //     required: "رقم المعرف  مطلوب"
+                    // },
                     job: {
                         required: "نوع الوظيفة  مطلوب"
                     },
@@ -1430,9 +1430,9 @@
                         required: "الدولة    مطلوبة"
                     },
 
-                    phone: {
-                        required: "رقم التلفون مطلوب"
-                    },
+                    // phone: {
+                    //     required: "رقم التلفون مطلوب"
+                    // },
                     // quarantine_area_id: {
                     //     required: "يجب تحديد مركز  "
                     // },

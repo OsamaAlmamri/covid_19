@@ -49,9 +49,13 @@ class UserDataTable extends DataTable
                 ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
                 ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
                 ->leftJoin('zones', 'users.government', '=', 'zones.code')
+                ->leftJoin('users as CreatedUsers', 'users.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
 
-                ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
-                ->select('users.*','zones.name_ar as government_name', 'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
+                ->select('users.*', 'zones.name_ar as government_name',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
+                    'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
                 ->WhereNull('users.deleted_at');
         else
             $data = DB::table('users')
@@ -60,13 +64,22 @@ class UserDataTable extends DataTable
                 ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
                 ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
                 ->leftJoin('zones', 'users.government', '=', 'zones.code')
+                ->leftJoin('users as CreatedUsers', 'users.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->leftJoin('users as CrearedSuperUsers', 'users.deleted_by', '=', 'CrearedSuperUsers.id')
-                ->select('users.*', 'zones.name_ar as government_name','roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
+                ->select('users.*', 'zones.name_ar as government_name',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
+                    'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
                 ->WhereNotNull('users.deleted_at');
         if (auth()->user()->government !== 0)
             $data = $data->where('users.government', auth()->user()->government);
         if (auth()->user()->getRoleNames()->first() !== 'Developer')
-            $data = $data->where('roles.name','<>','Developer');
+            $data = $data->where('roles.name', '<>', 'Developer');
+        if (auth()->user()->getRoleNames()->first() === 'Admin')
+            $data = $data->where('users.created_by', auth()->user()->id);
+            $data = $data->where('users.id', '!=',auth()->user()->id);
         $data = $data->orderByDesc('id')->get();
         return $data;
 
@@ -184,6 +197,11 @@ class UserDataTable extends DataTable
                         'name' => 'created_at',
                         'data' => 'created_at',
                         'title' => trans('dataTable.date'),
+                    ],
+                    [
+                        'name' => 'adminCreatedInfo',
+                        'data' => 'adminCreatedInfo',
+                        'title' => trans('dataTable.adminCreatedInfo'),
                     ],
 
 

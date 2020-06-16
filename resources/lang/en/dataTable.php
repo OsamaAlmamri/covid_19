@@ -42,6 +42,7 @@ return [
     'country' => '  country  ',
     'job' => '  job  ',
     'gender' => '  gender  ',
+    'adminCreatedInfo' => '  Created By  ',
 
 
     'other_place_data' => ' Area-village', //if is county is not yemen

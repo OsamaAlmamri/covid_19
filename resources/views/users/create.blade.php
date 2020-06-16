@@ -149,7 +149,7 @@
                                 <div class="span6 unit">
                                     <label class="j-label">  {{trans('form.worker')}}</label>
                                     <div class="j-input">
-                                        {!!Form ::select('work_team_id', getAllWorker(),isset($quarantine)?$quarantine->work_team_id:null,['class' => 'select2 form-control', 'id' => 'work_team_id'])!!}
+                                        {!!Form ::select('work_team_id', getAllWorker(isset($user)?($user->work_team_id):0),isset($quarantine)?$quarantine->work_team_id:null,['class' => 'select2 form-control', 'id' => 'work_team_id'])!!}
                                     </div>
                                     @error('work_team_id') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
