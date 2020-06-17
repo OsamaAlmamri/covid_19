@@ -140,8 +140,11 @@ class PermissionsController extends Controller
 //        $permission = Permission::create(['name' => 'manage app_link']);//add ,update , delete
 
 
-        $roles = Role::all()->where('name','<>','Developer');
-//        $roles = Role::all();
+        if (auth()->user()->getRoleNames()->first() === 'Developer')
+            $roles = Role::all();
+        else
+            $roles = Role::all()->where('name', '<>', 'Developer');
+        //        $roles = Role::all();
 //        return dd(Role::all());
 //        $this->addPermissions();
         return view('permissions.index')

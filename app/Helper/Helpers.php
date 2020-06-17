@@ -4,6 +4,7 @@ use App\HaraVil;
 use App\SubDi;
 use App\SubHaraVil;
 use App\User;
+use App\WorkTeam;
 use App\Zone;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -220,17 +221,26 @@ function getAllManagers()
 
 function getAllWorker($id = 0)
 {
-    $user = User::all();
-    $data = DB::table('work_teams')
-        ->leftJoin('users', 'users.work_team_id', '=', 'work_teams.id')
-        ->select('work_teams.*', 'users.id', 'users.work_team_id')
-        ->WhereNull('users.work_team_id')
-        ->orWhere('work_teams.id', $id);
-//    return dd($data);
+    $user = User::all()->where('work_team_id', '!=', $id);
+    $ids = [];
+    foreach ($user as $u) {
+        $ids[] = $u->work_team_id;
+    }
+//    $data = DB::table('work_teams')
+//        ->leftJoin('users', 'users.work_team_id', '=', 'work_teams.id')
+//        ->select('work_teams.*', 'users.id', 'users.work_team_id')
+//        ->WhereNull('users.work_team_id')
+//        ->orWhere('work_teams.id', $id);
+////    return dd($data);
+//
+//
+//    if (auth()->user()->getRoleNames()->first() === 'Admin')
+//        $data = $data->where('work_teams.created_by', auth()->user()->id);
+//    $users = $data->get();
 
-
+    $data = WorkTeam::whereNotIn('id', $ids);
     if (auth()->user()->getRoleNames()->first() === 'Admin')
-        $data = $data->where('work_teams.created_by', auth()->user()->id);
+        $data = $data->where('created_by', auth()->user()->id);
     $users = $data->get();
 
     $allUsers = [];

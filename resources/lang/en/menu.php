@@ -14,6 +14,7 @@ return [
     'app_link' => ' APP Link   ',
     'show_app_link' => 'Show APP Link    ',
     'edit_app_link' => 'Edit APP Link    ',
+    'usersManagementDeleted' => 'Deleted Users Management ',
 
     'dashboard' => 'Dashboard',
     'home' => 'Home',

@@ -191,6 +191,7 @@ return [
     'dest_transportation_number' => 'transportation number',
     'insulation_end_date' => ' تاريخ نهاية العزل',
 
+    'deleted_at' => '  deleted at',//
     'form_id' => ' form number',//
     'bp_name' => ' name  ',//
     'bp_type' => ' type  ',//

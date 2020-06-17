@@ -188,6 +188,7 @@ return [
     'dest_transportation_number' => ' رقم وسيلة النقل',
     'insulation_end_date' => ' تاريخ نهاية العزل',
 
+    'deleted_at' => 'حذف بتاريخ',//
     'form_id' => ' رقم الاستمارة',//
     'bp_name' => ' الاسم  ',//
     'bp_type' => ' النوع  ',//

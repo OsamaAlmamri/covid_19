@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\BlockedPerson;
+use App\CheckPoint;
 use App\DataTables\CustomersDataTable;
 use App\DataTables\UserDataTable;
 use App\Http\Requests\AdminRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UsersRequest;
+use App\QuarantineArea;
 use App\User;
+use App\WorkTeam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -157,13 +161,18 @@ class UserController extends Controller
         if (Auth::user()->can('manage users') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $User = User::find(decrypt($id));
+        $b = BlockedPerson::all()->where('created_by',$User->id)->count();
+        $u = User::all()->where('created_by', $User->id)->count();
+        $w = WorkTeam::all()->where('created_by', $User->id)->count();
+        $c = CheckPoint::all()->where('created_by', $User->id)->count();
+        $q = QuarantineArea::all()->where('created_by', $User->id)->count();
 //        return dd($User->profile);
-//        if ($User->open_courses->count() > 0)
-//            return redirect(route('Users.index'))->with('warning', 'Not allow to delete because this member has OpenCourses  ');
+        if ($b > 0 or $u > 0 or $w > 0 or $c > 0 or $q > 0)
+            return redirect(route('Users.index'))->with('warning', 'غير مسمو ح بحذف هذا الحساب بسسب هناك بيانات مرتبطة بة ');
         $User->deleted_by = Auth::user()->id;
         $User->save();
         $User->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('users.index')->with('success', 'تم الحذف بنجاح');
 
 
     }
@@ -173,6 +182,16 @@ class UserController extends Controller
         if (Auth::user()->can('manage deleted users') == false)
             return redirect()->route('home')->with('error', 'ليس لديك صلاحية الوصول');
         $User = User::onlyTrashed()->find(decrypt($id));
+
+        $b = BlockedPerson::all()->where('created_by',$User->id)->count();
+        $u = User::all()->where('created_by', $User->id)->count();
+        $w = WorkTeam::all()->where('created_by', $User->id)->count();
+        $c = CheckPoint::all()->where('created_by', $User->id)->count();
+        $q = QuarantineArea::all()->where('created_by', $User->id)->count();
+//        return dd($User->profile);
+        if ($b > 0 or $u > 0 or $w > 0 or $c > 0 or $q > 0)
+            return redirect(route('users.index','deleted'))->with('warning', 'غير مسمو ح بحذف هذا الحساب بسسب هناك بيانات مرتبطة بة ');
+
         File::delete(public_path($User->avatar));
         $User->forceDelete();
 
@@ -193,10 +212,11 @@ class UserController extends Controller
     {
         //
     }
-	
-	public function AuthRouteAPI(Request $request){
-		return $request->user();
-	 }
+
+    public function AuthRouteAPI(Request $request)
+    {
+        return $request->user();
+    }
 
 
 }

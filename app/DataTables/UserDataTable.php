@@ -63,15 +63,18 @@ class UserDataTable extends DataTable
                 ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
                 ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id')
                 ->leftJoin('users as SuperUsers', 'users.deleted_by', '=', 'SuperUsers.id')
+                ->leftJoin('work_teams as SuperUsersInfo', 'SuperUsersInfo.id', '=', 'SuperUsers.work_team_id')
+
                 ->leftJoin('zones', 'users.government', '=', 'zones.code')
                 ->leftJoin('users as CreatedUsers', 'users.created_by', '=', 'CreatedUsers.id')
                 ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
 
-                ->leftJoin('users as CrearedSuperUsers', 'users.deleted_by', '=', 'CrearedSuperUsers.id')
+
                 ->select('users.*', 'zones.name_ar as government_name',
                     DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+                    DB::raw("CONCAT(COALESCE(Superusers.username,'') , ' (' ,COALESCE(SuperUsersInfo.phone,'') , ' )') AS deleted_by_name"),
 
-                    'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType', 'Superusers.name as deleted_by_name', 'CrearedSuperusers.name as created_by_name')
+                    'roles.name as role_name', 'work_teams.name', 'work_teams.phone', 'work_teams.workType')
                 ->WhereNotNull('users.deleted_at');
         if (auth()->user()->government !== 0)
             $data = $data->where('users.government', auth()->user()->government);
@@ -216,13 +219,13 @@ class UserDataTable extends DataTable
     function additionalData()
     {
 
-        if ($this->type == 'deleted' and (Auth::user()->can('manage deleted users') == false))
+        if ($this->type == 'deleted' and (Auth::user()->can('manage deleted users') == true))
             return [
 
                 [
                     'name' => 'deleted_at',
                     'data' => 'deleted_at',
-                    'title' => 'deleted_at',
+                    'title' => trans('dataTable.deleted_at'),
                 ],
                 [
                     'name' => 'deleted_by_name',

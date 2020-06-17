@@ -142,6 +142,13 @@
                                 </a>
                             </li>
                         @endif
+                        @if (Auth::user()->can('manage deleted users') == true)
+                            <li class="">
+                                <a href="{{route('users.index','deleted')}}">
+                                    <span class="pcoded-mtext">  {{trans('menu.usersManagementDeleted')}}</span>
+                                </a>
+                            </li>
+                        @endif
                         @if (Auth::user()->can('show permissions') == true)
                             <li class="">
                                 <a href="{{route('permissions.index')}}">

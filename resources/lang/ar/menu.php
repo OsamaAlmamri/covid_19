@@ -15,6 +15,7 @@ return array(
     'app_link' => ' رابط التطبيق  ',
     'show_app_link' => 'عرض رابط التطبيق ',
     'edit_app_link' => 'تعديل رابط التطبيق ',
+    'usersManagementDeleted' => 'ادارة المستخدمين المحذوفين',
 
     'dashboard' => 'لوحة التحكم',
     'home' => 'الرئيسية',
