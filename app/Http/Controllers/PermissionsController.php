@@ -27,6 +27,8 @@ class PermissionsController extends Controller
         $role = Role::create(['guard_name' => 'web', 'name' => 'SuperAdmin']);
         $role = Role::create(['guard_name' => 'web', 'name' => 'Admin']);
         $role = Role::create(['guard_name' => 'web', 'name' => 'DataEntry']);
+        $role = Role::create(['guard_name' => 'web', 'name' => 'CheckPointAdmin']);
+        $role = Role::create(['guard_name' => 'web', 'name' => 'QuarantineAdmin']);
     }
 
     private function addPermissions()

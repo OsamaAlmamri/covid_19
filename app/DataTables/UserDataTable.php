@@ -80,7 +80,10 @@ class UserDataTable extends DataTable
             $data = $data->where('users.government', auth()->user()->government);
         if (auth()->user()->getRoleNames()->first() !== 'Developer')
             $data = $data->where('roles.name', '<>', 'Developer');
-        if (auth()->user()->getRoleNames()->first() === 'Admin')
+        if (
+            auth()->user()->getRoleNames()->first() !== 'SuperAdmin' and
+            auth()->user()->getRoleNames()->first() !== 'Developer'
+        )
             $data = $data->where('users.created_by', auth()->user()->id);
             $data = $data->where('users.id', '!=',auth()->user()->id);
         $data = $data->orderByDesc('id')->get();

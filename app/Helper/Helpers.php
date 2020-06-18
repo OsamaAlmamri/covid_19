@@ -239,7 +239,10 @@ function getAllWorker($id = 0)
 //    $users = $data->get();
 
     $data = WorkTeam::whereNotIn('id', $ids);
-    if (auth()->user()->getRoleNames()->first() === 'Admin')
+    if (
+        auth()->user()->getRoleNames()->first() !== 'SuperAdmin' and
+        auth()->user()->getRoleNames()->first() !== 'Developer'
+    )
         $data = $data->where('created_by', auth()->user()->id);
     $users = $data->get();
 
