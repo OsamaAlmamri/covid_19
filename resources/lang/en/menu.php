@@ -56,7 +56,7 @@ return [
     's_block_persons' => ' Quarantine  persons',
     'block_persons_male' => ' Quarantine  persons male ',
     'block_persons_female' => ' Quarantine  persons female',
-    'governments' => ' governments',
+    'governments' => ' governorates',
     'zones' => 'districts',
 
 
@@ -68,7 +68,7 @@ return [
     'workTeamType' => ' work Team Type',
     'center' => 'center ',
     'btn_filterTeam' => ' filter Team',
-    'government' => ' government ',
+    'government' => ' governorate ',
     'zone' => '  districts',
     'gender' => 'gender ',
     'male' => ' male',
@@ -129,7 +129,7 @@ return [
     'check_points' => '     check points  ',
     'sumBlockPersonsByCenter' => '   By Quarantine Area',
     'sumBlockPersonsByZone' => '  By District',
-    'sumBlockPersonsByGovernment' => 'By Government ',
+    'sumBlockPersonsByGovernment' => 'By Governorate ',
     'sumBlockPersons_zone' => ' Cumulative report of the number of Quarantine Persons by districts ',
     'sumBlockPersons_gov' => 'Cumulative report of the number of Quarantine Persons by governorates   ',
     'truck_driver' => ' Summary of commercial truck drivers',

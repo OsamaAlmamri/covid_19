@@ -32,7 +32,7 @@ return [
 //maxCapacity,zone_name,government_name,quarantine_area_type
     'maxCapacity' => 'max Capacity',
     'zone_name' => 'districts name',
-    'government_name' => 'government name',
+    'government_name' => 'Governorate name',
     'quarantine_area_type' => 'type',
     'manager_phone' => 'manager phone',
     'manager_name' => 'manager name',
@@ -174,7 +174,7 @@ return [
     'source_pass_country' => 'Pass country   ',
     'source_stay_period' => 'stay period  ',
 
-    'dest_government' => ' government',
+    'dest_government' => ' Governorate',
     'dest_zone' => ' districts',
     'dest_sub_zone' => 'Sub Districts  ',
 
@@ -202,9 +202,9 @@ return [
     'dest_info' => ' Destination Info ',//
     'source_info' => 'Source Info ',//
     'health_info' => ' Info Medical ',//
-    'last_governorate_visit' => ' Last Government Visited ',//
+    'last_governorate_visit' => ' Last Governorate Visited ',//
     'last_zone_visit' => ' District ',//
-    'dest_governorate' => ' Government ',//
+    'dest_governorate' => ' Governorate ',//
     'personal' => ' personal ',//
     'passport' => ' passport ',//
     'yes' => ' yes ',//
@@ -258,7 +258,7 @@ return [
     'indicates' => 'indicates ',
     'hangs' => 'hangs ',
     'dest_sub_zone' => 'Sub Districts  ',
-    'quar_government' => 'Government  ',
+    'quar_government' => 'Governorate  ',
     'quar_zone' => 'District ',
     'quarantine_area_name' => 'Quarantine Area  ',
     'quarantine_area_id' => 'Quarantine Area  ',

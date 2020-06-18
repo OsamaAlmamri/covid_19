@@ -21,7 +21,7 @@ return [
     'status' => 'Status',
     'description' => 'Description',
 
-    'governmentWorker' => 'government Worker',
+    'governmentWorker' => 'Governorate Worker',
 
     'username' => 'User Name',
     'full_name' => 'Full Name',
@@ -118,7 +118,7 @@ return [
     ],
 
 
-    'government' => 'government',
+    'government' => 'Governorate',
     'country' => 'country',
     'ssn' => 'ssn',
     'zone' => 'districts',
