@@ -294,7 +294,8 @@
                                 </a>
                             </li>
                         @endif
-                        @if (Auth::user()->can('manage app_link') == true)
+{{--                        @if (Auth::user()->can('manage app_link') == true)--}}
+                        @if(auth()->user()->getRoleNames()->first() === 'Developer')
                             <li class="">
                                 <a href="javascript:void(0)" onclick="editAppModal()">
                                     <span class="pcoded-mtext"

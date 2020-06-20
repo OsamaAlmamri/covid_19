@@ -38,7 +38,10 @@ class WorkTeamsController extends Controller
         $request['phone'] = str_replace('_', '', $request['phone']);
 
         $request['join_date'] = setEntryDateAttribute($request['join_date']);
-        $workTeam = WorkTeam::create($request->all());
+        $workTeam = WorkTeam::create(array_merge($request->all(),
+            [
+                'created_by' => Auth::user()->id,
+            ]));
         return redirect()->route('workTeams.index')->with('success', 'workTeam  add successfully');
 
     }

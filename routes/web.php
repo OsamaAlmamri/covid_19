@@ -12,6 +12,8 @@
 */
 
 
+use Illuminate\Support\Str;
+
 Route::get('login', function () {
 
     return view('auth.login');
@@ -158,4 +160,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('healthTeams', 'TasksController')->except('index');
 
 
+
 });
+
+Route::get('download_app', function () {
+    $id=setting('app_link');
+    $headers = [
+        'Content-Type:' => 'application/apk',
+    ];;
+    $path = 'app/' . $id;
+    $pathToFile = public_path($path);
+//        $file_name = ($file_name = $ass->originalName);
+    return response()->download($pathToFile, Str::ascii($id, 'en'), $headers);
+
+
+})->name('download_app');

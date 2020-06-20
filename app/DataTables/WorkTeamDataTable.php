@@ -43,7 +43,12 @@ class WorkTeamDataTable extends DataTable
             $data = DB::table('work_teams')
                 ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.code')
                 ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
+                ->leftJoin('users as CreatedUsers', 'work_teams.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->select('work_teams.*',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
                 ->WhereNull('work_teams.deleted_at')
@@ -53,8 +58,13 @@ class WorkTeamDataTable extends DataTable
                 ->leftJoin('users', 'work_teams.deleted_by', '=', 'users.id')
                 ->leftJoin('zones as Zone', 'work_teams.zone_id', '=', 'Zone.code')
                 ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
+                ->leftJoin('users as CreatedUsers', 'work_teams.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->select('work_teams.*',
-                    'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name', 'users.username as deleted_by_name'
+                    'Zone.name_ar as zone_name',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+                    'ParentZone.name_ar as government_name', 'users.username as deleted_by_name'
                 )
                 ->WhereNotNull('work_teams.deleted_at')
                 ->orderByDesc('id')->get();
@@ -138,6 +148,13 @@ class WorkTeamDataTable extends DataTable
                         'name' => 'workType',
                         'data' => 'workType',
                         'title' => trans('dataTable.workType'),
+
+                    ],
+
+                    [
+                        'name' => 'adminCreatedInfo',
+                        'data' => 'adminCreatedInfo',
+                        'title' => trans('dataTable.adminCreatedInfo'),
 
                     ],
 

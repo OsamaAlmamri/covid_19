@@ -250,7 +250,7 @@
             <div class="modal-body">
                 <div class="alert alert-danger">
                     <div class="form-group">
-                        <a href="{{setting('app_link')}}" target="_blank"> {{setting('app_link')}}</a>
+                        <a href="{{route('download_app') }}" target="_blank"> {{setting('app_link')}}</a>
 
                     </div>
                 </div>

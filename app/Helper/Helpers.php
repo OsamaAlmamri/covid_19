@@ -238,16 +238,22 @@ function getAllWorker($id = 0)
 //        $data = $data->where('work_teams.created_by', auth()->user()->id);
 //    $users = $data->get();
 
-    $data = WorkTeam::whereNotIn('id', $ids);
+    $data2=WorkTeam::whereNotIn('id', $ids)->where('id','<',193)->get();
+    $data = WorkTeam::whereNotIn('id', $ids)->where('id','>',192);
     if (
-        auth()->user()->getRoleNames()->first() !== 'SuperAdmin' and
-        auth()->user()->getRoleNames()->first() !== 'Developer'
+        auth()->user()->getRoleNames()->first() === 'SuperAdmin' or
+        auth()->user()->getRoleNames()->first() === 'Developer'
     )
-        $data = $data->where('created_by', auth()->user()->id);
+        $data = $data;
+    else
+        $data = $data->where('created_by', '=',auth()->user()->id);
     $users = $data->get();
 
     $allUsers = [];
     foreach ($users as $user) {
+        $allUsers[$user->id] = $user->name . '/' . $user->workType;
+    }
+    foreach ($data2 as $user) {
         $allUsers[$user->id] = $user->name . '/' . $user->workType;
     }
     return $allUsers;
