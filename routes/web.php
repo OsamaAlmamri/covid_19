@@ -22,6 +22,16 @@ Route::get('login', function () {
 
 Route::post('postLogin', "Auth\LoginController@postlogin")->name('postLogin');
 
+//Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+//Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.email');
+//Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+//Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+//Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.email');
+Route::get('/password/reset/{token}/{email}', 'Auth\ResetPasswordController@showResetForm')->name('password.resetPass');
 
 //Route::get('/orders', 'HomeController@orders')->name('orders');
 
@@ -175,3 +185,5 @@ Route::get('download_app', function () {
 
 
 })->name('download_app');
+
+
