@@ -39,6 +39,7 @@ return [
     'quarantine_area_type' => 'النوع',
     'manager_phone' => ' رقم المدير',
     'manager_name' => ' اسم المدير',
+    'check_point_name' => '    نقطة التفتيش/المنفذ ',
 
 
     'adminCreatedInfo' => ' اضيف بواسطة',

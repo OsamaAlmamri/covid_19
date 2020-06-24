@@ -114,7 +114,7 @@
                                 <div class="span6 unit">
                                     <label class="j-label">  {{trans('form.check_points.manager')}}</label>
                                     <div class="j-input">
-                                        {!!Form ::select('manager_id', getAllWorker(),isset($check_point)?$check_point->manager_id:null,['class' => 'select2 form-control', 'id' => 'manager_id'])!!}
+                                        {!!Form ::select('manager_id',getTeamWorker(isset($check_point)?$check_point->manager_id:0),isset($check_point)?$check_point->manager_id:null,['class' => 'select2 form-control', 'id' => 'manager_id'])!!}
                                     </div>
                                     @error('manager_id') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror

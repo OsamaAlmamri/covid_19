@@ -120,7 +120,7 @@
                                 <div class="span6 unit">
                                     <label class="j-label">  {{trans('form.quarantines.manager')}}</label>
                                     <div class="j-input">
-                                        {!!Form ::select('manager_id', getAllWorker(),isset($quarantine)?$quarantine->manager_id:null,['class' => 'select2 form-control', 'id' => 'manager_id'])!!}
+                                        {!!Form ::select('manager_id', getTeamWorker(isset($quarantine)?$quarantine->manager_id:0),isset($quarantine)?$quarantine->manager_id:null,['class' => 'select2 form-control', 'id' => 'manager_id'])!!}
                                     </div>
                                     @error('manager_id') <span
                                         class="btn-block badge badge-danger">{{ $message }}</span> @enderror
@@ -163,7 +163,7 @@
 
 @endsection
 
-@include('includes.changeZones') 
+@include('includes.changeZones')
 
 
 @section('js')

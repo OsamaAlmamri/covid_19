@@ -26,6 +26,11 @@
                 'title': '{{trans('dataTable.quarantine_area_name')}}',
             },
             {
+                'name': 'check_point_name',
+                'data': 'check_point_name',
+                'title': '{{trans('dataTable.check_point_name')}}',
+            },
+            {
                 'title': '{{trans('dataTable.gender')}}',
                 'name': 'gender',
                 'data': "gender",

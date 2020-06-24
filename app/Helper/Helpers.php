@@ -226,20 +226,32 @@ function getAllWorker($id = 0)
     foreach ($user as $u) {
         $ids[] = $u->work_team_id;
     }
-//    $data = DB::table('work_teams')
-//        ->leftJoin('users', 'users.work_team_id', '=', 'work_teams.id')
-//        ->select('work_teams.*', 'users.id', 'users.work_team_id')
-//        ->WhereNull('users.work_team_id')
-//        ->orWhere('work_teams.id', $id);
-////    return dd($data);
-//
-//
-//    if (auth()->user()->getRoleNames()->first() === 'Admin')
-//        $data = $data->where('work_teams.created_by', auth()->user()->id);
-//    $users = $data->get();
-
     $data2=WorkTeam::whereNotIn('id', $ids)->where('id','<',193)->get();
     $data = WorkTeam::whereNotIn('id', $ids)->where('id','>',192);
+    if (
+        auth()->user()->getRoleNames()->first() === 'SuperAdmin' or
+        auth()->user()->getRoleNames()->first() === 'Developer'
+    )
+        $data = $data;
+    else
+        $data = $data->where('created_by', '=',auth()->user()->id);
+    $users = $data->get();
+
+    $allUsers = [];
+    foreach ($users as $user) {
+        $allUsers[$user->id] = $user->name . '/' . $user->workType;
+    }
+    foreach ($data2 as $user) {
+        $allUsers[$user->id] = $user->name . '/' . $user->workType;
+    }
+    return $allUsers;
+}
+
+function getTeamWorker($id=0)
+{
+
+    $data2=WorkTeam::where('id','<',193)->orWhere('id',$id)->get();
+    $data = WorkTeam::where('id','>',192)->orWhere('id',$id);
     if (
         auth()->user()->getRoleNames()->first() === 'SuperAdmin' or
         auth()->user()->getRoleNames()->first() === 'Developer'
