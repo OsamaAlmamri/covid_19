@@ -21,6 +21,11 @@
                 'title': '{{trans('dataTable.check_date')}}',
             },
             {
+                'name': 'adminCreatedInfo',
+                'data': 'adminCreatedInfo',
+                'title': '{{trans('dataTable.adminCreatedInfo')}}',
+            },
+            {
                 'name': 'quarantine_area_name',
                 'data': 'quarantine_area_name',
                 'title': '{{trans('dataTable.quarantine_area_name')}}',
@@ -504,6 +509,11 @@
                 'title': '{{trans('dataTable.check_date')}}',
             },
             {
+                'name': 'adminCreatedInfo',
+                'data': 'adminCreatedInfo',
+                'title': '{{trans('dataTable.adminCreatedInfo')}}',
+            },
+            {
                 'name': 'age_day',
                 'data': 'age_day',
                 'title': '{{trans('dataTable.age_day')}}',
@@ -609,6 +619,11 @@
                 'name': 'check_date',
                 'data': 'check_date',
                 'title': '{{trans('dataTable.check_date')}}',
+            },
+            {
+                'name': 'adminCreatedInfo',
+                'data': 'adminCreatedInfo',
+                'title': '{{trans('dataTable.adminCreatedInfo')}}',
             },
             {
                 'name': 'age_year',

@@ -80,7 +80,7 @@
                         @if($type!='sumBlockPersons_gov'  and $type!='sumBlockPersons_zone' )
                             <div class="input-group col-md-3">
                                 <span class="input-group-addon">{{trans('menu.zone')}}</span>
-                                {!!Form ::select('zone_id',getZones(auth()->user()->government),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
+                                {!!Form ::select('zone_id',getZones(auth()->user()->government,'district',1),null,['class' => 'select2 form-control', 'id' => 'zone_id'])!!}
 
                             </div>
 

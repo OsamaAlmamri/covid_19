@@ -226,12 +226,15 @@ class BlockPersonsController extends Controller
                 ->leftJoin('zones as health_center_parent_zone', 'health_center_zone.parent', '=', 'health_center_parent_zone.code')
                 ->leftJoin('zones as check_point_zone', 'blocked_people.district_code', '=', 'check_point_zone.code')
                 ->leftJoin('zones as check_point_parent_zone', 'check_point_zone.parent', '=', 'check_point_parent_zone.code')
+                ->leftJoin('users as CreatedUsers', 'blocked_people.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->select('blocked_people.*',
-                    DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24*365)) as age_year "),
-                    DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24*30)) as age_month "),
-                    DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24)) as age_day "),
+                    DB::raw("round((unix_timestamp(now()) - blocked_people.birth_date/1000)/(60*60*24*365)) as age_year "),
+                    DB::raw("round((unix_timestamp(now()) - blocked_people.birth_date/1000)/(60*60*24*30)) as age_month "),
+                    DB::raw("round((unix_timestamp(now()) - blocked_people.birth_date/1000)/(60*60*24)) as age_day "),
                     DB::raw("FROM_UNIXTIME(start_date_symptoms/1000,'%Y-%m-%d') as start_date_symptoms "),
-                    DB::raw("FROM_UNIXTIME(start_date_symptoms/1000,'%Y-%m-%d') as birth_date "),
+                    DB::raw("FROM_UNIXTIME(blocked_people.birth_date/1000,'%Y-%m-%d') as birth_date "),
                     DB::raw("FROM_UNIXTIME(sleep_date/1000,'%Y-%m-%d') as sleep_date "),
                     DB::raw("FROM_UNIXTIME(insulation_date/1000,'%Y-%m-%d') as insulation_date "),
                     DB::raw("FROM_UNIXTIME(out_from_country_date/1000,'%Y-%m-%d') as out_from_country_date "),
@@ -244,6 +247,8 @@ class BlockPersonsController extends Controller
                     DB::raw("CONCAT(COALESCE(transfer_ParentZone.name_ar,'') ,' / ',COALESCE(transfer_zone.name_ar,''),' / ',COALESCE(quarantine_areas_transfer.name,'')) AS transfer_zone"),
                     DB::raw("CONCAT(COALESCE(health_center_parent_zone.name_ar,''),' / ' ,COALESCE(health_center_zone.name_ar,''),' / ' ,COALESCE(quarantine_areas.name,'')) AS center_zone"),
                     DB::raw("CONCAT(COALESCE(check_point_parent_zone.name_ar,'') ,' / ',COALESCE(check_point_zone.name_ar,'')) AS point_zone"),
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
                     'quarantine_areas.name as quarantine_area_name', 'check_points.name as check_point_name'
                 )
@@ -272,12 +277,15 @@ class BlockPersonsController extends Controller
             ->leftJoin('zones as health_center_parent_zone', 'health_center_zone.parent', '=', 'health_center_parent_zone.code')
             ->leftJoin('zones as check_point_zone', 'blocked_people.district_code', '=', 'check_point_zone.code')
             ->leftJoin('zones as check_point_parent_zone', 'check_point_zone.parent', '=', 'check_point_parent_zone.code')
+            ->leftJoin('users as CreatedUsers', 'blocked_people.created_by', '=', 'CreatedUsers.id')
+            ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
             ->select('blocked_people.*',
-                DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24*365)) as age_year "),
-                DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24*30)) as age_month "),
-                DB::raw("round((unix_timestamp(now()) - birth_date/1000)/(60*60*24)) as age_day "),
+                DB::raw("round((unix_timestamp(now()) - blocked_people.birth_date/1000)/(60*60*24*365)) as age_year "),
+                DB::raw("round((unix_timestamp(now()) - blocked_people.birth_date/1000)/(60*60*24*30)) as age_month "),
+                DB::raw("round((unix_timestamp(now()) - blocked_people.birth_date/1000)/(60*60*24)) as age_day "),
                 DB::raw("FROM_UNIXTIME(start_date_symptoms/1000,'%Y-%m-%d') as start_date_symptoms "),
-                DB::raw("FROM_UNIXTIME(start_date_symptoms/1000,'%Y-%m-%d') as birth_date "),
+                DB::raw("FROM_UNIXTIME(blocked_people.birth_date/1000,'%Y-%m-%d') as birth_date "),
                 DB::raw("FROM_UNIXTIME(sleep_date/1000,'%Y-%m-%d') as sleep_date "),
                 DB::raw("FROM_UNIXTIME(insulation_date/1000,'%Y-%m-%d') as insulation_date "),
                 DB::raw("FROM_UNIXTIME(out_from_country_date/1000,'%Y-%m-%d') as out_from_country_date "),
@@ -290,6 +298,8 @@ class BlockPersonsController extends Controller
                 DB::raw("CONCAT(COALESCE(transfer_ParentZone.name_ar,'') ,' / ',COALESCE(transfer_zone.name_ar,''),' / ',COALESCE(quarantine_areas_transfer.name,'')) AS transfer_zone"),
                 DB::raw("CONCAT(COALESCE(health_center_parent_zone.name_ar,''),' / ' ,COALESCE(health_center_zone.name_ar,''),' / ' ,COALESCE(quarantine_areas.name,'')) AS center_zone"),
                 DB::raw("CONCAT(COALESCE(check_point_parent_zone.name_ar,'') ,' / ',COALESCE(check_point_zone.name_ar,'')) AS point_zone"),
+                DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
                 'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
                 'quarantine_areas.name as quarantine_area_name', 'check_points.name as check_point_name'
             )

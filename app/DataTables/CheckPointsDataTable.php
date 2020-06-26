@@ -48,7 +48,12 @@ class CheckPointsDataTable extends DataTable
                 ->leftJoin('work_teams', 'check_points.manager_id', '=', 'work_teams.id')
                 ->leftJoin('zones as Zone', 'check_points.zone_id', '=', 'Zone.code')
                 ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
+                ->leftJoin('users as CreatedUsers', 'check_points.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->select('check_points.*',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
@@ -59,7 +64,12 @@ class CheckPointsDataTable extends DataTable
                 ->leftJoin('work_teams', 'check_points.manager_id', '=', 'work_teams.id')
                 ->leftJoin('zones as Zone', 'check_points.zone_id', '=', 'Zone.code')
                 ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
+                ->leftJoin('users as CreatedUsers', 'check_points.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->select('check_points.*',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name'
                 )
@@ -173,10 +183,17 @@ class CheckPointsDataTable extends DataTable
                     'title' => trans('dataTable.team'),
                 ],
                 [
+                    'name' => 'adminCreatedInfo',
+                    'data' => 'adminCreatedInfo',
+                    'title' => trans('dataTable.adminCreatedInfo'),
+
+                ],
+                [
                     'name' => 'created_at',
                     'data' => 'created_at',
                     'title' => trans('dataTable.created_at'),
                 ],
+
             ],
                 $btnActive,
 //                [

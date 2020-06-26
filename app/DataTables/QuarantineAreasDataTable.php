@@ -52,9 +52,14 @@ class QuarantineAreasDataTable extends DataTable
                 ->leftJoin('work_teams', 'quarantine_areas.manager_id', '=', 'work_teams.id')
                 ->leftJoin('zones as Zone', 'quarantine_areas.zone_id', '=', 'Zone.code')
                 ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
+                ->leftJoin('users as CreatedUsers', 'quarantine_areas.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->leftJoin('quarantine_area_types', 'quarantine_areas.quarantine_area_type_id', '=', 'quarantine_area_types.id')
                 ->select('quarantine_areas.*',
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
                     'quarantine_area_types.name as quarantine_area_type'
                 )
@@ -64,9 +69,14 @@ class QuarantineAreasDataTable extends DataTable
                 ->leftJoin('users', 'quarantines.deleted_by', '=', 'users.id')
                 ->leftJoin('work_teams', 'quarantine_areas.manager_id', '=', 'work_teams.id')
                 ->leftJoin('zones as Zone', 'quarantine_areas.zone_id', '=', 'Zone.code')
+                ->leftJoin('users as CreatedUsers', 'quarantine_areas.created_by', '=', 'CreatedUsers.id')
+                ->leftJoin('work_teams as AdminInfo', 'AdminInfo.id', '=', 'CreatedUsers.work_team_id')
+
                 ->leftJoin('zones as ParentZone', 'Zone.parent', '=', 'ParentZone.code')
                 ->leftJoin('quarantine_area_types', 'quarantine_areas.quarantine_area_type_id', '=', 'quarantine_area_types.id')
                 ->select('quarantine_areas.*',
+                    DB::raw("CONCAT(COALESCE(CreatedUsers.username,'') , ' (' ,COALESCE(AdminInfo.phone,'') , ' )') AS adminCreatedInfo"),
+
                     'work_teams.name as manager_name', 'work_teams.phone as manager_employee_number',
                     'Zone.name_ar as zone_name', 'ParentZone.name_ar as government_name',
                     'quarantine_area_types.name as quarantine_area_type', 'users.name as deleted_by_name'
@@ -196,6 +206,12 @@ class QuarantineAreasDataTable extends DataTable
                     'name' => 'maxCapacity',
                     'data' => 'maxCapacity',
                     'title' => trans('dataTable.maxCapacity'),
+                ],
+                [
+                    'name' => 'adminCreatedInfo',
+                    'data' => 'adminCreatedInfo',
+                    'title' => trans('dataTable.adminCreatedInfo'),
+
                 ],
                 [
                     'name' => 'created_at',
