@@ -51,6 +51,7 @@ class HomeController extends Controller
             $government = auth()->user()->government;
         $filter_zones = getZones_childs_ids($government);
 
+
         $all = DB::table('users')
             ->leftJoin('work_teams', 'work_teams.id', '=', 'users.work_team_id')
             ->leftJoin('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
@@ -80,12 +81,13 @@ class HomeController extends Controller
         $s_pointTeams = PointTeam::all()->whereIn('zone_id', $filter_zones)->count();
         $all_block_persons = BlockedPerson::all()->whereIn('dest_zone_id', $filter_zones)->count();
         $not_block_persons = BlockedPerson::all()->whereIn('dest_zone_id', $filter_zones)->whereNull('quarantine_area_id')->count();
-        $s_block_persons = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->count();
-        $block_persons_male = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->where('gender', '=', 'male')->count();
-        $block_persons_female = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->where('gender', '=', 'female')->count();
+        $s_block_persons = BlockedPerson::all()->whereIn('quarantine_area_id',getQuarByZones($filter_zones) )->count();
+        $block_persons_male = BlockedPerson::all()->whereIn('quarantine_area_id', getQuarByZones($filter_zones))->where('quarantine_area_id', '>', 0)->where('gender', '=', 'male')->count();
+        $block_persons_female = BlockedPerson::all()->whereIn('quarantine_area_id', getQuarByZones($filter_zones))->where('quarantine_area_id', '>', 0)->where('gender', '=', 'female')->count();
 //        $user->deleted_at=0;
 //        $user['deleted_at']=0;
 
+        return dd(getQuarByZones($filter_zones));
         $user = User::where('id', auth()->user()->id)->get();
 
 
