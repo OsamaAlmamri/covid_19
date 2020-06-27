@@ -1,6 +1,7 @@
 <?php
 
 use App\HaraVil;
+use App\QuarantineArea;
 use App\SubDi;
 use App\SubHaraVil;
 use App\User;
@@ -357,6 +358,19 @@ function getZones_childs_ids($parent, $type = 'district', $op = 'getSumBlockPers
 //			$to_Zone_ids[] = $zone->parent;
 //		else
         $to_Zone_ids[] = $zone->code;
+    }
+
+    return $to_Zone_ids;
+}
+
+function getQuarByZones($parent)
+{
+
+    $to_zones=QuarantineArea::all()->whereIn('zone_id',$parent);
+    $to_Zone_ids = [];
+    foreach ($to_zones as $zone) {
+
+        $to_Zone_ids[] = $zone->id;
     }
 
     return $to_Zone_ids;
