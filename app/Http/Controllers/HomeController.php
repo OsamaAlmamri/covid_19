@@ -69,20 +69,20 @@ class HomeController extends Controller
         $hara_vil = HaraVil::all()->where('parent', '>', 0)->where('type', 'like', 'hara_vil')->count();
         $sub_hara_vil = SubHaraVil::all()->where('parent', '>', 0)->where('type', 'like', 'sub_hara_vil')->count();
         $governments = Zone::all()->where('parent', '=', 0)->count();
-        $quarantines = QuarantineArea::all()->whereIn('zone_id', $filter_zones)->count();
+        $quarantines = QuarantineArea::all()->count();
 
-        $checkPoints = CheckPoint::all()->whereIn('zone_id', $filter_zones)->count();
+        $checkPoints = CheckPoint::all()->count();
 
-        $workTeams = WorkTeam::all()->whereIn('zone_id', $filter_zones)->count();
-        $workTeams_male = WorkTeam::all()->whereIn('zone_id', $filter_zones)->where('gender', '=', 'male')->count();
-        $workTeams_female = WorkTeam::all()->whereIn('zone_id', $filter_zones)->where('gender', '=', 'female')->count();
-        $s_healthTeams = HealthTeam::all()->whereIn('zone_id', $filter_zones)->count();
-        $s_pointTeams = PointTeam::all()->whereIn('zone_id', $filter_zones)->count();
-        $all_block_persons = BlockedPerson::all()->whereIn('dest_zone_id', $filter_zones)->count();
-        $not_block_persons = BlockedPerson::all()->whereIn('dest_zone_id', $filter_zones)->whereNull('quarantine_area_id')->count();
-        $s_block_persons = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->count();
-        $block_persons_male = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->where('gender', '=', 'male')->count();
-        $block_persons_female = BlockedPerson::all()->whereIn('quarantine_area_id', $filter_zones)->where('quarantine_area_id', '>', 0)->where('gender', '=', 'female')->count();
+        $workTeams = WorkTeam::all()->count();
+        $workTeams_male = WorkTeam::all()->where('gender', '=', 'male')->count();
+        $workTeams_female = WorkTeam::all()->where('gender', '=', 'female')->count();
+        $s_healthTeams = HealthTeam::all()->count();
+        $s_pointTeams = PointTeam::all()->count();
+        $all_block_persons = BlockedPerson::all()->count();
+        $not_block_persons = BlockedPerson::all()->whereNull('quarantine_area_id')->count();
+        $s_block_persons = BlockedPerson::all()->whereNotNull('quarantine_area_id')->count();
+        $block_persons_male = BlockedPerson::all()->whereNotNull('quarantine_area_id')->where('gender', '=', 'male')->count();
+        $block_persons_female = BlockedPerson::all()->whereNotNull('quarantine_area_id')->where('gender', '=', 'female')->count();
 
 //        $user->deleted_at=0;
 //        $user['deleted_at']=0;
