@@ -59,7 +59,7 @@ class QuarntineTypesController extends Controller
             return redirect()->route('quarantineTypes.index')->with('warning', 'Not allow to delete because this type has Quarantine Area  ');
         else
             $qt->delete();
-        return redirect()->route('quarantineTypes.index')->with('success', 'project deleted successfully');
+        return redirect()->route('quarantineTypes.index')->with('success', 'type deleted successfully');
 
 
     }
