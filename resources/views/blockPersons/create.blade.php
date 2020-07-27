@@ -689,7 +689,7 @@
                                                 <label class="j-icon-right" for="check_date">
                                                     <i class="icofont icofont-phone"></i>
                                                 </label>
-{{--                                                {!! Form::text('check_date', null, [ 'id' => 'check_date'  ,'placeholder'=>trans("dataTable.check_date")]) !!}--}}
+                                                {{--                                                {!! Form::text('check_date', null, [ 'id' => 'check_date'  ,'placeholder'=>trans("dataTable.check_date")]) !!}--}}
                                                 <input type="date" name="check_date" id="check_date"
                                                        placeholder="{{trans("dataTable.check_date")}}">
 
@@ -1514,7 +1514,6 @@
                 return get_dest_zone(dis_code, 'dest_sub_hara', 'sub_hara_vil')
             });
         });
-
 
         function get_dest_zone(zone_code, zone_list, zone_type = 'district', type = 'noAll') {
             var zone = $('#' + zone_list);

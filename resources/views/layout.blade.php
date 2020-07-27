@@ -51,6 +51,11 @@
 
     @if((lang() == 'ar'))
         <link rel="stylesheet" type="text/css" href="{{ HostUrl('design\assets\css\extraRTLCSS.css')}}">
+  <style>
+      .j-forms .j-row {
+          display: flex;
+      }
+  </style>
     @else
         <link rel="stylesheet" type="text/css" href="{{ HostUrl('design\assets\css\extraLTRCSS.css')}}">
     @endif
@@ -59,6 +64,13 @@
     <style>
         .primary_site_color {
             color: #00bdd4
+        }
+
+        .j-pro .j-label {
+            margin: 5px;
+        }
+        .breadcrumb-item {
+            float: right;
         }
 
         .task_description {

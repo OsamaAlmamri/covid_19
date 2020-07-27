@@ -63,7 +63,8 @@ class UserController extends Controller
                 'avatar' => $avatar,
                 'created_by' => Auth::user()->id,
             ]));
-        (Auth::user()->can('manage superUsers') == true) ? $user->syncRoles([$request->role]) : $user->syncRoles(['DataEntry']);
+        (Auth::user()->can('manage superUsers') == true)
+            ? $user->syncRoles([$request->role]) : $user->syncRoles(['DataEntry']);
 
         return redirect()->route('users.index', $request->type)->with('success', $request->role . ' add successfully');
 
